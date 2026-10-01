@@ -24,7 +24,10 @@
             overflow-x: hidden;
         }
 
-        /* Corações decorativos */
+        /* ==========================================
+           CORAÇÕES DECORATIVOS
+        ========================================== */
+
         .heart {
             position: fixed;
             font-size: 22px;
@@ -62,10 +65,15 @@
             0%, 100% {
                 transform: translateY(0) rotate(-5deg);
             }
+
             50% {
                 transform: translateY(-18px) rotate(8deg);
             }
         }
+
+        /* ==========================================
+           ESTRUTURA
+        ========================================== */
 
         .container {
             width: min(92%, 850px);
@@ -110,7 +118,9 @@
             font-size: 16px;
         }
 
-        /* Escolha inicial */
+        /* ==========================================
+           OPÇÕES INICIAIS
+        ========================================== */
 
         .options {
             display: grid;
@@ -147,7 +157,87 @@
             color: #563f52;
         }
 
-        /* Área de cadastro */
+        /* ==========================================
+           CARD NOITE DE LOVE
+        ========================================== */
+
+        .love-card {
+            margin-top: 18px;
+            border: 2px solid #ead6e4;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255, 192, 218, 0.35),
+                    transparent 45%
+                ),
+                linear-gradient(135deg, #fff9fc, #f9f4ff);
+            border-radius: 22px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .love-card::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 180, 210, 0.15);
+            border-radius: 50%;
+            top: -45px;
+            right: -35px;
+        }
+
+        .love-card:hover {
+            transform: translateY(-4px);
+            border-color: #dc8db1;
+            box-shadow: 0 12px 30px rgba(184, 92, 139, 0.14);
+        }
+
+        .love-icon {
+            font-size: 42px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .love-title {
+            color: #a54e78;
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .love-description {
+            color: #806e7b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: #f4e5ee;
+            color: #a26383;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .lock {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            font-size: 18px;
+            opacity: 0.65;
+        }
+
+        /* ==========================================
+           ÁREA DE CADASTRO
+        ========================================== */
 
         .chosen {
             text-align: center;
@@ -237,6 +327,7 @@
                 opacity: 0;
                 transform: translateY(5px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -294,7 +385,9 @@
             background: #e9dfe7;
         }
 
-        /* Sorteio */
+        /* ==========================================
+           SORTEIO
+        ========================================== */
 
         .draw-screen {
             text-align: center;
@@ -371,7 +464,9 @@
             letter-spacing: 2px;
         }
 
-        /* Resultado */
+        /* ==========================================
+           RESULTADO
+        ========================================== */
 
         .winner {
             text-align: center;
@@ -386,6 +481,7 @@
             from {
                 transform: scale(1) rotate(-4deg);
             }
+
             to {
                 transform: scale(1.08) rotate(4deg);
             }
@@ -421,6 +517,201 @@
             background: #cf4e80;
         }
 
+        /* ==========================================
+           MODAL DA SENHA
+        ========================================== */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(58, 39, 56, 0.42);
+            backdrop-filter: blur(7px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal {
+            width: min(100%, 430px);
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(67, 39, 65, 0.25);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .modal h2 {
+            color: #a54e78;
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            color: #806e7b;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            width: 100%;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .password-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .password-actions button {
+            flex: 1;
+        }
+
+        .cancel-btn {
+            background: #f2ebf0;
+            color: #665763;
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #d95c91, #a66acf);
+            color: white;
+        }
+
+        .error-message {
+            min-height: 22px;
+            color: #c74e79;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* ==========================================
+           ÁREA SECRETA / NOITE DE LOVE
+        ========================================== */
+
+        .secret-screen {
+            text-align: center;
+        }
+
+        .secret-icon {
+            font-size: 75px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.12);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.08);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        .secret-screen h1 {
+            margin-top: 15px;
+        }
+
+        .secret-subtitle {
+            color: #806e7b;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .secret-box {
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255, 187, 214, 0.45),
+                    transparent 40%
+                ),
+                linear-gradient(135deg, #fff3f8, #f6f0ff);
+            border: 1px solid #f0d9e5;
+            border-radius: 22px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .secret-box h3 {
+            color: #a54e78;
+            margin-bottom: 10px;
+        }
+
+        .secret-box p {
+            color: #806e7b;
+            line-height: 1.6;
+        }
+
+        .secret-placeholder {
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            color: #9b8492;
+            font-size: 14px;
+            border: 1px dashed #e5cbd9;
+        }
+
+        .secret-back {
+            margin-top: 20px;
+            background: #f2eaf0;
+            color: #665763;
+        }
+
+        .secret-back:hover {
+            background: #e8dce5;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
         .footer {
             text-align: center;
             margin-top: 18px;
@@ -428,7 +719,12 @@
             font-size: 13px;
         }
 
+        /* ==========================================
+           RESPONSIVO
+        ========================================== */
+
         @media (max-width: 650px) {
+
             .container {
                 padding: 20px 0;
             }
@@ -466,6 +762,10 @@
             .actions button {
                 width: 100%;
             }
+
+            .password-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -478,12 +778,17 @@
     <div class="heart">💖</div>
     <div class="heart">💞</div>
 
+
     <main class="container">
 
-        <!-- TELA INICIAL -->
+        <!-- ==========================================
+             TELA INICIAL
+        ========================================== -->
+
         <section id="home" class="card">
 
             <div class="header">
+
                 <div class="emoji">🎀</div>
 
                 <h1>
@@ -492,45 +797,112 @@
                 </h1>
 
                 <p class="subtitle">
-                    Porque escolher o que assistir é uma decisão séria... Então vamos levar bem a sério o sorteio. 😂💕
+                    Porque escolher o que assistir é uma decisão séria...
+                    Então vamos levar bem a sério o sorteio. 😂💕
                 </p>
+
             </div>
+
 
             <div class="options">
 
-                <div class="option" onclick="chooseType('movie')">
+                <div
+                    class="option"
+                    onclick="chooseType('movie')"
+                >
                     <span class="icon">🎬</span>
-                    <strong>Noite do Filme</strong>
+
+                    <strong>
+                        Noite do Filme
+                    </strong>
                 </div>
 
-                <div class="option" onclick="chooseType('anime')">
+
+                <div
+                    class="option"
+                    onclick="chooseType('anime')"
+                >
                     <span class="icon">🍥</span>
-                    <strong>Noite de Anime</strong>
+
+                    <strong>
+                        Noite de Anime
+                    </strong>
                 </div>
 
-                <div class="option" onclick="chooseType('series')">
+
+                <div
+                    class="option"
+                    onclick="chooseType('series')"
+                >
                     <span class="icon">📺</span>
-                    <strong>Noite da Série</strong>
+
+                    <strong>
+                        Noite da Série
+                    </strong>
                 </div>
 
             </div>
 
+
+            <!-- ==========================================
+                 CARD SECRETO
+            ========================================== -->
+
+            <div
+                class="love-card"
+                onclick="openLovePassword()"
+            >
+
+                <span class="lock">🔒</span>
+
+                <span class="love-icon">
+                    🌹
+                </span>
+
+                <div class="love-title">
+                    Noite de Love
+                </div>
+
+                <div class="love-description">
+                    Uma área especial para uma noite ainda mais especial...
+                </div>
+
+                <span class="coming-soon">
+                    EM BREVE
+                </span>
+
+            </div>
+
+
             <div class="footer">
-                Feito com amor para duas pessoas indecisas(Diane, Gabriel kkkkkk) 💗
+                Feito com amor para duas pessoas indecisas
+                (Diane, Gabriel kkkkkk) 💗
             </div>
 
         </section>
 
 
-        <!-- TELA DE CADASTRO -->
+        <!-- ==========================================
+             TELA DE CADASTRO
+        ========================================== -->
+
         <section id="register" class="card hidden">
 
             <div class="chosen">
-                <span id="chosenIcon">🎬</span>
-                <h2 id="chosenTitle">Noite do Filme</h2>
+
+                <span id="chosenIcon">
+                    🎬
+                </span>
+
+                <h2 id="chosenTitle">
+                    Noite do Filme
+                </h2>
+
             </div>
 
+
             <div class="header">
+
                 <h1 style="font-size: 28px;">
                     Vamos colocar as opções! 💕
                 </h1>
@@ -538,9 +910,12 @@
                 <p class="subtitle">
                     Cada uma pode adicionar quantos títulos quiser.
                 </p>
+
             </div>
 
+
             <div class="input-area">
+
                 <input
                     type="text"
                     id="itemInput"
@@ -549,25 +924,40 @@
                     autocomplete="off"
                 >
 
-                <button class="add-btn" onclick="addItem()">
+                <button
+                    class="add-btn"
+                    onclick="addItem()"
+                >
                     + Adicionar
                 </button>
+
             </div>
+
 
             <p class="list-title">
                 Opções cadastradas:
             </p>
 
-            <div id="itemsList" class="items">
+
+            <div
+                id="itemsList"
+                class="items"
+            >
                 <div class="empty">
                     Ainda não temos opções 🥺💕
                 </div>
             </div>
 
+
             <div class="actions">
-                <button class="back" onclick="goHome()">
+
+                <button
+                    class="back"
+                    onclick="goHome()"
+                >
                     ← Voltar
                 </button>
+
 
                 <button
                     id="finishButton"
@@ -577,32 +967,50 @@
                 >
                     🎲 Finalizar e Sortear
                 </button>
+
             </div>
 
         </section>
 
 
-        <!-- TELA DE SORTEIO -->
+        <!-- ==========================================
+             TELA DE SORTEIO
+        ========================================== -->
+
         <section id="draw" class="card hidden">
 
             <div class="draw-screen">
 
                 <div class="header">
-                    <div class="emoji">🎲</div>
 
-                    <h2>É HORA DO SORTEIO!</h2>
+                    <div class="emoji">
+                        🎲
+                    </div>
+
+                    <h2>
+                        É HORA DO SORTEIO!
+                    </h2>
 
                     <p class="draw-info">
-                        O primeiro título a chegar em <strong>3 sorteios</strong>
+                        O primeiro título a chegar em
+                        <strong>3 sorteios</strong>
                         será o escolhido! 👀💕
                     </p>
+
                 </div>
 
+
                 <div class="draw-box">
-                    <div id="currentDraw" class="current-draw">
+
+                    <div
+                        id="currentDraw"
+                        class="current-draw"
+                    >
                         Preparados? 👀
                     </div>
+
                 </div>
+
 
                 <button
                     id="drawButton"
@@ -612,14 +1020,21 @@
                     🎲 SORTEAR!
                 </button>
 
-                <div id="scoreboard" class="scoreboard"></div>
+
+                <div
+                    id="scoreboard"
+                    class="scoreboard"
+                ></div>
 
             </div>
 
         </section>
 
 
-        <!-- TELA DO VENCEDOR -->
+        <!-- ==========================================
+             TELA DO VENCEDOR
+        ========================================== -->
+
         <section id="winner" class="card hidden">
 
             <div class="winner">
@@ -636,7 +1051,10 @@
                     Depois de muita tensão...
                 </p>
 
-                <div id="winnerName" class="winner-name">
+                <div
+                    id="winnerName"
+                    class="winner-name"
+                >
                     —
                 </div>
 
@@ -646,8 +1064,77 @@
                     e aproveitar a nossa noite. 🍿💕
                 </p>
 
-                <button class="restart" onclick="restart()">
+                <button
+                    class="restart"
+                    onclick="restart()"
+                >
                     💗 Jogar novamente
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             TELA SECRETA — NOITE DE LOVE
+        ========================================== -->
+
+        <section
+            id="loveSecret"
+            class="card hidden"
+        >
+
+            <div class="secret-screen">
+
+                <div class="secret-icon">
+                    🌹
+                </div>
+
+                <h1>
+                    Nossa Noite de Love 💗
+                </h1>
+
+                <p class="secret-subtitle">
+                    Acesso autorizado... 👀<br>
+                    Sabia que você conseguiria.
+                    Agora começa uma parte especial da nossa noite. ✨
+                </p>
+
+
+                <div class="secret-box">
+
+                    <h3>
+                        💕 Área Especial
+                    </h3>
+
+                    <p>
+                        Essa parte ainda está sendo preparada
+                        com muito carinho...
+                    </p>
+
+                    <div class="secret-placeholder">
+                        🔐
+                        <br><br>
+
+                        <strong>
+                            Em breve teremos uma surpresinha aqui...
+                        </strong>
+
+                        <br><br>
+
+                        E talvez algumas coisas que você
+                        definitivamente não esteja esperando. 👀🌹
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="secret-back"
+                    onclick="closeLoveSecret()"
+                >
+                    ← Voltar para a roleta
                 </button>
 
             </div>
@@ -657,12 +1144,80 @@
     </main>
 
 
+    <!-- ==========================================
+         MODAL DA SENHA
+    ========================================== -->
+
+    <div
+        id="passwordModal"
+        class="modal-overlay hidden"
+    >
+
+        <div class="modal">
+
+            <div class="modal-icon">
+                🌹🔐
+            </div>
+
+            <h2>
+                Área Secreta 👀
+            </h2>
+
+            <p>
+                Essa parte é especial demais para
+                qualquer pessoa entrar...
+                <br>
+                Digite a palavrinha mágica. 💗
+            </p>
+
+
+            <input
+                id="passwordInput"
+                class="password-input"
+                type="password"
+                placeholder="Digite a senha..."
+                autocomplete="off"
+                maxlength="30"
+            >
+
+
+            <div
+                id="passwordError"
+                class="error-message"
+            ></div>
+
+
+            <div class="password-actions">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeLovePassword()"
+                >
+                    Voltar
+                </button>
+
+                <button
+                    class="enter-btn"
+                    onclick="checkLovePassword()"
+                >
+                    Entrar 🌹
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
     <script>
+
         // ==========================================
         // CONFIGURAÇÕES
         // ==========================================
 
         const types = {
+
             movie: {
                 title: "Noite do Filme",
                 icon: "🎬",
@@ -680,6 +1235,7 @@
                 icon: "📺",
                 placeholder: "Digite o nome de uma série..."
             }
+
         };
 
 
@@ -697,20 +1253,50 @@
         // ELEMENTOS
         // ==========================================
 
-        const home = document.getElementById("home");
-        const register = document.getElementById("register");
-        const draw = document.getElementById("draw");
-        const winner = document.getElementById("winner");
+        const home =
+            document.getElementById("home");
 
-        const itemInput = document.getElementById("itemInput");
-        const itemsList = document.getElementById("itemsList");
-        const finishButton = document.getElementById("finishButton");
+        const register =
+            document.getElementById("register");
 
-        const currentDraw = document.getElementById("currentDraw");
-        const drawButton = document.getElementById("drawButton");
-        const scoreboard = document.getElementById("scoreboard");
+        const draw =
+            document.getElementById("draw");
 
-        const winnerName = document.getElementById("winnerName");
+        const winner =
+            document.getElementById("winner");
+
+        const loveSecret =
+            document.getElementById("loveSecret");
+
+        const passwordModal =
+            document.getElementById("passwordModal");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const passwordError =
+            document.getElementById("passwordError");
+
+        const itemInput =
+            document.getElementById("itemInput");
+
+        const itemsList =
+            document.getElementById("itemsList");
+
+        const finishButton =
+            document.getElementById("finishButton");
+
+        const currentDraw =
+            document.getElementById("currentDraw");
+
+        const drawButton =
+            document.getElementById("drawButton");
+
+        const scoreboard =
+            document.getElementById("scoreboard");
+
+        const winnerName =
+            document.getElementById("winnerName");
 
 
         // ==========================================
@@ -723,16 +1309,21 @@
 
             const config = types[type];
 
-            document.getElementById("chosenIcon").textContent = config.icon;
-            document.getElementById("chosenTitle").textContent = config.title;
+            document.getElementById("chosenIcon").textContent =
+                config.icon;
 
-            itemInput.placeholder = config.placeholder;
+            document.getElementById("chosenTitle").textContent =
+                config.title;
+
+            itemInput.placeholder =
+                config.placeholder;
 
             items = [];
 
             renderItems();
 
             home.classList.add("hidden");
+
             register.classList.remove("hidden");
 
             setTimeout(() => {
@@ -747,23 +1338,34 @@
 
         function addItem() {
 
-            const name = itemInput.value.trim();
+            const name =
+                itemInput.value.trim();
 
             if (!name) {
                 itemInput.focus();
                 return;
             }
 
-            // Evita nomes duplicados
-            const alreadyExists = items.some(
-                item => item.toLowerCase() === name.toLowerCase()
-            );
+
+            const alreadyExists =
+                items.some(
+                    item =>
+                        item.toLowerCase() ===
+                        name.toLowerCase()
+                );
+
 
             if (alreadyExists) {
-                alert("Esse título já está na lista! 💕");
+
+                alert(
+                    "Esse título já está na lista! 💕"
+                );
+
                 itemInput.select();
+
                 return;
             }
+
 
             items.push(name);
 
@@ -779,14 +1381,19 @@
         // ENTER PARA ADICIONAR
         // ==========================================
 
-        itemInput.addEventListener("keydown", function(event) {
+        itemInput.addEventListener(
+            "keydown",
+            function(event) {
 
-            if (event.key === "Enter") {
-                event.preventDefault();
-                addItem();
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    addItem();
+                }
+
             }
-
-        });
+        );
 
 
         // ==========================================
@@ -808,23 +1415,30 @@
                 return;
             }
 
+
             finishButton.disabled = false;
 
-            itemsList.innerHTML = items.map((item, index) => `
-                <div class="item">
-                    <span class="item-name">
-                        ${escapeHtml(item)}
-                    </span>
 
-                    <button
-                        class="remove"
-                        onclick="removeItem(${index})"
-                        title="Remover"
-                    >
-                        🗑️
-                    </button>
-                </div>
-            `).join("");
+            itemsList.innerHTML =
+                items.map((item, index) => `
+
+                    <div class="item">
+
+                        <span class="item-name">
+                            ${escapeHtml(item)}
+                        </span>
+
+                        <button
+                            class="remove"
+                            onclick="removeItem(${index})"
+                            title="Remover"
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                `).join("");
         }
 
 
@@ -849,6 +1463,7 @@
             items = [];
 
             register.classList.add("hidden");
+
             home.classList.remove("hidden");
         }
 
@@ -860,20 +1475,31 @@
         function startDraw() {
 
             if (items.length < 2) {
-                alert("Adicionem pelo menos 2 opções para o sorteio! 💕");
+
+                alert(
+                    "Adicionem pelo menos 2 opções para o sorteio! 💕"
+                );
+
                 return;
             }
 
+
             scores = {};
 
+
             items.forEach(item => {
+
                 scores[item] = 0;
+
             });
 
+
             register.classList.add("hidden");
+
             draw.classList.remove("hidden");
 
-            currentDraw.textContent = "Preparados? 👀";
+            currentDraw.textContent =
+                "Preparados? 👀";
 
             renderScoreboard();
         }
@@ -887,53 +1513,85 @@
 
             if (drawing) return;
 
+
             drawing = true;
+
             drawButton.disabled = true;
 
-            // Pequena animação de sorteio
+
             let animationCount = 0;
+
             const totalAnimations = 12;
+
 
             const animation = setInterval(() => {
 
                 const randomIndex =
-                    Math.floor(Math.random() * items.length);
+                    Math.floor(
+                        Math.random() *
+                        items.length
+                    );
 
-                currentDraw.textContent = items[randomIndex];
+
+                currentDraw.textContent =
+                    items[randomIndex];
+
 
                 animationCount++;
 
-                if (animationCount >= totalAnimations) {
+
+                if (
+                    animationCount >=
+                    totalAnimations
+                ) {
 
                     clearInterval(animation);
 
-                    // Resultado final
-                    const finalIndex =
-                        Math.floor(Math.random() * items.length);
 
-                    const selectedItem = items[finalIndex];
+                    const finalIndex =
+                        Math.floor(
+                            Math.random() *
+                            items.length
+                        );
+
+
+                    const selectedItem =
+                        items[finalIndex];
+
 
                     scores[selectedItem]++;
 
-                    currentDraw.textContent = selectedItem;
+
+                    currentDraw.textContent =
+                        selectedItem;
+
 
                     renderScoreboard();
 
-                    // Verifica vencedor
-                    if (scores[selectedItem] >= 3) {
+
+                    if (
+                        scores[selectedItem] >= 3
+                    ) {
 
                         setTimeout(() => {
-                            showWinner(selectedItem);
+
+                            showWinner(
+                                selectedItem
+                            );
+
                         }, 900);
 
                     } else {
 
                         setTimeout(() => {
+
                             drawing = false;
-                            drawButton.disabled = false;
+
+                            drawButton.disabled =
+                                false;
+
                         }, 700);
                     }
-
                 }
 
             }, 90);
@@ -946,36 +1604,49 @@
 
         function renderScoreboard() {
 
-            // Ordena do maior para o menor
-            const sortedItems = [...items].sort(
-                (a, b) => scores[b] - scores[a]
-            );
+            const sortedItems =
+                [...items].sort(
+                    (a, b) =>
+                        scores[b] -
+                        scores[a]
+                );
 
-            scoreboard.innerHTML = sortedItems.map(item => {
 
-                const points = scores[item] || 0;
+            scoreboard.innerHTML =
+                sortedItems.map(item => {
 
-                const hearts = "❤️".repeat(points) + "♡".repeat(3 - points);
+                    const points =
+                        scores[item] || 0;
 
-                return `
-                    <div class="score">
 
-                        <span class="score-name">
-                            ${escapeHtml(item)}
-                        </span>
+                    const hearts =
+                        "❤️".repeat(points) +
+                        "♡".repeat(
+                            3 - points
+                        );
 
-                        <span class="hearts">
-                            ${hearts}
-                        </span>
 
-                        <strong>
-                            ${points}/3
-                        </strong>
+                    return `
 
-                    </div>
-                `;
+                        <div class="score">
 
-            }).join("");
+                            <span class="score-name">
+                                ${escapeHtml(item)}
+                            </span>
+
+                            <span class="hearts">
+                                ${hearts}
+                            </span>
+
+                            <strong>
+                                ${points}/3
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                }).join("");
         }
 
 
@@ -987,12 +1658,13 @@
 
             drawing = false;
 
-            winnerName.textContent = item;
+            winnerName.textContent =
+                item;
 
             draw.classList.add("hidden");
+
             winner.classList.remove("hidden");
 
-            // Confete simples com emojis
             createConfetti();
         }
 
@@ -1004,14 +1676,145 @@
         function restart() {
 
             selectedType = null;
+
             items = [];
+
             scores = {};
+
             drawing = false;
 
+
             winner.classList.add("hidden");
+
             home.classList.remove("hidden");
 
-            currentDraw.textContent = "Preparados? 👀";
+
+            currentDraw.textContent =
+                "Preparados? 👀";
+        }
+
+
+        // ==========================================
+        // ABRIR SENHA DA NOITE DE LOVE
+        // ==========================================
+
+        function openLovePassword() {
+
+            passwordInput.value = "";
+
+            passwordError.textContent = "";
+
+            passwordModal.classList.remove("hidden");
+
+
+            setTimeout(() => {
+
+                passwordInput.focus();
+
+            }, 150);
+        }
+
+
+        // ==========================================
+        // FECHAR SENHA
+        // ==========================================
+
+        function closeLovePassword() {
+
+            passwordModal.classList.add("hidden");
+
+            passwordInput.value = "";
+
+            passwordError.textContent = "";
+        }
+
+
+        // ==========================================
+        // VERIFICAR SENHA
+        // ==========================================
+
+        function checkLovePassword() {
+
+            const password =
+                passwordInput.value.trim();
+
+
+            if (
+                password.toLowerCase() ===
+                "nezuko"
+            ) {
+
+                passwordError.textContent = "";
+
+                passwordModal.classList.add(
+                    "hidden"
+                );
+
+                home.classList.add("hidden");
+
+                loveSecret.classList.remove(
+                    "hidden"
+                );
+
+                passwordInput.value = "";
+
+            } else {
+
+                passwordError.textContent =
+                    "Hmmmm... tentou, mas essa não é a palavrinha mágica 👀💕 (pergunte à Dianemin que ela vai saber kkkkk)";
+
+                passwordInput.classList.add(
+                    "shake"
+                );
+
+                setTimeout(() => {
+
+                    passwordInput.classList.remove(
+                        "shake"
+                    );
+
+                }, 400);
+            }
+        }
+
+
+        // ==========================================
+        // ENTER NA SENHA
+        // ==========================================
+
+        passwordInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    checkLovePassword();
+                }
+
+                if (event.key === "Escape") {
+
+                    closeLovePassword();
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // FECHAR ÁREA SECRETA
+        // ==========================================
+
+        function closeLoveSecret() {
+
+            loveSecret.classList.add(
+                "hidden"
+            );
+
+            home.classList.remove(
+                "hidden"
+            );
         }
 
 
@@ -1021,7 +1824,8 @@
 
         function escapeHtml(text) {
 
-            const div = document.createElement("div");
+            const div =
+                document.createElement("div");
 
             div.textContent = text;
 
@@ -1035,37 +1839,86 @@
 
         function createConfetti() {
 
-            const emojis = ["💗", "💕", "💖", "✨", "🎉", "🥳", "💞"];
+            const emojis = [
+                "💗",
+                "💕",
+                "💖",
+                "✨",
+                "🎉",
+                "🥳",
+                "💞"
+            ];
 
-            for (let i = 0; i < 35; i++) {
 
-                const confetti = document.createElement("div");
+            for (
+                let i = 0;
+                i < 35;
+                i++
+            ) {
+
+                const confetti =
+                    document.createElement("div");
+
 
                 confetti.textContent =
-                    emojis[Math.floor(Math.random() * emojis.length)];
+                    emojis[
+                        Math.floor(
+                            Math.random() *
+                            emojis.length
+                        )
+                    ];
 
-                confetti.style.position = "fixed";
-                confetti.style.left = Math.random() * 100 + "vw";
-                confetti.style.top = "-30px";
+
+                confetti.style.position =
+                    "fixed";
+
+                confetti.style.left =
+                    Math.random() *
+                    100 +
+                    "vw";
+
+                confetti.style.top =
+                    "-30px";
+
                 confetti.style.fontSize =
-                    (16 + Math.random() * 18) + "px";
-                confetti.style.zIndex = "9999";
-                confetti.style.pointerEvents = "none";
+                    (
+                        16 +
+                        Math.random() * 18
+                    ) +
+                    "px";
 
-                document.body.appendChild(confetti);
+                confetti.style.zIndex =
+                    "9999";
+
+                confetti.style.pointerEvents =
+                    "none";
+
+
+                document.body.appendChild(
+                    confetti
+                );
+
 
                 const duration =
-                    2000 + Math.random() * 2500;
+                    2000 +
+                    Math.random() *
+                    2500;
+
 
                 const rotation =
-                    Math.random() * 720 - 360;
+                    Math.random() *
+                    720 -
+                    360;
+
 
                 confetti.animate(
                     [
                         {
-                            transform: "translateY(0) rotate(0deg)",
+                            transform:
+                                "translateY(0) rotate(0deg)",
                             opacity: 1
                         },
+
                         {
                             transform:
                                 `translateY(110vh) rotate(${rotation}deg)`,
@@ -1074,15 +1927,20 @@
                     ],
                     {
                         duration: duration,
-                        easing: "cubic-bezier(.2,.8,.3,1)"
+                        easing:
+                            "cubic-bezier(.2,.8,.3,1)"
                     }
                 );
 
+
                 setTimeout(() => {
+
                     confetti.remove();
+
                 }, duration);
             }
         }
+
     </script>
 
 </body>
