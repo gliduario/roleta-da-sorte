@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Roleta da Sorte da Nossa Noite 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #ffd6e7 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #d9d2ff 0%, transparent 35%),
+                linear-gradient(135deg, #fff0f6, #f6f0ff);
+            color: #3d3040;
+            overflow-x: hidden;
+        }
+
+        /* Corações decorativos */
+        .heart {
+            position: fixed;
+            font-size: 22px;
+            opacity: 0.35;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) {
+            left: 8%;
+            top: 15%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            right: 10%;
+            top: 25%;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(3) {
+            left: 15%;
+            bottom: 15%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(4) {
+            right: 15%;
+            bottom: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-18px) rotate(8deg);
+            }
+        }
+
+        .container {
+            width: min(92%, 850px);
+            margin: 0 auto;
+            padding: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(110, 75, 110, 0.15);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .emoji {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #d94f87;
+            font-size: clamp(28px, 5vw, 44px);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #786879;
+            font-size: 16px;
+        }
+
+        /* Escolha inicial */
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .option {
+            border: 2px solid #f0d7e3;
+            background: #fff9fc;
+            border-radius: 20px;
+            padding: 25px 15px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            text-align: center;
+        }
+
+        .option:hover {
+            transform: translateY(-5px);
+            border-color: #e987ae;
+            background: #fff1f7;
+            box-shadow: 0 10px 25px rgba(217, 79, 135, 0.12);
+        }
+
+        .option .icon {
+            font-size: 42px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .option strong {
+            font-size: 17px;
+            color: #563f52;
+        }
+
+        /* Área de cadastro */
+
+        .chosen {
+            text-align: center;
+            background: linear-gradient(135deg, #fff0f7, #f5f0ff);
+            padding: 18px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
+
+        .chosen span {
+            font-size: 30px;
+        }
+
+        .chosen h2 {
+            margin-top: 6px;
+            color: #c9487c;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            border: 2px solid #ead8e2;
+            border-radius: 14px;
+            padding: 15px;
+            font-size: 16px;
+            outline: none;
+            color: #443540;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #dd76a0;
+            box-shadow: 0 0 0 4px rgba(221, 118, 160, 0.1);
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn {
+            background: #dc6795;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #c95182;
+            transform: translateY(-2px);
+        }
+
+        .list-title {
+            color: #695767;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            background: #fff7fb;
+            border: 1px solid #f0dce6;
+            border-radius: 14px;
+            animation: appear 0.25s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .remove {
+            background: transparent;
+            color: #d45b83;
+            padding: 5px 8px;
+            font-size: 18px;
+        }
+
+        .remove:hover {
+            background: #ffe4ef;
+        }
+
+        .empty {
+            text-align: center;
+            color: #998b97;
+            padding: 20px;
+            background: #faf7fa;
+            border-radius: 14px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .finish {
+            flex: 1;
+            background: linear-gradient(135deg, #d95489, #a969d5);
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            box-shadow: 0 8px 20px rgba(170, 91, 150, 0.2);
+        }
+
+        .finish:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(170, 91, 150, 0.28);
+        }
+
+        .back {
+            background: #f3edf2;
+            color: #665763;
+        }
+
+        .back:hover {
+            background: #e9dfe7;
+        }
+
+        /* Sorteio */
+
+        .draw-screen {
+            text-align: center;
+        }
+
+        .draw-screen h2 {
+            color: #d94f87;
+            margin-bottom: 8px;
+        }
+
+        .draw-info {
+            color: #806f7b;
+            margin-bottom: 25px;
+        }
+
+        .draw-box {
+            min-height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff1f7, #f4efff);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .current-draw {
+            font-size: clamp(25px, 6vw, 42px);
+            font-weight: 800;
+            color: #c94d82;
+            word-break: break-word;
+        }
+
+        .draw-button {
+            background: linear-gradient(135deg, #d95489, #9c65d0);
+            color: white;
+            font-size: 17px;
+            padding: 16px 30px;
+            min-width: 220px;
+        }
+
+        .draw-button:hover {
+            transform: scale(1.03);
+        }
+
+        .draw-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .scoreboard {
+            margin-top: 25px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff8fb;
+            padding: 12px 15px;
+            border-radius: 13px;
+            text-align: left;
+        }
+
+        .score-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .hearts {
+            color: #df5c8b;
+            letter-spacing: 2px;
+        }
+
+        /* Resultado */
+
+        .winner {
+            text-align: center;
+        }
+
+        .winner-emoji {
+            font-size: 75px;
+            animation: winner 1s ease infinite alternate;
+        }
+
+        @keyframes winner {
+            from {
+                transform: scale(1) rotate(-4deg);
+            }
+            to {
+                transform: scale(1.08) rotate(4deg);
+            }
+        }
+
+        .winner h2 {
+            color: #d94f87;
+            font-size: clamp(27px, 6vw, 42px);
+            margin: 15px 0 10px;
+        }
+
+        .winner-name {
+            font-size: clamp(30px, 7vw, 50px);
+            font-weight: 800;
+            color: #7047a0;
+            margin: 20px 0;
+            word-break: break-word;
+        }
+
+        .love-message {
+            color: #766473;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .restart {
+            background: #e56899;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        .restart:hover {
+            background: #cf4e80;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 18px;
+            color: #a08e9c;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                padding: 20px 0;
+            }
+
+            .card {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .option {
+                padding: 18px;
+                display: flex;
+                align-items: center;
+                text-align: left;
+                gap: 15px;
+            }
+
+            .option .icon {
+                margin: 0;
+                font-size: 35px;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .actions {
+                flex-direction: column-reverse;
+            }
+
+            .actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corações decorativos -->
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💞</div>
+
+    <main class="container">
+
+        <!-- TELA INICIAL -->
+        <section id="home" class="card">
+
+            <div class="header">
+                <div class="emoji">🎀</div>
+
+                <h1>
+                    Roleta da Sorte<br>
+                    da Nossa Noiteeee &lt;3
+                </h1>
+
+                <p class="subtitle">
+                    Porque escolher o que assistir é uma decisão séria... 😂💕
+                </p>
+            </div>
+
+            <div class="options">
+
+                <div class="option" onclick="chooseType('movie')">
+                    <span class="icon">🎬</span>
+                    <strong>Noite do Filme</strong>
+                </div>
+
+                <div class="option" onclick="chooseType('anime')">
+                    <span class="icon">🍥</span>
+                    <strong>Noite de Anime</strong>
+                </div>
+
+                <div class="option" onclick="chooseType('series')">
+                    <span class="icon">📺</span>
+                    <strong>Noite da Série</strong>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                Feito com amor para duas pessoas indecisas 💗
+            </div>
+
+        </section>
+
+
+        <!-- TELA DE CADASTRO -->
+        <section id="register" class="card hidden">
+
+            <div class="chosen">
+                <span id="chosenIcon">🎬</span>
+                <h2 id="chosenTitle">Noite do Filme</h2>
+            </div>
+
+            <div class="header">
+                <h1 style="font-size: 28px;">
+                    Vamos colocar as opções! 💕
+                </h1>
+
+                <p class="subtitle">
+                    Cada uma pode adicionar quantos títulos quiser.
+                </p>
+            </div>
+
+            <div class="input-area">
+                <input
+                    type="text"
+                    id="itemInput"
+                    placeholder="Digite o nome de um filme..."
+                    maxlength="100"
+                    autocomplete="off"
+                >
+
+                <button class="add-btn" onclick="addItem()">
+                    + Adicionar
+                </button>
+            </div>
+
+            <p class="list-title">
+                Opções cadastradas:
+            </p>
+
+            <div id="itemsList" class="items">
+                <div class="empty">
+                    Ainda não temos opções 🥺💕
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="back" onclick="goHome()">
+                    ← Voltar
+                </button>
+
+                <button
+                    id="finishButton"
+                    class="finish"
+                    onclick="startDraw()"
+                    disabled
+                >
+                    🎲 Finalizar e Sortear
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- TELA DE SORTEIO -->
+        <section id="draw" class="card hidden">
+
+            <div class="draw-screen">
+
+                <div class="header">
+                    <div class="emoji">🎲</div>
+
+                    <h2>É HORA DO SORTEIO!</h2>
+
+                    <p class="draw-info">
+                        O primeiro título a chegar em <strong>3 sorteios</strong>
+                        será o escolhido! 👀💕
+                    </p>
+                </div>
+
+                <div class="draw-box">
+                    <div id="currentDraw" class="current-draw">
+                        Preparadas? 👀
+                    </div>
+                </div>
+
+                <button
+                    id="drawButton"
+                    class="draw-button"
+                    onclick="drawItem()"
+                >
+                    🎲 SORTEAR!
+                </button>
+
+                <div id="scoreboard" class="scoreboard"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TELA DO VENCEDOR -->
+        <section id="winner" class="card hidden">
+
+            <div class="winner">
+
+                <div class="winner-emoji">
+                    🥳💕
+                </div>
+
+                <h2>
+                    TEMOS UM VENCEDOR!
+                </h2>
+
+                <p>
+                    Depois de muita tensão...
+                </p>
+
+                <div id="winnerName" class="winner-name">
+                    —
+                </div>
+
+                <p class="love-message">
+                    Esse foi o escolhido pelo destino! ✨<br>
+                    Agora é só preparar a pipoca, ficar juntinho
+                    e aproveitar a nossa noite. 🍿💕
+                </p>
+
+                <button class="restart" onclick="restart()">
+                    💗 Jogar novamente
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        // ==========================================
+        // CONFIGURAÇÕES
+        // ==========================================
+
+        const types = {
+            movie: {
+                title: "Noite do Filme",
+                icon: "🎬",
+                placeholder: "Digite o nome de um filme..."
+            },
+
+            anime: {
+                title: "Noite de Anime",
+                icon: "🍥",
+                placeholder: "Digite o nome de um anime..."
+            },
+
+            series: {
+                title: "Noite da Série",
+                icon: "📺",
+                placeholder: "Digite o nome de uma série..."
+            }
+        };
+
+
+        // ==========================================
+        // VARIÁVEIS
+        // ==========================================
+
+        let selectedType = null;
+        let items = [];
+        let scores = {};
+        let drawing = false;
+
+
+        // ==========================================
+        // ELEMENTOS
+        // ==========================================
+
+        const home = document.getElementById("home");
+        const register = document.getElementById("register");
+        const draw = document.getElementById("draw");
+        const winner = document.getElementById("winner");
+
+        const itemInput = document.getElementById("itemInput");
+        const itemsList = document.getElementById("itemsList");
+        const finishButton = document.getElementById("finishButton");
+
+        const currentDraw = document.getElementById("currentDraw");
+        const drawButton = document.getElementById("drawButton");
+        const scoreboard = document.getElementById("scoreboard");
+
+        const winnerName = document.getElementById("winnerName");
+
+
+        // ==========================================
+        // ESCOLHER TIPO
+        // ==========================================
+
+        function chooseType(type) {
+
+            selectedType = type;
+
+            const config = types[type];
+
+            document.getElementById("chosenIcon").textContent = config.icon;
+            document.getElementById("chosenTitle").textContent = config.title;
+
+            itemInput.placeholder = config.placeholder;
+
+            items = [];
+
+            renderItems();
+
+            home.classList.add("hidden");
+            register.classList.remove("hidden");
+
+            setTimeout(() => {
+                itemInput.focus();
+            }, 200);
+        }
+
+
+        // ==========================================
+        // ADICIONAR ITEM
+        // ==========================================
+
+        function addItem() {
+
+            const name = itemInput.value.trim();
+
+            if (!name) {
+                itemInput.focus();
+                return;
+            }
+
+            // Evita nomes duplicados
+            const alreadyExists = items.some(
+                item => item.toLowerCase() === name.toLowerCase()
+            );
+
+            if (alreadyExists) {
+                alert("Esse título já está na lista! 💕");
+                itemInput.select();
+                return;
+            }
+
+            items.push(name);
+
+            itemInput.value = "";
+
+            renderItems();
+
+            itemInput.focus();
+        }
+
+
+        // ==========================================
+        // ENTER PARA ADICIONAR
+        // ==========================================
+
+        itemInput.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addItem();
+            }
+
+        });
+
+
+        // ==========================================
+        // MOSTRAR LISTA
+        // ==========================================
+
+        function renderItems() {
+
+            if (items.length === 0) {
+
+                itemsList.innerHTML = `
+                    <div class="empty">
+                        Ainda não temos opções 🥺💕
+                    </div>
+                `;
+
+                finishButton.disabled = true;
+
+                return;
+            }
+
+            finishButton.disabled = false;
+
+            itemsList.innerHTML = items.map((item, index) => `
+                <div class="item">
+                    <span class="item-name">
+                        ${escapeHtml(item)}
+                    </span>
+
+                    <button
+                        class="remove"
+                        onclick="removeItem(${index})"
+                        title="Remover"
+                    >
+                        🗑️
+                    </button>
+                </div>
+            `).join("");
+        }
+
+
+        // ==========================================
+        // REMOVER ITEM
+        // ==========================================
+
+        function removeItem(index) {
+
+            items.splice(index, 1);
+
+            renderItems();
+        }
+
+
+        // ==========================================
+        // VOLTAR
+        // ==========================================
+
+        function goHome() {
+
+            items = [];
+
+            register.classList.add("hidden");
+            home.classList.remove("hidden");
+        }
+
+
+        // ==========================================
+        // INICIAR SORTEIO
+        // ==========================================
+
+        function startDraw() {
+
+            if (items.length < 2) {
+                alert("Adicionem pelo menos 2 opções para o sorteio! 💕");
+                return;
+            }
+
+            scores = {};
+
+            items.forEach(item => {
+                scores[item] = 0;
+            });
+
+            register.classList.add("hidden");
+            draw.classList.remove("hidden");
+
+            currentDraw.textContent = "Preparadas? 👀";
+
+            renderScoreboard();
+        }
+
+
+        // ==========================================
+        // SORTEAR
+        // ==========================================
+
+        function drawItem() {
+
+            if (drawing) return;
+
+            drawing = true;
+            drawButton.disabled = true;
+
+            // Pequena animação de sorteio
+            let animationCount = 0;
+            const totalAnimations = 12;
+
+            const animation = setInterval(() => {
+
+                const randomIndex =
+                    Math.floor(Math.random() * items.length);
+
+                currentDraw.textContent = items[randomIndex];
+
+                animationCount++;
+
+                if (animationCount >= totalAnimations) {
+
+                    clearInterval(animation);
+
+                    // Resultado final
+                    const finalIndex =
+                        Math.floor(Math.random() * items.length);
+
+                    const selectedItem = items[finalIndex];
+
+                    scores[selectedItem]++;
+
+                    currentDraw.textContent = selectedItem;
+
+                    renderScoreboard();
+
+                    // Verifica vencedor
+                    if (scores[selectedItem] >= 3) {
+
+                        setTimeout(() => {
+                            showWinner(selectedItem);
+                        }, 900);
+
+                    } else {
+
+                        setTimeout(() => {
+                            drawing = false;
+                            drawButton.disabled = false;
+                        }, 700);
+                    }
+
+                }
+
+            }, 90);
+        }
+
+
+        // ==========================================
+        // PLACAR
+        // ==========================================
+
+        function renderScoreboard() {
+
+            // Ordena do maior para o menor
+            const sortedItems = [...items].sort(
+                (a, b) => scores[b] - scores[a]
+            );
+
+            scoreboard.innerHTML = sortedItems.map(item => {
+
+                const points = scores[item] || 0;
+
+                const hearts = "❤️".repeat(points) + "♡".repeat(3 - points);
+
+                return `
+                    <div class="score">
+
+                        <span class="score-name">
+                            ${escapeHtml(item)}
+                        </span>
+
+                        <span class="hearts">
+                            ${hearts}
+                        </span>
+
+                        <strong>
+                            ${points}/3
+                        </strong>
+
+                    </div>
+                `;
+
+            }).join("");
+        }
+
+
+        // ==========================================
+        // MOSTRAR VENCEDOR
+        // ==========================================
+
+        function showWinner(item) {
+
+            drawing = false;
+
+            winnerName.textContent = item;
+
+            draw.classList.add("hidden");
+            winner.classList.remove("hidden");
+
+            // Confete simples com emojis
+            createConfetti();
+        }
+
+
+        // ==========================================
+        // RECOMEÇAR
+        // ==========================================
+
+        function restart() {
+
+            selectedType = null;
+            items = [];
+            scores = {};
+            drawing = false;
+
+            winner.classList.add("hidden");
+            home.classList.remove("hidden");
+
+            currentDraw.textContent = "Preparadas? 👀";
+        }
+
+
+        // ==========================================
+        // SEGURANÇA CONTRA HTML NO INPUT
+        // ==========================================
+
+        function escapeHtml(text) {
+
+            const div = document.createElement("div");
+
+            div.textContent = text;
+
+            return div.innerHTML;
+        }
+
+
+        // ==========================================
+        // CONFETES
+        // ==========================================
+
+        function createConfetti() {
+
+            const emojis = ["💗", "💕", "💖", "✨", "🎉", "🥳", "💞"];
+
+            for (let i = 0; i < 35; i++) {
+
+                const confetti = document.createElement("div");
+
+                confetti.textContent =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                confetti.style.position = "fixed";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.top = "-30px";
+                confetti.style.fontSize =
+                    (16 + Math.random() * 18) + "px";
+                confetti.style.zIndex = "9999";
+                confetti.style.pointerEvents = "none";
+
+                document.body.appendChild(confetti);
+
+                const duration =
+                    2000 + Math.random() * 2500;
+
+                const rotation =
+                    Math.random() * 720 - 360;
+
+                confetti.animate(
+                    [
+                        {
+                            transform: "translateY(0) rotate(0deg)",
+                            opacity: 1
+                        },
+                        {
+                            transform:
+                                `translateY(110vh) rotate(${rotation}deg)`,
+                            opacity: 0
+                        }
+                    ],
+                    {
+                        duration: duration,
+                        easing: "cubic-bezier(.2,.8,.3,1)"
+                    }
+                );
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration);
+            }
+        }
+    </script>
+
+</body>
+</html>
