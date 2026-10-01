@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +17,18 @@
         body {
             min-height: 100vh;
             font-family: "Segoe UI", Arial, sans-serif;
+
             background:
                 radial-gradient(circle at top left, #ffd6e7 0%, transparent 35%),
                 radial-gradient(circle at bottom right, #d9d2ff 0%, transparent 35%),
                 linear-gradient(135deg, #fff0f6, #f6f0ff);
+
             color: #3d3040;
             overflow-x: hidden;
         }
 
         /* ==========================================
-           CORAÇÕES DECORATIVOS
+           DECORAÇÃO
         ========================================== */
 
         .heart {
@@ -40,7 +43,6 @@
         .heart:nth-child(1) {
             left: 8%;
             top: 15%;
-            animation-delay: 0s;
         }
 
         .heart:nth-child(2) {
@@ -71,12 +73,8 @@
             }
         }
 
-        /* ==========================================
-           ESTRUTURA
-        ========================================== */
-
         .container {
-            width: min(92%, 850px);
+            width: min(92%, 900px);
             margin: 0 auto;
             padding: 40px 0;
             position: relative;
@@ -84,7 +82,7 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 28px;
@@ -116,10 +114,25 @@
         .subtitle {
             color: #786879;
             font-size: 16px;
+            line-height: 1.6;
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
         }
 
         /* ==========================================
-           OPÇÕES INICIAIS
+           TELA INICIAL
         ========================================== */
 
         .options {
@@ -158,37 +171,25 @@
         }
 
         /* ==========================================
-           CARD NOITE DE LOVE
+           NOITE DE LOVE
         ========================================== */
 
         .love-card {
-            margin-top: 18px;
+            margin-top: 20px;
             border: 2px solid #ead6e4;
             background:
-                radial-gradient(
-                    circle at top right,
+                radial-gradient(circle at top right,
                     rgba(255, 192, 218, 0.35),
-                    transparent 45%
-                ),
+                    transparent 45%),
                 linear-gradient(135deg, #fff9fc, #f9f4ff);
+
             border-radius: 22px;
-            padding: 24px;
+            padding: 25px;
             text-align: center;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: 0.3s ease;
-        }
-
-        .love-card::before {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 180, 210, 0.15);
-            border-radius: 50%;
-            top: -45px;
-            right: -35px;
         }
 
         .love-card:hover {
@@ -198,16 +199,15 @@
         }
 
         .love-icon {
-            font-size: 42px;
+            font-size: 45px;
             display: block;
-            margin-bottom: 8px;
         }
 
         .love-title {
             color: #a54e78;
             font-size: 21px;
             font-weight: 800;
-            margin-bottom: 5px;
+            margin: 8px 0 5px;
         }
 
         .love-description {
@@ -231,12 +231,17 @@
             position: absolute;
             top: 15px;
             right: 18px;
-            font-size: 18px;
-            opacity: 0.65;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 18px;
+            color: #a08e9c;
+            font-size: 13px;
         }
 
         /* ==========================================
-           ÁREA DE CADASTRO
+           CADASTRO
         ========================================== */
 
         .chosen {
@@ -262,8 +267,9 @@
             margin-bottom: 20px;
         }
 
-        input {
-            flex: 1;
+        input,
+        textarea {
+            width: 100%;
             border: 2px solid #ead8e2;
             border-radius: 14px;
             padding: 15px;
@@ -271,37 +277,29 @@
             outline: none;
             color: #443540;
             transition: 0.2s;
+            font-family: inherit;
         }
 
-        input:focus {
+        input:focus,
+        textarea:focus {
             border-color: #dd76a0;
             box-shadow: 0 0 0 4px rgba(221, 118, 160, 0.1);
         }
 
-        button {
-            border: none;
-            border-radius: 14px;
-            padding: 14px 20px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
+        textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         .add-btn {
             background: #dc6795;
             color: white;
-        }
-
-        .add-btn:hover {
-            background: #c95182;
-            transform: translateY(-2px);
+            white-space: nowrap;
         }
 
         .list-title {
             color: #695767;
             margin-bottom: 12px;
-            font-size: 15px;
         }
 
         .items {
@@ -319,19 +317,6 @@
             background: #fff7fb;
             border: 1px solid #f0dce6;
             border-radius: 14px;
-            animation: appear 0.25s ease;
-        }
-
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .item-name {
@@ -343,10 +328,6 @@
             color: #d45b83;
             padding: 5px 8px;
             font-size: 18px;
-        }
-
-        .remove:hover {
-            background: #ffe4ef;
         }
 
         .empty {
@@ -366,23 +347,11 @@
             flex: 1;
             background: linear-gradient(135deg, #d95489, #a969d5);
             color: white;
-            padding: 16px;
-            font-size: 16px;
-            box-shadow: 0 8px 20px rgba(170, 91, 150, 0.2);
-        }
-
-        .finish:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(170, 91, 150, 0.28);
         }
 
         .back {
             background: #f3edf2;
             color: #665763;
-        }
-
-        .back:hover {
-            background: #e9dfe7;
         }
 
         /* ==========================================
@@ -429,10 +398,6 @@
             min-width: 220px;
         }
 
-        .draw-button:hover {
-            transform: scale(1.03);
-        }
-
         .draw-button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
@@ -465,7 +430,7 @@
         }
 
         /* ==========================================
-           RESULTADO
+           VENCEDOR
         ========================================== */
 
         .winner {
@@ -498,7 +463,6 @@
             font-weight: 800;
             color: #7047a0;
             margin: 20px 0;
-            word-break: break-word;
         }
 
         .love-message {
@@ -510,15 +474,10 @@
         .restart {
             background: #e56899;
             color: white;
-            padding: 15px 30px;
-        }
-
-        .restart:hover {
-            background: #cf4e80;
         }
 
         /* ==========================================
-           MODAL DA SENHA
+           MODAL
         ========================================== */
 
         .modal-overlay {
@@ -531,39 +490,15 @@
             justify-content: center;
             padding: 20px;
             z-index: 1000;
-            animation: fadeIn 0.25s ease;
         }
 
         .modal {
             width: min(100%, 430px);
-            background: rgba(255, 255, 255, 0.96);
+            background: white;
             border-radius: 28px;
             padding: 32px;
             text-align: center;
             box-shadow: 0 25px 70px rgba(67, 39, 65, 0.25);
-            animation: modalIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: translateY(15px) scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
         }
 
         .modal-icon {
@@ -583,16 +518,14 @@
         }
 
         .password-input {
-            width: 100%;
             text-align: center;
             letter-spacing: 3px;
-            margin-bottom: 12px;
         }
 
         .password-actions {
             display: flex;
             gap: 10px;
-            margin-top: 8px;
+            margin-top: 12px;
         }
 
         .password-actions button {
@@ -610,15 +543,16 @@
         }
 
         .error-message {
-            min-height: 22px;
+            min-height: 42px;
             color: #c74e79;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 5px;
+            line-height: 1.4;
+            padding-top: 8px;
         }
 
         /* ==========================================
-           ÁREA SECRETA / NOITE DE LOVE
+           NOITE DE LOVE
         ========================================== */
 
         .secret-screen {
@@ -627,11 +561,11 @@
 
         .secret-icon {
             font-size: 75px;
-            animation: heartBeat 1.5s ease-in-out infinite;
             display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
-        @keyframes heartBeat {
+        @keyframes heartbeat {
             0%, 100% {
                 transform: scale(1);
             }
@@ -653,70 +587,293 @@
             }
         }
 
-        .secret-screen h1 {
-            margin-top: 15px;
-        }
-
         .secret-subtitle {
             color: #806e7b;
             line-height: 1.7;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 25px;
         }
 
-        .secret-box {
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(255, 187, 214, 0.45),
-                    transparent 40%
-                ),
-                linear-gradient(135deg, #fff3f8, #f6f0ff);
-            border: 1px solid #f0d9e5;
-            border-radius: 22px;
-            padding: 25px;
-            margin-top: 20px;
+        /* ==========================================
+           PROGRESSO
+        ========================================== */
+
+        .progress-area {
+            margin: 25px 0;
         }
 
-        .secret-box h3 {
-            color: #a54e78;
+        .progress-text {
+            font-size: 13px;
+            color: #8d7887;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f0e4eb;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #d95489, #a969d5);
+            transition: 0.4s;
+            border-radius: 999px;
+        }
+
+        /* ==========================================
+           ETAPAS
+        ========================================== */
+
+        .love-stage {
+            animation: stageIn 0.35s ease;
+        }
+
+        @keyframes stageIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stage-icon {
+            font-size: 50px;
             margin-bottom: 10px;
         }
 
-        .secret-box p {
+        .stage-title {
+            color: #a54e78;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .stage-description {
             color: #806e7b;
             line-height: 1.6;
+            margin-bottom: 22px;
         }
 
-        .secret-placeholder {
-            margin-top: 20px;
-            padding: 18px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 16px;
-            color: #9b8492;
-            font-size: 14px;
-            border: 1px dashed #e5cbd9;
+        .stage-box {
+            background:
+                radial-gradient(circle at top right,
+                    rgba(255, 187, 214, 0.4),
+                    transparent 45%),
+                linear-gradient(135deg, #fff3f8, #f6f0ff);
+
+            border: 1px solid #f0d9e5;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
         }
 
-        .secret-back {
-            margin-top: 20px;
+        .primary-btn {
+            background: linear-gradient(135deg, #d95489, #a969d5);
+            color: white;
+        }
+
+        .secondary-btn {
             background: #f2eaf0;
             color: #665763;
         }
 
-        .secret-back:hover {
-            background: #e8dce5;
+        /* ==========================================
+           CARTAS
+        ========================================== */
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .choice-card {
+            border: 2px solid #edd9e4;
+            background: rgba(255,255,255,0.7);
+            border-radius: 20px;
+            padding: 25px 15px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-5px);
+            border-color: #df83aa;
+            box-shadow: 0 10px 25px rgba(200, 80, 130, 0.12);
+        }
+
+        .choice-card .choice-icon {
+            display: block;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .choice-card strong {
+            color: #634b5d;
         }
 
         /* ==========================================
-           FOOTER
+           PERGUNTAS
         ========================================== */
 
-        .footer {
+        .question {
+            font-size: 22px;
+            color: #694e60;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .saved-answer {
+            margin-top: 15px;
+            padding: 14px;
+            background: #fff8fb;
+            border-radius: 14px;
+            color: #856f7e;
+            font-size: 14px;
+        }
+
+        /* ==========================================
+           MODO CASAL
+        ========================================== */
+
+        .rules {
+            display: grid;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .rule {
+            background: rgba(255,255,255,0.7);
+            border-radius: 14px;
+            padding: 14px;
+            color: #6f5b68;
+        }
+
+        /* ==========================================
+           ROLETA DE COMIDA
+        ========================================== */
+
+        .food-result {
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff8fb;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .food-result span {
+            font-size: clamp(28px, 6vw, 45px);
+            font-weight: 800;
+            color: #c94d82;
             text-align: center;
-            margin-top: 18px;
-            color: #a08e9c;
+        }
+
+        /* ==========================================
+           PLAYLIST
+        ========================================== */
+
+        .playlist-list {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .song {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px;
+            background: #fff8fb;
+            border-radius: 13px;
+        }
+
+        .song-name {
+            flex: 1;
+            font-weight: 600;
+            color: #6b5361;
+        }
+
+        .song-link {
+            color: #c95584;
+            text-decoration: none;
             font-size: 13px;
+        }
+
+        /* ==========================================
+           CÁPSULA
+        ========================================== */
+
+        .capsule-message {
+            background: linear-gradient(135deg, #fff0f7, #f3efff);
+            padding: 22px;
+            border-radius: 20px;
+            color: #725f6c;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            text-align: left;
+            min-height: 120px;
+        }
+
+        /* ==========================================
+           SURPRESA
+        ========================================== */
+
+        .surprise-box {
+            padding: 25px;
+            border-radius: 22px;
+            background:
+                radial-gradient(circle at center,
+                    rgba(255, 200, 220, 0.4),
+                    transparent 60%),
+                #fff4f8;
+        }
+
+        .surprise-hidden {
+            filter: blur(8px);
+            user-select: none;
+        }
+
+        .surprise-text {
+            font-size: 21px;
+            line-height: 1.6;
+            color: #8c4d70;
+        }
+
+        /* ==========================================
+           FINAL
+        ========================================== */
+
+        .final-screen {
+            text-align: center;
+        }
+
+        .final-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .final-message {
+            font-size: 18px;
+            color: #755f6e;
+            line-height: 1.8;
+            margin: 20px auto;
+            max-width: 650px;
+        }
+
+        .signature {
+            color: #c24f7f;
+            font-size: 20px;
+            font-weight: 800;
         }
 
         /* ==========================================
@@ -763,6 +920,10 @@
                 width: 100%;
             }
 
+            .choice-grid {
+                grid-template-columns: 1fr;
+            }
+
             .password-actions {
                 flex-direction: column;
             }
@@ -770,9 +931,10 @@
     </style>
 </head>
 
+
 <body>
 
-    <!-- Corações decorativos -->
+    <!-- DECORAÇÃO -->
     <div class="heart">💗</div>
     <div class="heart">💕</div>
     <div class="heart">💖</div>
@@ -781,9 +943,10 @@
 
     <main class="container">
 
-        <!-- ==========================================
-             TELA INICIAL
-        ========================================== -->
+
+        <!-- ==================================================
+             HOME
+        ================================================== -->
 
         <section id="home" class="card">
 
@@ -811,10 +974,7 @@
                     onclick="chooseType('movie')"
                 >
                     <span class="icon">🎬</span>
-
-                    <strong>
-                        Noite do Filme
-                    </strong>
+                    <strong>Noite do Filme</strong>
                 </div>
 
 
@@ -823,10 +983,7 @@
                     onclick="chooseType('anime')"
                 >
                     <span class="icon">🍥</span>
-
-                    <strong>
-                        Noite de Anime
-                    </strong>
+                    <strong>Noite de Anime</strong>
                 </div>
 
 
@@ -835,18 +992,11 @@
                     onclick="chooseType('series')"
                 >
                     <span class="icon">📺</span>
-
-                    <strong>
-                        Noite da Série
-                    </strong>
+                    <strong>Noite da Série</strong>
                 </div>
 
             </div>
 
-
-            <!-- ==========================================
-                 CARD SECRETO
-            ========================================== -->
 
             <div
                 class="love-card"
@@ -882,17 +1032,15 @@
         </section>
 
 
-        <!-- ==========================================
-             TELA DE CADASTRO
-        ========================================== -->
+        <!-- ==================================================
+             CADASTRO DA ROLETA
+        ================================================== -->
 
         <section id="register" class="card hidden">
 
             <div class="chosen">
 
-                <span id="chosenIcon">
-                    🎬
-                </span>
+                <span id="chosenIcon">🎬</span>
 
                 <h2 id="chosenTitle">
                     Noite do Filme
@@ -958,7 +1106,6 @@
                     ← Voltar
                 </button>
 
-
                 <button
                     id="finishButton"
                     class="finish"
@@ -973,9 +1120,9 @@
         </section>
 
 
-        <!-- ==========================================
-             TELA DE SORTEIO
-        ========================================== -->
+        <!-- ==================================================
+             SORTEIO
+        ================================================== -->
 
         <section id="draw" class="card hidden">
 
@@ -983,9 +1130,7 @@
 
                 <div class="header">
 
-                    <div class="emoji">
-                        🎲
-                    </div>
+                    <div class="emoji">🎲</div>
 
                     <h2>
                         É HORA DO SORTEIO!
@@ -1031,9 +1176,9 @@
         </section>
 
 
-        <!-- ==========================================
-             TELA DO VENCEDOR
-        ========================================== -->
+        <!-- ==================================================
+             VENCEDOR
+        ================================================== -->
 
         <section id="winner" class="card hidden">
 
@@ -1076,9 +1221,9 @@
         </section>
 
 
-        <!-- ==========================================
-             TELA SECRETA — NOITE DE LOVE
-        ========================================== -->
+        <!-- ==================================================
+             ÁREA DE LOVE
+        ================================================== -->
 
         <section
             id="loveSecret"
@@ -1102,40 +1247,32 @@
                 </p>
 
 
-                <div class="secret-box">
+                <!-- PROGRESSO -->
 
-                    <h3>
-                        💕 Área Especial
-                    </h3>
+                <div class="progress-area">
 
-                    <p>
-                        Essa parte ainda está sendo preparada
-                        com muito carinho...
-                    </p>
+                    <div
+                        id="progressText"
+                        class="progress-text"
+                    >
+                        Etapa 1 de 8
+                    </div>
 
-                    <div class="secret-placeholder">
-                        🔐
-                        <br><br>
+                    <div class="progress-bar">
 
-                        <strong>
-                            Em breve teremos uma surpresinha aqui...
-                        </strong>
+                        <div
+                            id="progressFill"
+                            class="progress-fill"
+                        ></div>
 
-                        <br><br>
-
-                        E talvez algumas coisas que você
-                        definitivamente não esteja esperando. 👀🌹
                     </div>
 
                 </div>
 
 
-                <button
-                    class="secret-back"
-                    onclick="closeLoveSecret()"
-                >
-                    ← Voltar para a roleta
-                </button>
+                <!-- ETAPAS -->
+
+                <div id="loveContent"></div>
 
             </div>
 
@@ -1144,9 +1281,9 @@
     </main>
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          MODAL DA SENHA
-    ========================================== -->
+    ================================================== -->
 
     <div
         id="passwordModal"
@@ -1212,9 +1349,9 @@
 
     <script>
 
-        // ==========================================
-        // CONFIGURAÇÕES
-        // ==========================================
+        /* ==================================================
+           ROLETA NORMAL
+        ================================================== */
 
         const types = {
 
@@ -1239,19 +1376,11 @@
         };
 
 
-        // ==========================================
-        // VARIÁVEIS
-        // ==========================================
-
         let selectedType = null;
         let items = [];
         let scores = {};
         let drawing = false;
 
-
-        // ==========================================
-        // ELEMENTOS
-        // ==========================================
 
         const home =
             document.getElementById("home");
@@ -1299,10 +1428,6 @@
             document.getElementById("winnerName");
 
 
-        // ==========================================
-        // ESCOLHER TIPO
-        // ==========================================
-
         function chooseType(type) {
 
             selectedType = type;
@@ -1323,7 +1448,6 @@
             renderItems();
 
             home.classList.add("hidden");
-
             register.classList.remove("hidden");
 
             setTimeout(() => {
@@ -1331,10 +1455,6 @@
             }, 200);
         }
 
-
-        // ==========================================
-        // ADICIONAR ITEM
-        // ==========================================
 
         function addItem() {
 
@@ -1377,10 +1497,6 @@
         }
 
 
-        // ==========================================
-        // ENTER PARA ADICIONAR
-        // ==========================================
-
         itemInput.addEventListener(
             "keydown",
             function(event) {
@@ -1395,10 +1511,6 @@
             }
         );
 
-
-        // ==========================================
-        // MOSTRAR LISTA
-        // ==========================================
 
         function renderItems() {
 
@@ -1431,7 +1543,6 @@
                         <button
                             class="remove"
                             onclick="removeItem(${index})"
-                            title="Remover"
                         >
                             🗑️
                         </button>
@@ -1442,10 +1553,6 @@
         }
 
 
-        // ==========================================
-        // REMOVER ITEM
-        // ==========================================
-
         function removeItem(index) {
 
             items.splice(index, 1);
@@ -1453,10 +1560,6 @@
             renderItems();
         }
 
-
-        // ==========================================
-        // VOLTAR
-        // ==========================================
 
         function goHome() {
 
@@ -1467,10 +1570,6 @@
             home.classList.remove("hidden");
         }
 
-
-        // ==========================================
-        // INICIAR SORTEIO
-        // ==========================================
 
         function startDraw() {
 
@@ -1505,14 +1604,9 @@
         }
 
 
-        // ==========================================
-        // SORTEAR
-        // ==========================================
-
         function drawItem() {
 
             if (drawing) return;
-
 
             drawing = true;
 
@@ -1591,16 +1685,14 @@
                                 false;
 
                         }, 700);
+
                     }
+
                 }
 
             }, 90);
         }
 
-
-        // ==========================================
-        // PLACAR
-        // ==========================================
 
         function renderScoreboard() {
 
@@ -1650,10 +1742,6 @@
         }
 
 
-        // ==========================================
-        // MOSTRAR VENCEDOR
-        // ==========================================
-
         function showWinner(item) {
 
             drawing = false;
@@ -1669,34 +1757,22 @@
         }
 
 
-        // ==========================================
-        // RECOMEÇAR
-        // ==========================================
-
         function restart() {
 
             selectedType = null;
-
             items = [];
-
             scores = {};
-
             drawing = false;
-
 
             winner.classList.add("hidden");
 
             home.classList.remove("hidden");
-
-
-            currentDraw.textContent =
-                "Preparados? 👀";
         }
 
 
-        // ==========================================
-        // ABRIR SENHA DA NOITE DE LOVE
-        // ==========================================
+        /* ==================================================
+           SENHA
+        ================================================== */
 
         function openLovePassword() {
 
@@ -1704,7 +1780,9 @@
 
             passwordError.textContent = "";
 
-            passwordModal.classList.remove("hidden");
+            passwordModal.classList.remove(
+                "hidden"
+            );
 
 
             setTimeout(() => {
@@ -1715,23 +1793,17 @@
         }
 
 
-        // ==========================================
-        // FECHAR SENHA
-        // ==========================================
-
         function closeLovePassword() {
 
-            passwordModal.classList.add("hidden");
+            passwordModal.classList.add(
+                "hidden"
+            );
 
             passwordInput.value = "";
 
             passwordError.textContent = "";
         }
 
-
-        // ==========================================
-        // VERIFICAR SENHA
-        // ==========================================
 
         function checkLovePassword() {
 
@@ -1744,43 +1816,29 @@
                 "nezuko"
             ) {
 
-                passwordError.textContent = "";
-
                 passwordModal.classList.add(
                     "hidden"
                 );
 
-                home.classList.add("hidden");
+                home.classList.add(
+                    "hidden"
+                );
 
                 loveSecret.classList.remove(
                     "hidden"
                 );
 
-                passwordInput.value = "";
+
+                startLoveNight();
 
             } else {
 
                 passwordError.textContent =
                     "Hmmmm... tentou, mas essa não é a palavrinha mágica 👀💕 (pergunte à Dianemin que ela vai saber kkkkk)";
 
-                passwordInput.classList.add(
-                    "shake"
-                );
-
-                setTimeout(() => {
-
-                    passwordInput.classList.remove(
-                        "shake"
-                    );
-
-                }, 400);
             }
         }
 
-
-        // ==========================================
-        // ENTER NA SENHA
-        // ==========================================
 
         passwordInput.addEventListener(
             "keydown",
@@ -1802,9 +1860,1127 @@
         );
 
 
-        // ==========================================
-        // FECHAR ÁREA SECRETA
-        // ==========================================
+        /* ==================================================
+           NOITE DE LOVE
+        ================================================== */
+
+        let loveStage = 1;
+
+        const totalStages = 8;
+
+        const loveContent =
+            document.getElementById("loveContent");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const progressText =
+            document.getElementById("progressText");
+
+
+        function startLoveNight() {
+
+            loveStage = 1;
+
+            renderLoveStage();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        function updateProgress() {
+
+            const percentage =
+                ((loveStage - 1) /
+                (totalStages - 1)) *
+                100;
+
+
+            progressFill.style.width =
+                percentage + "%";
+
+
+            progressText.textContent =
+                `Etapa ${loveStage} de ${totalStages}`;
+        }
+
+
+        function nextLoveStage() {
+
+            if (
+                loveStage <
+                totalStages
+            ) {
+
+                loveStage++;
+
+                renderLoveStage();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        }
+
+
+        function renderLoveStage() {
+
+            updateProgress();
+
+
+            switch (loveStage) {
+
+                case 1:
+                    renderWelcome();
+                    break;
+
+                case 2:
+                    renderQuestion();
+                    break;
+
+                case 3:
+                    renderChoice();
+                    break;
+
+                case 4:
+                    renderCoupleMode();
+                    break;
+
+                case 5:
+                    renderFoodRoulette();
+                    break;
+
+                case 6:
+                    renderPlaylist();
+                    break;
+
+                case 7:
+                    renderCapsule();
+                    break;
+
+                case 8:
+                    renderFinal();
+                    break;
+            }
+        }
+
+
+        /* ==================================================
+           ETAPA 1 — BOAS-VINDAS
+        ================================================== */
+
+        function renderWelcome() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        💗
+                    </div>
+
+                    <h2 class="stage-title">
+                        Então... finalmente chegamos aqui.
+                    </h2>
+
+                    <p class="stage-description">
+                        Essa parte não é sobre escolher filme,
+                        série ou anime.<br><br>
+
+                        É só uma desculpa para criar
+                        uma noite diferente com você. 🥹💕
+                    </p>
+
+
+                    <div class="stage-box">
+
+                        <p style="
+                            color:#7d6875;
+                            line-height:1.8;
+                        ">
+                            Hoje vale rir.<br>
+                            Vale ficar juntinho.<br>
+                            Vale comer besteira.<br>
+                            Vale escolher alguma coisa completamente aleatória.<br>
+                            E principalmente...
+                            <strong>vale aproveitar nós dois.</strong> 💗
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="nextLoveStage()"
+                    >
+                        Começar nossa noite ✨
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        /* ==================================================
+           ETAPA 2 — PERGUNTA
+        ================================================== */
+
+        function renderQuestion() {
+
+            const saved =
+                localStorage.getItem(
+                    "loveQuestion"
+                ) || "";
+
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        💭
+                    </div>
+
+                    <h2 class="stage-title">
+                        Uma perguntinha...
+                    </h2>
+
+                    <div class="stage-box">
+
+                        <div class="question">
+                            Qual foi um momento nosso
+                            que você gostaria de viver
+                            de novo? 🥹
+                        </div>
+
+
+                        <textarea
+                            id="questionAnswer"
+                            placeholder="Escreve aqui... 💗"
+                        >${escapeHtml(saved)}</textarea>
+
+
+                        <br><br>
+
+
+                        <button
+                            class="primary-btn"
+                            onclick="saveQuestion()"
+                        >
+                            Guardar essa memória 💌
+                        </button>
+
+                    </div>
+
+
+                    <div id="questionSaved"></div>
+
+                </div>
+
+            `;
+        }
+
+
+        function saveQuestion() {
+
+            const answer =
+                document
+                    .getElementById(
+                        "questionAnswer"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!answer) {
+
+                alert(
+                    "Escreve alguma coisinha primeiro 🥺💕"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "loveQuestion",
+                answer
+            );
+
+
+            document.getElementById(
+                "questionSaved"
+            ).innerHTML = `
+
+                <div class="saved-answer">
+
+                    💗 Memória guardada.
+
+                    <br><br>
+
+                    Agora ela faz parte
+                    da nossa noite.
+
+                    <br><br>
+
+                    <button
+                        class="primary-btn"
+                        onclick="nextLoveStage()"
+                    >
+                        Continuar ✨
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        /* ==================================================
+           ETAPA 3 — CARTAS
+        ================================================== */
+
+        function renderChoice() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        🎁
+                    </div>
+
+                    <h2 class="stage-title">
+                        Escolha uma carta 👀
+                    </h2>
+
+                    <p class="stage-description">
+                        Não pense muito.
+                        Escolhe a que mais chamou sua atenção.
+                    </p>
+
+
+                    <div class="choice-grid">
+
+                        <div
+                            class="choice-card"
+                            onclick="revealChoice(1)"
+                        >
+                            <span class="choice-icon">
+                                🍷
+                            </span>
+
+                            <strong>
+                                Carta 1
+                            </strong>
+                        </div>
+
+
+                        <div
+                            class="choice-card"
+                            onclick="revealChoice(2)"
+                        >
+                            <span class="choice-icon">
+                                🎬
+                            </span>
+
+                            <strong>
+                                Carta 2
+                            </strong>
+                        </div>
+
+
+                        <div
+                            class="choice-card"
+                            onclick="revealChoice(3)"
+                        >
+                            <span class="choice-icon">
+                                💌
+                            </span>
+
+                            <strong>
+                                Carta 3
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="choiceResult"
+                        style="margin-top:20px;"
+                    ></div>
+
+                </div>
+
+            `;
+        }
+
+
+        function revealChoice(number) {
+
+            const surprises = {
+
+                1:
+                    "Hoje você ganhou um jantarzinho escolhido pelos dois. 🍷💕",
+
+                2:
+                    "Hoje vocês vão escolher alguma coisa para assistir, mas com uma regra: nada de ficar discutindo por 30 minutos. KKKKK 🎬😂",
+
+                3:
+                    "Você ganhou um momento surpresa. Só não vale perguntar agora. 👀💌"
+
+            };
+
+
+            document.getElementById(
+                "choiceResult"
+            ).innerHTML = `
+
+                <div class="stage-box">
+
+                    <div style="
+                        font-size:40px;
+                        margin-bottom:10px;
+                    ">
+                        ✨
+                    </div>
+
+                    <p style="
+                        color:#7b6371;
+                        line-height:1.7;
+                    ">
+                        ${surprises[number]}
+                    </p>
+
+                    <br>
+
+                    <button
+                        class="primary-btn"
+                        onclick="nextLoveStage()"
+                    >
+                        Aceitar o destino 💗
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        /* ==================================================
+           ETAPA 4 — MODO CASAL
+        ================================================== */
+
+        function renderCoupleMode() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        🫶
+                    </div>
+
+                    <h2 class="stage-title">
+                        Modo casal ativado.
+                    </h2>
+
+                    <p class="stage-description">
+                        A partir de agora existem algumas regras.
+                        E são regras muito sérias. 👀
+                    </p>
+
+
+                    <div class="stage-box">
+
+                        <div class="rules">
+
+                            <div class="rule">
+                                ❌ Não vale ficar no celular sem motivo.
+                            </div>
+
+                            <div class="rule">
+                                ❌ Não vale responder "tanto faz" para tudo.
+                            </div>
+
+                            <div class="rule">
+                                ❌ Não vale discutir por causa do filme.
+                            </div>
+
+                            <div class="rule">
+                                ✅ Vale rir.
+                            </div>
+
+                            <div class="rule">
+                                ✅ Vale ficar juntinho.
+                            </div>
+
+                            <div class="rule">
+                                ✅ Vale comer alguma coisa gostosa.
+                            </div>
+
+                            <div class="rule">
+                                ❤️ E vale aproveitar muito a companhia um do outro.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="nextLoveStage()"
+                    >
+                        Modo casal: ON 💗
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        /* ==================================================
+           ETAPA 5 — COMIDA
+        ================================================== */
+
+        const foods = [
+            "🍿 Pipoca",
+            "🍫 Chocolate",
+            "🍓 Morango",
+            "🍕 Pizza",
+            "🍔 Hambúrguer",
+            "🍦 Sorvete",
+            "🥨 Alguma besteirinha aleatória",
+            "🍰 Sobremesa",
+            "🥤 Refrigerante + besteiras"
+        ];
+
+
+        function renderFoodRoulette() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        🍿
+                    </div>
+
+                    <h2 class="stage-title">
+                        E a comida?
+                    </h2>
+
+                    <p class="stage-description">
+                        Porque uma noite dessas sem comida
+                        seria simplesmente um crime. 😂
+                    </p>
+
+
+                    <div class="stage-box">
+
+                        <div
+                            class="food-result"
+                            id="foodResult"
+                        >
+                            <span>
+                                👀
+                            </span>
+                        </div>
+
+
+                        <button
+                            class="primary-btn"
+                            id="foodButton"
+                            onclick="spinFood()"
+                        >
+                            🎲 Sortear comida
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="foodNext"
+                        class="hidden"
+                    >
+
+                        <button
+                            class="primary-btn"
+                            onclick="nextLoveStage()"
+                        >
+                            Fechado! 🍿💕
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+        }
+
+
+        function spinFood() {
+
+            const result =
+                document.getElementById(
+                    "foodResult"
+                );
+
+            const button =
+                document.getElementById(
+                    "foodButton"
+                );
+
+
+            button.disabled = true;
+
+
+            let count = 0;
+
+
+            const interval =
+                setInterval(() => {
+
+                    result.innerHTML = `
+                        <span>
+                            ${
+                                foods[
+                                    Math.floor(
+                                        Math.random() *
+                                        foods.length
+                                    )
+                                ]
+                            }
+                        </span>
+                    `;
+
+
+                    count++;
+
+
+                    if (count >= 15) {
+
+                        clearInterval(interval);
+
+
+                        const finalFood =
+                            foods[
+                                Math.floor(
+                                    Math.random() *
+                                    foods.length
+                                )
+                            ];
+
+
+                        result.innerHTML = `
+                            <span>
+                                ${finalFood}
+                            </span>
+                        `;
+
+
+                        document
+                            .getElementById(
+                                "foodNext"
+                            )
+                            .classList.remove(
+                                "hidden"
+                            );
+
+
+                        createConfetti();
+                    }
+
+                }, 100);
+        }
+
+
+        /* ==================================================
+           ETAPA 6 — PLAYLIST
+        ================================================== */
+
+        function renderPlaylist() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        🎧
+                    </div>
+
+                    <h2 class="stage-title">
+                        Trilha sonora da nossa noite
+                    </h2>
+
+                    <p class="stage-description">
+                        Coloquem algumas músicas que combinam
+                        com vocês. 💗
+                    </p>
+
+
+                    <div class="stage-box">
+
+                        <input
+                            id="songName"
+                            placeholder="Nome da música..."
+                        >
+
+                        <br><br>
+
+                        <input
+                            id="songLink"
+                            placeholder="Link da música (opcional)..."
+                        >
+
+                        <br><br>
+
+                        <button
+                            class="primary-btn"
+                            onclick="addSong()"
+                        >
+                            + Adicionar música
+                        </button>
+
+
+                        <div
+                            id="playlistList"
+                            class="playlist-list"
+                        ></div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="nextLoveStage()"
+                    >
+                        Nossa playlist está pronta 🎧
+                    </button>
+
+                </div>
+
+            `;
+
+
+            renderPlaylistItems();
+        }
+
+
+        function getSongs() {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    "lovePlaylist"
+                ) || "[]"
+            );
+        }
+
+
+        function addSong() {
+
+            const name =
+                document
+                    .getElementById("songName")
+                    .value
+                    .trim();
+
+
+            const link =
+                document
+                    .getElementById("songLink")
+                    .value
+                    .trim();
+
+
+            if (!name) {
+
+                alert(
+                    "Coloca o nome da música primeiro 🎧💕"
+                );
+
+                return;
+            }
+
+
+            const songs =
+                getSongs();
+
+
+            songs.push({
+                name,
+                link
+            });
+
+
+            localStorage.setItem(
+                "lovePlaylist",
+                JSON.stringify(songs)
+            );
+
+
+            document.getElementById(
+                "songName"
+            ).value = "";
+
+
+            document.getElementById(
+                "songLink"
+            ).value = "";
+
+
+            renderPlaylistItems();
+        }
+
+
+        function renderPlaylistItems() {
+
+            const list =
+                document.getElementById(
+                    "playlistList"
+                );
+
+
+            if (!list) return;
+
+
+            const songs =
+                getSongs();
+
+
+            if (songs.length === 0) {
+
+                list.innerHTML = `
+                    <div class="empty">
+                        Ainda não tem nenhuma música aqui 🎧💕
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            list.innerHTML =
+                songs.map((song, index) => `
+
+                    <div class="song">
+
+                        <span>
+                            🎵
+                        </span>
+
+                        <span class="song-name">
+                            ${escapeHtml(song.name)}
+                        </span>
+
+                        ${
+                            song.link
+                            ?
+                            `
+                            <a
+                                class="song-link"
+                                href="${escapeAttribute(song.link)}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Abrir
+                            </a>
+                            `
+                            :
+                            ""
+                        }
+
+                        <button
+                            class="remove"
+                            onclick="removeSong(${index})"
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                `).join("");
+        }
+
+
+        function removeSong(index) {
+
+            const songs =
+                getSongs();
+
+
+            songs.splice(
+                index,
+                1
+            );
+
+
+            localStorage.setItem(
+                "lovePlaylist",
+                JSON.stringify(songs)
+            );
+
+
+            renderPlaylistItems();
+        }
+
+
+        /* ==================================================
+           ETAPA 7 — CÁPSULA DO TEMPO
+        ================================================== */
+
+        function renderCapsule() {
+
+            const saved =
+                localStorage.getItem(
+                    "loveCapsule"
+                ) || "";
+
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage">
+
+                    <div class="stage-icon">
+                        💌
+                    </div>
+
+                    <h2 class="stage-title">
+                        Cápsula do nosso amor
+                    </h2>
+
+                    <p class="stage-description">
+                        Escrevam alguma coisa que vocês
+                        gostariam de lembrar no futuro.
+                    </p>
+
+
+                    <div class="stage-box">
+
+                        <textarea
+                            id="capsuleInput"
+                            placeholder="Uma mensagem para nós do futuro... 💗"
+                        >${escapeHtml(saved)}</textarea>
+
+
+                        <br><br>
+
+
+                        <button
+                            class="primary-btn"
+                            onclick="saveCapsule()"
+                        >
+                            Guardar na cápsula 💌
+                        </button>
+
+                    </div>
+
+
+                    <div id="capsuleResult"></div>
+
+                </div>
+
+            `;
+        }
+
+
+        function saveCapsule() {
+
+            const message =
+                document
+                    .getElementById(
+                        "capsuleInput"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!message) {
+
+                alert(
+                    "Escrevam alguma coisinha para o futuro 🥹💕"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "loveCapsule",
+                message
+            );
+
+
+            document.getElementById(
+                "capsuleResult"
+            ).innerHTML = `
+
+                <div class="capsule-message">
+
+                    💗 Guardado.
+
+                    <br><br>
+
+                    Talvez daqui a um tempo vocês
+                    olhem isso novamente e pensem:
+
+                    <br><br>
+
+                    "Olha só onde a gente estava..."
+                    
+                </div>
+
+
+                <br>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="nextLoveStage()"
+                >
+                    Continuar 🌙
+                </button>
+
+            `;
+
+        }
+
+
+        /* ==================================================
+           ETAPA 8 — FINAL
+        ================================================== */
+
+        function renderFinal() {
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage final-screen">
+
+                    <div class="final-icon">
+                        🌙💗
+                    </div>
+
+                    <h2 class="stage-title">
+                        Nossa noite chegou ao fim...
+                    </h2>
+
+
+                    <div class="final-message">
+
+                        Mas eu queria que você lembrasse
+                        de uma coisa:
+
+                        <br><br>
+
+                        Não importa qual filme.
+                        <br>
+                        Qual anime.
+                        <br>
+                        Qual série.
+                        <br>
+                        Qual comida.
+                        <br>
+                        Qual música.
+
+                        <br><br>
+
+                        Eu só queria passar
+                        mais uma noite com você.
+
+                        <br><br>
+
+                        Rindo das nossas besteiras,
+                        ficando juntinhos,
+                        reclamando de alguma coisa
+                        e criando mais uma memória
+                        para guardar.
+
+                        <br><br>
+
+                        ❤️
+
+                    </div>
+
+
+                    <div class="signature">
+                        — Gabriel
+                    </div>
+
+
+                    <br><br>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="finishLoveNight()"
+                    >
+                        Guardar essa noite 💗
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        function finishLoveNight() {
+
+            createConfetti();
+
+            loveContent.innerHTML = `
+
+                <div class="love-stage final-screen">
+
+                    <div class="final-icon">
+                        🥹💗
+                    </div>
+
+                    <h2 class="stage-title">
+                        Noite oficialmente registrada.
+                    </h2>
+
+                    <p class="final-message">
+
+                        Mais uma noite nossa.
+
+                        <br><br>
+
+                        E espero que venham
+                        muitas outras.
+
+                        <br><br>
+
+                        Agora vai viver a noite,
+                        mulher. KKKKKKK 😂💗
+
+                    </p>
+
+
+                    <button
+                        class="secondary-btn"
+                        onclick="closeLoveSecret()"
+                    >
+                        ← Voltar para o começo
+                    </button>
+
+                </div>
+
+            `;
+        }
+
+
+        /* ==================================================
+           VOLTAR PARA HOME
+        ================================================== */
 
         function closeLoveSecret() {
 
@@ -1815,27 +2991,44 @@
             home.classList.remove(
                 "hidden"
             );
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }
 
 
-        // ==========================================
-        // SEGURANÇA CONTRA HTML NO INPUT
-        // ==========================================
+        /* ==================================================
+           SEGURANÇA DO HTML
+        ================================================== */
 
         function escapeHtml(text) {
 
             const div =
                 document.createElement("div");
 
-            div.textContent = text;
+            div.textContent =
+                text;
 
             return div.innerHTML;
         }
 
 
-        // ==========================================
-        // CONFETES
-        // ==========================================
+        function escapeAttribute(text) {
+
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+
+        /* ==================================================
+           CONFETES
+        ================================================== */
 
         function createConfetti() {
 
@@ -1926,7 +3119,7 @@
                         }
                     ],
                     {
-                        duration: duration,
+                        duration,
                         easing:
                             "cubic-bezier(.2,.8,.3,1)"
                     }
@@ -1944,4 +3137,5 @@
     </script>
 
 </body>
+
 </html>
