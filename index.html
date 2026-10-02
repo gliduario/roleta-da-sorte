@@ -2804,6 +2804,211 @@
     }
 
     /* ==========================================
+       🌦️ CLIMA, DIÁRIO, ENSINAR E CASAL DE CAPIVARAS
+    ========================================== */
+
+    .mm-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        margin: 2px 0 8px;
+    }
+
+    .mm-pills .mm-bday-pill {
+        margin: 0;
+    }
+
+    .mm-weather-pill {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--blue-glow);
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .rain-drop {
+        stroke: #6cb8e6;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        animation: rainFall 0.9s linear infinite;
+    }
+
+    @keyframes rainFall {
+        from { transform: translateY(-10px); opacity: 0; }
+        30% { opacity: 1; }
+        to { transform: translateY(40px); opacity: 0; }
+    }
+
+    .mm-sweat {
+        animation: sweat 1.6s ease-in infinite;
+    }
+
+    @keyframes sweat {
+        0% { transform: translateY(0); opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(14px); opacity: 0; }
+    }
+
+    .mm-extra-actions {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .mm-extra-actions button.wide {
+        grid-column: 1 / -1;
+        background: linear-gradient(135deg, var(--blue-glow), var(--pink-glow));
+    }
+
+    .mm-diary {
+        display: grid;
+        gap: 8px;
+        text-align: left;
+        max-height: 320px;
+        overflow-y: auto;
+    }
+
+    .diary-entry {
+        background: var(--paper);
+        background-image: repeating-linear-gradient(
+            transparent 0 25px,
+            var(--paper-line) 25px 26px
+        );
+        border-radius: 14px;
+        padding: 10px 14px;
+        box-shadow: inset 0 0 0 2px var(--border);
+    }
+
+    .diary-date {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: var(--chip-text);
+        background: var(--chip-bg);
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-bottom: 4px;
+    }
+
+    .diary-text {
+        font-family: "Caveat", cursive;
+        font-size: 21px;
+        line-height: 26px;
+        color: var(--text);
+    }
+
+    .mm-teach-row {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mm-teach-row input {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .mm-teach-row button {
+        flex-shrink: 0;
+        padding: 12px 16px;
+    }
+
+    .mm-phrases {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .mm-phrase {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 6px 6px 12px;
+        border-radius: 999px;
+        background: var(--surface-solid);
+        border: 2px solid var(--border);
+        font-size: 13px;
+        color: var(--text);
+    }
+
+    .mm-phrase button {
+        padding: 2px 6px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 12px;
+    }
+
+    .map-capy {
+        transition: opacity 0.3s;
+    }
+
+    .couple-scene {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 4px;
+        margin: 10px 0 6px;
+    }
+
+    .couple-side {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .couple-stage {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        aspect-ratio: 230 / 210;
+        margin: 0;
+        pointer-events: none;
+    }
+
+    .couple-name {
+        font-weight: 600;
+        color: var(--accent);
+        font-size: 15px;
+    }
+
+    .couple-speech {
+        min-height: 64px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 8px 10px;
+        margin-bottom: 4px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        font-size: 13px;
+        line-height: 1.35;
+        color: var(--text);
+        animation: reasonPop 0.4s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .couple-hearts {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding-bottom: 60px;
+        font-size: 18px;
+    }
+
+    .couple-hearts span {
+        animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    .couple-hearts span:nth-child(2) { animation-delay: 0.3s; }
+    .couple-hearts span:nth-child(3) { animation-delay: 0.6s; }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -2898,6 +3103,19 @@
 
         .mm-wardrobe-grid {
             grid-template-columns: repeat(3, 1fr);
+        }
+
+        .mm-extra-actions {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .couple-speech {
+            font-size: 12px;
+            min-height: 78px;
+        }
+
+        .couple-hearts {
+            font-size: 14px;
         }
 
         .map-facts {
@@ -3723,10 +3941,19 @@
             MM 🍊
         </h2>
 
-        <div
-            id="mmBdayPill"
-            class="mm-bday-pill"
-        ></div>
+        <div class="mm-pills">
+
+            <div
+                id="mmBdayPill"
+                class="mm-bday-pill"
+            ></div>
+
+            <div
+                id="mmWeatherPill"
+                class="mm-weather-pill hidden"
+            ></div>
+
+        </div>
 
         <div
             id="catSpeech"
@@ -3747,8 +3974,20 @@
 
                 <ellipse cx="115" cy="201" rx="82" ry="8" fill="rgba(90,60,100,0.15)"/>
 
+
+                <!-- ☔ guarda-chuva (clima: chuva) — atrás da MM -->
+                <g class="mm-acc" data-acc="umbrella" style="display:none">
+                    <path d="M117 6 L117 130" stroke="#5a4036" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M47 24 Q117 -46 187 24 Q170 15 152 24 Q135 15 117 24 Q99 15 82 24 Q64 15 47 24 Z" fill="#8fd3ee" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M117 -11 Q100 0 82 24 M117 -11 Q134 0 152 24" fill="none" stroke="#5a4036" stroke-width="1.5" opacity="0.5"/>
+                    <circle cx="117" cy="-12" r="3" fill="#5a4036"/>
+                </g>
+
+                <!-- 🎧 arquinho do protetor de orelha (clima: frio) -->
+                <path class="mm-acc" data-acc="earmuffs" style="display:none" d="M56 60 Q117 2 178 60" fill="none" stroke="#ff8fb8" stroke-width="7" stroke-linecap="round"/>
+
                 <!-- balão de aniversário -->
-                <g id="acc-balloon" class="mm-acc mm-balloon" style="display:none">
+                <g class="mm-acc mm-balloon" data-acc="balloon" style="display:none">
                     <path d="M184 184 Q196 140 206 72" fill="none" stroke="#5a4036" stroke-width="1.5"/>
                     <ellipse cx="208" cy="52" rx="15" ry="19" fill="#ff6aa8" stroke="#5a4036" stroke-width="2.5"/>
                     <path d="M204 71 L208 76 L212 71 Z" fill="#ff6aa8" stroke="#5a4036" stroke-width="1.5"/>
@@ -3777,14 +4016,14 @@
                     <rect x="50" y="50" width="134" height="104" rx="48" fill="#c79a6b" stroke="#5a4036" stroke-width="3"/>
 
                     <!-- laranjinha na cabeça (clássico de capivara) -->
-                    <g id="acc-orange" class="mm-acc" transform="translate(117 40)">
+                    <g class="mm-acc" data-acc="orange" transform="translate(117 40)">
                         <circle r="15" fill="#ffa94d" stroke="#5a4036" stroke-width="2.5"/>
                         <circle cx="-5" cy="-4" r="3" fill="#ffd29b"/>
                         <path d="M0 -15 Q8 -26 16 -20 Q8 -12 0 -15 Z" fill="#7cc97a" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                     </g>
 
                     <!-- lacinho -->
-                    <g id="acc-bow" class="mm-acc" transform="translate(176 66) rotate(20)">
+                    <g class="mm-acc" data-acc="bow" transform="translate(176 66) rotate(20)">
                         <path d="M0 0 L-13 -8 L-13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                         <path d="M0 0 L13 -8 L13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                         <circle r="4" fill="#ff6aa8" stroke="#5a4036" stroke-width="2"/>
@@ -3792,8 +4031,47 @@
 
                     <!-- ===== ACESSÓRIOS DO GUARDA-ROUPA ===== -->
 
+                    <!-- 🎅 gorrinho de Natal -->
+                    <g class="mm-acc" data-acc="santa" transform="translate(117 56)" style="display:none">
+                        <path d="M-30 -4 L4 -50 L30 -4 Z" fill="#e5484d" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <circle cx="4" cy="-50" r="8" fill="#ffffff" stroke="#5a4036" stroke-width="2"/>
+                        <rect x="-36" y="-10" width="72" height="15" rx="7.5" fill="#ffffff" stroke="#5a4036" stroke-width="2"/>
+                    </g>
+
+                    <!-- 🎃 aboborinha no lugar da laranja -->
+                    <g class="mm-acc" data-acc="pumpkin" transform="translate(117 38)" style="display:none">
+                        <ellipse cx="-9" cy="0" rx="10" ry="13" fill="#ff8a3d" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="9" cy="0" rx="10" ry="13" fill="#ff8a3d" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="0" cy="0" rx="10" ry="14" fill="#ff9a52" stroke="#5a4036" stroke-width="2"/>
+                        <rect x="-2" y="-19" width="5" height="8" rx="2" fill="#6b8f4e"/>
+                        <path d="M-7 -3 L-4 -7 L-1 -3 Z M1 -3 L4 -7 L7 -3 Z" fill="#3d2a24"/>
+                        <path d="M-7 4 Q0 10 7 4" fill="none" stroke="#3d2a24" stroke-width="2" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- 🐰 orelhinhas de coelho -->
+                    <g class="mm-acc" data-acc="bunny" style="display:none">
+                        <g transform="translate(96 30) rotate(-14)">
+                            <ellipse rx="11" ry="30" fill="#ffffff" stroke="#5a4036" stroke-width="2.5"/>
+                            <ellipse rx="5" ry="21" fill="#ffc8dd"/>
+                        </g>
+                        <g transform="translate(138 30) rotate(14)">
+                            <ellipse rx="11" ry="30" fill="#ffffff" stroke="#5a4036" stroke-width="2.5"/>
+                            <ellipse rx="5" ry="21" fill="#ffc8dd"/>
+                        </g>
+                    </g>
+
+                    <!-- 💘 tiara de coraçãozinho -->
+                    <g class="mm-acc" data-acc="hearts" style="display:none">
+                        <path d="M60 60 Q117 18 174 60" fill="none" stroke="#ff6aa8" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M95 38 L90 20 M139 38 L144 20" stroke="#5a4036" stroke-width="2"/>
+                        <text x="90" y="22" font-size="20" text-anchor="middle">💗</text>
+                        <text x="144" y="22" font-size="20" text-anchor="middle">💗</text>
+                    </g>
+
+
+
                     <!-- coroinha -->
-                    <g id="acc-crown" class="mm-acc" transform="translate(117 54)" style="display:none">
+                    <g class="mm-acc" data-acc="crown" transform="translate(117 54)" style="display:none">
                         <path d="M-22 0 L-22 -16 L-11 -6 L0 -22 L11 -6 L22 -16 L22 0 Z" fill="#ffd34d" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
                         <circle cx="0" cy="-8" r="3.2" fill="#ff6aa8"/>
                         <circle cx="-13" cy="-5" r="2.2" fill="#8fd3ee"/>
@@ -3801,7 +4079,7 @@
                     </g>
 
                     <!-- chapéu de bruxa -->
-                    <g id="acc-witch" class="mm-acc" transform="translate(117 54)" style="display:none">
+                    <g class="mm-acc" data-acc="witch" transform="translate(117 54)" style="display:none">
                         <ellipse cx="0" cy="0" rx="42" ry="7" fill="#6b4fa0" stroke="#5a4036" stroke-width="2.5"/>
                         <path d="M-22 -3 Q-10 -28 0 -50 Q8 -60 20 -52 Q10 -49 8 -40 Q14 -20 22 -3 Z" fill="#7d5fc0" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
                         <rect x="-21" y="-13" width="43" height="7" rx="2" fill="#ffd27d"/>
@@ -3810,7 +4088,7 @@
                     </g>
 
                     <!-- chapéu de festa -->
-                    <g id="acc-party" class="mm-acc" transform="translate(110 55) rotate(-10)" style="display:none">
+                    <g class="mm-acc" data-acc="party" transform="translate(110 55) rotate(-10)" style="display:none">
                         <path d="M-19 0 L0 -46 L19 0 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
                         <path d="M-12 -16 L10 -24 M-6 -30 L6 -34" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
                         <circle cx="-7" cy="-7" r="2.5" fill="#ffd27d"/>
@@ -3820,7 +4098,7 @@
                     </g>
 
                     <!-- florzinha na orelha -->
-                    <g id="acc-flower" class="mm-acc" transform="translate(62 50)" style="display:none">
+                    <g class="mm-acc" data-acc="flower" transform="translate(62 50)" style="display:none">
                         <circle cx="0" cy="-7" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
                         <circle cx="6.7" cy="-2.2" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
                         <circle cx="4.1" cy="5.7" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
@@ -3871,7 +4149,7 @@
                     <path d="M108 128 Q117 135 126 128" fill="none" stroke="#3d2a24" stroke-width="2.5" stroke-linecap="round"/>
 
                     <!-- óculos escuros -->
-                    <g id="acc-glasses" class="mm-acc" style="display:none">
+                    <g class="mm-acc" data-acc="glasses" style="display:none">
                         <path d="M71 88 L56 82 M163 88 L178 82" stroke="#2e211f" stroke-width="3" stroke-linecap="round"/>
                         <rect x="70" y="81" width="32" height="21" rx="9" fill="#2e211f"/>
                         <rect x="132" y="81" width="32" height="21" rx="9" fill="#2e211f"/>
@@ -3880,17 +4158,50 @@
                     </g>
 
                     <!-- cachecol -->
-                    <g id="acc-scarf" class="mm-acc" style="display:none">
+                    <g class="mm-acc" data-acc="scarf" style="display:none">
                         <rect x="141" y="148" width="17" height="34" rx="6" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5" transform="rotate(12 150 150)"/>
                         <rect x="60" y="140" width="116" height="19" rx="9.5" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5"/>
                         <path d="M80 141 L80 158 M100 141 L100 158 M120 141 L120 158 M140 141 L140 158 M160 141 L160 158" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
                     </g>
+
+                    <!-- 🍦 sorvetinho (clima: calor) -->
+                    <g class="mm-acc" data-acc="icecream" transform="translate(190 150) rotate(12)" style="display:none">
+                        <path d="M-9 0 L9 0 L0 24 Z" fill="#e9b97a" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M-5 5 L4 14 M3 4 L-3 12" stroke="#c48f55" stroke-width="1.5"/>
+                        <circle cx="0" cy="-6" r="10" fill="#ff9cc2" stroke="#5a4036" stroke-width="2"/>
+                        <circle cx="0" cy="-16" r="7" fill="#fff3c4" stroke="#5a4036" stroke-width="2"/>
+                        <circle cx="2" cy="-24" r="3" fill="#e5484d"/>
+                    </g>
+
+                    <!-- 💧 gotinha de suor (clima: calor) -->
+                    <path class="mm-acc mm-sweat" data-acc="sweat" style="display:none" d="M178 70 Q172 80 178 86 Q184 80 178 70 Z" fill="#8fd3ee" stroke="#5a4036" stroke-width="1.5"/>
+
+                    <!-- 🎧 protetor de orelha (clima: frio) -->
+                    <g class="mm-acc" data-acc="earmuffs" style="display:none">
+                        <circle cx="64" cy="60" r="15" fill="#ffc8dd" stroke="#5a4036" stroke-width="2.5"/>
+                        <circle cx="170" cy="60" r="15" fill="#ffc8dd" stroke="#5a4036" stroke-width="2.5"/>
+                        <circle cx="60" cy="56" r="4" fill="#ffffff" opacity="0.7"/>
+                        <circle cx="166" cy="56" r="4" fill="#ffffff" opacity="0.7"/>
+                    </g>
+
+
 
 
                 </g>
 
                 <text class="cat-zzz" x="172" y="44" font-size="22">z</text>
                 <text class="cat-zzz" x="186" y="28" font-size="16" style="animation-delay: 0.8s">z</text>
+
+                <!-- 🌧️ gotinhas de chuva -->
+                <g class="mm-acc" data-acc="rain" style="display:none">
+                    <path class="rain-drop" d="M28 30 l-3 10" style="animation-delay: 0s"/>
+                    <path class="rain-drop" d="M14 80 l-3 10" style="animation-delay: 0.3s"/>
+                    <path class="rain-drop" d="M205 40 l-3 10" style="animation-delay: 0.5s"/>
+                    <path class="rain-drop" d="M218 100 l-3 10" style="animation-delay: 0.15s"/>
+                    <path class="rain-drop" d="M40 130 l-3 10" style="animation-delay: 0.65s"/>
+                    <path class="rain-drop" d="M196 140 l-3 10" style="animation-delay: 0.4s"/>
+                </g>
+
 
             </svg>
 
@@ -3952,8 +4263,16 @@
 
         <div class="mm-extra-actions">
 
-            <button onclick="toggleWardrobe()">
-                👗 Guarda-roupa
+            <button onclick="toggleMmPanel('mmWardrobe')">
+                👗 Roupinhas
+            </button>
+
+            <button onclick="toggleMmPanel('mmDiary')">
+                📔 Diário
+            </button>
+
+            <button onclick="toggleMmPanel('mmTeach')">
+                🗣️ Ensinar
             </button>
 
             <button
@@ -3961,6 +4280,13 @@
                 onclick="mmSecret()"
             >
                 🤫 Segredo
+            </button>
+
+            <button
+                class="wide"
+                onclick="visitGG()"
+            >
+                💙 Visitar o GG em Londrina
             </button>
 
         </div>
@@ -3986,8 +4312,195 @@
         </div>
 
         <div
+            id="mmDiary"
+            class="mm-wardrobe hidden"
+        >
+
+            <div class="mm-wardrobe-title">
+                Diário da MM 📔
+            </div>
+
+            <div
+                id="mmDiaryList"
+                class="mm-diary"
+            ></div>
+
+        </div>
+
+        <div
+            id="mmTeach"
+            class="mm-wardrobe hidden"
+        >
+
+            <div class="mm-wardrobe-title">
+                Ensina uma frase pra MM 🗣️
+            </div>
+
+            <div class="mm-teach-row">
+
+                <input
+                    id="mmTeachInput"
+                    type="text"
+                    maxlength="80"
+                    placeholder="Ex.: eu amo o Gabriel"
+                    autocomplete="off"
+                >
+
+                <button
+                    class="primary-btn"
+                    onclick="teachMM()"
+                >
+                    Ensinar
+                </button>
+
+            </div>
+
+            <div
+                id="mmPhrases"
+                class="mm-phrases"
+            ></div>
+
+            <div class="mm-wardrobe-hint">
+                Ela vai repetir do jeitinho dela de vez em quando 🍊
+            </div>
+
+        </div>
+
+        <div
             id="catFooter"
             class="cat-footer"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     💙 MODAL — MM VISITA O GG
+================================================== -->
+
+<div
+    id="coupleOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('coupleOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            MM chegou em Londrina! 💙
+        </h2>
+
+        <p
+            id="coupleSub"
+            class="fun-text"
+        ></p>
+
+        <div class="couple-scene">
+
+            <div class="couple-side">
+                <div
+                    id="coupleMMSpeech"
+                    class="couple-speech"
+                ></div>
+                <div
+                    id="coupleMM"
+                    class="cat-stage happy couple-stage"
+                ></div>
+                <div class="couple-name">MM 🍊</div>
+            </div>
+
+            <div class="couple-hearts" aria-hidden="true">
+                <span>💗</span><span>💕</span><span>💗</span>
+            </div>
+
+            <div class="couple-side">
+                <div
+                    id="coupleGGSpeech"
+                    class="couple-speech"
+                ></div>
+                <div class="cat-stage happy couple-stage gg-stage">
+
+                    <svg class="cat-svg" viewBox="0 0 230 210" aria-label="Capivara GG">
+
+                        <ellipse cx="115" cy="201" rx="82" ry="8" fill="rgba(90,60,100,0.15)"/>
+
+                        <g class="cat-body-group">
+
+                            <ellipse cx="112" cy="152" rx="80" ry="46" fill="#9c7350" stroke="#4a3329" stroke-width="3"/>
+
+                            <rect x="50" y="176" width="20" height="24" rx="9" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+                            <rect x="76" y="180" width="20" height="21" rx="9" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+                            <rect x="128" y="180" width="20" height="21" rx="9" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+                            <rect x="156" y="176" width="20" height="24" rx="9" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+
+                            <ellipse cx="62" cy="58" rx="13" ry="11" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+                            <ellipse cx="164" cy="58" rx="13" ry="11" fill="#8a6343" stroke="#4a3329" stroke-width="3"/>
+
+                            <rect x="46" y="50" width="134" height="104" rx="48" fill="#b08458" stroke="#4a3329" stroke-width="3"/>
+
+                            <!-- boné azul -->
+                            <path d="M58 70 Q60 22 113 22 Q166 22 168 70 Q113 54 58 70 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M40 68 Q70 56 100 62" fill="none" stroke="#4a3329" stroke-width="2.5"/>
+                            <path d="M38 70 Q68 52 104 62 L100 66 Q70 62 40 74 Z" fill="#5677c0" stroke="#4a3329" stroke-width="2.5" stroke-linejoin="round"/>
+                            <circle cx="113" cy="24" r="4" fill="#ffd27d" stroke="#4a3329" stroke-width="1.5"/>
+
+                            <g fill="none" stroke="#2e211f" stroke-width="4" stroke-linecap="round">
+                                <path d="M74 95 Q82 84 90 95"/>
+                                <path d="M136 95 Q144 84 152 95"/>
+                            </g>
+
+                            <ellipse cx="64" cy="112" rx="10" ry="6" fill="#ffb3cc" opacity="0.7"/>
+                            <ellipse cx="162" cy="112" rx="10" ry="6" fill="#ffb3cc" opacity="0.7"/>
+
+                            <rect x="76" y="100" width="74" height="44" rx="22" fill="#8a6343" stroke="#4a3329" stroke-width="2.5"/>
+                            <ellipse cx="101" cy="113" rx="5" ry="3.5" fill="#2e211f"/>
+                            <ellipse cx="125" cy="113" rx="5" ry="3.5" fill="#2e211f"/>
+                            <path d="M104 128 Q113 135 122 128" fill="none" stroke="#2e211f" stroke-width="2.5" stroke-linecap="round"/>
+
+                            <!-- gravatinha borboleta -->
+                            <g transform="translate(113 156)">
+                                <path d="M0 0 L-15 -9 L-15 9 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M0 0 L15 -9 L15 9 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="2" stroke-linejoin="round"/>
+                                <circle r="4.5" fill="#5677c0" stroke="#4a3329" stroke-width="2"/>
+                            </g>
+
+                        </g>
+
+                    </svg>
+
+                </div>
+                <div class="couple-name" id="ggName">GG 💙</div>
+            </div>
+
+        </div>
+
+        <div class="bday-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="closeFunModal('coupleOverlay')"
+            >
+                Voltar pra Rio Preto 🍊
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="nextCoupleTalk()"
+            >
+                Outra conversa 💬
+            </button>
+
+        </div>
+
+        <div
+            id="coupleCounter"
+            class="hug-counter"
         ></div>
 
     </div>
@@ -4074,6 +4587,25 @@
                 <text class="map-city" x="296" y="110" font-size="13" text-anchor="middle">S. J. do Rio Preto • SP</text>
                 <text class="map-label" x="296" y="125" font-size="11" text-anchor="middle">Diane mora aqui 💗</text>
 
+                <!-- capivarinha que viaja -->
+                <g
+                    id="mapCapy"
+                    class="map-capy"
+                    style="opacity:0"
+                    transform="translate(281 58)"
+                >
+                    <g transform="scale(0.5)">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#c79a6b" stroke="#5a4036" stroke-width="2"/>
+                        <circle cx="30" cy="8" r="6" fill="#ffa94d" stroke="#5a4036" stroke-width="1.5"/>
+                        <path d="M14 24 Q18 27 22 24 M38 24 Q42 27 46 24" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#a77750" stroke="#5a4036" stroke-width="1.5"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </g>
+                </g>
+
                 <!-- coração que viaja -->
                 <text
                     id="mapTraveler"
@@ -4137,6 +4669,15 @@
             id="hugCounter"
             class="hug-counter"
         ></div>
+
+        <button
+            id="capyButton"
+            class="secondary-btn"
+            onclick="sendMMToLondrina()"
+            style="width: 100%; margin-top: 12px;"
+        >
+            Mandar a MM visitar o GG 🍊
+        </button>
 
     </div>
 
@@ -7258,7 +7799,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -7451,8 +7992,15 @@ Te amo muito.
 
         badge.textContent = icons[mood] || "🍊";
 
+        const season = currentSeason();
+        const wk = weatherKind();
+
         if (isBirthdayToday()) {
             badge.textContent = "🎉 festa";
+        } else if (season && mood !== "sad") {
+            badge.textContent = season.icon;
+        } else if (mood !== "sad" && wk) {
+            badge.textContent = weatherIcon() + " " + weatherTemp() + "°";
         }
     }
 
@@ -7508,8 +8056,10 @@ Te amo muito.
         cat.awake = false;
         cat.cheered = false;
 
-        document.getElementById("mmWardrobe")
-            .classList.add("hidden");
+        logDay("visits");
+
+        ["mmWardrobe", "mmDiary", "mmTeach"].forEach(id =>
+            document.getElementById(id).classList.add("hidden"));
 
         if (isBirthdayToday()) {
 
@@ -7530,9 +8080,30 @@ Te amo muito.
 
         renderCat(mood);
 
-        setCatSpeech(greetingLine(mood));
+        let line = greetingLine(mood);
+
+        if (mood !== "sad" && mood !== "sleep") {
+
+            const season = currentSeason();
+            const wLine = weatherLine();
+            const phrases = cat.phrases || [];
+
+            if (season) {
+                line = season.line;
+            } else if (wLine && Math.random() < 0.7) {
+                line = wLine;
+            } else if (phrases.length && Math.random() < 0.35) {
+                line = mmSays(pick(phrases));
+            }
+        }
+
+        setCatSpeech(line);
 
         openFunModal("catOverlay");
+
+        if (currentSeason() && mood !== "sad" && mood !== "sleep") {
+            setTimeout(createConfetti, 300);
+        }
 
         saveCat();
     }
@@ -7554,6 +8125,9 @@ Te amo muito.
             return;
         }
 
+        const phrases = cat.phrases || [];
+        const sayPhrase = phrases.length && Math.random() < 0.2;
+
         if (type === "pet") {
 
             cat.love = clampStat(cat.love + 12);
@@ -7562,9 +8136,11 @@ Te amo muito.
 
             cat.pets++;
 
+            logDay("pets");
+
             checkUnlocks(petsBefore);
 
-            setCatSpeech(pick(catPetLines));
+            setCatSpeech(sayPhrase ? mmSays(pick(phrases)) : pick(catPetLines));
             catPopEmoji("💗");
         }
 
@@ -7578,6 +8154,8 @@ Te amo muito.
 
             cat.food = clampStat(cat.food + 25);
 
+            logDay("feeds");
+
             setCatSpeech(pick(catFeedLines));
             catPopEmoji("🍉");
         }
@@ -7587,11 +8165,19 @@ Te amo muito.
             cat.fun = clampStat(cat.fun + 20);
             cat.food = clampStat(cat.food - 5);
 
-            setCatSpeech(pick(catPlayLines));
+            logDay("baths");
+
+            setCatSpeech(
+                weatherKind() === "hot"
+                    ? "Banho gelado num calor desses é tudo 💦🫠"
+                    : pick(catPlayLines)
+            );
             catPopEmoji("💦");
         }
 
         if (type === "note") {
+
+            logDay("notes");
 
             setCatSpeech(pick(catNotes));
             catPopEmoji("💌");
@@ -7601,6 +8187,10 @@ Te amo muito.
 
         renderCat("happy");
 
+        if (!document.getElementById("mmDiary").classList.contains("hidden")) {
+            renderDiary();
+        }
+
         if (cat.love === 100 && cat.food === 100 && cat.fun === 100) {
             setCatSpeech("Eu tô 100% feliz!! Você é a melhor dona do mundo 🥰");
             createConfetti();
@@ -7608,12 +8198,6 @@ Te amo muito.
 
         saveCat();
     }
-
-    // badge da home já mostra o humor dela
-    (function () {
-        loadCat();
-        updateCatBadge(catMood());
-    })();
 
     /* ==================================================
        👗 GUARDA-ROUPA DA MM
@@ -7630,6 +8214,224 @@ Te amo muito.
         { id: "crown", name: "Coroinha", icon: "👑", slot: "head", need: 30 },
         { id: "witch", name: "Chapéu de bruxa", icon: "🧙", slot: "head", need: 45 }
     ];
+
+    const HEAD_ITEMS = ["orange", "party", "crown", "witch", "santa", "pumpkin", "bunny", "hearts"];
+
+    /* --------------------------------------------------
+       🎄 DATAS ESPECIAIS (a MM se veste sozinha)
+    -------------------------------------------------- */
+
+    // 🧪 Pra testar: ?data=natal | halloween | pascoa | namorados | anonovo
+    const SEASON_TEST =
+        new URLSearchParams(window.location.search).get("data");
+
+    const SEASONS = {
+        natal: {
+            item: "santa",
+            icon: "🎄",
+            pill: "🎄 Feliz Natal!",
+            line: "Ho ho ho! Feliz Natal, Diane! 🎄 Pedi pro Papai Noel um abraço do Gabriel pra você"
+        },
+        anonovo: {
+            item: "party",
+            icon: "🥂",
+            pill: "🥂 Feliz Ano Novo!",
+            line: "Feliz Ano Novo!! Esse ano vai ser NOSSO 🥂 (e com mais melancia, por favor)"
+        },
+        halloween: {
+            item: "pumpkin",
+            icon: "🎃",
+            pill: "🎃 Semana do Halloween",
+            line: "Doces ou travessuras? 🎃 Troquei minha laranja por uma aboborinha kkkk"
+        },
+        pascoa: {
+            item: "bunny",
+            icon: "🐰",
+            pill: "🐰 Feliz Páscoa!",
+            line: "Feliz Páscoa! Hoje eu sou uma capivara-coelho 🐰 Cadê meu ovo de chocolate?"
+        },
+        namorados: {
+            item: "hearts",
+            icon: "💘",
+            pill: "💘 Dia dos Namorados",
+            line: "Feliz Dia dos Namorados! O Gabriel tá todo bobo hoje 💘 (eu também)"
+        }
+    };
+
+    function easterDate(year) {
+
+        const a = year % 19;
+        const b = Math.floor(year / 100);
+        const c = year % 100;
+        const d = Math.floor(b / 4);
+        const e = b % 4;
+        const f = Math.floor((b + 8) / 25);
+        const g = Math.floor((b - f + 1) / 3);
+        const h = (19 * a + b - d - g + 15) % 30;
+        const i = Math.floor(c / 4);
+        const k = c % 4;
+        const l = (32 + 2 * e + 2 * i - h - k) % 7;
+        const m = Math.floor((a + 11 * h + 22 * l) / 451);
+        const month = Math.floor((h + l - 7 * m + 114) / 31);
+        const day = ((h + l - 7 * m + 114) % 31) + 1;
+
+        return new Date(year, month - 1, day);
+    }
+
+    function currentSeason() {
+
+        if (SEASON_TEST && SEASONS[SEASON_TEST]) {
+            return SEASONS[SEASON_TEST];
+        }
+
+        const now = new Date();
+        const m = now.getMonth() + 1;
+        const d = now.getDate();
+
+        if (m === 12 && d >= 1 && d <= 26) return SEASONS.natal;
+        if ((m === 12 && d === 31) || (m === 1 && d === 1)) return SEASONS.anonovo;
+        if (m === 10 && d >= 25) return SEASONS.halloween;
+        if (m === 6 && d >= 10 && d <= 13) return SEASONS.namorados;
+
+        const easter = easterDate(now.getFullYear());
+        const diff = (now - easter) / 86400000;
+
+        if (diff >= -7 && diff < 1) return SEASONS.pascoa;
+
+        return null;
+    }
+
+    /* --------------------------------------------------
+       🌦️ CLIMA DE RIO PRETO (de verdade!)
+    -------------------------------------------------- */
+
+    // 🧪 Pra testar: ?clima=chuva | calor | frio
+    const WEATHER_TEST =
+        new URLSearchParams(window.location.search).get("clima");
+
+    const WEATHER_KEY = "rioPretoWeather";
+
+    let rpWeather = null;
+
+    function weatherKind() {
+
+        if (WEATHER_TEST === "chuva") return "rain";
+        if (WEATHER_TEST === "calor") return "hot";
+        if (WEATHER_TEST === "frio") return "cold";
+
+        if (!rpWeather) return null;
+
+        const c = rpWeather.code;
+
+        const rainy =
+            (c >= 51 && c <= 67) ||
+            (c >= 80 && c <= 82) ||
+            c >= 95;
+
+        if (rainy) return "rain";
+        if (rpWeather.temp >= 30) return "hot";
+        if (rpWeather.temp <= 16) return "cold";
+
+        return null;
+    }
+
+    function weatherTemp() {
+
+        if (WEATHER_TEST === "calor") return 35;
+        if (WEATHER_TEST === "frio") return 13;
+        if (WEATHER_TEST === "chuva") return 22;
+
+        return rpWeather ? Math.round(rpWeather.temp) : null;
+    }
+
+    function weatherIcon() {
+
+        const kind = weatherKind();
+
+        if (kind === "rain") return "🌧️";
+        if (kind === "hot") return "🔥";
+        if (kind === "cold") return "🥶";
+
+        if (rpWeather && rpWeather.code <= 1) {
+            return rpWeather.isDay ? "☀️" : "🌙";
+        }
+
+        return "⛅";
+    }
+
+    function weatherLine() {
+
+        const t = weatherTemp();
+        const kind = weatherKind();
+
+        if (kind === "rain") return `Tá chovendo aí em Rio Preto! Peguei meu guarda-chuva ☔ Fica quentinha, tá?`;
+        if (kind === "hot") return `${t}° em Rio Preto?! Tô derretendo 🫠 Bora tomar um sorvete e um banho 🍦💦`;
+        if (kind === "cold") return `Brrr, ${t}° aí em Rio Preto! Coloquei meu protetor de orelha 🥶 Se agasalha!`;
+
+        return null;
+    }
+
+    async function loadWeather() {
+
+        const cached = readStore(WEATHER_KEY, null);
+
+        if (cached && Date.now() - cached.at < 30 * 60000) {
+            rpWeather = cached;
+            onWeatherReady();
+            return;
+        }
+
+        try {
+
+            const url =
+                "https://api.open-meteo.com/v1/forecast" +
+                `?latitude=${CITY_DIANE.lat}&longitude=${CITY_DIANE.lon}` +
+                "&current=temperature_2m,weather_code,is_day" +
+                "&timezone=America%2FSao_Paulo";
+
+            const res = await fetch(url);
+            const data = await res.json();
+
+            rpWeather = {
+                temp: data.current.temperature_2m,
+                code: data.current.weather_code,
+                isDay: data.current.is_day === 1,
+                at: Date.now()
+            };
+
+            writeStore(WEATHER_KEY, rpWeather);
+
+            onWeatherReady();
+
+        } catch (e) {
+            // sem internet ou sem clima: a MM só não muda de roupa 🙂
+        }
+    }
+
+    function onWeatherReady() {
+
+        if (!cat) return;
+
+        updateCatBadge(catMood());
+
+        if (!document.getElementById("catOverlay").classList.contains("hidden")) {
+            applyOutfit();
+            updateBirthdayPill();
+        }
+    }
+
+    function forcedHeadItem() {
+
+        if (isBirthdayToday()) return "party";
+
+        const season = currentSeason();
+
+        return season ? season.item : null;
+    }
+
+    /* --------------------------------------------------
+       👗 ROUPINHAS
+    -------------------------------------------------- */
 
     function isBirthdayToday() {
 
@@ -7660,45 +8462,96 @@ Te amo muito.
 
         let outfit = [...cat.outfit];
 
-        // no aniversário ela veste a roupa de festa, sim ou sim 🎉
-        if (isBirthdayToday()) {
-            outfit = outfit.filter(id => {
-                const item = MM_ITEMS.find(i => i.id === id);
-                return item && item.slot !== "head";
-            });
-            outfit.push("party");
+        // no aniversário e nas datas especiais ela se veste sozinha 🎉
+        const forced = forcedHeadItem();
+
+        if (forced) {
+            outfit = outfit.filter(id => !HEAD_ITEMS.includes(id));
+            outfit.push(forced);
         }
 
         return outfit;
     }
 
+    function visibleAccessories() {
+
+        const outfit = getOutfit();
+        const visible = new Set(outfit);
+
+        MM_ITEMS.forEach(item => {
+            if (outfit.includes(item.id)) {
+                (item.extra || []).forEach(x => visible.add(x));
+            }
+        });
+
+        const kind = weatherKind();
+
+        if (kind === "rain") {
+            visible.add("umbrella");
+            visible.add("rain");
+        }
+
+        if (kind === "hot") {
+            visible.add("icecream");
+            visible.add("sweat");
+        }
+
+        if (kind === "cold") {
+            visible.add("earmuffs");
+            visible.delete("bow");
+            visible.delete("flower");
+        }
+
+        return visible;
+    }
+
     function applyOutfit(root) {
 
         const scope = root || document.getElementById("catStage");
-        const outfit = getOutfit();
+        const visible = visibleAccessories();
 
-        MM_ITEMS.forEach(item => {
-
-            const ids = [item.id, ...(item.extra || [])];
-            const on = outfit.includes(item.id);
-
-            ids.forEach(id => {
-                const el = scope.querySelector("#acc-" + id);
-                if (el) el.style.display = on ? "" : "none";
-            });
+        scope.querySelectorAll(".mm-acc").forEach(el => {
+            el.style.display = visible.has(el.dataset.acc) ? "" : "none";
         });
+    }
+
+    function toggleMmPanel(id) {
+
+        ["mmWardrobe", "mmDiary", "mmTeach"].forEach(p => {
+
+            const el = document.getElementById(p);
+
+            if (p === id) {
+                el.classList.toggle("hidden");
+            } else {
+                el.classList.add("hidden");
+            }
+        });
+
+        const open = !document.getElementById(id).classList.contains("hidden");
+
+        if (!open) return;
+
+        if (id === "mmWardrobe") {
+            renderWardrobe();
+            setCatSpeech("Me arruma bem bonita, tá? 💅");
+        }
+
+        if (id === "mmDiary") {
+            renderDiary();
+            setCatSpeech("Ei! Não era pra você ler meu diário... tá bom, pode ler 🙈");
+        }
+
+        if (id === "mmTeach") {
+            renderPhrases();
+            setCatSpeech("Me ensina uma frase? Eu aprendo rapidinho 🍊");
+            setTimeout(() => document.getElementById("mmTeachInput").focus(), 100);
+        }
     }
 
     function toggleWardrobe() {
 
-        const box = document.getElementById("mmWardrobe");
-
-        box.classList.toggle("hidden");
-
-        if (!box.classList.contains("hidden")) {
-            renderWardrobe();
-            setCatSpeech("Me arruma bem bonita, tá? 💅");
-        }
+        toggleMmPanel("mmWardrobe");
     }
 
     function renderWardrobe() {
@@ -7742,9 +8595,13 @@ Te amo muito.
             return;
         }
 
-        if (isBirthdayToday() && item.slot === "head" && id !== "party") {
+        if (item.slot === "head" && forcedHeadItem() && forcedHeadItem() !== id) {
 
-            setCatSpeech("Hoje não tiro esse chapéu de festa por nada! 🎉");
+            setCatSpeech(
+                isBirthdayToday()
+                    ? "Hoje não tiro esse chapéu de festa por nada! 🎉"
+                    : "Hoje é dia especial, vou ficar com essa roupinha! " + currentSeason().icon
+            );
             catBounce();
             return;
         }
@@ -7800,7 +8657,7 @@ Te amo muito.
 
         setTimeout(() => {
 
-            setCatSpeech(`Desbloqueei ${newly.name.toLowerCase()} ${newly.icon}!! Olha no guarda-roupa 👗`);
+            setCatSpeech(`Desbloqueei ${newly.name.toLowerCase()} ${newly.icon}!! Olha nas roupinhas 👗`);
             createConfetti();
 
             if (!document.getElementById("mmWardrobe").classList.contains("hidden")) {
@@ -7810,11 +8667,388 @@ Te amo muito.
         }, 900);
     }
 
+    /* --------------------------------------------------
+       📔 DIÁRIO DA MM
+    -------------------------------------------------- */
+
+    function todayKey(date) {
+
+        const d = date || new Date();
+
+        return d.getFullYear() + "-" +
+            String(d.getMonth() + 1).padStart(2, "0") + "-" +
+            String(d.getDate()).padStart(2, "0");
+    }
+
+    function logDay(field) {
+
+        if (!cat.days) cat.days = {};
+
+        const key = todayKey();
+
+        if (!cat.days[key]) {
+            cat.days[key] = { visits: 0, pets: 0, feeds: 0, baths: 0, notes: 0 };
+        }
+
+        cat.days[key][field] = (cat.days[key][field] || 0) + 1;
+
+        // guarda só os últimos 30 dias
+        const keys = Object.keys(cat.days).sort();
+
+        while (keys.length > 30) {
+            delete cat.days[keys.shift()];
+        }
+    }
+
+    function plural(n, one, many) {
+
+        return `${n} ${n === 1 ? one : many}`;
+    }
+
+    function renderDiary() {
+
+        const list = document.getElementById("mmDiaryList");
+        const entries = [];
+        const born = new Date(cat.born);
+
+        born.setHours(0, 0, 0, 0);
+
+        const closers = [
+            "Ela é a melhor dona do mundo 🍊",
+            "Tô muito feliz 🥰",
+            "Amanhã quero mais cafuné, hein",
+            "Acho que sonhei com melancia 🍉",
+            "O Gabriel tem muita sorte, viu?",
+            "Que dia bom 💗"
+        ];
+
+        const sad = [
+            "A Diane não apareceu... fiquei o dia todo olhando pra porta 🥺",
+            "Ninguém veio me ver. Fiquei abraçada na minha laranjinha 🍊",
+            "Esperei o dia todo... será que ela tava ocupada? 🥲"
+        ];
+
+        for (let i = 0; i < 7; i++) {
+
+            const d = new Date();
+
+            d.setHours(12, 0, 0, 0);
+            d.setDate(d.getDate() - i);
+
+            if (d < born) break;
+
+            const key = todayKey(d);
+            const rec = (cat.days || {})[key];
+            const seed = Math.floor(d.getTime() / 86400000);
+
+            let text;
+
+            if (rec && (rec.visits || rec.pets || rec.feeds || rec.baths)) {
+
+                const parts = [];
+
+                if (rec.pets) parts.push(plural(rec.pets, "carinho", "carinhos"));
+                if (rec.feeds) parts.push(plural(rec.feeds, "petisco", "petiscos"));
+                if (rec.baths) parts.push(plural(rec.baths, "banho", "banhos"));
+
+                text = parts.length
+                    ? `Hoje a Diane veio me ver e me deu ${parts.join(", ").replace(/, ([^,]*)$/, " e $1")}.`
+                    : "Hoje a Diane passou aqui pra me dar um oi 👋";
+
+                if (rec.notes) {
+                    text += " Entreguei um recadinho do Gabriel pra ela 💌";
+                }
+
+                if (i === 0) {
+                    const wl = weatherKind();
+                    const t = weatherTemp();
+                    if (wl === "hot") text += ` Fez ${t}° em Rio Preto, quase derreti 🫠`;
+                    if (wl === "rain") text += " Choveu em Rio Preto ☔";
+                    if (wl === "cold") text += ` Fez ${t}°, que frio 🥶`;
+                }
+
+                text += " " + closers[seed % closers.length];
+
+            } else if (i === 0) {
+
+                continue;
+
+            } else {
+
+                text = sad[seed % sad.length];
+            }
+
+            const label = i === 0
+                ? "HOJE"
+                : i === 1
+                    ? "ONTEM"
+                    : d.toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "2-digit" }).toUpperCase();
+
+            entries.push(`
+                <div class="diary-entry">
+                    <span class="diary-date">${label}</span>
+                    <div class="diary-text">${escapeHtml(text)}</div>
+                </div>
+            `);
+        }
+
+        list.innerHTML = entries.length
+            ? entries.join("")
+            : `<div class="empty">Meu diário ainda tá em branco... volta amanhã que eu escrevo 📔</div>`;
+    }
+
+    /* --------------------------------------------------
+       🗣️ MM APRENDE A FALAR
+    -------------------------------------------------- */
+
+    function renderPhrases() {
+
+        const phrases = cat.phrases || [];
+
+        document.getElementById("mmPhrases").innerHTML =
+            phrases.length
+                ? phrases.map((p, i) => `
+                    <span class="mm-phrase">
+                        ${escapeHtml(p)}
+                        <button onclick="forgetPhrase(${i})" aria-label="Esquecer">✕</button>
+                    </span>
+                `).join("")
+                : `<span class="mm-wardrobe-hint">Ela ainda não sabe nenhuma frase 🥺</span>`;
+    }
+
+    function mmSays(phrase) {
+
+        const forms = [
+            `Kiu kiu... "${phrase}"! Kiu! 🍊`,
+            `${phrase}... kiu? Acertei? 🥺`,
+            `Kiu! ${phrase}! (aprendi sozinha, tá?) 😌`,
+            `Ahem... ${phrase}. Kiu kiu! 🎤`
+        ];
+
+        return pick(forms);
+    }
+
+    function teachMM() {
+
+        const input = document.getElementById("mmTeachInput");
+        const phrase = input.value.trim();
+
+        if (!phrase) {
+            input.focus();
+            return;
+        }
+
+        if (!cat.phrases) cat.phrases = [];
+
+        cat.phrases.push(phrase);
+
+        if (cat.phrases.length > 20) cat.phrases.shift();
+
+        input.value = "";
+
+        renderPhrases();
+
+        setCatSpeech("Hmm... deixa eu treinar... 🤔");
+        catBounce();
+
+        setTimeout(() => {
+            setCatSpeech(mmSays(phrase));
+            catPopEmoji("🗣️");
+        }, 1200);
+
+        saveCat();
+    }
+
+    function forgetPhrase(i) {
+
+        cat.phrases.splice(i, 1);
+
+        renderPhrases();
+
+        setCatSpeech("Esqueci! Kiu? 🫥");
+
+        saveCat();
+    }
+
+    /* --------------------------------------------------
+       💙 CASAL DE CAPIVARAS (MM e GG)
+    -------------------------------------------------- */
+
+    // ✏️ Nome da capivara do Gabriel
+    const GG_NAME = "GG";
+
+    const GG_VISITS_KEY = "mmVisitsGG";
+
+    // ✏️ Conversinhas entre as duas
+    const coupleTalks = [
+        ["Trouxe uma laranjinha pra você 🍊", "Você é a capivara mais linda de Rio Preto 💙"],
+        ["A Diane mandou um beijo pro Gabriel 😚", "O Gabriel tá contando os dias pra ver ela ✈️"],
+        ["Tava com saudade, sabia?", "Eu também. 333 km é muita coisa pra perninhas curtas 🥲"],
+        ["Bora tomar banho no laguinho juntos? 💦", "Só se for agora!! 🏊"],
+        ["Quem é mais fofo, a Diane ou o Gabriel?", "Empate técnico. Mas a Diane ganha no desempate 🤫"],
+        ["Hoje tem filme lá em casa 🍿", "Posso ir? Prometo não dormir no meio... 😴"],
+        ["O Gabriel cuida bem de você?", "Muito! Ele me dá cafuné e fala da Diane o dia todo kkkk"],
+        ["Um dia a gente vai morar todo mundo junto, né?", "Com certeza. Eu já escolhi meu cantinho no sofá 🛋️"]
+    ];
+
+    let coupleIndex = 0;
+
+    function visitGG() {
+
+        closeFunModal("catOverlay");
+
+        openMap();
+
+        setTimeout(sendMMToLondrina, 450);
+    }
+
+    let capyTraveling = false;
+
+    function sendMMToLondrina() {
+
+        if (capyTraveling) return;
+
+        capyTraveling = true;
+
+        const path = document.getElementById("mapPath");
+        const capy = document.getElementById("mapCapy");
+        const btn = document.getElementById("capyButton");
+        const length = path.getTotalLength();
+        const duration = 2600;
+        const start = performance.now();
+
+        btn.disabled = true;
+        btn.textContent = "A MM tá a caminho... 🍊💨";
+
+        capy.style.opacity = "1";
+
+        function step(now) {
+
+            const t = Math.min(1, (now - start) / duration);
+            const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            const p = path.getPointAtLength((1 - eased) * length);
+            const hop = Math.abs(Math.sin(t * Math.PI * 8)) * -6;
+
+            capy.setAttribute("transform", `translate(${p.x - 15} ${p.y - 26 + hop})`);
+
+            if (t < 1) {
+
+                requestAnimationFrame(step);
+
+            } else {
+
+                setTimeout(() => {
+
+                    capy.style.opacity = "0";
+
+                    btn.disabled = false;
+                    btn.textContent = "Mandar a MM visitar o GG 🍊";
+
+                    capyTraveling = false;
+
+                    closeFunModal("mapOverlay");
+
+                    openCouple();
+
+                }, 500);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    function openCouple() {
+
+        if (!cat) loadCat();
+
+        const stage = document.getElementById("coupleMM");
+        const svg = document.querySelector("#catStage svg").cloneNode(true);
+
+        svg.removeAttribute("onclick");
+        svg.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+
+        stage.innerHTML = "";
+        stage.appendChild(svg);
+
+        applyOutfit(stage);
+
+        // na casa do GG não chove 😌
+        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"]')
+            .forEach(el => el.style.display = "none");
+
+        document.getElementById("ggName").textContent = GG_NAME + " 💙";
+
+        const visits = readStore(GG_VISITS_KEY, 0) + 1;
+
+        writeStore(GG_VISITS_KEY, visits);
+
+        document.getElementById("coupleSub").textContent =
+            `Ela atravessou ${ourDistance} km e o Rio Paranapanema só pra ver o ${GG_NAME} 🥹`;
+
+        document.getElementById("coupleCounter").textContent =
+            `🍊💙 ${plural(visits, "visita", "visitas")} da MM em Londrina`;
+
+        coupleIndex = Math.floor(Math.random() * coupleTalks.length);
+
+        renderCoupleTalk();
+
+        openFunModal("coupleOverlay");
+
+        setTimeout(createConfetti, 300);
+    }
+
+    function renderCoupleTalk() {
+
+        const [mm, gg] = coupleTalks[coupleIndex % coupleTalks.length];
+
+        const mmEl = document.getElementById("coupleMMSpeech");
+        const ggEl = document.getElementById("coupleGGSpeech");
+
+        mmEl.textContent = mm;
+        ggEl.textContent = "...";
+
+        [mmEl, ggEl].forEach(el => {
+            el.style.animation = "none";
+            void el.offsetWidth;
+            el.style.animation = "";
+        });
+
+        setTimeout(() => {
+            ggEl.textContent = gg;
+            ggEl.style.animation = "none";
+            void ggEl.offsetWidth;
+            ggEl.style.animation = "";
+        }, 900);
+    }
+
+    function nextCoupleTalk() {
+
+        coupleIndex++;
+
+        renderCoupleTalk();
+    }
+
     /* ==================================================
        🤫 SPOILERS DO ANIVERSÁRIO (pela MM)
     ================================================== */
 
+    function updateWeatherPill() {
+
+        const el = document.getElementById("mmWeatherPill");
+        const t = weatherTemp();
+
+        if (t === null) {
+            el.classList.add("hidden");
+            return;
+        }
+
+        el.classList.remove("hidden");
+        el.textContent = `${weatherIcon()} Rio Preto agora: ${t}°`;
+    }
+
     function updateBirthdayPill() {
+
+        updateWeatherPill();
 
         const pill = document.getElementById("mmBdayPill");
         const btn = document.getElementById("mmSecretBtn");
@@ -7829,6 +9063,13 @@ Te amo muito.
 
             btn.textContent = "🎁 Abrir a cápsula";
             btn.classList.add("party");
+
+        } else if (currentSeason()) {
+
+            pill.textContent = currentSeason().pill;
+            pill.classList.add("party");
+
+            btn.textContent = isBirthdayOpen() ? "🎁 Rever a cápsula" : "🤫 Segredo";
 
         } else if (isBirthdayOpen()) {
 
@@ -7926,22 +9167,12 @@ Te amo muito.
         const svg = document.querySelector("#catStage svg").cloneNode(true);
 
         svg.removeAttribute("onclick");
-        svg.querySelectorAll("[id]").forEach(el => {
-            el.setAttribute("id", "gn-" + el.id);
-            el.setAttribute("data-acc", el.id.replace("gn-", ""));
-        });
+        svg.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
 
         stage.innerHTML = "";
         stage.appendChild(svg);
 
-        const outfit = getOutfit();
-
-        MM_ITEMS.forEach(item => {
-            [item.id, ...(item.extra || [])].forEach(id => {
-                const el = stage.querySelector("#gn-acc-" + id);
-                if (el) el.style.display = outfit.includes(item.id) ? "" : "none";
-            });
-        });
+        applyOutfit(stage);
 
         const dayIndex =
             Math.floor(Date.now() / 86400000) % goodnightMessages.length;
@@ -8287,7 +9518,7 @@ Te amo muito.
 
         document.getElementById("hugCounter").textContent =
             hugs > 0
-                ? `🫂 ${hugs} ${hugs === 1 ? "abraço enviado" : "abraços enviados"} pela estrada`
+                ? `🫂 ${hugs} ${hugs === 1 ? "abraço enviado" : "abraços enviados"} = ${(hugs * ourDistance).toLocaleString("pt-BR")} km de amor pela estrada 💗`
                 : "Nenhum abraço enviado ainda... manda o primeiro! 🥺";
     }
 
@@ -8474,6 +9705,14 @@ Te amo muito.
 
         qr.innerHTML = html;
     }
+
+    /* ==================================================
+       🍊 MM: humor no card da home + clima de Rio Preto
+    ================================================== */
+
+    loadCat();
+    updateCatBadge(catMood());
+    loadWeather();
 
     /* ==================================================
        🌙 MODO DIA / MODO NOITE
