@@ -142,6 +142,109 @@
         --star-opacity: 1;
     }
 
+    /* 🍑 Pêssego */
+    :root[data-theme="peach"] {
+        --bg: #fff7f1;
+        --blob-1: #ffd6bf;
+        --blob-2: #ffe7c2;
+        --blob-3: #ffd1dc;
+        --surface-soft: #fff8f3;
+        --surface-tint: #fdeee4;
+        --border: #f8dccb;
+        --border-strong: #f6a986;
+        --text: #4f3a36;
+        --text-soft: #85675f;
+        --text-muted: #ad928a;
+        --accent: #e0694f;
+        --accent-deep: #c9563f;
+        --accent-2: #e8a23a;
+        --accent-3: #d77a9b;
+        --btn-1: #f3855f;
+        --btn-2: #f2a3b8;
+        --btn-shadow: rgba(232, 115, 90, 0.35);
+        --btn-soft: #f6ece6;
+        --btn-soft-text: #6e554e;
+        --chip-bg: #ffe4d6;
+        --chip-text: #c45a3e;
+        --pink-glow: rgba(255, 200, 180, 0.6);
+        --blue-glow: rgba(255, 231, 194, 0.6);
+        --lilac-glow: rgba(255, 209, 220, 0.55);
+        --paper-line: #f6e0d4;
+        --wheel-1: #ffd6bf;
+        --wheel-2: #ffe7a8;
+        --wheel-3: #ffc8d6;
+        --wheel-4: #f9b99a;
+    }
+
+    /* 🍵 Matcha com morango */
+    :root[data-theme="matcha"] {
+        --bg: #f7fbf3;
+        --blob-1: #d7ecc9;
+        --blob-2: #ffd9e2;
+        --blob-3: #e8f4dc;
+        --surface-soft: #f9fcf6;
+        --surface-tint: #eef6e7;
+        --border: #dcebd0;
+        --border-strong: #9fcf8a;
+        --text: #34443a;
+        --text-soft: #607265;
+        --text-muted: #94a598;
+        --accent: #5a9a52;
+        --accent-deep: #477d41;
+        --accent-2: #e88aa4;
+        --accent-3: #d77a9b;
+        --btn-1: #78b56d;
+        --btn-2: #e88aa4;
+        --btn-shadow: rgba(95, 158, 87, 0.3);
+        --btn-soft: #eef3ea;
+        --btn-soft-text: #4e5f52;
+        --chip-bg: #e2f1d8;
+        --chip-text: #4b8a44;
+        --pink-glow: rgba(255, 217, 226, 0.6);
+        --blue-glow: rgba(215, 236, 201, 0.6);
+        --lilac-glow: rgba(232, 244, 220, 0.65);
+        --paper-line: #e3eed9;
+        --wheel-1: #cfe8bf;
+        --wheel-2: #ffd9e2;
+        --wheel-3: #e9f3c8;
+        --wheel-4: #f7c1cf;
+    }
+
+    /* 💜 Lavanda */
+    :root[data-theme="lavender"] {
+        --bg: #f8f5ff;
+        --blob-1: #e3d7ff;
+        --blob-2: #d6e4ff;
+        --blob-3: #f3d9f5;
+        --surface-soft: #faf8ff;
+        --surface-tint: #f0ebff;
+        --border: #e3dbf7;
+        --border-strong: #b9a3f0;
+        --text: #3f3756;
+        --text-soft: #6e6590;
+        --text-muted: #9d95b9;
+        --accent: #8a63d2;
+        --accent-deep: #6f4bb8;
+        --accent-2: #6c8fd6;
+        --accent-3: #c76fb2;
+        --btn-1: #9b7be6;
+        --btn-2: #e48fc0;
+        --btn-shadow: rgba(138, 99, 210, 0.32);
+        --btn-soft: #f0ecf8;
+        --btn-soft-text: #5a5275;
+        --chip-bg: #ece4ff;
+        --chip-text: #7a52c8;
+        --pink-glow: rgba(243, 217, 245, 0.6);
+        --blue-glow: rgba(214, 228, 255, 0.6);
+        --lilac-glow: rgba(227, 215, 255, 0.6);
+        --paper-line: #e8e0f8;
+        --wheel-1: #e3d7ff;
+        --wheel-2: #ffd6ec;
+        --wheel-3: #d6e4ff;
+        --wheel-4: #f0c8ff;
+    }
+
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -3009,6 +3112,912 @@
     .couple-hearts span:nth-child(3) { animation-delay: 0.6s; }
 
     /* ==========================================
+       🏡 CASINHA, 🍼 FILHOTINHO, 🛁 BANHO E 🔊 SONS
+    ========================================== */
+
+    .mm-extra-actions button.half {
+        grid-column: span 2;
+        background: linear-gradient(135deg, var(--warm-glow), var(--pink-glow));
+    }
+
+    .mm-extra-actions button.half.gg {
+        background: linear-gradient(135deg, var(--blue-glow), var(--pink-glow));
+    }
+
+    .house-room {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        margin: 12px 0 4px;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 3px solid var(--border);
+        font-size: clamp(11px, 3vw, 16px);
+    }
+
+    .house-wall {
+        position: absolute;
+        inset: 0 0 38% 0;
+        background:
+            repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0 14px, transparent 14px 28px),
+            #ffe1ec;
+    }
+
+    .house-floor {
+        position: absolute;
+        inset: 62% 0 0 0;
+        background:
+            repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0 2px, transparent 2px 44px),
+            linear-gradient(180deg, #e7c3a0, #dcb28c);
+        border-top: 4px solid #c99c74;
+    }
+
+    :root[data-theme="dark"] .house-wall {
+        background:
+            repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 14px, transparent 14px 28px),
+            #3a3168;
+    }
+
+    :root[data-theme="dark"] .house-floor {
+        background:
+            repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 44px),
+            linear-gradient(180deg, #7a5a4a, #6a4c3e);
+        border-top-color: #5a3f33;
+    }
+
+    .house-window {
+        position: absolute;
+        top: 10%;
+        left: 7%;
+        width: 25%;
+        height: 32%;
+        border-radius: 10px 10px 4px 4px;
+        border: 5px solid #ffffff;
+        box-shadow: 0 4px 0 #f3c6d6;
+        overflow: hidden;
+    }
+
+    .hw-sky {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, #8fd3ee, #d6f0ff);
+    }
+
+    .house-window.night .hw-sky { background: linear-gradient(180deg, #1e1b3a, #3b2d70); }
+    .house-window.rain .hw-sky { background: linear-gradient(180deg, #8a9bb0, #c3ccd8); }
+    .house-window.hot .hw-sky { background: linear-gradient(180deg, #ffb35c, #ffe3a3); }
+
+    .hw-icon {
+        position: absolute;
+        top: 12%;
+        right: 12%;
+        font-size: 1.6em;
+    }
+
+    .hw-rain {
+        display: none;
+        position: absolute;
+        inset: 0;
+    }
+
+    .house-window.rain .hw-rain { display: block; }
+
+    .hw-rain i {
+        position: absolute;
+        top: -20%;
+        width: 2px;
+        height: 18%;
+        background: #ffffff;
+        border-radius: 2px;
+        opacity: 0.8;
+        animation: rainFall 0.8s linear infinite;
+    }
+
+    .hw-rain i:nth-child(1) { left: 15%; }
+    .hw-rain i:nth-child(2) { left: 35%; animation-delay: 0.3s; }
+    .hw-rain i:nth-child(3) { left: 55%; animation-delay: 0.15s; }
+    .hw-rain i:nth-child(4) { left: 75%; animation-delay: 0.45s; }
+    .hw-rain i:nth-child(5) { left: 90%; animation-delay: 0.6s; }
+
+    .hw-cross {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(90deg, transparent calc(50% - 2px), #ffffff calc(50% - 2px), #ffffff calc(50% + 2px), transparent calc(50% + 2px)),
+            linear-gradient(180deg, transparent calc(50% - 2px), #ffffff calc(50% - 2px), #ffffff calc(50% + 2px), transparent calc(50% + 2px));
+    }
+
+    .h-item {
+        position: absolute;
+        display: none;
+        animation: reasonPop 0.45s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .h-item.on {
+        display: block;
+    }
+
+    .h-emoji {
+        line-height: 1;
+        filter: drop-shadow(0 3px 2px rgba(0,0,0,0.15));
+    }
+
+    .h-lights {
+        top: 2%;
+        left: 4%;
+        right: 4%;
+        height: 12%;
+        border-top: 2px solid #6b5361;
+        border-radius: 0 0 50% 50%;
+    }
+
+    .h-lights.on {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .h-lights i {
+        width: 0.7em;
+        height: 0.9em;
+        margin-top: 0.3em;
+        border-radius: 50%;
+        background: #ffd27d;
+        box-shadow: 0 0 10px 3px rgba(255, 210, 125, 0.7);
+        animation: twinkleBulb 1.4s ease-in-out infinite alternate;
+    }
+
+    .h-lights i:nth-child(3n) { background: #ff8fb8; box-shadow: 0 0 10px 3px rgba(255, 143, 184, 0.7); animation-delay: 0.4s; }
+    .h-lights i:nth-child(3n+1) { background: #8fd3ee; box-shadow: 0 0 10px 3px rgba(143, 211, 238, 0.7); animation-delay: 0.8s; }
+
+    @keyframes twinkleBulb {
+        from { opacity: 0.45; }
+        to { opacity: 1; }
+    }
+
+    .h-frame {
+        top: 14%;
+        right: 9%;
+        width: 22%;
+        height: 24%;
+        background: #fffdf8;
+        border: 5px solid #d9a066;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        transform: rotate(3deg);
+    }
+
+    .h-frame.on {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .h-frame span {
+        font-family: "Pacifico", cursive;
+        font-size: 1.05em;
+        color: #e0568f;
+        white-space: nowrap;
+    }
+
+    .h-rug {
+        bottom: 5%;
+        left: 18%;
+        width: 52%;
+        height: 18%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, #ffffff 0 18%, #ffafcc 18% 36%, #ffd27d 36% 54%, #bde0fe 54% 72%, #cdb4db 72% 100%);
+        opacity: 0.9;
+    }
+
+    .h-pond {
+        bottom: 6%;
+        right: 3%;
+        width: 26%;
+        height: 15%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at 40% 40%, #bde8ff, #6cb8e6);
+        border: 3px solid #8fd3ee;
+        overflow: hidden;
+    }
+
+    .h-ripple {
+        position: absolute;
+        left: 30%;
+        top: 30%;
+        width: 40%;
+        height: 40%;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.8);
+        animation: ripple 2.4s ease-out infinite;
+    }
+
+    @keyframes ripple {
+        from { transform: scale(0.3); opacity: 1; }
+        to { transform: scale(2); opacity: 0; }
+    }
+
+    .h-tv { top: 46%; left: 38%; font-size: 3em; }
+    .h-plant { top: 44%; right: 2%; font-size: 3em; }
+    .h-bed { bottom: 8%; left: 2%; font-size: 4em; }
+    .h-bear { bottom: 23%; left: 14%; font-size: 2em; }
+    .h-pouf { bottom: 25%; right: 24%; font-size: 2.2em; }
+
+    .house-mm {
+        position: absolute;
+        left: 34%;
+        bottom: 6%;
+        width: 32%;
+        height: auto;
+        aspect-ratio: 230 / 210;
+        margin: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .house-baby {
+        position: absolute;
+        left: 60%;
+        bottom: 6%;
+        width: 15%;
+        z-index: 3;
+    }
+
+    .baby-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+    }
+
+    .baby-body {
+        transform-origin: 60px 95px;
+        animation: catBreath 2.2s ease-in-out infinite;
+    }
+
+    /* filhotinho no encontro MM + GG */
+
+    .couple-baby {
+        width: 64px;
+        margin-top: 6px;
+    }
+
+    .baby-event {
+        margin: 14px 0 6px;
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, var(--pink-glow), var(--blue-glow));
+        border: 2px dashed var(--border-strong);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .baby-event-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 6px;
+    }
+
+    .baby-event .baby-svg {
+        width: 120px;
+        margin: 6px auto;
+    }
+
+    .baby-event .mm-teach-row {
+        margin-top: 10px;
+    }
+
+    /* banho */
+
+    .bath {
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        bottom: -2%;
+        height: 40%;
+        pointer-events: none;
+        opacity: 0;
+        transform-origin: 50% 100%;
+        z-index: 2;
+    }
+
+    .bath-water {
+        position: absolute;
+        inset: 0;
+        border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%;
+        background: radial-gradient(ellipse at 50% 20%, rgba(207, 238, 255, 0.92), rgba(108, 184, 230, 0.92));
+        border-top: 4px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .bath i {
+        position: absolute;
+        bottom: 20%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.3);
+        opacity: 0;
+    }
+
+    .bath i:nth-child(2) { left: 15%; }
+    .bath i:nth-child(3) { left: 32%; width: 8px; height: 8px; }
+    .bath i:nth-child(4) { left: 55%; width: 14px; height: 14px; }
+    .bath i:nth-child(5) { left: 72%; }
+    .bath i:nth-child(6) { left: 86%; width: 9px; height: 9px; }
+
+    .cat-stage.bathing .bath {
+        animation: bathShow 2.8s ease forwards;
+    }
+
+    .cat-stage.bathing .bath i {
+        animation: bubbleUp 1.1s ease-out infinite;
+    }
+
+    .cat-stage.bathing .bath i:nth-child(3) { animation-delay: 0.3s; }
+    .cat-stage.bathing .bath i:nth-child(4) { animation-delay: 0.6s; }
+    .cat-stage.bathing .bath i:nth-child(5) { animation-delay: 0.15s; }
+    .cat-stage.bathing .bath i:nth-child(6) { animation-delay: 0.45s; }
+
+    @keyframes bathShow {
+        0% { opacity: 0; transform: scaleY(0.2); }
+        14% { opacity: 1; transform: scaleY(1); }
+        84% { opacity: 1; transform: scaleY(1); }
+        100% { opacity: 0; transform: scaleY(0.2); }
+    }
+
+    @keyframes bubbleUp {
+        0% { opacity: 0; transform: translateY(0) scale(0.6); }
+        30% { opacity: 1; }
+        100% { opacity: 0; transform: translateY(-70px) scale(1.2); }
+    }
+
+    .cat-stage.bathing .cat-svg {
+        animation: bathDip 2.8s ease;
+    }
+
+    @keyframes bathDip {
+        0% { transform: translateY(0); }
+        18% { transform: translateY(20%); }
+        32% { transform: translateY(15%) rotate(-3deg); }
+        48% { transform: translateY(20%) rotate(3deg); }
+        64% { transform: translateY(15%) rotate(-2deg); }
+        80% { transform: translateY(20%); }
+        100% { transform: translateY(0); }
+    }
+
+    .drip {
+        position: absolute;
+        width: 8px;
+        height: 11px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        background: #8fd3ee;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .drip:nth-of-type(1) { left: 26%; top: 55%; }
+    .drip:nth-of-type(2) { left: 44%; top: 70%; }
+    .drip:nth-of-type(3) { left: 62%; top: 58%; }
+    .drip:nth-of-type(4) { left: 78%; top: 66%; }
+
+    .cat-stage.dripping .drip {
+        animation: dripFall 0.9s ease-in 2;
+    }
+
+    .cat-stage.dripping .drip:nth-of-type(2) { animation-delay: 0.25s; }
+    .cat-stage.dripping .drip:nth-of-type(3) { animation-delay: 0.5s; }
+    .cat-stage.dripping .drip:nth-of-type(4) { animation-delay: 0.15s; }
+
+    @keyframes dripFall {
+        0% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(40px); }
+    }
+
+    /* botão de som */
+
+    .sound-toggle {
+        right: 76px;
+    }
+
+    /* ==========================================
+       💗 CANTINHO DE CUIDADO
+    ========================================== */
+
+    .care-modal {
+        position: relative;
+        width: min(100%, 540px);
+        max-height: 92vh;
+        overflow-y: auto;
+        background:
+            radial-gradient(circle at top left, var(--lilac-glow), transparent 55%),
+            radial-gradient(circle at bottom right, var(--blue-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    .care-view {
+        animation: careIn 0.6s ease;
+    }
+
+    @keyframes careIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .care-modal h2 {
+        font-size: 26px;
+    }
+
+    .care-sub {
+        color: var(--text-soft);
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .care-moods {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .care-mood {
+        padding: 12px 4px;
+        border-radius: 18px;
+        font-size: 13px;
+        font-weight: 500;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    .care-mood span {
+        display: block;
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+
+    .care-mood.chosen {
+        border-color: var(--accent-3);
+        background: var(--lilac-glow);
+    }
+
+    .care-reply {
+        margin-top: 14px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        line-height: 1.65;
+        text-align: left;
+        animation: careIn 0.6s ease;
+    }
+
+    .care-reply small {
+        display: block;
+        margin-top: 6px;
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .care-label {
+        margin: 20px 0 10px;
+        color: var(--text-muted);
+        font-size: 14px;
+        letter-spacing: 0.3px;
+    }
+
+    .care-tools {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .care-tool {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 16px 10px;
+        border-radius: 22px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        transition:
+            transform 0.4s cubic-bezier(.34, 1.4, .64, 1),
+            border-color 0.4s ease,
+            box-shadow 0.4s ease;
+    }
+
+    .care-tool span {
+        font-size: 30px;
+        margin-bottom: 2px;
+    }
+
+    .care-tool b {
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .care-tool small {
+        color: var(--text-muted);
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
+    .care-tool.suggested {
+        border-color: var(--accent-3);
+        box-shadow: 0 0 0 5px var(--lilac-glow);
+        animation: careGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes careGlow {
+        0%, 100% { box-shadow: 0 0 0 3px var(--lilac-glow); }
+        50% { box-shadow: 0 0 0 8px var(--lilac-glow); }
+    }
+
+    .care-back {
+        display: block;
+        margin: -6px 0 10px;
+        padding: 6px 4px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .care-wide {
+        width: 100%;
+        margin-top: 14px;
+    }
+
+    /* respirar */
+
+    .breath-area {
+        position: relative;
+        width: 230px;
+        height: 230px;
+        margin: 6px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .breath-glow {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--blue-glow) 0%, var(--lilac-glow) 55%, transparent 72%);
+        transform: scale(1);
+        transition-property: transform, opacity;
+        transition-timing-function: ease-in-out;
+        opacity: 0.8;
+    }
+
+    .breath-mm {
+        position: relative;
+        width: 150px;
+        height: 137px;
+        margin: 0;
+        pointer-events: none;
+        transform: scale(1);
+        transition-property: transform;
+        transition-timing-function: ease-in-out;
+    }
+
+    .breath-mm .cat-body-group {
+        animation: none;
+    }
+
+    .breath-text {
+        min-height: 30px;
+        margin-top: 10px;
+        color: var(--text);
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 1.45;
+        transition: opacity 0.6s ease;
+    }
+
+    .breath-count {
+        min-height: 22px;
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-top: 4px;
+    }
+
+    /* abraço */
+
+    .hug-area {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hug-mm {
+        width: 170px;
+        height: 155px;
+        margin: 0 auto;
+        pointer-events: none;
+        transition: transform 1.2s ease-in-out;
+    }
+
+    .hug-mm.hugging {
+        transform: scale(1.08, 0.96);
+    }
+
+    .hug-heart {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin-top: 6px;
+        padding: 0;
+        border-radius: 50%;
+        background: var(--surface-soft);
+        border: none;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    .hug-heart:hover,
+    .hug-heart:active {
+        transform: none;
+    }
+
+    .hug-ring {
+        position: absolute;
+        inset: 0;
+        transform: rotate(-90deg);
+    }
+
+    .hug-ring-bg {
+        fill: none;
+        stroke: var(--border);
+        stroke-width: 8;
+    }
+
+    .hug-ring-fill {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-dasharray: 339.3;
+        stroke-dashoffset: 339.3;
+        transition: stroke-dashoffset 0.2s linear;
+    }
+
+    .hug-heart-icon {
+        position: relative;
+        font-size: 48px;
+        display: inline-block;
+    }
+
+    .hug-heart-icon.beat {
+        animation: heartbeat 1s ease-in-out;
+    }
+
+    /* checklist */
+
+    .care-checklist {
+        display: grid;
+        gap: 8px;
+        text-align: left;
+    }
+
+    .care-check {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        font-size: 15px;
+        font-weight: 500;
+        text-align: left;
+    }
+
+    .care-check:hover {
+        transform: none;
+    }
+
+    .care-check .box {
+        flex-shrink: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 9px;
+        border: 2px solid var(--border-strong);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        transition: all 0.35s ease;
+    }
+
+    .care-check.done {
+        border-color: var(--accent-3);
+        background: var(--lilac-glow);
+    }
+
+    .care-check.done .box {
+        background: var(--accent-3);
+        border-color: var(--accent-3);
+        color: #ffffff;
+    }
+
+    .care-check.just .box {
+        animation: reasonPop 0.4s ease;
+    }
+
+    @media (max-width: 650px) {
+
+        .care-moods {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .care-tools {
+            grid-template-columns: 1fr;
+        }
+
+        .care-tool {
+            flex-direction: row;
+            flex-wrap: wrap;
+            text-align: left;
+            column-gap: 12px;
+            padding: 14px 16px;
+        }
+
+        .care-tool span {
+            margin: 0;
+        }
+
+        .care-tool b {
+            flex: 1;
+        }
+
+        .care-tool small {
+            flex-basis: 100%;
+            padding-left: 42px;
+            margin-top: -4px;
+        }
+    }
+
+    /* ==========================================
+       🎨 ESCOLHER O TEMA + ✨ RECADO EM MORSE
+    ========================================== */
+
+    .palette-toggle {
+        right: 136px;
+    }
+
+    .theme-picker {
+        position: fixed;
+        top: 78px;
+        right: 16px;
+        z-index: 1600;
+        width: min(290px, calc(100vw - 32px));
+        padding: 16px;
+        border-radius: 24px;
+        background: var(--surface-solid);
+        border: 2px solid var(--border);
+        box-shadow: 0 18px 40px var(--shadow);
+        animation: modalIn 0.35s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .theme-picker-title {
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .theme-options {
+        display: grid;
+        gap: 8px;
+    }
+
+    .theme-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        font-size: 15px;
+        font-weight: 500;
+        text-align: left;
+    }
+
+    .theme-option.active {
+        border-color: var(--accent);
+    }
+
+    .theme-option .swatch {
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-option .check {
+        margin-left: auto;
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    /* luzinhas piscando em Morse */
+
+    .h-lights {
+        cursor: pointer;
+        z-index: 4;
+    }
+
+    .h-lights.morse i {
+        animation: none;
+        opacity: 0.15;
+        transition: opacity 0.08s linear;
+    }
+
+    .h-lights.morse.lit i {
+        opacity: 1;
+    }
+
+    .h-neon {
+        top: 44%;
+        left: 37%;
+        font-family: "Pacifico", cursive;
+        font-size: 1.5em;
+        color: #fff0f7;
+        text-shadow:
+            0 0 4px #ff6aa8,
+            0 0 10px #ff6aa8,
+            0 0 20px #ff3d8f;
+        transform: rotate(-4deg);
+        animation: neonFlicker 3s ease-in-out infinite;
+        z-index: 1;
+    }
+
+    @keyframes neonFlicker {
+        0%, 100% { opacity: 1; }
+        47% { opacity: 1; }
+        48% { opacity: 0.6; }
+        50% { opacity: 1; }
+    }
+
+    .morse-guess {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 2px dashed var(--border-strong);
+        animation: careIn 0.5s ease;
+    }
+
+    .morse-guess-title {
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 8px;
+    }
+
+    .morse-hint {
+        min-height: 20px;
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -3109,6 +4118,18 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
+        .mm-extra-actions button.half {
+            grid-column: span 1;
+        }
+
+        .sound-toggle {
+            right: 76px;
+        }
+
+        .palette-toggle {
+            right: 136px;
+        }
+
         .couple-speech {
             font-size: 12px;
             min-height: 78px;
@@ -3171,6 +4192,39 @@
     aria-label="Trocar entre modo dia e modo noite"
     title="Modo dia / modo noite"
 >🌙</button>
+
+<button
+    id="soundToggle"
+    class="theme-toggle sound-toggle"
+    onclick="toggleSounds()"
+    aria-label="Ligar ou desligar os sons"
+    title="Sons"
+>🔊</button>
+
+<button
+    id="paletteToggle"
+    class="theme-toggle palette-toggle"
+    onclick="toggleThemePicker(event)"
+    aria-label="Escolher as cores do site"
+    title="Cores do site"
+>🎨</button>
+
+<div
+    id="themePicker"
+    class="theme-picker hidden"
+>
+
+    <div class="theme-picker-title">
+        Escolhe as cores do site 🎨
+    </div>
+
+    <div
+        id="themeOptions"
+        class="theme-options"
+    ></div>
+
+</div>
+
 
 <main class="container">
 
@@ -3267,12 +4321,12 @@
             </div>
 
             <div class="comfort-description">
-                Clica aqui quando bater aquela tristeza.
-                Tem algumas coisinhas que eu queria te lembrar. 💌
+                Um cantinho calmo pra quando bater aquela tristeza.
+                Respira, fica um pouquinho... eu tô aqui com você. 💌
             </div>
 
             <span class="comfort-badge">
-                ABRIR UM CARINHO
+                ENTRAR NO CANTINHO
             </span>
 
         </div>
@@ -3737,7 +4791,7 @@
 </div>
 
 <!-- ==================================================
-     NOVO MODAL — MENSAGENS DE CARINHO
+     💗 CANTINHO DE CUIDADO (Se o coração apertar)
 ================================================== -->
 
 <div
@@ -3745,43 +4799,272 @@
     class="comfort-modal-overlay hidden"
 >
 
-    <div class="comfort-modal">
+    <div
+        id="careModal"
+        class="comfort-modal care-modal"
+    >
 
-        <div class="comfort-modal-icon">
-            💗
-        </div>
+        <button
+            class="bday-close-x"
+            onclick="closeComfortMessages()"
+            aria-label="Fechar"
+        >✕</button>
 
-        <h2>
-            Ei, meu amor...
-        </h2>
-
-        <div
-            id="comfortMessage"
-            class="comfort-message"
-        ></div>
-
-        <div class="comfort-actions">
-
-            <button
-                class="comfort-close"
-                onclick="closeComfortMessages()"
-            >
-                Voltar 💗
-            </button>
-
-            <button
-                class="comfort-more"
-                onclick="showNextComfortMessage()"
-            >
-                Preciso de mais uma 💌
-            </button>
-
-        </div>
+        <!-- ===== ENTRADA ===== -->
 
         <div
-            id="comfortCounter"
-            class="comfort-counter"
-        ></div>
+            id="careHome"
+            class="care-view"
+        >
+
+            <div class="comfort-modal-icon">
+                💗
+            </div>
+
+            <h2>
+                Ei, meu amor...
+            </h2>
+
+            <p class="care-sub">
+                Esse é o seu cantinho. Aqui não tem pressa nenhuma.<br>
+                Como você tá agora?
+            </p>
+
+            <div class="care-moods">
+
+                <button class="care-mood" data-mood="bem" onclick="careMood('bem')">
+                    <span>☀️</span>Bem
+                </button>
+
+                <button class="care-mood" data-mood="meio" onclick="careMood('meio')">
+                    <span>⛅</span>Meio assim
+                </button>
+
+                <button class="care-mood" data-mood="triste" onclick="careMood('triste')">
+                    <span>🌧️</span>Triste
+                </button>
+
+                <button class="care-mood" data-mood="dificil" onclick="careMood('dificil')">
+                    <span>⛈️</span>Muito difícil
+                </button>
+
+            </div>
+
+            <div
+                id="careReply"
+                class="care-reply hidden"
+            ></div>
+
+            <div class="care-label">
+                O que você precisa agora?
+            </div>
+
+            <div class="care-tools">
+
+                <button class="care-tool" data-tool="breathe" onclick="openCareTool('breathe')">
+                    <span>🫧</span>
+                    <b>Respirar com a MM</b>
+                    <small>devagarinho, junto com ela</small>
+                </button>
+
+                <button class="care-tool" data-tool="hug" onclick="openCareTool('hug')">
+                    <span>🫂</span>
+                    <b>Abraço de segurar</b>
+                    <small>segura a tela e recebe um abraço</small>
+                </button>
+
+                <button class="care-tool" data-tool="check" onclick="openCareTool('check')">
+                    <span>🌷</span>
+                    <b>Checklist gentil</b>
+                    <small>coisinhas pra cuidar de você</small>
+                </button>
+
+                <button class="care-tool" data-tool="notes" onclick="openCareTool('notes')">
+                    <span>💌</span>
+                    <b>Ler um carinho</b>
+                    <small>coisas que eu queria te lembrar</small>
+                </button>
+
+            </div>
+
+
+        </div>
+
+        <!-- ===== RESPIRAR COM A MM ===== -->
+
+        <div
+            id="careBreathe"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Respirar com a MM 🫧</h2>
+
+            <p class="care-sub">
+                Quando a MM crescer, você puxa o ar.<br>
+                Quando ela diminuir, você solta devagarinho.
+            </p>
+
+            <div class="breath-area">
+
+                <div
+                    id="breathGlow"
+                    class="breath-glow"
+                ></div>
+
+                <div
+                    id="breathMM"
+                    class="cat-stage happy breath-mm"
+                ></div>
+
+            </div>
+
+            <div
+                id="breathText"
+                class="breath-text"
+            >
+                Quando quiser, é só começar 💗
+            </div>
+
+            <div
+                id="breathCount"
+                class="breath-count"
+            ></div>
+
+            <button
+                id="breathBtn"
+                class="primary-btn care-wide"
+                onclick="toggleBreath()"
+            >
+                Começar 🫧
+            </button>
+
+        </div>
+
+        <!-- ===== ABRAÇO DE SEGURAR ===== -->
+
+        <div
+            id="careHug"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Abraço de segurar 🫂</h2>
+
+            <p class="care-sub">
+                Encosta o dedo no coração e segura.<br>
+                Enquanto você segurar, eu tô te abraçando.
+            </p>
+
+            <div class="hug-area">
+
+                <div
+                    id="hugMM"
+                    class="cat-stage happy hug-mm"
+                ></div>
+
+                <button
+                    id="hugHeart"
+                    class="hug-heart"
+                    aria-label="Segure para receber um abraço"
+                >
+                    <svg class="hug-ring" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle class="hug-ring-bg" cx="60" cy="60" r="54"/>
+                        <circle id="hugRing" class="hug-ring-fill" cx="60" cy="60" r="54"/>
+                    </svg>
+                    <span
+                        id="hugHeartIcon"
+                        class="hug-heart-icon"
+                    >💗</span>
+                </button>
+
+            </div>
+
+            <div
+                id="hugText"
+                class="breath-text"
+            >
+                Segura aqui no coração 👆
+            </div>
+
+            <button
+                id="hugAgain"
+                class="secondary-btn care-wide hidden"
+                onclick="resetHug()"
+            >
+                Quero mais um abraço 🫂
+            </button>
+
+        </div>
+
+        <!-- ===== CHECKLIST GENTIL ===== -->
+
+        <div
+            id="careCheck"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Checklist gentil 🌷</h2>
+
+            <p class="care-sub">
+                Sem cobrança, viu? Cada coisinha já conta 💗
+            </p>
+
+            <div
+                id="careChecklist"
+                class="care-checklist"
+            ></div>
+
+            <div
+                id="careCheckMsg"
+                class="breath-text"
+            ></div>
+
+        </div>
+
+        <!-- ===== LER UM CARINHO ===== -->
+
+        <div
+            id="careNotes"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <div
+                id="comfortMessage"
+                class="comfort-message"
+            ></div>
+
+            <div class="comfort-actions">
+
+                <button
+                    class="comfort-more"
+                    onclick="showNextComfortMessage()"
+                >
+                    Preciso de mais uma 💌
+                </button>
+
+            </div>
+
+            <div
+                id="comfortCounter"
+                class="comfort-counter"
+            ></div>
+
+        </div>
 
     </div>
 
@@ -4205,6 +5488,14 @@
 
             </svg>
 
+            <!-- 🛁 banho -->
+            <div class="bath" aria-hidden="true">
+                <div class="bath-water"></div>
+                <i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <b class="drip"></b><b class="drip"></b><b class="drip"></b><b class="drip"></b>
+
         </div>
 
         <div class="cat-stats">
@@ -4283,10 +5574,17 @@
             </button>
 
             <button
-                class="wide"
+                class="half"
+                onclick="openHouse()"
+            >
+                🏡 Casinha
+            </button>
+
+            <button
+                class="half gg"
                 onclick="visitGG()"
             >
-                💙 Visitar o GG em Londrina
+                💙 Visitar o GG
             </button>
 
         </div>
@@ -4376,6 +5674,172 @@
 </div>
 
 <!-- ==================================================
+     🏡 MODAL — CASINHA DA MM
+================================================== -->
+
+<div
+    id="houseOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('houseOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Casinha da MM 🏡
+        </h2>
+
+        <div
+            id="houseSpeech"
+            class="cat-speech"
+        >Bem-vinda à minha casinha! 🏡</div>
+
+        <div
+            id="houseRoom"
+            class="house-room"
+        >
+
+            <div class="house-wall"></div>
+            <div class="house-floor"></div>
+
+            <!-- janela que mostra o céu de Rio Preto agora -->
+            <div
+                id="houseWindow"
+                class="house-window"
+            >
+                <div class="hw-sky">
+                    <span
+                        id="hwIcon"
+                        class="hw-icon"
+                    >☀️</span>
+                    <div class="hw-rain"><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="hw-cross"></div>
+            </div>
+
+            <div class="h-item h-lights" data-house="lights" onclick="morseClick()" title="Hmm... 👀">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <div class="h-item h-frame" data-house="frame">
+                <span>D 💗 G</span>
+            </div>
+
+            <div class="h-item h-neon" data-house="neon">te amo</div>
+
+            <div class="h-item h-rug" data-house="rug"></div>
+
+            <div class="h-item h-pond" data-house="pond">
+                <span class="h-ripple"></span>
+            </div>
+
+            <span class="h-item h-emoji h-tv" data-house="tv">📺</span>
+            <span class="h-item h-emoji h-plant" data-house="plant">🪴</span>
+            <span class="h-item h-emoji h-bed" data-house="bed">🛏️</span>
+            <span class="h-item h-emoji h-bear" data-house="bear">🧸</span>
+            <span class="h-item h-emoji h-pouf" data-house="pouf">🍉</span>
+
+            <div
+                id="houseMM"
+                class="house-mm cat-stage"
+                onclick="petInHouse()"
+            ></div>
+
+            <div
+                id="houseBaby"
+                class="house-baby hidden"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="morseGuess"
+            class="morse-guess hidden"
+        >
+
+            <div class="morse-guess-title">
+                ✨ As luzinhas tão piscando um recado secreto...
+            </div>
+
+            <div class="mm-teach-row">
+
+                <input
+                    id="morseInput"
+                    onkeydown="if (event.key === 'Enter') checkMorse()"
+                    type="text"
+                    maxlength="30"
+                    placeholder="Qual é o recado?"
+                    autocomplete="off"
+                >
+
+                <button
+                    class="primary-btn"
+                    onclick="checkMorse()"
+                >
+                    Descobri!
+                </button>
+
+            </div>
+
+            <div
+                id="morseHint"
+                class="morse-hint"
+            >
+                Olha bem as luzinhas: piscada curta e piscada comprida 👀
+            </div>
+
+        </div>
+
+        <div class="mm-wardrobe-title" style="margin-top: 14px;">
+            Decorar 🛋️
+        </div>
+
+        <div
+            id="houseGrid"
+            class="mm-wardrobe-grid"
+        ></div>
+
+        <div class="mm-wardrobe-hint">
+            Os móveis desbloqueiam com os carinhos na MM 💗
+        </div>
+
+    </div>
+
+</div>
+
+<template id="babyTemplate">
+<svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
+    <ellipse cx="60" cy="95" rx="40" ry="4" fill="rgba(90,60,100,0.15)"/>
+    <g class="baby-body">
+        <ellipse cx="60" cy="72" rx="40" ry="22" fill="#d4a979" stroke="#5a4036" stroke-width="2.5"/>
+        <rect x="30" y="84" width="12" height="11" rx="5" fill="#c39466" stroke="#5a4036" stroke-width="2"/>
+        <rect x="78" y="84" width="12" height="11" rx="5" fill="#c39466" stroke="#5a4036" stroke-width="2"/>
+        <ellipse cx="32" cy="26" rx="8" ry="7" fill="#c39466" stroke="#5a4036" stroke-width="2.5"/>
+        <ellipse cx="88" cy="26" rx="8" ry="7" fill="#c39466" stroke="#5a4036" stroke-width="2.5"/>
+        <rect x="22" y="22" width="76" height="58" rx="27" fill="#e2bf93" stroke="#5a4036" stroke-width="2.5"/>
+        <path d="M56 22 Q60 12 66 18" fill="none" stroke="#5a4036" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="44" cy="46" r="6" fill="#2e211f"/>
+        <circle cx="76" cy="46" r="6" fill="#2e211f"/>
+        <circle cx="46" cy="44" r="2.2" fill="#ffffff"/>
+        <circle cx="78" cy="44" r="2.2" fill="#ffffff"/>
+        <ellipse cx="34" cy="60" rx="6" ry="3.5" fill="#ffb3cc"/>
+        <ellipse cx="86" cy="60" rx="6" ry="3.5" fill="#ffb3cc"/>
+        <rect x="44" y="52" width="32" height="22" rx="11" fill="#c39466" stroke="#5a4036" stroke-width="2"/>
+        <ellipse cx="54" cy="59" rx="2.5" ry="2" fill="#2e211f"/>
+        <ellipse cx="66" cy="59" rx="2.5" ry="2" fill="#2e211f"/>
+        <circle cx="60" cy="70" r="6" fill="#8fd3ee" stroke="#5a4036" stroke-width="1.8"/>
+        <circle cx="60" cy="70" r="2.2" fill="#ffffff"/>
+    </g>
+</svg>
+</template>
+
+<!-- ==================================================
      💙 MODAL — MM VISITA O GG
 ================================================== -->
 
@@ -4417,6 +5881,7 @@
 
             <div class="couple-hearts" aria-hidden="true">
                 <span>💗</span><span>💕</span><span>💗</span>
+                <div id="coupleBabySlot"></div>
             </div>
 
             <div class="couple-side">
@@ -4476,6 +5941,42 @@
 
                 </div>
                 <div class="couple-name" id="ggName">GG 💙</div>
+            </div>
+
+        </div>
+
+        <div
+            id="babyEvent"
+            class="baby-event hidden"
+        >
+
+            <div class="baby-event-title">
+                🍼 SURPRESA!!! Nasceu uma capivarinha!
+            </div>
+
+            <p class="fun-text">
+                O filhotinho da MM e do GG chegou 🥹 Que nome vamos dar?
+            </p>
+
+            <div id="babyEventArt"></div>
+
+            <div class="mm-teach-row">
+
+                <input
+                    id="babyNameInput"
+                    type="text"
+                    maxlength="20"
+                    placeholder="Nome do filhotinho..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="primary-btn"
+                    onclick="nameBaby()"
+                >
+                    Dar nome 💗
+                </button>
+
             </div>
 
         </div>
@@ -5279,6 +6780,8 @@
 
         function tickPointer() {
 
+            sfx("tick");
+
             wheelPointer.classList.remove("tick");
             void wheelPointer.offsetWidth;
             wheelPointer.classList.add("tick");
@@ -5390,6 +6893,8 @@
     }
 
     function showWinner(item) {
+
+        sfx("tcham");
 
         drawing = false;
 
@@ -5542,6 +7047,40 @@
 
     let comfortCurrentIndex = 0;
 
+    /* ==================================================
+       💗 CANTINHO DE CUIDADO
+    ================================================== */
+
+    const CARE_VIEWS = ["careHome", "careBreathe", "careHug", "careCheck", "careNotes"];
+
+    function showCareView(id) {
+
+        CARE_VIEWS.forEach(v =>
+            document.getElementById(v).classList.toggle("hidden", v !== id));
+
+        document.getElementById("careModal").scrollTop = 0;
+    }
+
+    function cloneMMInto(stageId) {
+
+        if (!cat) loadCat();
+
+        const stage = document.getElementById(stageId);
+        const svg = document.querySelector("#catStage svg").cloneNode(true);
+
+        svg.removeAttribute("onclick");
+        svg.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+
+        stage.innerHTML = "";
+        stage.appendChild(svg);
+
+        applyOutfit(stage);
+
+        // no cantinho é sempre calminho: sem chuva, sem guarda-chuva
+        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"], [data-acc="sweat"]')
+            .forEach(el => el.style.display = "none");
+    }
+
     function openComfortMessages() {
 
         comfortCurrentIndex =
@@ -5550,11 +7089,19 @@
                 comfortMessages.length
             );
 
+        document.querySelectorAll(".care-mood")
+            .forEach(b => b.classList.remove("chosen"));
+
+        document.querySelectorAll(".care-tool")
+            .forEach(b => b.classList.remove("suggested"));
+
+        document.getElementById("careReply").classList.add("hidden");
+
+        showCareView("careHome");
+
         document
             .getElementById("comfortModal")
             .classList.remove("hidden");
-
-        renderComfortMessage();
 
         document.body.style.overflow =
             "hidden";
@@ -5562,12 +7109,99 @@
 
     function closeComfortMessages() {
 
+        stopBreath();
+        stopHugHold();
+
         document
             .getElementById("comfortModal")
             .classList.add("hidden");
 
         document.body.style.overflow =
             "";
+    }
+
+    function careBack() {
+
+        stopBreath();
+        stopHugHold();
+
+        showCareView("careHome");
+    }
+
+    // ✏️ O que o cantinho responde pra cada jeitinho de se sentir
+    const careReplies = {
+        bem: {
+            text: "Que bom, meu amor! 🥰 Fico muito feliz de saber. Aproveita esse momento bom... e se quiser, lê um carinho que eu deixei aqui pra você.",
+            tools: ["notes", "check"]
+        },
+        meio: {
+            text: "Tudo bem ficar meio assim, viu? Nem todo dia precisa ser incrível. Que tal respirar um pouquinho com a MM e ver se você tá se cuidando direitinho? 🌷",
+            tools: ["breathe", "check"]
+        },
+        triste: {
+            text: "Vem cá... 🫂 Tá tudo bem ficar triste, você não precisa esconder isso de mim. Deixa eu te abraçar um pouquinho, e depois lê umas coisinhas que eu escrevi pra você.",
+            tools: ["hug", "notes"]
+        },
+        dificil: {
+            text: "Eu tô aqui com você, tá? 💗 Vamos bem devagar, uma coisa de cada vez. Primeiro respira com a MM. Depois, se quiser, me chama, mesmo que seja só pra ficar em silêncio junto.",
+            tools: ["breathe", "hug"]
+        }
+    };
+
+    function careMood(mood) {
+
+        const reply = careReplies[mood];
+
+        document.querySelectorAll(".care-mood").forEach(b =>
+            b.classList.toggle("chosen", b.dataset.mood === mood));
+
+        const box = document.getElementById("careReply");
+
+        box.innerHTML =
+            `${escapeHtml(reply.text)}<small>— Gabriel 💗</small>`;
+
+        box.classList.remove("hidden");
+
+        document.querySelectorAll(".care-tool").forEach(b =>
+            b.classList.toggle("suggested", reply.tools.includes(b.dataset.tool)));
+
+    }
+
+    function openCareTool(tool) {
+
+        if (tool === "breathe") {
+
+            cloneMMInto("breathMM");
+
+            resetBreathUi();
+
+            showCareView("careBreathe");
+        }
+
+        if (tool === "hug") {
+
+            cloneMMInto("hugMM");
+
+            resetHug();
+
+            showCareView("careHug");
+        }
+
+        if (tool === "check") {
+
+            renderChecklist();
+
+            document.getElementById("careCheckMsg").textContent = "";
+
+            showCareView("careCheck");
+        }
+
+        if (tool === "notes") {
+
+            renderComfortMessage();
+
+            showCareView("careNotes");
+        }
     }
 
     function showNextComfortMessage() {
@@ -5583,24 +7217,424 @@
         }
 
         renderComfortMessage();
-
-        createConfetti();
     }
 
     function renderComfortMessage() {
 
-        document.getElementById(
-            "comfortMessage"
-        ).innerHTML =
+        const box = document.getElementById("comfortMessage");
+
+        box.innerHTML =
             comfortMessages[
                 comfortCurrentIndex
             ];
+
+        box.style.animation = "none";
+        void box.offsetWidth;
+        box.style.animation = "careIn 0.6s ease";
 
         document.getElementById(
             "comfortCounter"
         ).textContent =
             `Mensagem ${comfortCurrentIndex + 1} de ${comfortMessages.length}`;
     }
+
+    /* --------------------------------------------------
+       🫧 RESPIRAR COM A MM
+       (puxa 4s · segura 2s · solta 6s)
+    -------------------------------------------------- */
+
+    const BREATH_PHASES = [
+        { text: "Puxa o ar devagarinho... 🌬️", secs: 4, scale: 1.28, glow: 1.6, tone: [196, 262] },
+        { text: "Segura um pouquinho...", secs: 2, scale: 1.28, glow: 1.6, tone: null },
+        { text: "Agora solta bem devagar... 🍃", secs: 6, scale: 1, glow: 1, tone: [262, 165] }
+    ];
+
+    let breathOn = false;
+    let breathPhaseTimer = null;
+    let breathTickTimer = null;
+    let breathCycles = 0;
+
+    function resetBreathUi() {
+
+        breathCycles = 0;
+
+        const mm = document.getElementById("breathMM");
+        const glow = document.getElementById("breathGlow");
+
+        mm.style.transitionDuration = "0.6s";
+        glow.style.transitionDuration = "0.6s";
+        mm.style.transform = "scale(1)";
+        glow.style.transform = "scale(1)";
+
+        document.getElementById("breathText").textContent =
+            "Quando quiser, é só começar 💗";
+
+        document.getElementById("breathCount").textContent = "";
+
+        document.getElementById("breathBtn").textContent = "Começar 🫧";
+    }
+
+    function breathTone(from, to, secs) {
+
+        if (!sfxOn) return;
+
+        try {
+
+            const ctx = getSfxCtx();
+            const t = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(from, t);
+            osc.frequency.linearRampToValueAtTime(to, t + secs);
+
+            g.gain.setValueAtTime(0.0001, t);
+            g.gain.linearRampToValueAtTime(0.035, t + secs * 0.4);
+            g.gain.linearRampToValueAtTime(0.0001, t + secs);
+
+            osc.connect(g).connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + secs + 0.05);
+
+        } catch (e) {}
+    }
+
+    function runBreathPhase(i) {
+
+        if (!breathOn) return;
+
+        const phase = BREATH_PHASES[i];
+        const mm = document.getElementById("breathMM");
+        const glow = document.getElementById("breathGlow");
+        const text = document.getElementById("breathText");
+        const count = document.getElementById("breathCount");
+
+        mm.style.transitionDuration = phase.secs + "s";
+        glow.style.transitionDuration = phase.secs + "s";
+        mm.style.transform = `scale(${phase.scale})`;
+        glow.style.transform = `scale(${phase.glow})`;
+
+        text.textContent = phase.text;
+
+        if (phase.tone) breathTone(phase.tone[0], phase.tone[1], phase.secs);
+
+        let left = phase.secs;
+
+        count.textContent = left;
+
+        clearInterval(breathTickTimer);
+
+        breathTickTimer = setInterval(() => {
+            left--;
+            if (left > 0) count.textContent = left;
+        }, 1000);
+
+        breathPhaseTimer = setTimeout(() => {
+
+            clearInterval(breathTickTimer);
+
+            const next = (i + 1) % BREATH_PHASES.length;
+
+            if (next === 0) {
+
+                breathCycles++;
+
+                if (breathCycles === 5) {
+
+                    text.textContent = "Muito bem, meu amor 💗 Pode continuar o quanto quiser.";
+                    count.textContent = "";
+
+                    breathPhaseTimer = setTimeout(() => runBreathPhase(0), 3500);
+                    return;
+                }
+            }
+
+            runBreathPhase(next);
+
+        }, phase.secs * 1000);
+    }
+
+    function toggleBreath() {
+
+        if (breathOn) {
+
+            stopBreath();
+
+            document.getElementById("breathText").textContent =
+                breathCycles > 0
+                    ? `Você respirou ${plural(breathCycles, "vez", "vezes")} com a MM. Tô orgulhoso de você 💗`
+                    : "Tudo bem, a gente tenta de novo quando você quiser 💗";
+
+            return;
+        }
+
+        breathOn = true;
+        breathCycles = 0;
+
+        document.getElementById("breathBtn").textContent = "Parar";
+
+        runBreathPhase(0);
+    }
+
+    function stopBreath() {
+
+        breathOn = false;
+
+        clearTimeout(breathPhaseTimer);
+        clearInterval(breathTickTimer);
+
+        const mm = document.getElementById("breathMM");
+        const glow = document.getElementById("breathGlow");
+
+        if (mm) {
+            mm.style.transitionDuration = "1.5s";
+            mm.style.transform = "scale(1)";
+        }
+
+        if (glow) {
+            glow.style.transitionDuration = "1.5s";
+            glow.style.transform = "scale(1)";
+        }
+
+        document.getElementById("breathCount").textContent = "";
+        document.getElementById("breathBtn").textContent = "Começar 🫧";
+    }
+
+    /* --------------------------------------------------
+       🫂 ABRAÇO DE SEGURAR
+    -------------------------------------------------- */
+
+    // ✏️ Mensagens que aparecem no fim do abraço
+    const hugMessages = [
+        "Esse abraço foi meu. Bem apertado, do jeitinho que eu queria te dar agora 🫂",
+        "Sente? Sou eu aqui, mesmo de longe. Você não tá sozinha 💗",
+        "Respira... tá tudo bem. Eu te amo, e isso não muda nunca 🥹",
+        "Guarda esse abraço. Quando a gente se ver, eu te dou um de verdade, bem demorado 🫂",
+        "Você é muito mais forte do que acha. E nos dias que não for, eu seguro você 💗"
+    ];
+
+    const HUG_SECONDS = 20;
+    const HUG_RING = 339.3;
+
+    let hugProgress = 0;
+    let hugHolding = false;
+    let hugDone = false;
+    let hugFrame = null;
+    let hugLastTime = 0;
+    let hugBeatTimer = null;
+
+    function resetHug() {
+
+        stopHugHold();
+
+        hugProgress = 0;
+        hugDone = false;
+
+        document.getElementById("hugRing").style.strokeDashoffset = HUG_RING;
+        document.getElementById("hugText").textContent = "Segura aqui no coração 👆";
+        document.getElementById("hugAgain").classList.add("hidden");
+        document.getElementById("hugHeartIcon").textContent = "💗";
+    }
+
+    function hugBeat() {
+
+        const icon = document.getElementById("hugHeartIcon");
+
+        icon.classList.remove("beat");
+        void icon.offsetWidth;
+        icon.classList.add("beat");
+
+        if (sfxOn) {
+            try {
+                sfxTone(70, 50, 0.18, "sine", 0.18, 0);
+                sfxTone(70, 50, 0.14, "sine", 0.12, 0.22);
+            } catch (e) {}
+        }
+
+        if (navigator.vibrate) {
+            try { navigator.vibrate([25, 120, 18]); } catch (e) {}
+        }
+    }
+
+    function startHugHold(event) {
+
+        if (event) event.preventDefault();
+
+        if (hugDone || hugHolding) return;
+
+        hugHolding = true;
+        hugLastTime = performance.now();
+
+        document.getElementById("hugMM").classList.add("hugging");
+        document.getElementById("hugText").textContent = "Isso... fica aqui comigo 🫂";
+
+        hugBeat();
+
+        hugBeatTimer = setInterval(hugBeat, 1100);
+
+        const step = now => {
+
+            if (!hugHolding) return;
+
+            hugProgress += (now - hugLastTime) / 1000;
+            hugLastTime = now;
+
+            const pct = Math.min(1, hugProgress / HUG_SECONDS);
+
+            document.getElementById("hugRing").style.strokeDashoffset =
+                HUG_RING * (1 - pct);
+
+            if (pct >= 1) {
+                finishHug();
+                return;
+            }
+
+            hugFrame = requestAnimationFrame(step);
+        };
+
+        hugFrame = requestAnimationFrame(step);
+    }
+
+    function stopHugHold() {
+
+        const wasHolding = hugHolding;
+
+        hugHolding = false;
+
+        cancelAnimationFrame(hugFrame);
+        clearInterval(hugBeatTimer);
+
+        const mm = document.getElementById("hugMM");
+
+        if (mm) mm.classList.remove("hugging");
+
+        if (wasHolding && !hugDone && hugProgress > 0) {
+            document.getElementById("hugText").textContent =
+                "Pode segurar mais um pouquinho... 🥺";
+        }
+    }
+
+    function finishHug() {
+
+        hugDone = true;
+
+        stopHugHold();
+
+        document.getElementById("hugHeartIcon").textContent = "💞";
+
+        document.getElementById("hugText").innerHTML =
+            `${escapeHtml(pick(hugMessages))}<br><small style="color: var(--accent);">— Gabriel</small>`;
+
+        document.getElementById("hugAgain").classList.remove("hidden");
+
+        sfx("yay");
+    }
+
+    (function () {
+
+        const heart = document.getElementById("hugHeart");
+
+        heart.addEventListener("pointerdown", startHugHold);
+        heart.addEventListener("pointerup", stopHugHold);
+        heart.addEventListener("pointerleave", stopHugHold);
+        heart.addEventListener("pointercancel", stopHugHold);
+        heart.addEventListener("contextmenu", e => e.preventDefault());
+
+        heart.addEventListener("keydown", e => {
+            if ((e.key === " " || e.key === "Enter") && !e.repeat) startHugHold(e);
+        });
+
+        heart.addEventListener("keyup", e => {
+            if (e.key === " " || e.key === "Enter") stopHugHold();
+        });
+    })();
+
+    /* --------------------------------------------------
+       🌷 CHECKLIST GENTIL (zera todo dia)
+    -------------------------------------------------- */
+
+    // ✏️ Itens do checklist
+    const CARE_CHECKS = [
+        { id: "agua", label: "💧 Bebi um pouquinho de água", line: "Isso! Um golinho de água já ajuda muito 💧" },
+        { id: "comer", label: "🍪 Comi alguma coisinha", line: "Comer alguma coisinha também é se cuidar 🍪" },
+        { id: "banho", label: "🛁 Tomei um banho quentinho (ou lavei o rosto)", line: "Água quentinha é um abraço por fora 🛁" },
+        { id: "descanso", label: "🛏️ Descansei um pouquinho", line: "Descansar não é preguiça, é carinho com você 🛏️" },
+        { id: "respirar", label: "🌬️ Respirei fundo umas vezes", line: "Respirar fundo acalma o coração 🌬️" },
+        { id: "conforto", label: "🧸 Tô num lugar confortável", line: "Roupinha confortável e coberta? Perfeito 🧸" },
+        { id: "falar", label: "💬 Falei com alguém que eu gosto", line: "Conversar com quem a gente ama ajuda demais 💬" }
+    ];
+
+    const CARE_CHECK_KEY = "careChecklist";
+
+    function getCareChecks() {
+
+        const saved = readStore(CARE_CHECK_KEY, null);
+
+        if (!saved || saved.date !== todayKey()) {
+            return { date: todayKey(), done: [] };
+        }
+
+        return saved;
+    }
+
+    function renderChecklist() {
+
+        const state = getCareChecks();
+
+        document.getElementById("careChecklist").innerHTML =
+            CARE_CHECKS.map(c => {
+
+                const done = state.done.includes(c.id);
+
+                return `
+                    <button
+                        class="care-check ${done ? "done" : ""}"
+                        onclick="toggleCareCheck('${c.id}')"
+                    >
+                        <span class="box">${done ? "✓" : ""}</span>
+                        ${c.label}
+                    </button>
+                `;
+
+            }).join("");
+    }
+
+    function toggleCareCheck(id) {
+
+        const state = getCareChecks();
+        const item = CARE_CHECKS.find(c => c.id === id);
+        const msg = document.getElementById("careCheckMsg");
+
+        if (state.done.includes(id)) {
+
+            state.done = state.done.filter(x => x !== id);
+            msg.textContent = "Tudo bem, sem pressa 💗";
+
+        } else {
+
+            state.done.push(id);
+            msg.textContent = item.line;
+        }
+
+        writeStore(CARE_CHECK_KEY, state);
+
+        renderChecklist();
+
+        const idx = CARE_CHECKS.findIndex(c => c.id === id);
+        const btn = document.querySelectorAll(".care-check")[idx];
+
+        if (btn && state.done.includes(id)) btn.classList.add("just");
+
+        if (state.done.length === CARE_CHECKS.length) {
+
+            msg.innerHTML =
+                `Você cuidou de você hoje. Tô muito orgulhoso 🥹💗<br><small style="color: var(--accent);">— Gabriel</small>`;
+
+            sfx("yay");
+        }
+    }
+
 
     /* ESC FECHA O CARD DE CARINHO */
 
@@ -7787,6 +9821,8 @@ Te amo muito.
             "";
 
         if (id === "catOverlay") saveCat();
+
+        if (id === "houseOverlay") stopMorse();
     }
 
     document.addEventListener(
@@ -7799,7 +9835,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -8138,6 +10174,8 @@ Te amo muito.
 
             logDay("pets");
 
+            sfx("kiu");
+
             checkUnlocks(petsBefore);
 
             setCatSpeech(sayPhrase ? mmSays(pick(phrases)) : pick(catPetLines));
@@ -8156,11 +10194,15 @@ Te amo muito.
 
             logDay("feeds");
 
+            sfx("nhac");
+
             setCatSpeech(pick(catFeedLines));
             catPopEmoji("🍉");
         }
 
         if (type === "play") {
+
+            if (!playBath()) return;
 
             cat.fun = clampStat(cat.fun + 20);
             cat.food = clampStat(cat.food - 5);
@@ -8658,6 +10700,7 @@ Te amo muito.
         setTimeout(() => {
 
             setCatSpeech(`Desbloqueei ${newly.name.toLowerCase()} ${newly.icon}!! Olha nas roupinhas 👗`);
+            sfx("yay");
             createConfetti();
 
             if (!document.getElementById("mmWardrobe").classList.contains("hidden")) {
@@ -8892,6 +10935,7 @@ Te amo muito.
     ];
 
     let coupleIndex = 0;
+    let coupleTalkTimer = null;
 
     function visitGG() {
 
@@ -8909,6 +10953,8 @@ Te amo muito.
         if (capyTraveling) return;
 
         capyTraveling = true;
+
+        sfx("whoosh");
 
         const path = document.getElementById("mapPath");
         const capy = document.getElementById("mapCapy");
@@ -8988,6 +11034,8 @@ Te amo muito.
         document.getElementById("coupleCounter").textContent =
             `🍊💙 ${plural(visits, "visita", "visitas")} da MM em Londrina`;
 
+        renderCoupleBaby(visits);
+
         coupleIndex = Math.floor(Math.random() * coupleTalks.length);
 
         renderCoupleTalk();
@@ -9013,7 +11061,9 @@ Te amo muito.
             el.style.animation = "";
         });
 
-        setTimeout(() => {
+        clearTimeout(coupleTalkTimer);
+
+        coupleTalkTimer = setTimeout(() => {
             ggEl.textContent = gg;
             ggEl.style.animation = "none";
             void ggEl.offsetWidth;
@@ -9530,6 +11580,8 @@ Te amo muito.
 
         hugTraveling = true;
 
+        sfx("whoosh");
+
         const btn = document.getElementById("hugButton");
         const path = document.getElementById("mapPath");
         const traveler = document.getElementById("mapTraveler");
@@ -9707,6 +11759,658 @@ Te amo muito.
     }
 
     /* ==================================================
+       🔊 SONS FOFINHOS (feitos pelo navegador)
+    ================================================== */
+
+    const SOUND_KEY = "siteSounds";
+
+    let sfxCtx = null;
+    let lastSfxAt = 0;
+
+    let sfxOn = (() => {
+        try { return localStorage.getItem(SOUND_KEY) !== "off"; }
+        catch (e) { return true; }
+    })();
+
+    function getSfxCtx() {
+
+        if (!sfxCtx) {
+            sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        if (sfxCtx.state === "suspended") sfxCtx.resume();
+
+        return sfxCtx;
+    }
+
+    function sfxTone(f1, f2, dur, type, vol, delay) {
+
+        const ctx = getSfxCtx();
+        const t = ctx.currentTime + (delay || 0);
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+
+        osc.type = type || "sine";
+        osc.frequency.setValueAtTime(f1, t);
+        osc.frequency.exponentialRampToValueAtTime(f2, t + dur);
+
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+        osc.connect(g).connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + dur + 0.02);
+    }
+
+    function sfxNoise(dur, freq, vol, delay, freqEnd) {
+
+        const ctx = getSfxCtx();
+        const t = ctx.currentTime + (delay || 0);
+        const len = Math.floor(ctx.sampleRate * dur);
+        const buffer = ctx.createBuffer(1, len, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+
+        const src = ctx.createBufferSource();
+        const filter = ctx.createBiquadFilter();
+        const g = ctx.createGain();
+
+        src.buffer = buffer;
+
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(freq, t);
+        if (freqEnd) filter.frequency.exponentialRampToValueAtTime(freqEnd, t + dur);
+        filter.Q.value = 1.2;
+
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+        src.connect(filter).connect(g).connect(ctx.destination);
+        src.start(t);
+        src.stop(t + dur + 0.02);
+    }
+
+    function sfx(name) {
+
+        lastSfxAt = performance.now();
+
+        if (!sfxOn) return;
+
+        try {
+
+            if (name === "kiu") {
+                sfxTone(900, 1500, 0.09, "sine", 0.16, 0);
+                sfxTone(1000, 1750, 0.11, "sine", 0.16, 0.13);
+            }
+
+            if (name === "plim") {
+                sfxTone(1320, 1300, 0.14, "triangle", 0.07, 0);
+                sfxTone(1980, 1960, 0.1, "sine", 0.03, 0);
+            }
+
+            if (name === "tick") {
+                sfxTone(2200, 2000, 0.025, "square", 0.02, 0);
+            }
+
+            if (name === "tcham") {
+                [523, 659, 784].forEach((f, i) =>
+                    sfxTone(f, f, 0.22, "triangle", 0.1, i * 0.09));
+                sfxTone(1047, 1047, 0.7, "triangle", 0.12, 0.27);
+                sfxTone(1568, 1568, 0.6, "sine", 0.04, 0.27);
+            }
+
+            if (name === "nhac") {
+                sfxNoise(0.06, 1800, 0.25, 0);
+                sfxNoise(0.06, 2300, 0.25, 0.13);
+                sfxNoise(0.05, 2000, 0.2, 0.26);
+            }
+
+            if (name === "splash") {
+                sfxNoise(0.6, 3500, 0.3, 0, 500);
+                sfxTone(600, 1200, 0.08, "sine", 0.06, 0.25);
+                sfxTone(700, 1400, 0.08, "sine", 0.06, 0.5);
+            }
+
+            if (name === "yay") {
+                [659, 784, 988, 1319].forEach((f, i) =>
+                    sfxTone(f, f * 1.01, 0.18, "triangle", 0.09, i * 0.07));
+            }
+
+            if (name === "whoosh") {
+                sfxNoise(0.7, 400, 0.18, 0, 2500);
+            }
+
+            if (name === "baby") {
+                sfxTone(1400, 2100, 0.07, "sine", 0.12, 0);
+                sfxTone(1500, 2300, 0.07, "sine", 0.12, 0.1);
+                sfxTone(1600, 2500, 0.09, "sine", 0.12, 0.2);
+            }
+
+        } catch (e) {}
+    }
+
+    // "plim" em todo botão e card que não tem um som próprio
+    document.addEventListener("click", event => {
+
+        const target = event.target.closest(
+            "button, .option, .mini-card, .comfort-card, .bday-card, .love-card, .choice-card, .voucher, .night-banner"
+        );
+
+        if (!target) return;
+
+        if (performance.now() - lastSfxAt < 120) return;
+
+        sfx("plim");
+    });
+
+    function updateSoundIcon() {
+
+        document.getElementById("soundToggle").textContent =
+            sfxOn ? "🔊" : "🔇";
+    }
+
+    function toggleSounds() {
+
+        sfxOn = !sfxOn;
+
+        try {
+            localStorage.setItem(SOUND_KEY, sfxOn ? "on" : "off");
+        } catch (e) {}
+
+        updateSoundIcon();
+
+        if (sfxOn) sfx("kiu");
+        else lastSfxAt = performance.now();
+    }
+
+    updateSoundIcon();
+
+    /* ==================================================
+       🛁 BANHO ANIMADO
+    ================================================== */
+
+    let bathing = false;
+
+    function playBath() {
+
+        const stage = document.getElementById("catStage");
+
+        if (bathing) return false;
+
+        bathing = true;
+
+        stage.classList.remove("dripping");
+        stage.classList.add("bathing");
+
+        sfx("splash");
+
+        setTimeout(() => sfx("splash"), 1300);
+
+        setTimeout(() => {
+
+            stage.classList.remove("bathing");
+            stage.classList.add("dripping");
+
+            setTimeout(() => {
+                stage.classList.remove("dripping");
+                bathing = false;
+            }, 1900);
+
+        }, 2800);
+
+        return true;
+    }
+
+    /* ==================================================
+       🍼 FILHOTINHO DA MM E DO GG
+    ================================================== */
+
+    // ✏️ Quantas visitas da MM ao GG até o filhotinho aparecer
+    const BABY_VISITS_NEEDED = 5;
+
+    const BABY_KEY = "mmBaby";
+
+    function babySvg() {
+
+        return document.getElementById("babyTemplate").innerHTML;
+    }
+
+    function getBaby() {
+
+        return readStore(BABY_KEY, null);
+    }
+
+    function renderCoupleBaby(visits) {
+
+        const baby = getBaby();
+        const slot = document.getElementById("coupleBabySlot");
+        const event = document.getElementById("babyEvent");
+
+        slot.innerHTML = "";
+        event.classList.add("hidden");
+
+        if (baby) {
+
+            slot.innerHTML =
+                `<div class="couple-baby">${babySvg()}</div>`;
+
+            document.getElementById("coupleCounter").textContent +=
+                ` · 🍼 ${baby.name} veio junto!`;
+
+            return;
+        }
+
+        if (visits >= BABY_VISITS_NEEDED) {
+
+            event.classList.remove("hidden");
+
+            document.getElementById("babyEventArt").innerHTML = babySvg();
+
+            setTimeout(() => {
+                sfx("baby");
+                createConfetti();
+            }, 700);
+
+            setTimeout(() => {
+                const input = document.getElementById("babyNameInput");
+                if (input) input.focus();
+            }, 500);
+
+            return;
+        }
+
+        const left = BABY_VISITS_NEEDED - visits;
+
+        document.getElementById("coupleCounter").textContent +=
+            ` · 🍼 faltam ${plural(left, "visita", "visitas")} pra uma surpresinha... 👀`;
+    }
+
+    function nameBaby() {
+
+        const input = document.getElementById("babyNameInput");
+        const name = input.value.trim();
+
+        if (!name) {
+            input.focus();
+            return;
+        }
+
+        writeStore(BABY_KEY, { name, born: Date.now() });
+
+        clearTimeout(coupleTalkTimer);
+
+        document.getElementById("babyEvent").classList.add("hidden");
+
+        document.getElementById("coupleMMSpeech").textContent =
+            `Bem-vindo(a), ${name}! 🥹`;
+
+        document.getElementById("coupleGGSpeech").textContent =
+            `Eu sou papai!!! 😭💙`;
+
+        document.getElementById("coupleBabySlot").innerHTML =
+            `<div class="couple-baby">${babySvg()}</div>`;
+
+        sfx("yay");
+        createConfetti();
+    }
+
+    /* ==================================================
+       🏡 CASINHA DA MM
+    ================================================== */
+
+    // ✏️ Móveis e quantos carinhos precisa pra desbloquear
+    const HOUSE_ITEMS = [
+        { id: "bed", name: "Caminha", icon: "🛏️", need: 0 },
+        { id: "pond", name: "Laguinho", icon: "🌊", need: 0 },
+        { id: "plant", name: "Plantinha", icon: "🪴", need: 5 },
+        { id: "bear", name: "Ursinho", icon: "🧸", need: 10 },
+        { id: "frame", name: "Quadro D💗G", icon: "🖼️", need: 15 },
+        { id: "lights", name: "Luzinhas", icon: "✨", need: 20 },
+        { id: "tv", name: "TV de filmes", icon: "📺", need: 30 },
+        { id: "pouf", name: "Pufe de melancia", icon: "🍉", need: 40 },
+        { id: "rug", name: "Tapete arco-íris", icon: "🌈", need: 50 },
+        { id: "neon", name: "Neon TE AMO", icon: "💗", need: 0, secret: true }
+    ];
+
+    const houseLines = {
+        bed: "Minha caminha! Perfeita pra cochilar 14 horas por dia 😴",
+        pond: "Meu laguinho particular 💦",
+        plant: "Uma plantinha pra deixar a casa viva 🌿 (prometo não comer)",
+        bear: "Meu ursinho! Durmo abraçada nele quando sinto saudade 🧸",
+        frame: "Uma foto de vocês dois na parede 🥹 D 💗 G",
+        lights: "Luzinhas! Agora sim a casa tá aconchegante ✨ (e elas piscam um segredinho... 🤫)",
+        neon: "Neon de TE AMO ligado 💗",
+        tv: "TV pra assistir os filmes que vocês sortearem 🍿",
+        pouf: "Um pufe de melancia... é o melhor dia da minha vida 🍉",
+        rug: "Tapete arco-íris! Minha casa tá linda demais 🌈"
+    };
+
+    function getHouse() {
+
+        if (!Array.isArray(cat.house)) cat.house = ["bed", "pond"];
+
+        return cat.house;
+    }
+
+    function openHouse() {
+
+        if (!cat) loadCat();
+
+        closeFunModal("catOverlay");
+
+        const stage = document.getElementById("houseMM");
+        const svg = document.querySelector("#catStage svg").cloneNode(true);
+
+        svg.removeAttribute("onclick");
+        svg.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+
+        stage.innerHTML = "";
+        stage.appendChild(svg);
+        stage.className = "house-mm cat-stage happy";
+
+        applyOutfit(stage);
+
+        // dentro de casa não precisa de guarda-chuva 😌
+        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"]')
+            .forEach(el => el.style.display = "none");
+
+        // janela com o céu de Rio Preto agora
+        const win = document.getElementById("houseWindow");
+        const hour = new Date().getHours();
+        const night = hour >= 19 || hour < 6;
+        const kind = weatherKind();
+
+        win.className = "house-window" +
+            (night ? " night" : "") +
+            (kind === "rain" ? " rain" : "") +
+            (kind === "hot" && !night ? " hot" : "");
+
+        document.getElementById("hwIcon").textContent =
+            kind === "rain" ? "☁️" : night ? "🌙" : "☀️";
+
+        // filhotinho
+        const baby = getBaby();
+        const babyEl = document.getElementById("houseBaby");
+
+        if (baby) {
+            babyEl.innerHTML = babySvg();
+            babyEl.classList.remove("hidden");
+        } else {
+            babyEl.classList.add("hidden");
+        }
+
+        renderHouse();
+
+        document.getElementById("morseGuess").classList.add("hidden");
+        document.getElementById("morseHint").textContent =
+            "Olha bem as luzinhas: piscada curta e piscada comprida 👀";
+        morseWrong = 0;
+
+        startMorse();
+
+        document.getElementById("houseSpeech").textContent =
+            baby
+                ? `Bem-vinda! O ${baby.name} tá brincando aqui do lado 🍼`
+                : "Bem-vinda à minha casinha! Me ajuda a decorar? 🏡";
+
+        openFunModal("houseOverlay");
+    }
+
+    function renderHouse() {
+
+        const house = getHouse();
+
+        document.querySelectorAll("#houseRoom [data-house]").forEach(el => {
+            el.classList.toggle("on", house.includes(el.dataset.house));
+        });
+
+        document.getElementById("houseGrid").innerHTML =
+            HOUSE_ITEMS.filter(item => !item.secret || cat.morseFound).map(item => {
+
+                const locked = cat.pets < item.need;
+                const on = house.includes(item.id);
+
+                const state = locked
+                    ? `🔒 ${item.need} carinhos`
+                    : on ? "na casa ✓" : "colocar";
+
+                return `
+                    <button
+                        class="wardrobe-item ${locked ? "locked" : ""} ${on ? "on" : ""}"
+                        onclick="toggleHouseItem('${item.id}')"
+                    >
+                        <span class="wi-icon">${item.icon}</span>
+                        ${item.name}
+                        <span class="wi-state">${state}</span>
+                    </button>
+                `;
+
+            }).join("");
+    }
+
+    function setHouseSpeech(text) {
+
+        const el = document.getElementById("houseSpeech");
+
+        el.textContent = text;
+
+        el.classList.remove("pop");
+        void el.offsetWidth;
+        el.classList.add("pop");
+    }
+
+    function toggleHouseItem(id) {
+
+        const item = HOUSE_ITEMS.find(i => i.id === id);
+
+        if (cat.pets < item.need) {
+
+            setHouseSpeech(`Faltam ${item.need - cat.pets} carinhos pra eu ganhar ${item.name.toLowerCase()} ${item.icon} 🥺`);
+            return;
+        }
+
+        let house = [...getHouse()];
+
+        if (house.includes(id)) {
+
+            house = house.filter(x => x !== id);
+
+            setHouseSpeech(`Guardei ${item.name.toLowerCase()} ${item.icon}`);
+
+        } else {
+
+            house.push(id);
+
+            setHouseSpeech(houseLines[id] || "Ficou lindo! 💗");
+
+            sfx("yay");
+        }
+
+        cat.house = house;
+
+        renderHouse();
+        saveCat();
+
+        if (id === "lights") startMorse();
+    }
+
+    /* --------------------------------------------------
+       ✨ RECADO SECRETO NAS LUZINHAS (código Morse)
+    -------------------------------------------------- */
+
+    // T E   A M O  →  −  ·   ·−  −−  −−−
+    const MORSE_SECRET = ["-", ".", " ", ".-", "--", "---"];
+    const MORSE_UNIT = 320;
+
+    let morseTimers = [];
+    let morseLoop = null;
+    let morseWrong = 0;
+
+    function morseSchedule() {
+
+        const lights = document.querySelector("#houseRoom .h-lights");
+
+        if (!lights) return 0;
+
+        let t = 0;
+
+        const at = (ms, fn) => morseTimers.push(setTimeout(fn, ms));
+
+        at(0, () => lights.classList.add("morse"));
+
+        // pausa antes de começar
+        t += MORSE_UNIT * 4;
+
+        MORSE_SECRET.forEach((letter, li) => {
+
+            if (letter === " ") {
+                t += MORSE_UNIT * 4;
+                return;
+            }
+
+            [...letter].forEach((sym, si) => {
+
+                const len = sym === "." ? MORSE_UNIT : MORSE_UNIT * 3;
+
+                at(t, () => lights.classList.add("lit"));
+                at(t + len, () => lights.classList.remove("lit"));
+
+                t += len + MORSE_UNIT;
+            });
+
+            t += MORSE_UNIT * 2;
+        });
+
+        t += MORSE_UNIT * 3;
+
+        at(t, () => lights.classList.remove("morse", "lit"));
+
+        return t;
+    }
+
+    function startMorse() {
+
+        stopMorse();
+
+        if (!getHouse().includes("lights")) return;
+
+        const run = () => {
+
+            const dur = morseSchedule();
+
+            // recado → 7s piscando normal → recado de novo
+            morseLoop = setTimeout(run, dur + 7000);
+        };
+
+        morseLoop = setTimeout(run, 1500);
+    }
+
+    function stopMorse() {
+
+        clearTimeout(morseLoop);
+
+        morseTimers.forEach(clearTimeout);
+        morseTimers = [];
+
+        const lights = document.querySelector("#houseRoom .h-lights");
+
+        if (lights) lights.classList.remove("morse", "lit");
+    }
+
+    function morseClick() {
+
+        if (cat.morseFound) {
+            setHouseSpeech("Elas continuam dizendo TE AMO, todo dia 💗");
+            return;
+        }
+
+        document.getElementById("morseGuess").classList.remove("hidden");
+
+        setHouseSpeech("Psiu... essas luzinhas tão piscando um recado secreto 🤫 Você consegue descobrir?");
+
+        setTimeout(() => document.getElementById("morseInput").focus(), 100);
+    }
+
+    function normalizeGuess(text) {
+
+        return text
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z]/g, "");
+    }
+
+    function checkMorse() {
+
+        const input = document.getElementById("morseInput");
+        const hint = document.getElementById("morseHint");
+        const guess = normalizeGuess(input.value);
+
+        if (!guess) {
+            input.focus();
+            return;
+        }
+
+        if (guess === "teamo") {
+
+            cat.morseFound = true;
+
+            const house = getHouse();
+
+            if (!house.includes("neon")) house.push("neon");
+
+            cat.house = house;
+
+            saveCat();
+
+            document.getElementById("morseGuess").classList.add("hidden");
+
+            renderHouse();
+
+            setHouseSpeech("VOCÊ DESCOBRIU!!! 💗 Era \"TE AMO\" em código Morse! O Gabriel escondeu isso aqui pra você 🥹 Ganhou um neon na parede!");
+
+            sfx("yay");
+            createConfetti();
+
+            return;
+        }
+
+        morseWrong++;
+
+        const hints = [
+            "Hmm, não é isso 👀 Dica: são 2 palavrinhas",
+            "Quase! Dica: é código Morse. Piscada curtinha = ·  e comprida = −",
+            "Dica: a primeira letra é uma piscada comprida só (−), que é a letra T",
+            "Última dica: é o que o Gabriel mais fala pra você 💗"
+        ];
+
+        hint.textContent = hints[Math.min(morseWrong - 1, hints.length - 1)];
+
+        input.select();
+    }
+
+    function petInHouse() {
+
+        const stage = document.getElementById("houseMM");
+
+        stage.classList.remove("bounce");
+        void stage.offsetWidth;
+        stage.classList.add("bounce");
+
+        sfx("kiu");
+
+        setHouseSpeech(pick([
+            "Kiu kiu! Gostou da minha casa? 🏡",
+            "Fica mais um pouquinho? 🥺",
+            "Aqui é o cantinho mais quentinho do mundo 💗",
+            "Quando você vier, a casa é sua também 🍊"
+        ]));
+    }
+
+    /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
     ================================================== */
 
@@ -9715,29 +12419,39 @@ Te amo muito.
     loadWeather();
 
     /* ==================================================
-       🌙 MODO DIA / MODO NOITE
+       🌙 MODO DIA / MODO NOITE + 🎨 ESCOLHER O TEMA
     ================================================== */
+
+    // ✏️ Temas disponíveis
+    const THEMES = [
+        { id: "light", name: "Algodão doce", icon: "☁️", swatch: "linear-gradient(135deg, #ffc8dd, #bde0fe)" },
+        { id: "peach", name: "Pêssego", icon: "🍑", swatch: "linear-gradient(135deg, #ffd6bf, #ffb38a)" },
+        { id: "matcha", name: "Matcha com morango", icon: "🍵", swatch: "linear-gradient(135deg, #b8d8ba, #f7a1b5)" },
+        { id: "lavender", name: "Lavanda", icon: "💜", swatch: "linear-gradient(135deg, #e3d7ff, #b9a3f0)" },
+        { id: "dark", name: "Céu de cinema", icon: "🌌", swatch: "linear-gradient(135deg, #1e1b3a, #ff7eb6)" }
+    ];
 
     const themeToggleBtn =
         document.getElementById("themeToggle");
 
-    function updateThemeIcon() {
+    function currentTheme() {
 
-        const isDark =
-            document.documentElement
-                .getAttribute("data-theme") === "dark";
-
-        themeToggleBtn.textContent =
-            isDark ? "☀️" : "🌙";
+        return document.documentElement.getAttribute("data-theme") || "light";
     }
 
-    function toggleTheme() {
+    function updateThemeIcon() {
 
-        const isDark =
-            document.documentElement
-                .getAttribute("data-theme") === "dark";
+        themeToggleBtn.textContent =
+            currentTheme() === "dark" ? "☀️" : "🌙";
+    }
 
-        const next = isDark ? "light" : "dark";
+    function setTheme(next) {
+
+        const prev = currentTheme();
+
+        if (next === "dark" && prev !== "dark") {
+            try { localStorage.setItem("siteLightTheme", prev); } catch (e) {}
+        }
 
         document.documentElement
             .setAttribute("data-theme", next);
@@ -9747,6 +12461,7 @@ Te amo muito.
         } catch (e) {}
 
         updateThemeIcon();
+        renderThemeOptions();
 
         // redesenha a roleta com as cores novas
         if (!draw.classList.contains("hidden")) {
@@ -9754,6 +12469,63 @@ Te amo muito.
             renderScoreboard();
         }
     }
+
+    function toggleTheme() {
+
+        if (currentTheme() === "dark") {
+
+            let back = "light";
+
+            try { back = localStorage.getItem("siteLightTheme") || "light"; } catch (e) {}
+
+            setTheme(back);
+
+        } else {
+
+            setTheme("dark");
+        }
+    }
+
+    function renderThemeOptions() {
+
+        const now = currentTheme();
+
+        document.getElementById("themeOptions").innerHTML =
+            THEMES.map(t => `
+                <button
+                    class="theme-option ${t.id === now ? "active" : ""}"
+                    onclick="setTheme('${t.id}')"
+                >
+                    <span class="swatch" style="background: ${t.swatch}"></span>
+                    ${t.icon} ${t.name}
+                    ${t.id === now ? '<span class="check">✓</span>' : ""}
+                </button>
+            `).join("");
+    }
+
+    function toggleThemePicker(event) {
+
+        if (event) event.stopPropagation();
+
+        const picker = document.getElementById("themePicker");
+
+        renderThemeOptions();
+
+        picker.classList.toggle("hidden");
+    }
+
+    document.addEventListener("click", event => {
+
+        const picker = document.getElementById("themePicker");
+
+        if (
+            !picker.classList.contains("hidden") &&
+            !picker.contains(event.target) &&
+            event.target.id !== "paletteToggle"
+        ) {
+            picker.classList.add("hidden");
+        }
+    });
 
     updateThemeIcon();
 
