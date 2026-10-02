@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Roleta da Sorte da Nossa Noitinha (de muitas kkk) 💗</title>
 
 <style>
@@ -408,6 +414,598 @@
         margin-top: 18px;
         color: #a08e9c;
         font-size: 13px;
+    }
+
+    /* ==========================================
+       🎂 CÁPSULA DO ANIVERSÁRIO — CARD DA HOME
+    ========================================== */
+
+    .bday-card {
+        margin-top: 20px;
+        border: 2px solid #f3d3b5;
+        background:
+            radial-gradient(circle at top right,
+                rgba(255, 214, 170, 0.5),
+                transparent 45%),
+            radial-gradient(circle at bottom left,
+                rgba(255, 192, 218, 0.45),
+                transparent 45%),
+            linear-gradient(135deg, #fffaf3, #fff4f8);
+
+        border-radius: 22px;
+        padding: 25px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s ease;
+    }
+
+    .bday-card:hover {
+        transform: translateY(-4px);
+        border-color: #eaa56e;
+        box-shadow: 0 12px 30px rgba(214, 130, 70, 0.18);
+    }
+
+    .bday-card.is-open {
+        border-color: #f0a35e;
+        animation: bdayGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes bdayGlow {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(240, 163, 94, 0);
+        }
+
+        50% {
+            box-shadow:
+                0 0 0 6px rgba(240, 163, 94, 0.18),
+                0 12px 30px rgba(240, 163, 94, 0.25);
+        }
+    }
+
+    .bday-card-icon {
+        font-size: 48px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .bday-card-title {
+        color: #c0663a;
+        font-size: 21px;
+        font-weight: 800;
+        margin-bottom: 7px;
+    }
+
+    .bday-card-description {
+        color: #806e7b;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .bday-mini {
+        display: inline-block;
+        padding: 6px 13px;
+        border-radius: 999px;
+        background: #fbe8d8;
+        color: #b0643a;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================
+       🎂 CÁPSULA DO ANIVERSÁRIO — MODAL
+    ========================================== */
+
+    .bday-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(58, 39, 56, 0.5);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 3000;
+    }
+
+    .bday-modal {
+        position: relative;
+        width: min(100%, 560px);
+        max-height: 92vh;
+        overflow-y: auto;
+        background:
+            radial-gradient(circle at top left,
+                rgba(255, 214, 170, 0.5),
+                transparent 45%),
+            radial-gradient(circle at bottom right,
+                rgba(220, 207, 255, 0.5),
+                transparent 45%),
+            linear-gradient(135deg, #fffaf5, #fbf6ff);
+
+        border: 1px solid rgba(255,255,255,0.9);
+        border-radius: 30px;
+        padding: 34px 26px 28px;
+        text-align: center;
+        box-shadow: 0 25px 80px rgba(67, 39, 65, 0.3);
+        animation: comfortModalIn 0.35s ease;
+    }
+
+    .bday-close-x {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        background: transparent;
+        color: #a08e9c;
+        font-size: 20px;
+        padding: 6px 10px;
+    }
+
+    .bday-stage {
+        animation: stageIn 0.35s ease;
+    }
+
+    .bday-gift {
+        display: inline-block;
+        position: relative;
+        font-size: 92px;
+        cursor: pointer;
+        user-select: none;
+        filter: drop-shadow(0 10px 18px rgba(217, 84, 137, 0.25));
+        margin-bottom: 6px;
+    }
+
+    .bday-gift-lock {
+        position: absolute;
+        right: -14px;
+        bottom: 2px;
+        font-size: 36px;
+    }
+
+    .bday-gift.shake {
+        animation: giftShake 0.5s ease;
+    }
+
+    @keyframes giftShake {
+        0%, 100% { transform: rotate(0); }
+        20% { transform: rotate(-12deg); }
+        40% { transform: rotate(12deg); }
+        60% { transform: rotate(-8deg); }
+        80% { transform: rotate(8deg); }
+    }
+
+    .bday-gift.opening {
+        animation: giftOpen 1.4s ease forwards;
+    }
+
+    @keyframes giftOpen {
+        0% { transform: scale(1) rotate(0); }
+        15% { transform: scale(1.05) rotate(-10deg); }
+        30% { transform: scale(1.05) rotate(10deg); }
+        45% { transform: scale(1.1) rotate(-10deg); }
+        60% { transform: scale(1.15) rotate(8deg); opacity: 1; }
+        100% { transform: scale(2.4) rotate(0); opacity: 0; }
+    }
+
+    .bday-title {
+        color: #b04f7b;
+        font-size: clamp(24px, 5vw, 30px);
+        margin-bottom: 10px;
+    }
+
+    .bday-text {
+        color: #7d6875;
+        line-height: 1.7;
+        margin-bottom: 8px;
+    }
+
+    .bday-text strong {
+        color: #c0663a;
+    }
+
+    .bday-countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 20px 0 6px;
+    }
+
+    .bday-unit {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid #f3e0e8;
+        border-radius: 16px;
+        padding: 12px 4px;
+    }
+
+    .bday-unit b {
+        display: block;
+        font-size: clamp(24px, 6vw, 34px);
+        color: #c0663a;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .bday-unit small {
+        font-size: 12px;
+        color: #a08e9c;
+    }
+
+    .bday-small {
+        color: #a08e9c;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .bday-hints {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin: 10px 0 4px;
+    }
+
+    .bday-hint {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid #f3e0e8;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: #7d6875;
+    }
+
+    .bday-tease {
+        min-height: 26px;
+        color: #b04f7b;
+        font-weight: 700;
+        margin: 16px 0 4px;
+        line-height: 1.4;
+    }
+
+    .bday-tease.pop {
+        animation: reasonPop 0.4s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .bday-steps {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .bday-step-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #efdbe5;
+        transition: 0.3s;
+    }
+
+    .bday-step-dot.done {
+        background: #e7a0bd;
+    }
+
+    .bday-step-dot.active {
+        width: 28px;
+        background: #d95489;
+    }
+
+    .bday-stage-icon {
+        font-size: 48px;
+        margin-bottom: 6px;
+    }
+
+    .bday-letter {
+        text-align: left;
+        background-color: #fffdf7;
+        background-image: repeating-linear-gradient(
+            transparent 0 31px,
+            #f4dfe6 31px 32px
+        );
+        border-radius: 18px;
+        padding: 22px 22px;
+        color: #5e4a57;
+        font-size: 16px;
+        line-height: 32px;
+        white-space: pre-line;
+        min-height: 260px;
+        box-shadow: inset 0 0 0 1px #f3e3ea;
+        margin-top: 14px;
+    }
+
+    .typing-cursor::after {
+        content: "|";
+        color: #d95489;
+        animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+
+    .reason-card {
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.85);
+        border: 2px dashed #efc6d8;
+        border-radius: 22px;
+        padding: 24px;
+        margin: 16px 0;
+        color: #6b5361;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.6;
+    }
+
+    .reason-card.pop {
+        animation: reasonPop 0.45s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    @keyframes reasonPop {
+        from {
+            opacity: 0;
+            transform: scale(0.85) rotate(-3deg);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+    }
+
+    .reason-number {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: #c0663a;
+        margin-bottom: 10px;
+    }
+
+    .vouchers {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+        text-align: left;
+    }
+
+    .voucher {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffffff, #fff5f9);
+        border: 2px dashed #e9b8cd;
+        border-radius: 16px;
+        padding: 16px 14px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .voucher:hover {
+        transform: translateY(-3px);
+        border-color: #d95489;
+    }
+
+    .voucher-icon {
+        display: block;
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .voucher-text {
+        color: #6b5361;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .voucher-hint {
+        color: #a08e9c;
+        font-size: 11px;
+        margin-top: 6px;
+    }
+
+    .voucher.used {
+        cursor: default;
+    }
+
+    .voucher.used .voucher-icon,
+    .voucher.used .voucher-text,
+    .voucher.used .voucher-hint {
+        opacity: 0.45;
+    }
+
+    .voucher.used::after {
+        content: "RESGATADO";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-14deg);
+        border: 3px solid #d94f87;
+        border-radius: 8px;
+        padding: 4px 10px;
+        background: rgba(255,255,255,0.85);
+        color: #d94f87;
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        animation: stamp 0.35s ease;
+    }
+
+    @keyframes stamp {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -50%) rotate(-14deg) scale(2);
+        }
+    }
+
+    .voucher-feedback {
+        min-height: 22px;
+        margin-top: 14px;
+        color: #b04f7b;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    /* bolo */
+
+    .cake {
+        position: relative;
+        width: 200px;
+        height: 215px;
+        margin: 10px auto 0;
+        cursor: pointer;
+    }
+
+    .cake-plate {
+        position: absolute;
+        bottom: 0;
+        left: -15px;
+        width: 230px;
+        height: 16px;
+        border-radius: 50%;
+        background: #ece3ea;
+    }
+
+    .cake-bottom {
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 200px;
+        height: 70px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #f6b3ca, #ef97b6);
+    }
+
+    .cake-bottom::after {
+        content: "• • • • • • •";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 26px;
+        color: #fff5f9;
+        font-size: 14px;
+        letter-spacing: 4px;
+        text-align: center;
+    }
+
+    .cake-top {
+        position: absolute;
+        bottom: 76px;
+        left: 20px;
+        width: 160px;
+        height: 56px;
+        border-radius: 14px 14px 8px 8px;
+        background: #fff3f8;
+    }
+
+    .cake-top::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -12px;
+        height: 16px;
+        background: radial-gradient(circle at 13px 0, #fff3f8 9px, transparent 10px) repeat-x;
+        background-size: 26px 16px;
+    }
+
+    .cake-deco {
+        position: absolute;
+        top: 14px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 10px;
+    }
+
+    .candle {
+        position: absolute;
+        bottom: 132px;
+        left: 50%;
+        width: 14px;
+        height: 46px;
+        margin-left: -7px;
+        border-radius: 4px;
+        background: repeating-linear-gradient(
+            45deg,
+            #ffffff 0 6px,
+            #ff8fb1 6px 12px
+        );
+    }
+
+    .flame {
+        position: absolute;
+        bottom: 44px;
+        left: 50%;
+        width: 18px;
+        height: 28px;
+        margin-left: -9px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        background: radial-gradient(circle at 50% 70%, #fff8c4 0%, #ffd34d 40%, #ff8a3d 78%);
+        box-shadow: 0 0 22px 8px rgba(255, 200, 80, 0.5);
+        transform-origin: 50% 100%;
+        animation: flicker 0.22s ease-in-out infinite alternate;
+        transition: 0.4s ease;
+    }
+
+    @keyframes flicker {
+        from { transform: scale(1) rotate(-2deg); }
+        to { transform: scale(1.08, 0.94) rotate(2deg); }
+    }
+
+    .cake.blown .flame {
+        animation: none;
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    .smoke {
+        position: absolute;
+        bottom: 175px;
+        left: 50%;
+        font-size: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-50%);
+    }
+
+    .cake.blown .smoke {
+        animation: smokeUp 1.8s ease forwards;
+    }
+
+    @keyframes smokeUp {
+        from {
+            opacity: 0.85;
+            transform: translate(-50%, 0) scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: translate(-50%, -60px) scale(1.7);
+        }
+    }
+
+    .bday-final-title {
+        color: #c0663a;
+        font-size: clamp(24px, 6vw, 34px);
+        font-weight: 900;
+        margin: 22px 0 12px;
+        line-height: 1.2;
+    }
+
+    .bday-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .bday-actions button {
+        flex: 1;
     }
 
     /* ==========================================
@@ -1070,7 +1668,8 @@
         }
 
         .password-actions,
-        .comfort-actions {
+        .comfort-actions,
+        .bday-actions {
             flex-direction: column;
         }
 
@@ -1081,10 +1680,27 @@
         .comfort-message {
             font-size: 15px;
         }
+
+        .bday-modal {
+            padding: 30px 18px 22px;
+        }
+
+        .bday-countdown {
+            gap: 6px;
+        }
+    }
+
+    @media (max-width: 400px) {
+
+        .vouchers {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
-</head> <body>
+</head>
+<body>
+
 <!-- DECORAÇÃO -->
 <div class="heart">💗</div>
 <div class="heart">💕</div>
@@ -1167,6 +1783,46 @@
 
             <span class="comfort-badge">
                 ABRIR UM CARINHO
+            </span>
+
+        </div>
+
+        <!-- ==========================================
+             🎂 CÁPSULA DO ANIVERSÁRIO
+        ========================================== -->
+
+        <div
+            id="bdayCard"
+            class="bday-card"
+            onclick="openBirthdayCapsule()"
+        >
+
+            <span
+                id="bdayLock"
+                class="lock"
+            >🔒</span>
+
+            <span class="bday-card-icon">
+                🎁🎂
+            </span>
+
+            <div class="bday-card-title">
+                Cápsula do Aniversário
+            </div>
+
+            <div
+                id="bdayCardDescription"
+                class="bday-card-description"
+            >
+                Guardei umas coisinhas aqui dentro...
+                mas só abre no seu dia. 👀
+            </div>
+
+            <span
+                id="bdayMini"
+                class="bday-mini"
+            >
+                ...
             </span>
 
         </div>
@@ -1542,6 +2198,34 @@
             id="comfortCounter"
             class="comfort-counter"
         ></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🎂 MODAL — CÁPSULA DO ANIVERSÁRIO
+================================================== -->
+
+<div
+    id="bdayOverlay"
+    class="bday-overlay hidden"
+>
+
+    <div
+        id="bdayModal"
+        class="bday-modal"
+    >
+
+        <button
+            class="bday-close-x"
+            onclick="closeBirthdayCapsule()"
+            aria-label="Fechar"
+        >
+            ✕
+        </button>
+
+        <div id="bdayContent"></div>
 
     </div>
 
@@ -2136,6 +2820,894 @@
 
         }
     );
+
+    /* ==================================================
+       🎂 CÁPSULA DO ANIVERSÁRIO
+    ================================================== */
+
+    // ✏️ Dia e hora em que a cápsula destranca (horário do celular dela)
+    const BIRTHDAY_OPEN_DATE = "2027-03-21T00:00:00";
+
+    // ✏️ Nome dela
+    const BIRTHDAY_NAME = "Diane";
+
+    // 🧪 Pra testar antes do dia: abra o site com
+    //    ?surpresa=teste no final do link
+    //    (ex.: https://seuusuario.github.io/seurepo/?surpresa=teste)
+    const BIRTHDAY_TEST_MODE =
+        new URLSearchParams(window.location.search)
+            .get("surpresa") === "teste";
+
+    // ✏️ A carta (pode reescrever do seu jeitinho)
+    const birthdayLetter =
+`Diane, meu amor,
+
+Se você está lendo isso, é porque finalmente chegou o seu dia. E eu passei esse tempo todo segurando essa cápsula só pra poder te dizer isso aqui, desse jeitinho.
+
+Feliz aniversário! 🎂
+
+Eu sei que a distância às vezes pesa, que tem dias em que um abraço faria toda a diferença e ele não consegue chegar. Mas eu quero que você saiba que, mesmo longe, eu tô aqui pensando em você, torcendo por você e feliz demais por você existir.
+
+Obrigado por cada noite de filme, de anime e de série, por cada risada boba, por cada "tanto faz" que virou opinião forte, e por cada vez que você me escolheu, mesmo quando era difícil.
+
+Que esse novo ano seja leve, cheio de coisas boas, de paz, de conquistas e de muito amor. O meu, o da Lia, o da Fatiminha e o de todo mundo que tem a sorte de ter você por perto.
+
+E que a gente tenha muitos aniversários juntos. De preferência, com abraço de verdade. 🥹
+
+Te amo muito.
+— Gabriel 💗`;
+
+    // ✏️ Os motivos (coloque quantos quiser)
+    const birthdayReasons = [
+        "O jeito que você ri das minhas besteiras, mesmo quando elas não têm graça nenhuma. 😂",
+        "Porque você transforma uma noite qualquer de filme na melhor parte da minha semana. 🍿",
+        "O cuidado e o amor que você tem pela Lia. Ver isso me faz te admirar ainda mais. 🥹",
+        "Porque você é forte, até nos dias em que não se sente assim. 💪",
+        "Porque você diz \"tanto faz\" e depois tem opinião sobre absolutamente tudo. 😂",
+        "Porque com você a distância parece bem menor. ✈️",
+        "Sua voz. Principalmente quando você tá com sono. 😴💗",
+        "Porque você me faz querer ser uma pessoa melhor todos os dias.",
+        "Seu coração gigante, que cuida de todo mundo ao seu redor. 🌷",
+        "Porque até as nossas discussões sobre filme ruim são boas. 🎬",
+        "Porque eu consigo me imaginar velhinho do seu lado, ainda sorteando filme. 👴👵",
+        "Porque você é você. E isso já seria motivo mais que suficiente. ❤️"
+    ];
+
+    // ✏️ Os vales-presente
+    const birthdayVouchers = [
+        { icon: "🎬", text: "Vale escolher o filme sem sorteio nenhum" },
+        { icon: "🍥", text: "Vale uma maratona de anime sem eu dormir no meio" },
+        { icon: "📞", text: "Vale uma chamada até você pegar no sono" },
+        { icon: "🫂", text: "Vale um abraço de 5 minutos quando a gente se ver" },
+        { icon: "🍫", text: "Vale um docinho que eu vou mandar pra você" },
+        { icon: "😤", text: "Vale ganhar uma discussão (usar com sabedoria)" }
+    ];
+
+    // Frases quando ela tenta abrir antes da hora
+    const birthdayTeases = [
+        "Ainda não, curiosa! 👀",
+        "Chacoalhar não vai fazer abrir mais rápido kkkkk",
+        "Eu tô vendo você tentando 😂",
+        "Paciência, meu amor... vai valer a pena esperar 💗",
+        "Ok, uma dica: tem coisa pra ler, coisa pra resgatar e coisa pra soprar 🎂",
+        "Se continuar chacoalhando, o presente vai ficar tonto 😵‍💫",
+        "Nem adianta mudar a data do celular, viu? 🤨 (brincadeira... ou não)",
+        "Tá bom, tá bom... é coisa boa. Muito boa. 🥹"
+    ];
+
+    const BDAY_VOUCHERS_KEY =
+        "birthdayVouchersUsed-" + BIRTHDAY_OPEN_DATE.slice(0, 4);
+
+    const bdayOpenTime =
+        new Date(BIRTHDAY_OPEN_DATE).getTime();
+
+    const bdayStartTime = (() => {
+        const d = new Date(BIRTHDAY_OPEN_DATE);
+        d.setFullYear(d.getFullYear() - 1);
+        return d.getTime();
+    })();
+
+    const bdayDateLabel =
+        new Date(BIRTHDAY_OPEN_DATE)
+            .toLocaleDateString("pt-BR", {
+                day: "numeric",
+                month: "long"
+            });
+
+    const bdayOverlay =
+        document.getElementById("bdayOverlay");
+
+    const bdayContent =
+        document.getElementById("bdayContent");
+
+    let bdayCountdownTimer = null;
+    let bdayTypingTimer = null;
+    let bdayTeaseIndex = 0;
+    let bdayReasonIndex = -1;
+    let bdayGiftOpening = false;
+
+    function isBirthdayOpen() {
+
+        return (
+            BIRTHDAY_TEST_MODE ||
+            Date.now() >= bdayOpenTime
+        );
+    }
+
+    function pad2(n) {
+
+        return String(n).padStart(2, "0");
+    }
+
+    function getBirthdayTimeLeft() {
+
+        let diff =
+            Math.max(0, bdayOpenTime - Date.now());
+
+        const d = Math.floor(diff / 86400000);
+        diff %= 86400000;
+
+        const h = Math.floor(diff / 3600000);
+        diff %= 3600000;
+
+        const m = Math.floor(diff / 60000);
+        diff %= 60000;
+
+        const s = Math.floor(diff / 1000);
+
+        return { d, h, m, s };
+    }
+
+    /* card da home */
+
+    function updateBirthdayCard() {
+
+        const card =
+            document.getElementById("bdayCard");
+
+        const mini =
+            document.getElementById("bdayMini");
+
+        const lock =
+            document.getElementById("bdayLock");
+
+        const description =
+            document.getElementById("bdayCardDescription");
+
+        if (isBirthdayOpen()) {
+
+            card.classList.add("is-open");
+
+            lock.textContent = "🔓";
+
+            description.textContent =
+                "Chegou o seu dia... tem um monte de coisinha te esperando aqui dentro. 🥹💗";
+
+            mini.textContent =
+                "🎉 ABRIU! CLICA AQUI";
+
+            return;
+        }
+
+        const t = getBirthdayTimeLeft();
+
+        mini.textContent =
+            `ABRE EM ${t.d}d ${pad2(t.h)}h ${pad2(t.m)}m ${pad2(t.s)}s`;
+    }
+
+    updateBirthdayCard();
+
+    setInterval(updateBirthdayCard, 1000);
+
+    /* abrir / fechar */
+
+    function openBirthdayCapsule() {
+
+        bdayOverlay.classList.remove("hidden");
+
+        document.body.style.overflow =
+            "hidden";
+
+        if (isBirthdayOpen()) {
+
+            renderBirthdayIntro();
+
+        } else {
+
+            renderBirthdayLocked();
+        }
+    }
+
+    function closeBirthdayCapsule() {
+
+        bdayOverlay.classList.add("hidden");
+
+        clearInterval(bdayCountdownTimer);
+        clearInterval(bdayTypingTimer);
+
+        document.body.style.overflow =
+            "";
+    }
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape" &&
+                !bdayOverlay.classList.contains("hidden")
+            ) {
+
+                closeBirthdayCapsule();
+            }
+
+        }
+    );
+
+    function setBirthdayContent(html) {
+
+        clearInterval(bdayCountdownTimer);
+        clearInterval(bdayTypingTimer);
+
+        bdayContent.innerHTML = html;
+
+        document.getElementById("bdayModal")
+            .scrollTop = 0;
+    }
+
+    /* TELA TRANCADA */
+
+    function renderBirthdayLocked() {
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                <div
+                    id="bdayGift"
+                    class="bday-gift"
+                    onclick="shakeBirthdayGift()"
+                >
+                    🎁<span class="bday-gift-lock">🔒</span>
+                </div>
+
+                <h2 class="bday-title">
+                    Ainda não, curiosa! 👀
+                </h2>
+
+                <p class="bday-text">
+                    Essa cápsula foi trancada com muito carinho
+                    e só abre no dia <strong>${bdayDateLabel}</strong>,
+                    o seu dia. 🎂
+                </p>
+
+                <div class="bday-countdown">
+
+                    <div class="bday-unit">
+                        <b id="bdD">0</b>
+                        <small>dias</small>
+                    </div>
+
+                    <div class="bday-unit">
+                        <b id="bdH">00</b>
+                        <small>horas</small>
+                    </div>
+
+                    <div class="bday-unit">
+                        <b id="bdM">00</b>
+                        <small>min</small>
+                    </div>
+
+                    <div class="bday-unit">
+                        <b id="bdS">00</b>
+                        <small>seg</small>
+                    </div>
+
+                </div>
+
+                <div class="progress-area">
+
+                    <div
+                        id="bdayProgressText"
+                        class="progress-text"
+                    ></div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="bdayProgressFill"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <p class="bday-small">
+                    O que tem aqui dentro:
+                </p>
+
+                <div class="bday-hints">
+                    <span class="bday-hint">💌 1 carta</span>
+                    <span class="bday-hint">💗 ${birthdayReasons.length} motivos</span>
+                    <span class="bday-hint">🎟️ ${birthdayVouchers.length} vales</span>
+                    <span class="bday-hint">🎂 1 bolo</span>
+                </div>
+
+                <div
+                    id="bdayTease"
+                    class="bday-tease"
+                >
+                    Pode chacoalhar o presente... mas não vai adiantar 😂
+                </div>
+
+                <div class="bday-actions">
+
+                    <button
+                        class="secondary-btn"
+                        onclick="closeBirthdayCapsule()"
+                    >
+                        Voltar 💗
+                    </button>
+
+                </div>
+
+            </div>
+
+        `);
+
+        tickBirthdayCountdown();
+
+        bdayCountdownTimer =
+            setInterval(tickBirthdayCountdown, 1000);
+    }
+
+    function tickBirthdayCountdown() {
+
+        if (isBirthdayOpen()) {
+
+            renderBirthdayIntro();
+            return;
+        }
+
+        const t = getBirthdayTimeLeft();
+
+        document.getElementById("bdD").textContent = t.d;
+        document.getElementById("bdH").textContent = pad2(t.h);
+        document.getElementById("bdM").textContent = pad2(t.m);
+        document.getElementById("bdS").textContent = pad2(t.s);
+
+        const total =
+            bdayOpenTime - bdayStartTime;
+
+        let pct =
+            ((Date.now() - bdayStartTime) / total) * 100;
+
+        pct = Math.min(100, Math.max(0, pct));
+
+        document.getElementById("bdayProgressFill")
+            .style.width = pct + "%";
+
+        document.getElementById("bdayProgressText")
+            .textContent =
+                `${Math.floor(pct)}% do caminho até o seu dia 🎈`;
+    }
+
+    function shakeBirthdayGift() {
+
+        const gift =
+            document.getElementById("bdayGift");
+
+        const tease =
+            document.getElementById("bdayTease");
+
+        gift.classList.remove("shake");
+        void gift.offsetWidth;
+        gift.classList.add("shake");
+
+        tease.textContent =
+            birthdayTeases[
+                bdayTeaseIndex %
+                birthdayTeases.length
+            ];
+
+        tease.classList.remove("pop");
+        void tease.offsetWidth;
+        tease.classList.add("pop");
+
+        bdayTeaseIndex++;
+    }
+
+    /* BOLINHAS DE PROGRESSO */
+
+    function birthdayStepsHtml(step) {
+
+        let html = `<div class="bday-steps">`;
+
+        for (let i = 1; i <= 4; i++) {
+
+            let cls = "bday-step-dot";
+
+            if (i < step) cls += " done";
+            if (i === step) cls += " active";
+
+            html += `<span class="${cls}"></span>`;
+        }
+
+        return html + `</div>`;
+    }
+
+    /* TELA 0 — DESTRANCOU */
+
+    function renderBirthdayIntro() {
+
+        bdayGiftOpening = false;
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                <div
+                    id="bdayGift"
+                    class="bday-gift"
+                    onclick="openBirthdayGift()"
+                >
+                    🎁
+                </div>
+
+                <h2 class="bday-title">
+                    Hoje é o seu dia! 🎉
+                </h2>
+
+                <p class="bday-text">
+                    Feliz aniversário, ${BIRTHDAY_NAME}. 🥹<br>
+                    A cápsula finalmente destrancou...<br>
+                    Toca no presente pra abrir.
+                </p>
+
+                <div class="bday-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="openBirthdayGift()"
+                    >
+                        Abrir a cápsula 🎁
+                    </button>
+
+                </div>
+
+            </div>
+
+        `);
+    }
+
+    function openBirthdayGift() {
+
+        if (bdayGiftOpening) return;
+
+        bdayGiftOpening = true;
+
+        document.getElementById("bdayGift")
+            .classList.add("opening");
+
+        setTimeout(createConfetti, 850);
+
+        setTimeout(renderBirthdayLetter, 1400);
+    }
+
+    /* TELA 1 — CARTA */
+
+    function renderBirthdayLetter() {
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                ${birthdayStepsHtml(1)}
+
+                <div class="bday-stage-icon">💌</div>
+
+                <h2 class="bday-title">
+                    Uma cartinha pra você
+                </h2>
+
+                <div
+                    id="bdayLetter"
+                    class="bday-letter typing-cursor"
+                ></div>
+
+                <div class="bday-actions">
+
+                    <button
+                        id="bdaySkip"
+                        class="secondary-btn"
+                        onclick="finishBirthdayTyping()"
+                    >
+                        Mostrar tudo
+                    </button>
+
+                    <button
+                        id="bdayLetterNext"
+                        class="primary-btn hidden"
+                        onclick="renderBirthdayReasons()"
+                    >
+                        Próximo presente 🎁
+                    </button>
+
+                </div>
+
+            </div>
+
+        `);
+
+        const letterEl =
+            document.getElementById("bdayLetter");
+
+        const chars =
+            Array.from(birthdayLetter);
+
+        let i = 0;
+
+        bdayTypingTimer = setInterval(() => {
+
+            letterEl.textContent += chars[i];
+
+            i++;
+
+            if (i >= chars.length) {
+
+                finishBirthdayTyping();
+            }
+
+        }, 32);
+    }
+
+    function finishBirthdayTyping() {
+
+        clearInterval(bdayTypingTimer);
+
+        const letterEl =
+            document.getElementById("bdayLetter");
+
+        if (!letterEl) return;
+
+        letterEl.textContent = birthdayLetter;
+        letterEl.classList.remove("typing-cursor");
+
+        document.getElementById("bdaySkip")
+            .classList.add("hidden");
+
+        document.getElementById("bdayLetterNext")
+            .classList.remove("hidden");
+    }
+
+    /* TELA 2 — MOTIVOS */
+
+    function renderBirthdayReasons() {
+
+        bdayReasonIndex = -1;
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                ${birthdayStepsHtml(2)}
+
+                <div class="bday-stage-icon">💗</div>
+
+                <h2 class="bday-title">
+                    ${birthdayReasons.length} motivos pelos quais eu te amo
+                </h2>
+
+                <p class="bday-text">
+                    Tira um de cada vez. Sem pressa. 🥹
+                </p>
+
+                <div
+                    id="bdayReason"
+                    class="reason-card"
+                >
+                    Clica no botão pra tirar o primeiro motivo 💌
+                </div>
+
+                <div class="bday-actions">
+
+                    <button
+                        id="bdayReasonBtn"
+                        class="primary-btn"
+                        onclick="nextBirthdayReason()"
+                    >
+                        Tirar um motivo 💗
+                    </button>
+
+                    <button
+                        id="bdayReasonNext"
+                        class="primary-btn hidden"
+                        onclick="renderBirthdayVouchers()"
+                    >
+                        Próximo presente 🎁
+                    </button>
+
+                </div>
+
+            </div>
+
+        `);
+    }
+
+    function nextBirthdayReason() {
+
+        bdayReasonIndex++;
+
+        const card =
+            document.getElementById("bdayReason");
+
+        card.innerHTML = `
+            <div class="reason-number">
+                MOTIVO ${bdayReasonIndex + 1} DE ${birthdayReasons.length}
+            </div>
+            <div>
+                ${birthdayReasons[bdayReasonIndex]}
+            </div>
+        `;
+
+        card.classList.remove("pop");
+        void card.offsetWidth;
+        card.classList.add("pop");
+
+        if (
+            bdayReasonIndex >=
+            birthdayReasons.length - 1
+        ) {
+
+            document.getElementById("bdayReasonBtn")
+                .classList.add("hidden");
+
+            document.getElementById("bdayReasonNext")
+                .classList.remove("hidden");
+
+            createConfetti();
+        }
+    }
+
+    /* TELA 3 — VALES */
+
+    function getUsedVouchers() {
+
+        try {
+            return JSON.parse(
+                localStorage.getItem(BDAY_VOUCHERS_KEY) || "[]"
+            );
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveUsedVouchers(list) {
+
+        try {
+            localStorage.setItem(
+                BDAY_VOUCHERS_KEY,
+                JSON.stringify(list)
+            );
+        } catch (e) {}
+    }
+
+    function renderBirthdayVouchers() {
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                ${birthdayStepsHtml(3)}
+
+                <div class="bday-stage-icon">🎟️</div>
+
+                <h2 class="bday-title">
+                    Vales-presente
+                </h2>
+
+                <p class="bday-text">
+                    Todos seus. Toca num vale pra resgatar
+                    e me manda print. 😌<br>
+                    (Não vencem, mas usa com sabedoria kkkk)
+                </p>
+
+                <div
+                    id="bdayVouchers"
+                    class="vouchers"
+                ></div>
+
+                <div
+                    id="bdayVoucherFeedback"
+                    class="voucher-feedback"
+                ></div>
+
+                <div class="bday-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="renderBirthdayCake()"
+                    >
+                        Último presente 🎂
+                    </button>
+
+                </div>
+
+            </div>
+
+        `);
+
+        renderBirthdayVoucherList();
+    }
+
+    function renderBirthdayVoucherList() {
+
+        const used = getUsedVouchers();
+
+        document.getElementById("bdayVouchers")
+            .innerHTML =
+                birthdayVouchers.map((v, index) => {
+
+                    const isUsed =
+                        used.includes(index);
+
+                    return `
+                        <div
+                            class="voucher ${isUsed ? "used" : ""}"
+                            onclick="redeemBirthdayVoucher(${index})"
+                        >
+                            <span class="voucher-icon">${v.icon}</span>
+                            <div class="voucher-text">${v.text}</div>
+                            <div class="voucher-hint">
+                                ${isUsed ? "já foi usado 💗" : "toca pra resgatar"}
+                            </div>
+                        </div>
+                    `;
+
+                }).join("");
+    }
+
+    function redeemBirthdayVoucher(index) {
+
+        const used = getUsedVouchers();
+
+        const feedback =
+            document.getElementById("bdayVoucherFeedback");
+
+        if (used.includes(index)) {
+
+            feedback.textContent =
+                "Esse você já usou, espertinha 😂";
+
+            return;
+        }
+
+        used.push(index);
+
+        saveUsedVouchers(used);
+
+        renderBirthdayVoucherList();
+
+        feedback.textContent =
+            "Vale resgatado! Agora tira print e manda pro Gabriel 📸💗";
+
+        createConfetti();
+    }
+
+    /* TELA 4 — BOLO */
+
+    function renderBirthdayCake() {
+
+        setBirthdayContent(`
+
+            <div class="bday-stage">
+
+                ${birthdayStepsHtml(4)}
+
+                <h2 class="bday-title">
+                    Faz um pedido... 🎂
+                </h2>
+
+                <p class="bday-text">
+                    Fecha o olho, pensa no seu pedido
+                    e toca na vela pra soprar. 🕯️
+                </p>
+
+                <div
+                    id="bdayCake"
+                    class="cake"
+                    onclick="blowBirthdayCandle()"
+                >
+
+                    <div class="cake-plate"></div>
+
+                    <div class="cake-bottom"></div>
+
+                    <div class="cake-top">
+                        <div class="cake-deco">🍓🍓🍓</div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="smoke">💨</div>
+
+                </div>
+
+                <div id="bdayFinal"></div>
+
+            </div>
+
+        `);
+    }
+
+    function blowBirthdayCandle() {
+
+        const cake =
+            document.getElementById("bdayCake");
+
+        if (cake.classList.contains("blown")) return;
+
+        cake.classList.add("blown");
+
+        createConfetti();
+
+        setTimeout(createConfetti, 500);
+
+        setTimeout(() => {
+
+            document.getElementById("bdayFinal")
+                .innerHTML = `
+
+                    <div class="bday-stage">
+
+                        <div class="bday-final-title">
+                            🎉 FELIZ ANIVERSÁRIO, ${BIRTHDAY_NAME.toUpperCase()}! 🎉
+                        </div>
+
+                        <p class="bday-text">
+                            Que todos os seus pedidos se realizem...<br>
+                            e que eu esteja em vários deles. 😌💗<br><br>
+                            Obrigado por existir e por me deixar
+                            fazer parte da sua vida.
+                        </p>
+
+                        <div class="signature">
+                            — Gabriel
+                        </div>
+
+                        <div class="bday-actions">
+
+                            <button
+                                class="secondary-btn"
+                                onclick="renderBirthdayLetter()"
+                            >
+                                Ver tudo de novo 🔁
+                            </button>
+
+                            <button
+                                class="primary-btn"
+                                onclick="closeBirthdayCapsule()"
+                            >
+                                Guardar no coração 💗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            document.getElementById("bdayFinal")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+
+        }, 900);
+    }
 
     /* ==================================================
        SENHA
@@ -3117,7 +4689,7 @@
                 <br><br>
 
                 "Olha só onde a gente estava..."
-                
+
             </div>
 
             <br>
@@ -3398,4 +4970,5 @@
 
 </script>
 
-</body> </html>
+</body>
+</html>
