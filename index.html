@@ -4018,6 +4018,177 @@
     }
 
     /* ==========================================
+       💾 BACKUP + 🌠 ESTRELA CADENTE
+    ========================================== */
+
+    .backup-summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        margin: 12px 0 4px;
+    }
+
+    .backup-summary span {
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        font-size: 12px;
+        color: var(--text-soft);
+    }
+
+    .backup-section {
+        margin-top: 16px;
+        padding: 14px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+    }
+
+    .backup-title {
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .backup-section .care-wide {
+        margin-top: 10px;
+    }
+
+    .backup-note {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.4;
+    }
+
+    .backup-code {
+        margin-top: 10px;
+        min-height: 70px;
+        font-size: 12px;
+        font-family: monospace;
+    }
+
+    .mm-backup-link {
+        margin-top: 8px;
+        padding: 6px 10px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    /* estrela cadente */
+
+    .shooting-star {
+        position: absolute;
+        top: 10%;
+        left: 85%;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 50%;
+        background: transparent;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .shooting-star::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 7px;
+        height: 7px;
+        margin: -3.5px 0 0 -3.5px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 8px 3px rgba(255, 240, 180, 0.9);
+    }
+
+    .shooting-star::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 46px;
+        height: 2px;
+        margin-top: -1px;
+        transform-origin: 0 50%;
+        transform: rotate(-32deg);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+        border-radius: 2px;
+    }
+
+    .shooting-star:hover,
+    .shooting-star:active {
+        transform: none;
+    }
+
+    .shooting-star.fly {
+        pointer-events: auto;
+        animation: starFly 1.9s ease-in forwards;
+    }
+
+    @keyframes starFly {
+        0% { opacity: 0; top: 8%; left: 88%; }
+        10% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 0; top: 62%; left: 5%; }
+    }
+
+    .shooting-star.caught {
+        animation: starCaught 0.7s ease-out forwards;
+    }
+
+    @keyframes starCaught {
+        0% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(3); }
+    }
+
+    .house-window.night .hw-sky::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(1.5px 1.5px at 20% 30%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 45% 60%, #fff 50%, transparent 51%),
+            radial-gradient(1.5px 1.5px at 70% 25%, #ffd27d 50%, transparent 51%),
+            radial-gradient(1px 1px at 30% 80%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 85% 70%, #fff 50%, transparent 51%);
+        animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
+    .wish-list-box {
+        margin-top: 10px;
+    }
+
+    .wish-list {
+        display: grid;
+        gap: 6px;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .wish-item {
+        padding: 10px 14px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.4;
+    }
+
+    .wish-item small {
+        display: block;
+        margin-top: 2px;
+        font-size: 11px;
+        color: var(--text-muted);
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -5669,6 +5840,112 @@
             class="cat-footer"
         ></div>
 
+        <button
+            class="mm-backup-link"
+            onclick="openBackup()"
+        >
+            💾 Backup da MM
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     💾 MODAL — BACKUP DA MM
+================================================== -->
+
+<div
+    id="backupOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('backupOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Backup da MM 💾
+        </h2>
+
+        <p class="fun-text">
+            Tudo da MM fica guardado só nesse celular. Salva um backup
+            pra nunca perder nada, nem se trocar de celular 🍊
+        </p>
+
+        <div
+            id="backupSummary"
+            class="backup-summary"
+        ></div>
+
+        <div class="backup-section">
+
+            <div class="backup-title">📥 Salvar</div>
+
+            <button
+                class="primary-btn care-wide"
+                onclick="downloadBackup()"
+            >
+                Baixar arquivo de backup
+            </button>
+
+            <button
+                class="secondary-btn care-wide"
+                onclick="copyBackupCode()"
+            >
+                Copiar código (pra mandar no WhatsApp)
+            </button>
+
+            <div class="backup-note">
+                O arquivo guarda tudo, até a foto da carteirinha.
+                O código guarda tudo menos a foto, pra ficar menor.
+            </div>
+
+        </div>
+
+        <div class="backup-section">
+
+            <div class="backup-title">📤 Restaurar</div>
+
+            <button
+                class="secondary-btn care-wide"
+                onclick="document.getElementById('backupFile').click()"
+            >
+                Escolher arquivo de backup
+            </button>
+
+            <input
+                id="backupFile"
+                type="file"
+                accept=".json,application/json,text/plain"
+                class="hidden"
+                onchange="restoreFromFile(this)"
+            >
+
+            <textarea
+                id="backupCodeInput"
+                class="backup-code"
+                placeholder="...ou cola o código de backup aqui"
+            ></textarea>
+
+            <button
+                class="secondary-btn care-wide"
+                onclick="restoreFromCode()"
+            >
+                Restaurar pelo código
+            </button>
+
+        </div>
+
+        <div
+            id="backupStatus"
+            class="voucher-feedback"
+        ></div>
+
     </div>
 
 </div>
@@ -5718,6 +5995,12 @@
                         class="hw-icon"
                     >☀️</span>
                     <div class="hw-rain"><i></i><i></i><i></i><i></i><i></i></div>
+                <button
+                    id="shootingStar"
+                    class="shooting-star"
+                    onclick="catchStar(event)"
+                    aria-label="Estrela cadente! Toque pra fazer um pedido"
+                ></button>
                 </div>
                 <div class="hw-cross"></div>
             </div>
@@ -5753,6 +6036,56 @@
             <div
                 id="houseBaby"
                 class="house-baby hidden"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="wishBox"
+            class="morse-guess wish-box hidden"
+        >
+
+            <div class="morse-guess-title">
+                🌠 Você pegou uma estrela cadente! Faz um pedido...
+            </div>
+
+            <div class="mm-teach-row">
+
+                <input
+                    id="wishInput"
+                    onkeydown="if (event.key === 'Enter') saveWish()"
+                    type="text"
+                    maxlength="120"
+                    placeholder="Eu desejo..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="primary-btn"
+                    onclick="saveWish()"
+                >
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="wishListBox"
+            class="wish-list-box hidden"
+        >
+
+            <button
+                id="wishListToggle"
+                class="secondary-btn care-wide"
+                onclick="toggleWishList()"
+            ></button>
+
+            <div
+                id="wishList"
+                class="wish-list hidden"
             ></div>
 
         </div>
@@ -9822,7 +10155,10 @@ Te amo muito.
 
         if (id === "catOverlay") saveCat();
 
-        if (id === "houseOverlay") stopMorse();
+        if (id === "houseOverlay") {
+            stopMorse();
+            stopStars();
+        }
     }
 
     document.addEventListener(
@@ -9835,7 +10171,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -10130,6 +10466,8 @@ Te amo muito.
                 line = wLine;
             } else if (phrases.length && Math.random() < 0.35) {
                 line = mmSays(pick(phrases));
+            } else if ((daysSinceBackup() === null || daysSinceBackup() >= 30) && cat.pets >= 10 && Math.random() < 0.3) {
+                line = "Psiu... faz tempo que você não salva meu backup 🥺💾 Tem um botãozinho lá embaixo!";
             }
         }
 
@@ -12120,7 +12458,7 @@ Te amo muito.
         // janela com o céu de Rio Preto agora
         const win = document.getElementById("houseWindow");
         const hour = new Date().getHours();
-        const night = hour >= 19 || hour < 6;
+        const night = isHouseNight();
         const kind = weatherKind();
 
         win.className = "house-window" +
@@ -12151,8 +12489,15 @@ Te amo muito.
 
         startMorse();
 
+        document.getElementById("wishBox").classList.add("hidden");
+        document.getElementById("wishList").classList.add("hidden");
+        renderWishList();
+        scheduleStar();
+
         document.getElementById("houseSpeech").textContent =
-            baby
+            isHouseNight() && !getWishes().length
+                ? "Boa noite! Fica de olho na janela... às vezes passa estrela cadente 🌠"
+                : baby
                 ? `Bem-vinda! O ${baby.name} tá brincando aqui do lado 🍼`
                 : "Bem-vinda à minha casinha! Me ajuda a decorar? 🏡";
 
@@ -12408,6 +12753,450 @@ Te amo muito.
             "Aqui é o cantinho mais quentinho do mundo 💗",
             "Quando você vier, a casa é sua também 🍊"
         ]));
+    }
+
+    /* ==================================================
+       💾 BACKUP DA MM
+    ================================================== */
+
+    // tudo que o site guarda no celular
+    const BACKUP_KEYS = [
+        "mmCapivara", "mmVisitsGG", "mmBaby", "mmWishes",
+        "hugsSent", "idCardPhoto",
+        "siteTheme", "siteLightTheme", "siteSounds",
+        "careChecklist",
+        "loveQuestion", "lovePlaylist", "loveCapsule"
+    ];
+
+    const BACKUP_PREFIXES = ["birthdayVouchersUsed"];
+
+    const LAST_BACKUP_KEY = "mmLastBackup";
+
+    function collectBackup(includePhoto) {
+
+        const data = {};
+
+        try {
+
+            for (let i = 0; i < localStorage.length; i++) {
+
+                const key = localStorage.key(i);
+
+                const wanted =
+                    BACKUP_KEYS.includes(key) ||
+                    BACKUP_PREFIXES.some(p => key.startsWith(p));
+
+                if (!wanted) continue;
+                if (!includePhoto && key === "idCardPhoto") continue;
+
+                data[key] = localStorage.getItem(key);
+            }
+
+        } catch (e) {}
+
+        return {
+            app: "roleta-diane-gabriel",
+            version: 1,
+            savedAt: new Date().toISOString(),
+            data
+        };
+    }
+
+    function markBackupDone() {
+
+        try {
+            localStorage.setItem(LAST_BACKUP_KEY, String(Date.now()));
+        } catch (e) {}
+
+        renderBackupSummary();
+    }
+
+    function daysSinceBackup() {
+
+        let last = 0;
+
+        try { last = Number(localStorage.getItem(LAST_BACKUP_KEY) || 0); } catch (e) {}
+
+        return last ? Math.floor((Date.now() - last) / 86400000) : null;
+    }
+
+    function renderBackupSummary() {
+
+        if (!cat) loadCat();
+
+        const baby = getBaby();
+        const days = daysSinceBackup();
+
+        const parts = [
+            `💗 ${cat.pets} carinhos`,
+            `👗 ${(cat.outfit || []).length} roupinhas usando`,
+            `🏡 ${(cat.house || []).length} móveis`,
+            baby ? `🍼 ${escapeHtml(baby.name)}` : null,
+            days === null
+                ? "💾 nunca salvou backup"
+                : days === 0
+                    ? "💾 backup salvo hoje ✓"
+                    : `💾 último backup há ${plural(days, "dia", "dias")}`
+        ].filter(Boolean);
+
+        document.getElementById("backupSummary").innerHTML =
+            parts.map(p => `<span>${p}</span>`).join("");
+    }
+
+    function openBackup() {
+
+        closeFunModal("catOverlay");
+
+        document.getElementById("backupStatus").textContent = "";
+        document.getElementById("backupCodeInput").value = "";
+
+        renderBackupSummary();
+
+        openFunModal("backupOverlay");
+    }
+
+    function downloadBackup() {
+
+        saveCat();
+
+        const backup = collectBackup(true);
+        const json = JSON.stringify(backup, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+
+        a.href = url;
+        a.download = `backup-mm-${todayKey()}.json`;
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+        markBackupDone();
+
+        document.getElementById("backupStatus").textContent =
+            "Backup baixado! Guarda esse arquivo num lugar seguro 💾🍊";
+
+        sfx("yay");
+    }
+
+    function encodeBackup(obj) {
+
+        const json = JSON.stringify(obj);
+
+        return "MM1:" + btoa(unescape(encodeURIComponent(json)));
+    }
+
+    function decodeBackup(code) {
+
+        const clean = code.trim();
+
+        if (clean.startsWith("{")) return JSON.parse(clean);
+
+        if (!clean.startsWith("MM1:")) throw new Error("código inválido");
+
+        return JSON.parse(decodeURIComponent(escape(atob(clean.slice(4)))));
+    }
+
+    async function copyBackupCode() {
+
+        saveCat();
+
+        const code = encodeBackup(collectBackup(false));
+        const status = document.getElementById("backupStatus");
+
+        try {
+
+            await navigator.clipboard.writeText(code);
+
+            status.textContent =
+                "Código copiado! Manda pro Gabriel guardar ou salva no seu WhatsApp 💌";
+
+        } catch (e) {
+
+            const box = document.getElementById("backupCodeInput");
+
+            box.value = code;
+            box.select();
+
+            status.textContent =
+                "Não consegui copiar sozinho 🥺 O código tá na caixinha de baixo, é só copiar.";
+        }
+
+        markBackupDone();
+        sfx("yay");
+    }
+
+    let pendingBackup = null;
+
+    function applyBackup(backup) {
+
+        const status = document.getElementById("backupStatus");
+
+        if (!backup || backup.app !== "roleta-diane-gabriel" || !backup.data) {
+            status.textContent = "Hmm, esse backup não parece ser da MM 🤔";
+            return;
+        }
+
+        pendingBackup = backup;
+
+        const when = new Date(backup.savedAt).toLocaleDateString("pt-BR");
+
+        status.innerHTML = `
+            Achei um backup de ${when} 🍊<br>
+            Ele vai substituir o que tá nesse celular agora. Pode restaurar?
+            <div class="bday-actions">
+                <button class="secondary-btn" onclick="cancelRestore()">Não</button>
+                <button class="primary-btn" onclick="doRestore()">Sim, restaurar ✓</button>
+            </div>
+        `;
+    }
+
+    function cancelRestore() {
+
+        pendingBackup = null;
+
+        document.getElementById("backupStatus").textContent = "Tudo bem, não mudei nada 💗";
+    }
+
+    function doRestore() {
+
+        const status = document.getElementById("backupStatus");
+
+        if (!pendingBackup) return;
+
+        try {
+
+            Object.entries(pendingBackup.data).forEach(([k, v]) => {
+
+                const wanted =
+                    BACKUP_KEYS.includes(k) ||
+                    BACKUP_PREFIXES.some(p => k.startsWith(p));
+
+                if (wanted && typeof v === "string") {
+                    localStorage.setItem(k, v);
+                }
+            });
+
+            localStorage.setItem(LAST_BACKUP_KEY, String(Date.now()));
+
+        } catch (e) {
+
+            status.textContent = "Não consegui restaurar 🥺 Tenta de novo?";
+            return;
+        }
+
+        pendingBackup = null;
+
+        status.textContent = "Tudo restaurado! A MM voltou 🍊💗 Recarregando...";
+
+        sfx("yay");
+        createConfetti();
+
+        setTimeout(() => window.location.reload(), 1600);
+    }
+
+    function restoreFromFile(input) {
+
+        const file = input.files && input.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+
+            try {
+                applyBackup(decodeBackup(String(reader.result)));
+            } catch (e) {
+                document.getElementById("backupStatus").textContent =
+                    "Esse arquivo não abriu 🥺 É o arquivo de backup da MM mesmo?";
+            }
+        };
+
+        reader.readAsText(file);
+
+        input.value = "";
+    }
+
+    function restoreFromCode() {
+
+        const code = document.getElementById("backupCodeInput").value;
+
+        if (!code.trim()) {
+            document.getElementById("backupStatus").textContent =
+                "Cola o código de backup na caixinha primeiro 💗";
+            return;
+        }
+
+        try {
+            applyBackup(decodeBackup(code));
+        } catch (e) {
+            document.getElementById("backupStatus").textContent =
+                "Esse código não funcionou 🥺 Confere se copiou ele inteirinho?";
+        }
+    }
+
+    /* ==================================================
+       🌠 ESTRELA CADENTE NA JANELA DA CASINHA
+    ================================================== */
+
+    // 🧪 Pra testar de dia: ?estrela=teste
+    const STAR_TEST =
+        new URLSearchParams(window.location.search).get("estrela") === "teste";
+
+    const WISHES_KEY = "mmWishes";
+
+    let starTimer = null;
+    let starFlyTimer = null;
+
+    function isHouseNight() {
+
+        const h = new Date().getHours();
+
+        return STAR_TEST || h >= 19 || h < 6;
+    }
+
+    function scheduleStar() {
+
+        clearTimeout(starTimer);
+
+        if (!isHouseNight()) return;
+
+        const wait = STAR_TEST
+            ? 2500
+            : 9000 + Math.random() * 12000;
+
+        starTimer = setTimeout(launchStar, wait);
+    }
+
+    function launchStar() {
+
+        const star = document.getElementById("shootingStar");
+
+        if (!star || document.getElementById("houseOverlay").classList.contains("hidden")) return;
+
+        star.classList.remove("fly", "caught");
+        void star.offsetWidth;
+        star.classList.add("fly");
+
+        clearTimeout(starFlyTimer);
+
+        starFlyTimer = setTimeout(() => {
+            star.classList.remove("fly");
+            scheduleStar();
+        }, 1950);
+    }
+
+    function stopStars() {
+
+        clearTimeout(starTimer);
+        clearTimeout(starFlyTimer);
+
+        const star = document.getElementById("shootingStar");
+
+        if (star) star.classList.remove("fly", "caught");
+    }
+
+    function catchStar(event) {
+
+        if (event) event.stopPropagation();
+
+        const star = document.getElementById("shootingStar");
+
+        if (!star.classList.contains("fly")) return;
+
+        clearTimeout(starFlyTimer);
+
+        star.classList.remove("fly");
+        void star.offsetWidth;
+        star.classList.add("caught");
+
+        sfx("baby");
+
+        document.getElementById("wishBox").classList.remove("hidden");
+
+        setHouseSpeech("Você pegou uma estrela cadente!! 🌠 Rápido, faz um pedido!");
+
+        setTimeout(() => document.getElementById("wishInput").focus(), 150);
+
+        setTimeout(() => {
+            star.classList.remove("caught");
+            scheduleStar();
+        }, 800);
+    }
+
+    function getWishes() {
+
+        return readStore(WISHES_KEY, []);
+    }
+
+    function saveWish() {
+
+        const input = document.getElementById("wishInput");
+        const text = input.value.trim();
+
+        if (!text) {
+            input.focus();
+            return;
+        }
+
+        const wishes = getWishes();
+
+        wishes.unshift({ text, at: Date.now() });
+
+        writeStore(WISHES_KEY, wishes.slice(0, 50));
+
+        input.value = "";
+
+        document.getElementById("wishBox").classList.add("hidden");
+
+        renderWishList();
+
+        setHouseSpeech(pick([
+            "Pedido guardado 🌠 Eu tô torcendo junto, viu?",
+            "Anotei! Agora é só esperar o universo trabalhar ✨",
+            "Que pedido lindo... tomara que se realize logo 🥹"
+        ]));
+
+        sfx("yay");
+    }
+
+    function renderWishList() {
+
+        const wishes = getWishes();
+        const box = document.getElementById("wishListBox");
+
+        if (!wishes.length) {
+            box.classList.add("hidden");
+            return;
+        }
+
+        box.classList.remove("hidden");
+
+        const open = !document.getElementById("wishList").classList.contains("hidden");
+
+        document.getElementById("wishListToggle").textContent =
+            open
+                ? "Esconder meus pedidos"
+                : `🌠 Ver meus pedidos (${wishes.length})`;
+
+        document.getElementById("wishList").innerHTML =
+            wishes.map(w => `
+                <div class="wish-item">
+                    ${escapeHtml(w.text)}
+                    <small>🌠 ${new Date(w.at).toLocaleDateString("pt-BR")}</small>
+                </div>
+            `).join("");
+    }
+
+    function toggleWishList() {
+
+        document.getElementById("wishList").classList.toggle("hidden");
+
+        renderWishList();
     }
 
     /* ==================================================
