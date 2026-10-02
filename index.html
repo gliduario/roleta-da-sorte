@@ -1816,6 +1816,701 @@
     }
 
     /* ==========================================
+       ✨ MINI CARDS (capivara, distância, carteirinha)
+    ========================================== */
+
+    .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .mini-card {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--border);
+        border-radius: 24px;
+        padding: 20px 14px;
+        text-align: center;
+        cursor: pointer;
+        background: var(--surface-soft);
+        transition:
+            transform 0.3s cubic-bezier(.34, 1.8, .64, 1),
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .mini-card:nth-child(1) { background: radial-gradient(circle at top, var(--pink-glow), transparent 65%), var(--surface-soft); }
+    .mini-card:nth-child(2) { background: radial-gradient(circle at top, var(--blue-glow), transparent 65%), var(--surface-soft); }
+    .mini-card:nth-child(3) { background: radial-gradient(circle at top, var(--warm-glow), transparent 65%), var(--surface-soft); }
+
+    .mini-card:hover {
+        transform: translateY(-5px) rotate(-1deg);
+        border-color: var(--border-strong);
+        box-shadow: 0 12px 26px var(--shadow);
+    }
+
+    .mini-card:active {
+        transform: scale(0.95);
+        transition-duration: 0.08s;
+    }
+
+    .mini-icon {
+        font-size: 40px;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .mini-title {
+        color: var(--accent);
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .mini-desc {
+        color: var(--text-soft);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        color: var(--chip-text);
+    }
+
+    /* modal genérico dessas partes */
+
+    .fun-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 2500;
+        background: var(--overlay);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .fun-modal {
+        position: relative;
+        width: min(100%, 540px);
+        max-height: 92vh;
+        overflow-y: auto;
+        background:
+            radial-gradient(circle at top left, var(--pink-glow), transparent 50%),
+            radial-gradient(circle at bottom right, var(--blue-glow), transparent 50%),
+            var(--surface-solid);
+        border: 2px solid var(--border);
+        border-radius: 32px;
+        padding: 34px 24px 26px;
+        text-align: center;
+        box-shadow: 0 25px 80px var(--shadow);
+        animation: modalIn 0.45s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .fun-title {
+        color: var(--accent);
+        font-size: clamp(24px, 5vw, 30px);
+        margin-bottom: 6px;
+    }
+
+    .fun-text {
+        color: var(--text-soft);
+        line-height: 1.6;
+    }
+
+    /* ==========================================
+       🍊 CAPIVARA MM
+    ========================================== */
+
+    .cat-stage {
+        position: relative;
+        width: 230px;
+        height: 210px;
+        margin: 10px auto 0;
+    }
+
+    .cat-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .cat-body-group {
+        transform-origin: 115px 190px;
+        animation: catBreath 3s ease-in-out infinite;
+    }
+
+    @keyframes catBreath {
+        0%, 100% { transform: scale(1, 1); }
+        50% { transform: scale(1.02, 0.98); }
+    }
+
+    .cat-tail {
+        transform-origin: 160px 170px;
+        animation: tailWag 2.4s ease-in-out infinite;
+    }
+
+    @keyframes tailWag {
+        0%, 100% { transform: rotate(-6deg); }
+        50% { transform: rotate(10deg); }
+    }
+
+    .cat-stage.happy .cat-tail {
+        animation-duration: 0.7s;
+    }
+
+    .cat-eye-open {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: catBlink 4.5s infinite;
+    }
+
+    @keyframes catBlink {
+        0%, 92%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.1); }
+    }
+
+    .cat-eyes-happy,
+    .cat-eyes-sleep,
+    .cat-eyes-sad,
+    .cat-zzz,
+    .cat-tear {
+        display: none;
+    }
+
+    .cat-stage.happy .cat-eyes-open,
+    .cat-stage.sleep .cat-eyes-open,
+    .cat-stage.sad .cat-eyes-open {
+        display: none;
+    }
+
+    .cat-stage.happy .cat-eyes-happy { display: inline; }
+    .cat-stage.sleep .cat-eyes-sleep { display: inline; }
+    .cat-stage.sleep .cat-zzz { display: inline; }
+    .cat-stage.sad .cat-eyes-sad { display: inline; }
+    .cat-stage.sad .cat-tear { display: inline; }
+
+    .cat-zzz {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 700;
+        fill: var(--accent-3);
+        animation: zzz 2.4s ease-in-out infinite;
+    }
+
+    @keyframes zzz {
+        0% { opacity: 0; transform: translate(0, 6px); }
+        50% { opacity: 1; }
+        100% { opacity: 0; transform: translate(10px, -14px); }
+    }
+
+    .cat-stage.bounce .cat-body-group {
+        animation: catBounce 0.5s cubic-bezier(.34, 1.8, .64, 1);
+    }
+
+    @keyframes catBounce {
+        0% { transform: scale(1, 1); }
+        30% { transform: scale(1.08, 0.9); }
+        60% { transform: scale(0.95, 1.08) translateY(-10px); }
+        100% { transform: scale(1, 1); }
+    }
+
+    .cat-pop {
+        position: absolute;
+        pointer-events: none;
+        font-size: 24px;
+        animation: catPop 1.2s ease-out forwards;
+    }
+
+    @keyframes catPop {
+        from { opacity: 1; transform: translate(-50%, 0) scale(0.6); }
+        to { opacity: 0; transform: translate(-50%, -80px) scale(1.3); }
+    }
+
+    .cat-speech {
+        position: relative;
+        display: inline-block;
+        max-width: 100%;
+        margin: 4px auto 8px;
+        padding: 12px 18px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        font-weight: 500;
+        line-height: 1.4;
+        min-height: 48px;
+    }
+
+    .cat-speech::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        margin-left: -8px;
+        background: var(--surface-soft);
+        border-right: 2px solid var(--border);
+        border-bottom: 2px solid var(--border);
+        transform: rotate(45deg);
+    }
+
+    .cat-speech.pop {
+        animation: reasonPop 0.4s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .cat-stats {
+        display: grid;
+        gap: 10px;
+        margin: 14px 0 6px;
+        text-align: left;
+    }
+
+    .cat-stat-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: var(--text-soft);
+        margin-bottom: 4px;
+    }
+
+    .cat-stat-bar {
+        height: 12px;
+        border-radius: 999px;
+        background: var(--surface-tint);
+        overflow: hidden;
+    }
+
+    .cat-stat-fill {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.6s cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    .cat-stat-fill.love { background: linear-gradient(90deg, #ff9cc2, #ff6aa8); }
+    .cat-stat-fill.food { background: linear-gradient(90deg, #ffd99a, #ffb35c); }
+    .cat-stat-fill.fun { background: linear-gradient(90deg, #a9d8ff, #8e8cf0); }
+
+    .cat-actions {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .cat-actions button {
+        padding: 12px 4px;
+        font-size: 13px;
+        line-height: 1.3;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    .cat-actions button span {
+        display: block;
+        font-size: 24px;
+    }
+
+    .cat-footer {
+        margin-top: 14px;
+        color: var(--text-muted);
+        font-size: 13px;
+    }
+
+    /* ==========================================
+       🗺️ MAPA DA DISTÂNCIA
+    ========================================== */
+
+    .map-box {
+        position: relative;
+        margin: 16px 0 10px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid var(--border);
+        background: var(--surface-soft);
+    }
+
+    .map-svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .map-state-pr { fill: var(--blob-2); }
+    .map-state-sp { fill: var(--blob-1); }
+    .map-river { stroke: var(--accent-2); }
+    .map-label { fill: var(--text-muted); font-family: "Fredoka", sans-serif; font-weight: 600; }
+    .map-city { fill: var(--text); font-family: "Fredoka", sans-serif; font-weight: 600; }
+    .map-path { stroke: var(--accent); }
+
+    .map-path-anim {
+        stroke-dasharray: 8 10;
+        animation: dashMove 1.2s linear infinite;
+    }
+
+    @keyframes dashMove {
+        to { stroke-dashoffset: -36; }
+    }
+
+    .map-pin {
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+        animation: pinBob 2s ease-in-out infinite;
+    }
+
+    .map-pin.two {
+        animation-delay: 1s;
+    }
+
+    @keyframes pinBob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+
+    .map-km {
+        font-size: clamp(38px, 10vw, 56px);
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        margin-top: 8px;
+    }
+
+    .map-km small {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    .map-heart-line {
+        font-family: "Caveat", cursive;
+        font-size: 28px;
+        color: var(--accent-3);
+        margin: 6px 0 14px;
+    }
+
+    .map-facts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .map-fact {
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        border-radius: 18px;
+        padding: 12px 6px;
+        font-size: 12px;
+        color: var(--text-soft);
+        line-height: 1.35;
+    }
+
+    .map-fact b {
+        display: block;
+        font-size: 18px;
+        color: var(--text);
+        margin: 2px 0;
+    }
+
+    .hug-counter {
+        margin-top: 10px;
+        color: var(--text-muted);
+        font-size: 13px;
+    }
+
+    /* ==========================================
+       🪪 CARTEIRINHA DE FUTURA ESPOSA OFICIAL
+    ========================================== */
+
+    .id-scene {
+        perspective: 1200px;
+        margin: 16px auto 8px;
+        width: min(100%, 440px);
+    }
+
+    .id-card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1.586;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(.34, 1.3, .64, 1);
+        cursor: pointer;
+    }
+
+    .id-card.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .id-face {
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        text-align: left;
+        color: #4a3a52;
+        background:
+            radial-gradient(circle at 15% 20%, #ffd6e8 0%, transparent 45%),
+            radial-gradient(circle at 90% 85%, #cfe6ff 0%, transparent 45%),
+            linear-gradient(135deg, #fff7fb, #f5f0ff);
+        border: 2px solid #ffffff;
+        box-shadow: 0 18px 40px rgba(120, 70, 140, 0.28);
+    }
+
+    .id-face::after {
+        /* brilho holográfico */
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+            115deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.55) 45%,
+            rgba(255, 200, 230, 0.35) 50%,
+            rgba(190, 220, 255, 0.35) 55%,
+            transparent 70%
+        );
+        background-size: 250% 100%;
+        animation: holo 4s ease-in-out infinite;
+        mix-blend-mode: soft-light;
+    }
+
+    @keyframes holo {
+        0%, 100% { background-position: 100% 0; }
+        50% { background-position: 0% 0; }
+    }
+
+    .id-back {
+        transform: rotateY(180deg);
+        padding: 14px 18px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .id-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        background: linear-gradient(90deg, #f06aa0, #8e8cf0);
+        color: #ffffff;
+    }
+
+    .id-header-emblem {
+        font-size: 20px;
+    }
+
+    .id-header-text {
+        line-height: 1.1;
+    }
+
+    .id-header-text small {
+        display: block;
+        font-size: clamp(7px, 1.8vw, 9px);
+        letter-spacing: 1.2px;
+        opacity: 0.9;
+    }
+
+    .id-header-text strong {
+        font-size: clamp(10px, 2.8vw, 14px);
+        letter-spacing: 0.5px;
+    }
+
+    .id-body {
+        display: flex;
+        gap: 12px;
+        padding: 10px 14px 0;
+    }
+
+    .id-photo {
+        position: relative;
+        flex-shrink: 0;
+        width: 28%;
+        aspect-ratio: 3 / 4;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 3px solid #ffffff;
+        box-shadow: 0 4px 12px rgba(120, 70, 140, 0.2);
+        background: linear-gradient(160deg, #ffc8dd, #cdb4db);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(30px, 9vw, 46px);
+    }
+
+    .id-photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .id-photo-hint {
+        position: absolute;
+        bottom: 3px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 8px;
+        color: #ffffff;
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .id-fields {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 10px;
+        align-content: start;
+        min-width: 0;
+    }
+
+    .id-field {
+        min-width: 0;
+    }
+
+    .id-field.full {
+        grid-column: 1 / -1;
+    }
+
+    .id-field small {
+        display: block;
+        font-size: clamp(6px, 1.7vw, 8px);
+        letter-spacing: 1px;
+        color: #a06a8c;
+        font-weight: 700;
+    }
+
+    .id-field span {
+        display: block;
+        font-size: clamp(9px, 2.6vw, 13px);
+        font-weight: 600;
+        color: #4a3a52;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .id-cute-bar {
+        height: 7px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #ff9cc2, #f06aa0, #8e8cf0);
+        margin-top: 3px;
+        position: relative;
+    }
+
+    .id-footer {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 10px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .id-signature {
+        font-family: "Caveat", cursive;
+        font-size: clamp(16px, 4.6vw, 24px);
+        color: #6c4fa0;
+        line-height: 1;
+        border-bottom: 1px solid #c9b3dd;
+        padding: 0 6px 1px;
+    }
+
+    .id-signature small {
+        display: block;
+        font-family: "Fredoka", sans-serif;
+        font-size: clamp(6px, 1.6vw, 8px);
+        letter-spacing: 1px;
+        color: #a06a8c;
+        margin-top: 2px;
+    }
+
+    .id-stamp {
+        flex-shrink: 0;
+        width: clamp(46px, 13vw, 62px);
+        height: clamp(46px, 13vw, 62px);
+        border-radius: 50%;
+        border: 2px dashed #e0568f;
+        color: #e0568f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(6px, 1.6vw, 8px);
+        font-weight: 700;
+        line-height: 1.15;
+        transform: rotate(-14deg);
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .id-qr {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        width: clamp(34px, 10vw, 46px);
+        flex-shrink: 0;
+    }
+
+    .id-qr i {
+        aspect-ratio: 1;
+        border-radius: 1px;
+    }
+
+    .id-back-title {
+        font-size: clamp(11px, 3vw, 15px);
+        font-weight: 700;
+        color: #e0568f;
+        margin-bottom: 4px;
+    }
+
+    .id-back-list {
+        list-style: none;
+        font-size: clamp(8.5px, 2.4vw, 12px);
+        color: #4a3a52;
+        line-height: 1.45;
+    }
+
+    .id-back-list li::before {
+        content: "💗 ";
+    }
+
+    .id-back-note {
+        margin-top: auto;
+        font-size: clamp(7px, 1.9vw, 9px);
+        color: #a06a8c;
+        text-align: center;
+    }
+
+    .id-hint {
+        color: var(--text-muted);
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -1883,6 +2578,48 @@
 
         .bday-countdown {
             gap: 6px;
+        }
+
+        .mini-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .mini-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 14px;
+            align-items: center;
+            text-align: left;
+            padding: 16px 18px;
+        }
+
+        .mini-icon {
+            grid-row: span 2;
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .cat-actions {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .map-facts {
+            gap: 6px;
+        }
+    }
+
+    @media (max-width: 520px) {
+
+        .id-card {
+            aspect-ratio: 1.12;
+        }
+
+        .id-qr {
+            display: none;
+        }
+
+        .id-body {
+            gap: 10px;
         }
     }
 
@@ -2066,6 +2803,87 @@
             <span class="coming-soon">
                 EM BREVE
             </span>
+
+        </div>
+
+        <!-- ==========================================
+             ✨ MINI CARDS
+        ========================================== -->
+
+        <div class="mini-grid">
+
+            <div
+                class="mini-card"
+                onclick="openCat()"
+            >
+                <span
+                    id="catBadge"
+                    class="mini-badge"
+                >🍊</span>
+
+                <span class="mini-icon">
+                    <svg viewBox="0 0 60 50" width="46" height="40" aria-hidden="true" style="vertical-align: middle;">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#c79a6b" stroke="#5a4036" stroke-width="2"/>
+                        <circle cx="30" cy="8" r="6" fill="#ffa94d" stroke="#5a4036" stroke-width="1.5"/>
+                        <path d="M30 2 Q34 -2 37 1 Q33 4 30 2Z" fill="#7cc97a"/>
+                        <path d="M14 24 Q18 27 22 24 M38 24 Q42 27 46 24" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#a77750" stroke="#5a4036" stroke-width="1.5"/>
+                        <circle cx="25" cy="34" r="1.6" fill="#2e211f"/>
+                        <circle cx="35" cy="34" r="1.6" fill="#2e211f"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </svg>
+                </span>
+
+                <div class="mini-title">
+                    MM
+                </div>
+
+                <div class="mini-desc">
+                    Nossa capivara virtual.
+                    Ela sente sua falta! 🥺
+                </div>
+            </div>
+
+            <div
+                class="mini-card"
+                onclick="openMap()"
+            >
+                <span
+                    id="mapBadge"
+                    class="mini-badge"
+                >333 km</span>
+
+                <span class="mini-icon">🗺️</span>
+
+                <div class="mini-title">
+                    Daqui até você
+                </div>
+
+                <div class="mini-desc">
+                    Londrina 💙 Rio Preto
+                </div>
+            </div>
+
+            <div
+                class="mini-card"
+                onclick="openIdCard()"
+            >
+                <span class="mini-badge">OFICIAL</span>
+
+                <span class="mini-icon">🪪</span>
+
+                <div class="mini-title">
+                    Carteirinha
+                </div>
+
+                <div class="mini-desc">
+                    Futura esposa oficial,
+                    com validade eterna
+                </div>
+            </div>
 
         </div>
 
@@ -2456,6 +3274,510 @@
         </button>
 
         <div id="bdayContent"></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🍊 MODAL — CAPIVARA MM
+================================================== -->
+
+<div
+    id="catOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('catOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            MM 🍊
+        </h2>
+
+        <div
+            id="catSpeech"
+            class="cat-speech"
+        >Kiu kiu! 💗</div>
+
+        <div
+            id="catStage"
+            class="cat-stage"
+        >
+
+            <svg
+                class="cat-svg"
+                viewBox="0 0 230 210"
+                onclick="catAction('pet')"
+                aria-label="Capivara MM, toque para fazer carinho"
+            >
+
+                <ellipse cx="115" cy="201" rx="82" ry="8" fill="rgba(90,60,100,0.15)"/>
+
+                <g class="cat-body-group">
+
+                    <!-- corpinho -->
+                    <ellipse cx="118" cy="152" rx="80" ry="46" fill="#b98a5e" stroke="#5a4036" stroke-width="3"/>
+
+                    <!-- perninhas -->
+                    <rect x="58" y="176" width="20" height="24" rx="9" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+                    <rect x="86" y="180" width="20" height="21" rx="9" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+                    <rect x="138" y="180" width="20" height="21" rx="9" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+                    <rect x="164" y="176" width="20" height="24" rx="9" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+
+                    <!-- orelhinhas -->
+                    <ellipse cx="66" cy="58" rx="13" ry="11" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+                    <ellipse cx="168" cy="58" rx="13" ry="11" fill="#a77750" stroke="#5a4036" stroke-width="3"/>
+                    <ellipse cx="66" cy="59" rx="6" ry="5" fill="#7d5538"/>
+                    <ellipse cx="168" cy="59" rx="6" ry="5" fill="#7d5538"/>
+
+                    <!-- cabeção quadradinho -->
+                    <rect x="50" y="50" width="134" height="104" rx="48" fill="#c79a6b" stroke="#5a4036" stroke-width="3"/>
+
+                    <!-- laranjinha na cabeça (clássico de capivara) -->
+                    <g transform="translate(117 40)">
+                        <circle r="15" fill="#ffa94d" stroke="#5a4036" stroke-width="2.5"/>
+                        <circle cx="-5" cy="-4" r="3" fill="#ffd29b"/>
+                        <path d="M0 -15 Q8 -26 16 -20 Q8 -12 0 -15 Z" fill="#7cc97a" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+                    </g>
+
+                    <!-- lacinho -->
+                    <g transform="translate(176 66) rotate(20)">
+                        <path d="M0 0 L-13 -8 L-13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M0 0 L13 -8 L13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+                        <circle r="4" fill="#ff6aa8" stroke="#5a4036" stroke-width="2"/>
+                    </g>
+
+                    <!-- olhos abertos -->
+                    <g class="cat-eyes-open">
+                        <ellipse class="cat-eye-open" cx="86" cy="92" rx="6.5" ry="7.5" fill="#2e211f"/>
+                        <ellipse class="cat-eye-open" cx="148" cy="92" rx="6.5" ry="7.5" fill="#2e211f"/>
+                        <circle cx="88" cy="89" r="2.4" fill="#ffffff"/>
+                        <circle cx="150" cy="89" r="2.4" fill="#ffffff"/>
+                    </g>
+
+                    <!-- olhos felizes ^ ^ -->
+                    <g class="cat-eyes-happy" fill="none" stroke="#2e211f" stroke-width="4" stroke-linecap="round">
+                        <path d="M78 95 Q86 84 94 95"/>
+                        <path d="M140 95 Q148 84 156 95"/>
+                    </g>
+
+                    <!-- olhos dormindo (o jeitinho mais capivara de todos) -->
+                    <g class="cat-eyes-sleep" fill="none" stroke="#2e211f" stroke-width="4" stroke-linecap="round">
+                        <path d="M78 92 Q86 99 94 92"/>
+                        <path d="M140 92 Q148 99 156 92"/>
+                    </g>
+
+                    <!-- olhos tristinhos -->
+                    <g class="cat-eyes-sad">
+                        <ellipse cx="86" cy="94" rx="6" ry="7" fill="#2e211f"/>
+                        <ellipse cx="148" cy="94" rx="6" ry="7" fill="#2e211f"/>
+                        <circle cx="88" cy="91" r="2" fill="#ffffff"/>
+                        <circle cx="150" cy="91" r="2" fill="#ffffff"/>
+                        <path d="M75 84 L93 78 M159 84 L141 78" stroke="#2e211f" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+
+                    <path class="cat-tear" d="M80 103 Q75 112 80 117 Q85 112 80 103 Z" fill="#8fd3ee"/>
+
+                    <!-- bochechas -->
+                    <ellipse cx="68" cy="112" rx="10" ry="6" fill="#ffb3cc" opacity="0.75"/>
+                    <ellipse cx="166" cy="112" rx="10" ry="6" fill="#ffb3cc" opacity="0.75"/>
+
+                    <!-- focinho grandão -->
+                    <rect x="80" y="100" width="74" height="44" rx="22" fill="#a77750" stroke="#5a4036" stroke-width="2.5"/>
+                    <ellipse cx="105" cy="113" rx="5" ry="3.5" fill="#3d2a24"/>
+                    <ellipse cx="129" cy="113" rx="5" ry="3.5" fill="#3d2a24"/>
+                    <path d="M108 128 Q117 135 126 128" fill="none" stroke="#3d2a24" stroke-width="2.5" stroke-linecap="round"/>
+
+                </g>
+
+                <text class="cat-zzz" x="172" y="44" font-size="22">z</text>
+                <text class="cat-zzz" x="186" y="28" font-size="16" style="animation-delay: 0.8s">z</text>
+
+            </svg>
+
+        </div>
+
+        <div class="cat-stats">
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>💗 Carinho</span>
+                    <span id="catLoveText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="catLoveBar" class="cat-stat-fill love"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>🍉 Barriguinha</span>
+                    <span id="catFoodText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="catFoodBar" class="cat-stat-fill food"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>💦 Diversão</span>
+                    <span id="catFunText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="catFunBar" class="cat-stat-fill fun"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cat-actions">
+
+            <button onclick="catAction('pet')">
+                <span>🤚</span>Carinho
+            </button>
+
+            <button onclick="catAction('feed')">
+                <span>🍉</span>Petisco
+            </button>
+
+            <button onclick="catAction('play')">
+                <span>💦</span>Banho
+            </button>
+
+            <button onclick="catAction('note')">
+                <span>💌</span>Recado
+            </button>
+
+        </div>
+
+        <div
+            id="catFooter"
+            class="cat-footer"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🗺️ MODAL — DAQUI ATÉ VOCÊ
+================================================== -->
+
+<div
+    id="mapOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('mapOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Daqui até você 🗺️
+        </h2>
+
+        <p class="fun-text">
+            De Londrina até Rio Preto,
+            separados só por um rio e alguns quilômetros...
+        </p>
+
+        <div class="map-box">
+
+            <svg
+                id="mapSvg"
+                class="map-svg"
+                viewBox="0 0 400 260"
+            >
+
+                <!-- São Paulo (em cima) -->
+                <path
+                    class="map-state-sp"
+                    d="M0 0 H400 V175 C330 190 260 145 190 160 C120 175 80 140 0 150 Z"
+                />
+
+                <!-- Paraná (embaixo) -->
+                <path
+                    class="map-state-pr"
+                    d="M0 150 C80 140 120 175 190 160 C260 145 330 190 400 175 V260 H0 Z"
+                />
+
+                <!-- Rio Paranapanema, a divisa -->
+                <path
+                    class="map-river"
+                    d="M0 150 C80 140 120 175 190 160 C260 145 330 190 400 175"
+                    fill="none"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    opacity="0.7"
+                />
+
+                <text class="map-label" x="16" y="26" font-size="12" letter-spacing="2">SÃO PAULO</text>
+                <text class="map-label" x="384" y="246" font-size="12" letter-spacing="2" text-anchor="end">PARANÁ</text>
+                <text class="map-label" x="262" y="204" font-size="10">Rio Paranapanema 🌊</text>
+
+                <!-- caminho entre as cidades -->
+                <path
+                    id="mapPath"
+                    class="map-path map-path-anim"
+                    d="M112 196 Q150 92 296 84"
+                    fill="none"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                />
+
+                <!-- Londrina -->
+                <text class="map-pin" x="112" y="200" font-size="30" text-anchor="middle">📍</text>
+                <text class="map-city" x="112" y="222" font-size="13" text-anchor="middle">Londrina • PR</text>
+                <text class="map-label" x="112" y="237" font-size="11" text-anchor="middle">Gabriel mora aqui 💙</text>
+
+                <!-- Rio Preto -->
+                <text class="map-pin two" x="296" y="88" font-size="30" text-anchor="middle">📍</text>
+                <text class="map-city" x="296" y="110" font-size="13" text-anchor="middle">S. J. do Rio Preto • SP</text>
+                <text class="map-label" x="296" y="125" font-size="11" text-anchor="middle">Diane mora aqui 💗</text>
+
+                <!-- coração que viaja -->
+                <text
+                    id="mapTraveler"
+                    x="112"
+                    y="196"
+                    font-size="26"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    opacity="0"
+                >💗</text>
+
+            </svg>
+
+        </div>
+
+        <div
+            id="mapKm"
+            class="map-km"
+        >333 <small>km</small></div>
+
+        <div class="fun-text" style="font-size: 13px;">
+            em linha reta, de uma cidade até a outra
+        </div>
+
+        <div class="map-heart-line">
+            ...mas no coração, a distância é 0 km 💗
+        </div>
+
+        <div class="map-facts">
+
+            <div class="map-fact">
+                ⚽
+                <b id="mapFields">3.170</b>
+                campos de futebol
+            </div>
+
+            <div class="map-fact">
+                🐾
+                <b id="mapSteps">1,1 mi</b>
+                passinhos de capivara
+            </div>
+
+            <div class="map-fact">
+                🌙
+                <b>mesmo</b>
+                céu e mesmo fuso horário
+            </div>
+
+        </div>
+
+        <button
+            id="hugButton"
+            class="primary-btn"
+            onclick="sendHug()"
+            style="width: 100%;"
+        >
+            Mandar um abraço até Rio Preto 🫂
+        </button>
+
+        <div
+            id="hugCounter"
+            class="hug-counter"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🪪 MODAL — CARTEIRINHA DE FUTURA ESPOSA OFICIAL
+================================================== -->
+
+<div
+    id="idOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('idOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Documento oficial 🪪
+        </h2>
+
+        <p class="id-hint">
+            Toca na carteirinha pra ver o verso 👀
+            · toca na foto pra colocar a sua
+        </p>
+
+        <div class="id-scene">
+
+            <div
+                id="idCard"
+                class="id-card"
+                onclick="this.classList.toggle('flipped')"
+            >
+
+                <!-- FRENTE -->
+                <div class="id-face id-front">
+
+                    <div class="id-header">
+
+                        <span class="id-header-emblem">💞</span>
+
+                        <div class="id-header-text">
+                            <small>REPÚBLICA DO NOSSO AMOR</small>
+                            <strong>CARTEIRA DE FUTURA ESPOSA OFICIAL</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="id-body">
+
+                        <div
+                            id="idPhoto"
+                            class="id-photo"
+                            onclick="event.stopPropagation(); document.getElementById('idPhotoInput').click();"
+                        >
+                            🥰
+                            <span class="id-photo-hint">trocar foto</span>
+                        </div>
+
+                        <div class="id-fields">
+
+                            <div class="id-field full">
+                                <small>NOME</small>
+                                <span id="idName">Diane</span>
+                            </div>
+
+                            <div class="id-field full">
+                                <small>CARGO</small>
+                                <span id="idRole">Futura esposa do Gabriel 💍</span>
+                            </div>
+
+                            <div class="id-field">
+                                <small>NATURALIDADE</small>
+                                <span id="idCity">Rio Preto - SP</span>
+                            </div>
+
+                            <div class="id-field">
+                                <small>ANIVERSÁRIO</small>
+                                <span id="idBirthday">21/03 ♈</span>
+                            </div>
+
+                            <div class="id-field">
+                                <small>TIPO SANGUÍNEO</small>
+                                <span>Amor+</span>
+                            </div>
+
+                            <div class="id-field">
+                                <small>VALIDADE</small>
+                                <span>Pra sempre ♾️</span>
+                            </div>
+
+                            <div class="id-field full">
+                                <small>NÍVEL DE FOFURA: MÁXIMO</small>
+                                <div class="id-cute-bar"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="id-footer">
+
+                        <div class="id-signature">
+                            Gabriel
+                            <small>AUTORIDADE EMISSORA</small>
+                        </div>
+
+                        <div
+                            id="idQr"
+                            class="id-qr"
+                        ></div>
+
+                        <div class="id-stamp">
+                            APROVADA<br>💗<br>COM LOUVOR
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- VERSO -->
+                <div class="id-face id-back">
+
+                    <div class="id-back-title">
+                        📜 Direitos da portadora
+                    </div>
+
+                    <ul class="id-back-list">
+                        <li>Cafuné ilimitado, sem taxa extra</li>
+                        <li>Escolher o filme em caso de empate na roleta</li>
+                        <li>Ficar com a última batatinha frita</li>
+                        <li>Dormir no meio da chamada sem ser julgada (MENSAGEM KKK) </li>
+                        <li>Ouvir que é linda pelo menos 1x por dia</li>
+                    </ul>
+
+                    <div
+                        class="id-back-title"
+                        style="margin-top: 8px;"
+                    >
+                        ⚠️ Deveres
+                    </div>
+
+                    <ul class="id-back-list">
+                        <li>Aguentar as piadas do Gabriel kkkkk</li>
+                    </ul>
+
+                    <div class="id-back-note">
+                        Documento válido em todo o território do coração do Gabriel.
+                        Em caso de perda, devolver com um beijo. 💋
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <input
+            id="idPhotoInput"
+            type="file"
+            accept="image/*"
+            class="hidden"
+            onchange="setIdPhoto(this)"
+        >
 
     </div>
 
@@ -5372,6 +6694,607 @@ Te amo muito.
 
             }, duration);
         }
+    }
+
+    /* ==================================================
+       ✨ MODAIS DAS PARTES NOVAS
+    ================================================== */
+
+    function openFunModal(id) {
+
+        document.getElementById(id)
+            .classList.remove("hidden");
+
+        document.body.style.overflow =
+            "hidden";
+    }
+
+    function closeFunModal(id) {
+
+        document.getElementById(id)
+            .classList.add("hidden");
+
+        document.body.style.overflow =
+            "";
+
+        if (id === "catOverlay") saveCat();
+    }
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key !== "Escape") return;
+
+            ["catOverlay", "mapOverlay", "idOverlay"].forEach(id => {
+
+                if (!document.getElementById(id).classList.contains("hidden")) {
+                    closeFunModal(id);
+                }
+
+            });
+        }
+    );
+
+    function readStore(key, fallback) {
+
+        try {
+            const raw = localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : fallback;
+        } catch (e) {
+            return fallback;
+        }
+    }
+
+    function writeStore(key, value) {
+
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+        } catch (e) {}
+    }
+
+    /* ==================================================
+       🍊 CAPIVARA MM
+    ================================================== */
+
+    const CAT_KEY = "mmCapivara";
+
+    // ✏️ Recadinhos que a MM entrega em nome do Gabriel
+    const catNotes = [
+        "O Gabriel pediu pra eu te dar um beijinho de capivara 😚",
+        "Recado do Gabriel: \"tô com saudade, viu?\" 🥺",
+        "O Gabriel disse que você é a pessoa favorita dele. Eu sou a segunda. 😌",
+        "Kiu kiu! Traduzindo do capivarês: o Gabriel te ama muito 💗",
+        "O Gabriel mandou avisar que hoje você tá linda. Eu concordo. 🐾",
+        "Recado: \"bebe água, meu amor\" 💧 (eu prefiro água do laguinho)",
+        "O Gabriel tá contando os dias pra te ver de novo ✈️",
+        "Ele pediu pra eu te dar um abraço, mas meus bracinhos são curtos 🫂"
+    ];
+
+    const catPetLines = [
+        "Kiu kiu... 💗 (isso é capivarês pra \"obrigada\")",
+        "Mais cafuné na cabecinha, por favor 🥹",
+        "Eu amo quando você faz isso 🥰",
+        "Fiquei tão relaxada que quase dormi 😌",
+        "Capivara com cafuné é capivara feliz 💗"
+    ];
+
+    const catFeedLines = [
+        "Nhac nhac! Melancia é a melhor coisa do mundo 🍉",
+        "Capim fresquinho? Você me mima demais 🌿",
+        "Barriguinha cheia, coração quentinho 💗",
+        "Obrigada! Agora vou tirar um cochilo de 3 horas 😴"
+    ];
+
+    const catPlayLines = [
+        "Splash! Água é vida 💦",
+        "Boiando de boa no laguinho 😌",
+        "Eu, a laranjinha e a água. Paz total 🍊",
+        "De novo! De novo! 💦"
+    ];
+
+    let cat = null;
+
+    function loadCat() {
+
+        const now = Date.now();
+
+        cat = readStore(CAT_KEY, null) || {
+            love: 70,
+            food: 70,
+            fun: 70,
+            pets: 0,
+            born: now,
+            lastVisit: now
+        };
+
+        const hoursAway =
+            Math.max(0, (now - cat.lastVisit) / 3600000);
+
+        cat.hoursAway = hoursAway;
+
+        // a capivara sente o tempo passar enquanto você está fora
+        cat.food = clampStat(cat.food - hoursAway * 3);
+        cat.fun = clampStat(cat.fun - hoursAway * 2);
+        cat.love = clampStat(cat.love - hoursAway * 1.5);
+
+        return cat;
+    }
+
+    function saveCat() {
+
+        if (!cat) return;
+
+        cat.lastVisit = Date.now();
+
+        const toSave = { ...cat };
+        delete toSave.hoursAway;
+
+        writeStore(CAT_KEY, toSave);
+    }
+
+    function clampStat(v) {
+
+        return Math.max(0, Math.min(100, Math.round(v)));
+    }
+
+    function catMood() {
+
+        const hour = new Date().getHours();
+
+        if (cat.hoursAway >= 48 && !cat.cheered) return "sad";
+
+        if (
+            (hour >= 0 && hour < 6) &&
+            !cat.awake
+        ) return "sleep";
+
+        if (cat.love >= 60 && cat.food >= 40 && cat.fun >= 40) return "happy";
+
+        return "normal";
+    }
+
+    function greetingLine(mood) {
+
+        if (mood === "sad") {
+
+            const days = Math.floor(cat.hoursAway / 24);
+
+            return `Você sumiu por ${days} dias... fiquei com saudade 🥺 Me dá um carinho?`;
+        }
+
+        if (mood === "sleep") {
+            return "Zzz... (ela tá dormindo. Toca nela pra acordar 😴)";
+        }
+
+        if (cat.food < 30) return "Kiu... minha barriguinha tá roncando 🍉";
+        if (cat.fun < 30) return "Tô entediada... me leva pro banho? 💦";
+        if (cat.love < 30) return "Ninguém me dá cafuné nessa casa 🥺";
+
+        const hour = new Date().getHours();
+
+        if (hour < 12) return "Bom dia, Diane! ☀️ Dormiu bem?";
+        if (hour < 18) return "Boa tarde! Que bom que você veio me ver 💗";
+
+        return "Boa noite! Hoje tem filme? 🍿";
+    }
+
+    function renderCat(mood) {
+
+        const stage = document.getElementById("catStage");
+
+        stage.classList.remove("happy", "sleep", "sad");
+
+        if (mood && mood !== "normal") {
+            stage.classList.add(mood);
+        }
+
+        [["Love", cat.love], ["Food", cat.food], ["Fun", cat.fun]].forEach(([k, v]) => {
+            document.getElementById(`cat${k}Bar`).style.width = v + "%";
+            document.getElementById(`cat${k}Text`).textContent = v + "%";
+        });
+
+        const days =
+            Math.max(1, Math.ceil((Date.now() - cat.born) / 86400000));
+
+        document.getElementById("catFooter").textContent =
+            `🐾 ${days} ${days === 1 ? "dia" : "dias"} de amizade · ${cat.pets} carinhos recebidos`;
+
+        updateCatBadge(mood);
+    }
+
+    function updateCatBadge(mood) {
+
+        const badge = document.getElementById("catBadge");
+
+        const icons = {
+            happy: "🥰 feliz",
+            normal: "🍊",
+            sleep: "😴 zzz",
+            sad: "🥺 saudade"
+        };
+
+        badge.textContent = icons[mood] || "🍊";
+    }
+
+    function setCatSpeech(text) {
+
+        const speech = document.getElementById("catSpeech");
+
+        speech.textContent = text;
+
+        speech.classList.remove("pop");
+        void speech.offsetWidth;
+        speech.classList.add("pop");
+    }
+
+    function catPopEmoji(emoji) {
+
+        const stage = document.getElementById("catStage");
+
+        for (let i = 0; i < 3; i++) {
+
+            const el = document.createElement("span");
+
+            el.className = "cat-pop";
+            el.textContent = emoji;
+            el.style.left = (35 + Math.random() * 30) + "%";
+            el.style.top = (10 + Math.random() * 25) + "%";
+            el.style.animationDelay = (i * 0.12) + "s";
+
+            stage.appendChild(el);
+
+            setTimeout(() => el.remove(), 1500);
+        }
+    }
+
+    function catBounce() {
+
+        const stage = document.getElementById("catStage");
+
+        stage.classList.remove("bounce");
+        void stage.offsetWidth;
+        stage.classList.add("bounce");
+    }
+
+    function pick(list) {
+
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function openCat() {
+
+        loadCat();
+
+        cat.awake = false;
+        cat.cheered = false;
+
+        const mood = catMood();
+
+        renderCat(mood);
+
+        setCatSpeech(greetingLine(mood));
+
+        openFunModal("catOverlay");
+
+        saveCat();
+    }
+
+    function catAction(type) {
+
+        const wasSleeping =
+            document.getElementById("catStage").classList.contains("sleep");
+
+        cat.awake = true;
+        cat.cheered = true;
+
+        if (wasSleeping) {
+
+            setCatSpeech("Kiu... você me acordou 😴 Mas tudo bem, é você 💗");
+            catBounce();
+            renderCat(catMood());
+            saveCat();
+            return;
+        }
+
+        if (type === "pet") {
+
+            cat.love = clampStat(cat.love + 12);
+            cat.pets++;
+
+            setCatSpeech(pick(catPetLines));
+            catPopEmoji("💗");
+        }
+
+        if (type === "feed") {
+
+            if (cat.food >= 100) {
+                setCatSpeech("Não cabe mais nada aqui 🫃🍉");
+                catBounce();
+                return;
+            }
+
+            cat.food = clampStat(cat.food + 25);
+
+            setCatSpeech(pick(catFeedLines));
+            catPopEmoji("🍉");
+        }
+
+        if (type === "play") {
+
+            cat.fun = clampStat(cat.fun + 20);
+            cat.food = clampStat(cat.food - 5);
+
+            setCatSpeech(pick(catPlayLines));
+            catPopEmoji("💦");
+        }
+
+        if (type === "note") {
+
+            setCatSpeech(pick(catNotes));
+            catPopEmoji("💌");
+        }
+
+        catBounce();
+
+        renderCat("happy");
+
+        if (cat.love === 100 && cat.food === 100 && cat.fun === 100) {
+            setCatSpeech("Eu tô 100% feliz!! Você é a melhor dona do mundo 🥰");
+            createConfetti();
+        }
+
+        saveCat();
+    }
+
+    // badge da home já mostra o humor dela
+    (function () {
+        loadCat();
+        updateCatBadge(catMood());
+    })();
+
+    /* ==================================================
+       🗺️ DAQUI ATÉ VOCÊ
+    ================================================== */
+
+    // ✏️ Coordenadas das cidades
+    const CITY_GABRIEL = { lat: -23.3045, lon: -51.1696 }; // Londrina - PR
+    const CITY_DIANE = { lat: -20.8113, lon: -49.3758 };   // São José do Rio Preto - SP
+
+    const HUGS_KEY = "hugsSent";
+
+    function distanceKm(a, b) {
+
+        const toRad = d => d * Math.PI / 180;
+
+        const dLat = toRad(b.lat - a.lat);
+        const dLon = toRad(b.lon - a.lon);
+
+        const h =
+            Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(a.lat)) *
+            Math.cos(toRad(b.lat)) *
+            Math.sin(dLon / 2) ** 2;
+
+        return 2 * 6371 * Math.asin(Math.sqrt(h));
+    }
+
+    const ourDistance =
+        Math.round(distanceKm(CITY_GABRIEL, CITY_DIANE));
+
+    document.getElementById("mapBadge").textContent =
+        ourDistance + " km";
+
+    function openMap() {
+
+        document.getElementById("mapKm").innerHTML =
+            `${ourDistance} <small>km</small>`;
+
+        document.getElementById("mapFields").textContent =
+            Math.round(ourDistance * 1000 / 105).toLocaleString("pt-BR");
+
+        const steps = ourDistance * 1000 / 0.3;
+
+        document.getElementById("mapSteps").textContent =
+            (steps / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi";
+
+        updateHugCounter();
+
+        openFunModal("mapOverlay");
+    }
+
+    function updateHugCounter() {
+
+        const hugs = readStore(HUGS_KEY, 0);
+
+        document.getElementById("hugCounter").textContent =
+            hugs > 0
+                ? `🫂 ${hugs} ${hugs === 1 ? "abraço enviado" : "abraços enviados"} pela estrada`
+                : "Nenhum abraço enviado ainda... manda o primeiro! 🥺";
+    }
+
+    let hugTraveling = false;
+
+    function sendHug() {
+
+        if (hugTraveling) return;
+
+        hugTraveling = true;
+
+        const btn = document.getElementById("hugButton");
+        const path = document.getElementById("mapPath");
+        const traveler = document.getElementById("mapTraveler");
+        const length = path.getTotalLength();
+        const duration = 2200;
+        const start = performance.now();
+
+        btn.disabled = true;
+        btn.textContent = "Abraço a caminho... 💨";
+
+        traveler.setAttribute("opacity", "1");
+
+        function step(now) {
+
+            const t = Math.min(1, (now - start) / duration);
+            const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            const p = path.getPointAtLength(eased * length);
+            const scale = 1 + Math.sin(t * Math.PI) * 0.4;
+
+            traveler.setAttribute("x", p.x);
+            traveler.setAttribute("y", p.y);
+            traveler.setAttribute("font-size", 26 * scale);
+
+            if (t < 1) {
+
+                requestAnimationFrame(step);
+
+            } else {
+
+                traveler.textContent = "🫂";
+
+                createConfetti();
+
+                writeStore(HUGS_KEY, readStore(HUGS_KEY, 0) + 1);
+
+                updateHugCounter();
+
+                btn.textContent = "Abraço entregue em Rio Preto! 💗";
+
+                setTimeout(() => {
+
+                    traveler.setAttribute("opacity", "0");
+                    traveler.textContent = "💗";
+
+                    btn.disabled = false;
+                    btn.textContent = "Mandar outro abraço 🫂";
+
+                    hugTraveling = false;
+
+                }, 1800);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    /* ==================================================
+       🪪 CARTEIRINHA DE FUTURA ESPOSA OFICIAL
+    ================================================== */
+
+    // ✏️ Quer deixar uma foto fixa? Suba a imagem no repositório
+    //    (ex.: diane.jpg) e coloque o nome aqui: "diane.jpg"
+    const ID_PHOTO_FILE = "";
+
+    const ID_PHOTO_KEY = "idCardPhoto";
+
+    function openIdCard() {
+
+        document.getElementById("idCard")
+            .classList.remove("flipped");
+
+        renderIdPhoto();
+
+        renderIdQr();
+
+        openFunModal("idOverlay");
+    }
+
+    function renderIdPhoto() {
+
+        let src = ID_PHOTO_FILE;
+
+        try {
+            src = localStorage.getItem(ID_PHOTO_KEY) || src;
+        } catch (e) {}
+
+        const box = document.getElementById("idPhoto");
+
+        if (!src) return;
+
+        box.innerHTML =
+            `<img src="${escapeAttribute(src)}" alt="Foto da Diane">` +
+            `<span class="id-photo-hint">trocar foto</span>`;
+    }
+
+    function setIdPhoto(input) {
+
+        const file = input.files && input.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+
+            const img = new Image();
+
+            img.onload = () => {
+
+                // diminui a foto pra caber no navegador sem pesar
+                const canvas = document.createElement("canvas");
+                const w = 300;
+                const h = 400;
+
+                canvas.width = w;
+                canvas.height = h;
+
+                const ctx = canvas.getContext("2d");
+                const scale = Math.max(w / img.width, h / img.height);
+                const dw = img.width * scale;
+                const dh = img.height * scale;
+
+                ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+
+                const data = canvas.toDataURL("image/jpeg", 0.85);
+
+                try {
+                    localStorage.setItem(ID_PHOTO_KEY, data);
+                } catch (e) {}
+
+                document.getElementById("idPhoto").innerHTML =
+                    `<img src="${data}" alt="Foto da Diane">` +
+                    `<span class="id-photo-hint">trocar foto</span>`;
+
+                createConfetti();
+            };
+
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+
+        input.value = "";
+    }
+
+    function renderIdQr() {
+
+        const qr = document.getElementById("idQr");
+
+        if (qr.childElementCount) return;
+
+        // "QR code" decorativo, sempre igual (é só enfeite)
+        let seed = 2103;
+
+        let html = "";
+
+        for (let i = 0; i < 49; i++) {
+
+            seed = (seed * 9301 + 49297) % 233280;
+
+            const row = Math.floor(i / 7);
+            const col = i % 7;
+
+            const corner =
+                (row < 2 && col < 2) ||
+                (row < 2 && col > 4) ||
+                (row > 4 && col < 2);
+
+            const on = corner || seed / 233280 > 0.5;
+
+            html += `<i style="background:${on ? "#4a3a52" : "transparent"}"></i>`;
+        }
+
+        qr.innerHTML = html;
     }
 
     /* ==================================================
