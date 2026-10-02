@@ -2511,6 +2511,299 @@
     }
 
     /* ==========================================
+       👗 GUARDA-ROUPA E ANIVERSÁRIO DA MM
+    ========================================== */
+
+    .mm-bday-pill {
+        display: inline-block;
+        margin: 2px 0 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--warm-soft);
+        color: var(--warm);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .mm-bday-pill.party {
+        background: linear-gradient(90deg, #ff8fb8, #ffd27d, #8fd3ee);
+        color: #4a3a52;
+        animation: bdayGlow 2s ease-in-out infinite;
+    }
+
+    .mm-balloon {
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+        animation: balloonSway 3s ease-in-out infinite;
+    }
+
+    @keyframes balloonSway {
+        0%, 100% { transform: rotate(-4deg); }
+        50% { transform: rotate(5deg) translateY(-3px); }
+    }
+
+    .mm-extra-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .mm-extra-actions button {
+        padding: 12px 8px;
+        font-size: 14px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    .mm-extra-actions button.party {
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        border-color: transparent;
+        color: #ffffff;
+    }
+
+    .mm-wardrobe {
+        margin-top: 12px;
+        padding: 16px;
+        border-radius: 22px;
+        background: var(--surface-soft);
+        border: 2px dashed var(--border-strong);
+        animation: stageIn 0.3s ease;
+    }
+
+    .mm-wardrobe-title {
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 10px;
+    }
+
+    .mm-wardrobe-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .wardrobe-item {
+        position: relative;
+        padding: 10px 4px 8px;
+        border-radius: 16px;
+        background: var(--surface-solid);
+        border: 2px solid var(--border);
+        color: var(--text);
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.25;
+    }
+
+    .wardrobe-item .wi-icon {
+        display: block;
+        font-size: 26px;
+        margin-bottom: 3px;
+    }
+
+    .wardrobe-item .wi-state {
+        display: block;
+        margin-top: 3px;
+        font-size: 10px;
+        color: var(--text-muted);
+    }
+
+    .wardrobe-item.on {
+        border-color: var(--accent);
+        background: var(--chip-bg);
+    }
+
+    .wardrobe-item.on .wi-state {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    .wardrobe-item.locked .wi-icon {
+        filter: grayscale(1);
+        opacity: 0.4;
+    }
+
+    .mm-wardrobe-hint {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    /* ==========================================
+       🌙 MODO BOA NOITE
+    ========================================== */
+
+    .night-banner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: -6px 0 22px;
+        padding: 14px 18px;
+        border-radius: 22px;
+        cursor: pointer;
+        text-align: left;
+        color: #f4eefe;
+        background:
+            radial-gradient(1.5px 1.5px at 20% 30%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 70% 20%, #fff 50%, transparent 51%),
+            radial-gradient(1.5px 1.5px at 85% 70%, #ffd27d 50%, transparent 51%),
+            radial-gradient(1px 1px at 40% 80%, #fff 50%, transparent 51%),
+            linear-gradient(135deg, #2b2155, #1b1840);
+        box-shadow: 0 10px 26px rgba(30, 20, 70, 0.35);
+        transition: transform 0.3s cubic-bezier(.34, 1.8, .64, 1);
+        animation: stageIn 0.5s ease;
+    }
+
+    .night-banner:hover {
+        transform: translateY(-3px);
+    }
+
+    .night-banner:active {
+        transform: scale(0.97);
+    }
+
+    .night-banner-moon {
+        font-size: 34px;
+        animation: bob 3s ease-in-out infinite;
+    }
+
+    .night-banner-text {
+        flex: 1;
+        line-height: 1.3;
+    }
+
+    .night-banner-text strong {
+        display: block;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffd27d;
+    }
+
+    .night-banner-text small {
+        font-size: 14px;
+        color: #cbc3e8;
+    }
+
+    .night-banner-go {
+        font-size: 26px;
+    }
+
+    .night-modal {
+        color: #f4eefe;
+        border-color: #3e3874;
+        background:
+            radial-gradient(1.5px 1.5px at 10% 15%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 30% 8%, #fff 50%, transparent 51%),
+            radial-gradient(2px 2px at 80% 12%, #ffd27d 50%, transparent 51%),
+            radial-gradient(1px 1px at 92% 40%, #fff 50%, transparent 51%),
+            radial-gradient(1.5px 1.5px at 6% 55%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 60% 30%, #fff 50%, transparent 51%),
+            radial-gradient(circle at 50% 0%, #3b2d70 0%, transparent 60%),
+            linear-gradient(180deg, #221c4a, #15132b);
+    }
+
+    .night-modal .fun-title {
+        color: #ffd27d;
+    }
+
+    .night-modal .bday-close-x {
+        color: #9189b8;
+    }
+
+    .night-moon-big {
+        font-size: 54px;
+        animation: bob 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 18px rgba(255, 210, 125, 0.5));
+    }
+
+    .gn-stage {
+        width: 190px;
+        height: 170px;
+        margin: 0 auto;
+        pointer-events: none;
+    }
+
+    .gn-letter {
+        margin: 6px 0 16px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-family: "Caveat", cursive;
+        font-size: 24px;
+        line-height: 1.3;
+        color: #f4eefe;
+    }
+
+    .gn-letter small {
+        display: block;
+        margin-top: 6px;
+        font-size: 20px;
+        color: #ffb3d4;
+    }
+
+    .gn-label {
+        font-size: 13px;
+        color: #9189b8;
+        margin: 12px 0 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .gn-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .gn-chip {
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.12);
+        color: #f4eefe;
+    }
+
+    .gn-chip.active {
+        background: rgba(255, 126, 182, 0.22);
+        border-color: #ff7eb6;
+    }
+
+    .gn-play {
+        width: 100%;
+        margin-top: 14px;
+    }
+
+    .gn-play.playing {
+        animation: bdayGlow 2s ease-in-out infinite;
+    }
+
+    .gn-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .gn-row input[type="range"] {
+        flex: 1;
+        padding: 0;
+        border: none;
+        background: transparent;
+        accent-color: #ff7eb6;
+        box-shadow: none;
+    }
+
+    .gn-status {
+        margin-top: 16px;
+        font-size: 13px;
+        color: #cbc3e8;
+        line-height: 1.5;
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -2603,6 +2896,10 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
+        .mm-wardrobe-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
         .map-facts {
             gap: 6px;
         }
@@ -2678,6 +2975,27 @@
                 Porque escolher o que assistir é uma decisão séria...
                 Então vamos levar bem a sério o sorteio. 😂💕
             </p>
+
+        </div>
+
+        <!-- ==========================================
+             🌙 MODO BOA NOITE (aparece das 22h às 5h)
+        ========================================== -->
+
+        <div
+            id="nightBanner"
+            class="night-banner hidden"
+            onclick="openGoodnight()"
+        >
+
+            <span class="night-banner-moon">🌙</span>
+
+            <div class="night-banner-text">
+                <strong>Boa noite, Diane</strong>
+                <small>A MM já foi dormir... bora também? 😴</small>
+            </div>
+
+            <span class="night-banner-go">💤</span>
 
         </div>
 
@@ -3280,6 +3598,111 @@
 </div>
 
 <!-- ==================================================
+     🌙 MODAL — HORA DE DORMIR
+================================================== -->
+
+<div
+    id="goodnightOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal night-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeGoodnight()"
+            aria-label="Fechar"
+        >✕</button>
+
+        <div class="night-moon-big">🌙</div>
+
+        <h2 class="fun-title">
+            Boa noite, Diane
+        </h2>
+
+        <div
+            id="gnStage"
+            class="cat-stage sleep gn-stage"
+        ></div>
+
+        <div class="gn-letter">
+            <span
+                id="gnMessage"
+            ></span>
+            <small>— Gabriel 💗</small>
+        </div>
+
+        <div class="gn-label">
+            Barulhinho pra dormir
+        </div>
+
+        <div class="gn-chips">
+
+            <button
+                class="gn-chip active"
+                data-sound="rain"
+                onclick="chooseSound('rain', this)"
+            >🌧️ Chuva</button>
+
+            <button
+                class="gn-chip"
+                data-sound="sea"
+                onclick="chooseSound('sea', this)"
+            >🌊 Mar</button>
+
+            <button
+                class="gn-chip"
+                data-sound="fan"
+                onclick="chooseSound('fan', this)"
+            >🌀 Ventilador</button>
+
+        </div>
+
+        <button
+            id="gnPlay"
+            class="primary-btn gn-play"
+            onclick="toggleSleepSound()"
+        >
+            ▶️ Tocar barulhinho
+        </button>
+
+        <div class="gn-row">
+            <span>🔈</span>
+            <input
+                id="gnVolume"
+                type="range"
+                min="0"
+                max="100"
+                value="60"
+                oninput="setSleepVolume(this.value)"
+                aria-label="Volume"
+            >
+            <span>🔊</span>
+        </div>
+
+        <div class="gn-label">
+            Desligar sozinho em
+        </div>
+
+        <div class="gn-chips">
+            <button class="gn-chip timer" data-min="15" onclick="chooseTimer(15, this)">15 min</button>
+            <button class="gn-chip timer active" data-min="30" onclick="chooseTimer(30, this)">30 min</button>
+            <button class="gn-chip timer" data-min="60" onclick="chooseTimer(60, this)">1 hora</button>
+            <button class="gn-chip timer" data-min="0" onclick="chooseTimer(0, this)">Nunca</button>
+        </div>
+
+        <div
+            id="gnStatus"
+            class="gn-status"
+        >
+            Deixa essa tela aberta, apaga a luz e fecha o olho 💤
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
      🍊 MODAL — CAPIVARA MM
 ================================================== -->
 
@@ -3301,6 +3724,11 @@
         </h2>
 
         <div
+            id="mmBdayPill"
+            class="mm-bday-pill"
+        ></div>
+
+        <div
             id="catSpeech"
             class="cat-speech"
         >Kiu kiu! 💗</div>
@@ -3318,6 +3746,15 @@
             >
 
                 <ellipse cx="115" cy="201" rx="82" ry="8" fill="rgba(90,60,100,0.15)"/>
+
+                <!-- balão de aniversário -->
+                <g id="acc-balloon" class="mm-acc mm-balloon" style="display:none">
+                    <path d="M184 184 Q196 140 206 72" fill="none" stroke="#5a4036" stroke-width="1.5"/>
+                    <ellipse cx="208" cy="52" rx="15" ry="19" fill="#ff6aa8" stroke="#5a4036" stroke-width="2.5"/>
+                    <path d="M204 71 L208 76 L212 71 Z" fill="#ff6aa8" stroke="#5a4036" stroke-width="1.5"/>
+                    <ellipse cx="202" cy="45" rx="4" ry="6" fill="#ffffff" opacity="0.6"/>
+                </g>
+
 
                 <g class="cat-body-group">
 
@@ -3340,17 +3777,56 @@
                     <rect x="50" y="50" width="134" height="104" rx="48" fill="#c79a6b" stroke="#5a4036" stroke-width="3"/>
 
                     <!-- laranjinha na cabeça (clássico de capivara) -->
-                    <g transform="translate(117 40)">
+                    <g id="acc-orange" class="mm-acc" transform="translate(117 40)">
                         <circle r="15" fill="#ffa94d" stroke="#5a4036" stroke-width="2.5"/>
                         <circle cx="-5" cy="-4" r="3" fill="#ffd29b"/>
                         <path d="M0 -15 Q8 -26 16 -20 Q8 -12 0 -15 Z" fill="#7cc97a" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                     </g>
 
                     <!-- lacinho -->
-                    <g transform="translate(176 66) rotate(20)">
+                    <g id="acc-bow" class="mm-acc" transform="translate(176 66) rotate(20)">
                         <path d="M0 0 L-13 -8 L-13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                         <path d="M0 0 L13 -8 L13 8 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
                         <circle r="4" fill="#ff6aa8" stroke="#5a4036" stroke-width="2"/>
+                    </g>
+
+                    <!-- ===== ACESSÓRIOS DO GUARDA-ROUPA ===== -->
+
+                    <!-- coroinha -->
+                    <g id="acc-crown" class="mm-acc" transform="translate(117 54)" style="display:none">
+                        <path d="M-22 0 L-22 -16 L-11 -6 L0 -22 L11 -6 L22 -16 L22 0 Z" fill="#ffd34d" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <circle cx="0" cy="-8" r="3.2" fill="#ff6aa8"/>
+                        <circle cx="-13" cy="-5" r="2.2" fill="#8fd3ee"/>
+                        <circle cx="13" cy="-5" r="2.2" fill="#8fd3ee"/>
+                    </g>
+
+                    <!-- chapéu de bruxa -->
+                    <g id="acc-witch" class="mm-acc" transform="translate(117 54)" style="display:none">
+                        <ellipse cx="0" cy="0" rx="42" ry="7" fill="#6b4fa0" stroke="#5a4036" stroke-width="2.5"/>
+                        <path d="M-22 -3 Q-10 -28 0 -50 Q8 -60 20 -52 Q10 -49 8 -40 Q14 -20 22 -3 Z" fill="#7d5fc0" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <rect x="-21" y="-13" width="43" height="7" rx="2" fill="#ffd27d"/>
+                        <circle cx="-4" cy="-28" r="2" fill="#ffd27d"/>
+                        <circle cx="5" cy="-38" r="1.5" fill="#ffffff"/>
+                    </g>
+
+                    <!-- chapéu de festa -->
+                    <g id="acc-party" class="mm-acc" transform="translate(110 55) rotate(-10)" style="display:none">
+                        <path d="M-19 0 L0 -46 L19 0 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M-12 -16 L10 -24 M-6 -30 L6 -34" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="-7" cy="-7" r="2.5" fill="#ffd27d"/>
+                        <circle cx="7" cy="-10" r="2.5" fill="#8fd3ee"/>
+                        <circle cx="0" cy="-48" r="6.5" fill="#ffd27d" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="0" cy="0" rx="20" ry="4" fill="#ff6aa8" stroke="#5a4036" stroke-width="2"/>
+                    </g>
+
+                    <!-- florzinha na orelha -->
+                    <g id="acc-flower" class="mm-acc" transform="translate(62 50)" style="display:none">
+                        <circle cx="0" cy="-7" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
+                        <circle cx="6.7" cy="-2.2" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
+                        <circle cx="4.1" cy="5.7" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
+                        <circle cx="-4.1" cy="5.7" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
+                        <circle cx="-6.7" cy="-2.2" r="6" fill="#ffffff" stroke="#ff8fb8" stroke-width="2"/>
+                        <circle r="4.5" fill="#ffd34d"/>
                     </g>
 
                     <!-- olhos abertos -->
@@ -3393,6 +3869,23 @@
                     <ellipse cx="105" cy="113" rx="5" ry="3.5" fill="#3d2a24"/>
                     <ellipse cx="129" cy="113" rx="5" ry="3.5" fill="#3d2a24"/>
                     <path d="M108 128 Q117 135 126 128" fill="none" stroke="#3d2a24" stroke-width="2.5" stroke-linecap="round"/>
+
+                    <!-- óculos escuros -->
+                    <g id="acc-glasses" class="mm-acc" style="display:none">
+                        <path d="M71 88 L56 82 M163 88 L178 82" stroke="#2e211f" stroke-width="3" stroke-linecap="round"/>
+                        <rect x="70" y="81" width="32" height="21" rx="9" fill="#2e211f"/>
+                        <rect x="132" y="81" width="32" height="21" rx="9" fill="#2e211f"/>
+                        <path d="M102 89 Q117 82 132 89" fill="none" stroke="#2e211f" stroke-width="3.5"/>
+                        <path d="M76 90 L84 84 M138 90 L146 84" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+                    </g>
+
+                    <!-- cachecol -->
+                    <g id="acc-scarf" class="mm-acc" style="display:none">
+                        <rect x="141" y="148" width="17" height="34" rx="6" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5" transform="rotate(12 150 150)"/>
+                        <rect x="60" y="140" width="116" height="19" rx="9.5" fill="#ff8fb8" stroke="#5a4036" stroke-width="2.5"/>
+                        <path d="M80 141 L80 158 M100 141 L100 158 M120 141 L120 158 M140 141 L140 158 M160 141 L160 158" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+                    </g>
+
 
                 </g>
 
@@ -3454,6 +3947,41 @@
             <button onclick="catAction('note')">
                 <span>💌</span>Recado
             </button>
+
+        </div>
+
+        <div class="mm-extra-actions">
+
+            <button onclick="toggleWardrobe()">
+                👗 Guarda-roupa
+            </button>
+
+            <button
+                id="mmSecretBtn"
+                onclick="mmSecret()"
+            >
+                🤫 Segredo
+            </button>
+
+        </div>
+
+        <div
+            id="mmWardrobe"
+            class="mm-wardrobe hidden"
+        >
+
+            <div class="mm-wardrobe-title">
+                Guarda-roupa da MM 👗
+            </div>
+
+            <div
+                id="mmWardrobeGrid"
+                class="mm-wardrobe-grid"
+            ></div>
+
+            <div class="mm-wardrobe-hint">
+                Quanto mais carinho, mais roupinhas desbloqueiam 💗
+            </div>
 
         </div>
 
@@ -3745,7 +4273,7 @@
                         <li>Cafuné ilimitado, sem taxa extra</li>
                         <li>Escolher o filme em caso de empate na roleta</li>
                         <li>Ficar com a última batatinha frita</li>
-                        <li>Dormir no meio da chamada sem ser julgada (MENSAGEM KKK) </li>
+                        <li>Dormir no meio da chamada sem ser julgada</li>
                         <li>Ouvir que é linda pelo menos 1x por dia</li>
                     </ul>
 
@@ -6726,6 +7254,10 @@ Te amo muito.
 
             if (event.key !== "Escape") return;
 
+            if (!document.getElementById("goodnightOverlay").classList.contains("hidden")) {
+                closeGoodnight();
+            }
+
             ["catOverlay", "mapOverlay", "idOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
@@ -6899,6 +7431,10 @@ Te amo muito.
         document.getElementById("catFooter").textContent =
             `🐾 ${days} ${days === 1 ? "dia" : "dias"} de amizade · ${cat.pets} carinhos recebidos`;
 
+        applyOutfit();
+
+        updateBirthdayPill();
+
         updateCatBadge(mood);
     }
 
@@ -6914,6 +7450,10 @@ Te amo muito.
         };
 
         badge.textContent = icons[mood] || "🍊";
+
+        if (isBirthdayToday()) {
+            badge.textContent = "🎉 festa";
+        }
     }
 
     function setCatSpeech(text) {
@@ -6968,6 +7508,24 @@ Te amo muito.
         cat.awake = false;
         cat.cheered = false;
 
+        document.getElementById("mmWardrobe")
+            .classList.add("hidden");
+
+        if (isBirthdayToday()) {
+
+            renderCat("happy");
+
+            setCatSpeech("🎉 FELIZ ANIVERSÁRIO, DIANE!!! Coloquei meu chapéu de festa só pra você 🥳");
+
+            openFunModal("catOverlay");
+
+            setTimeout(createConfetti, 300);
+
+            saveCat();
+
+            return;
+        }
+
         const mood = catMood();
 
         renderCat(mood);
@@ -6999,7 +7557,12 @@ Te amo muito.
         if (type === "pet") {
 
             cat.love = clampStat(cat.love + 12);
+
+            const petsBefore = cat.pets;
+
             cat.pets++;
+
+            checkUnlocks(petsBefore);
 
             setCatSpeech(pick(catPetLines));
             catPopEmoji("💗");
@@ -7051,6 +7614,622 @@ Te amo muito.
         loadCat();
         updateCatBadge(catMood());
     })();
+
+    /* ==================================================
+       👗 GUARDA-ROUPA DA MM
+    ================================================== */
+
+    // ✏️ Roupinhas e quantos carinhos precisa pra desbloquear
+    const MM_ITEMS = [
+        { id: "orange", name: "Laranjinha", icon: "🍊", slot: "head", need: 0 },
+        { id: "bow", name: "Lacinho", icon: "🎀", slot: "earR", need: 0 },
+        { id: "party", name: "Chapéu de festa", icon: "🎉", slot: "head", need: 0, extra: ["balloon"] },
+        { id: "glasses", name: "Óculos escuros", icon: "🕶️", slot: "face", need: 5 },
+        { id: "scarf", name: "Cachecol", icon: "🧣", slot: "neck", need: 12 },
+        { id: "flower", name: "Florzinha", icon: "🌸", slot: "earL", need: 20 },
+        { id: "crown", name: "Coroinha", icon: "👑", slot: "head", need: 30 },
+        { id: "witch", name: "Chapéu de bruxa", icon: "🧙", slot: "head", need: 45 }
+    ];
+
+    function isBirthdayToday() {
+
+        if (BIRTHDAY_TEST_MODE) return true;
+
+        const b = new Date(BIRTHDAY_OPEN_DATE);
+        const now = new Date();
+
+        return (
+            now.getMonth() === b.getMonth() &&
+            now.getDate() === b.getDate()
+        );
+    }
+
+    function daysToBirthday() {
+
+        return Math.max(
+            0,
+            Math.floor((bdayOpenTime - Date.now()) / 86400000)
+        );
+    }
+
+    function getOutfit() {
+
+        if (!Array.isArray(cat.outfit)) {
+            cat.outfit = ["orange", "bow"];
+        }
+
+        let outfit = [...cat.outfit];
+
+        // no aniversário ela veste a roupa de festa, sim ou sim 🎉
+        if (isBirthdayToday()) {
+            outfit = outfit.filter(id => {
+                const item = MM_ITEMS.find(i => i.id === id);
+                return item && item.slot !== "head";
+            });
+            outfit.push("party");
+        }
+
+        return outfit;
+    }
+
+    function applyOutfit(root) {
+
+        const scope = root || document.getElementById("catStage");
+        const outfit = getOutfit();
+
+        MM_ITEMS.forEach(item => {
+
+            const ids = [item.id, ...(item.extra || [])];
+            const on = outfit.includes(item.id);
+
+            ids.forEach(id => {
+                const el = scope.querySelector("#acc-" + id);
+                if (el) el.style.display = on ? "" : "none";
+            });
+        });
+    }
+
+    function toggleWardrobe() {
+
+        const box = document.getElementById("mmWardrobe");
+
+        box.classList.toggle("hidden");
+
+        if (!box.classList.contains("hidden")) {
+            renderWardrobe();
+            setCatSpeech("Me arruma bem bonita, tá? 💅");
+        }
+    }
+
+    function renderWardrobe() {
+
+        const outfit = getOutfit();
+
+        document.getElementById("mmWardrobeGrid").innerHTML =
+            MM_ITEMS.map(item => {
+
+                const locked = cat.pets < item.need;
+                const on = outfit.includes(item.id);
+
+                const state = locked
+                    ? `🔒 ${item.need} carinhos`
+                    : on ? "usando ✓" : "vestir";
+
+                return `
+                    <button
+                        class="wardrobe-item ${locked ? "locked" : ""} ${on ? "on" : ""}"
+                        onclick="wearItem('${item.id}')"
+                    >
+                        <span class="wi-icon">${item.icon}</span>
+                        ${item.name}
+                        <span class="wi-state">${state}</span>
+                    </button>
+                `;
+
+            }).join("");
+    }
+
+    function wearItem(id) {
+
+        const item = MM_ITEMS.find(i => i.id === id);
+
+        if (cat.pets < item.need) {
+
+            const left = item.need - cat.pets;
+
+            setCatSpeech(`Faltam ${left} carinhos pra eu ganhar ${item.name.toLowerCase()} ${item.icon} Bora? 🥺`);
+            catBounce();
+            return;
+        }
+
+        if (isBirthdayToday() && item.slot === "head" && id !== "party") {
+
+            setCatSpeech("Hoje não tiro esse chapéu de festa por nada! 🎉");
+            catBounce();
+            return;
+        }
+
+        let outfit = Array.isArray(cat.outfit) ? [...cat.outfit] : ["orange", "bow"];
+
+        if (outfit.includes(id)) {
+
+            outfit = outfit.filter(x => x !== id);
+
+            setCatSpeech(`Tirei ${item.name.toLowerCase()} ${item.icon}`);
+
+        } else {
+
+            outfit = outfit.filter(x => {
+                const other = MM_ITEMS.find(i => i.id === x);
+                return other && other.slot !== item.slot;
+            });
+
+            outfit.push(id);
+
+            const lines = {
+                orange: "Laranjinha de volta! Clássico 🍊",
+                bow: "Com lacinho fico mais fofa né? 🎀",
+                party: "Já tô no clima da festa do dia 21/03!! 🎉",
+                glasses: "Capivara estilosa, tá? 😎",
+                scarf: "Quentinha e cheirosa 🧣",
+                flower: "Uma flor pra outra flor 🌸 (a outra é você)",
+                crown: "Agora sou a rainha do laguinho 👑",
+                witch: "Abracadabra... te amo mais 🧙"
+            };
+
+            setCatSpeech(lines[id] || "Gostei! 💗");
+        }
+
+        cat.outfit = outfit;
+
+        applyOutfit();
+        renderWardrobe();
+        catBounce();
+        saveCat();
+    }
+
+    function checkUnlocks(before) {
+
+        const newly = MM_ITEMS.find(i =>
+            i.need > 0 &&
+            before < i.need &&
+            cat.pets >= i.need
+        );
+
+        if (!newly) return;
+
+        setTimeout(() => {
+
+            setCatSpeech(`Desbloqueei ${newly.name.toLowerCase()} ${newly.icon}!! Olha no guarda-roupa 👗`);
+            createConfetti();
+
+            if (!document.getElementById("mmWardrobe").classList.contains("hidden")) {
+                renderWardrobe();
+            }
+
+        }, 900);
+    }
+
+    /* ==================================================
+       🤫 SPOILERS DO ANIVERSÁRIO (pela MM)
+    ================================================== */
+
+    function updateBirthdayPill() {
+
+        const pill = document.getElementById("mmBdayPill");
+        const btn = document.getElementById("mmSecretBtn");
+
+        pill.classList.remove("party");
+        btn.classList.remove("party");
+
+        if (isBirthdayToday()) {
+
+            pill.textContent = "🎉 HOJE É O ANIVERSÁRIO DA DIANE! 🎂";
+            pill.classList.add("party");
+
+            btn.textContent = "🎁 Abrir a cápsula";
+            btn.classList.add("party");
+
+        } else if (isBirthdayOpen()) {
+
+            pill.textContent = "🎁 A cápsula do aniversário já tá aberta!";
+            btn.textContent = "🎁 Rever a cápsula";
+
+        } else {
+
+            const d = daysToBirthday();
+
+            pill.textContent = d === 0
+                ? "🎂 Falta menos de 1 dia pro aniversário da Diane!!"
+                : `🎂 Faltam ${d} ${d === 1 ? "dia" : "dias"} pro aniversário da Diane`;
+
+            btn.textContent = "🤫 Segredo";
+        }
+    }
+
+    function mmSecret() {
+
+        if (isBirthdayOpen() || isBirthdayToday()) {
+
+            closeFunModal("catOverlay");
+            openBirthdayCapsule();
+            return;
+        }
+
+        const d = daysToBirthday();
+
+        const spoilers = [
+            "Psiu... eu sei o que tem na cápsula do seu aniversário 🤫 Mas não conto!",
+            `Faltam ${d} dias e eu já tô ensaiando o parabéns 🎶`,
+            "Spoiler: tem uma carta lá dentro. O Gabriel escreveu, apagou, escreveu de novo... 🙊",
+            "Só digo uma coisa: tem bolo. E você vai ter que soprar 🎂",
+            `Eu contei: são ${birthdayReasons.length} motivos. Ops, falei demais 🙈`,
+            "Tem uns vales lá dentro... um deles é MUITO bom 🎟️👀",
+            "Já separei meu chapéu de festa pro dia 21/03 🎉 (dá uma olhada no guarda-roupa)",
+            "O Gabriel me fez jurar segredo. Mas eu sou uma capivara, não sei guardar segredo... 🫢 ...não, não vou contar kkkk",
+            "No dia do seu aniversário eu vou estar de chapéu e balão. Anota aí 🎈"
+        ];
+
+        if (typeof cat.spoiler !== "number") cat.spoiler = 0;
+
+        setCatSpeech(spoilers[cat.spoiler % spoilers.length]);
+
+        cat.spoiler++;
+
+        catPopEmoji(pick(["🤫", "🎂", "🎁", "🎈"]));
+        catBounce();
+        saveCat();
+    }
+
+    /* ==================================================
+       🌙 MODO BOA NOITE
+    ================================================== */
+
+    // ✏️ Mensagens de boa noite (uma por noite)
+    const goodnightMessages = [
+        "Dorme bem, meu amor. Amanhã eu tô aqui de novo 💗",
+        "Fecha o olho e imagina que eu tô do seu lado 🫂",
+        "Sonha comigo, tá? De preferência um sonho bom kkkk",
+        "Boa noite pra mulher mais linda de Rio Preto 🌙",
+        "Descansa, você merece. Te amo muito ❤️",
+        "Mais um dia a menos pra gente se ver ✈️",
+        "Se não conseguir dormir, me chama. Sempre 💌",
+        "Hoje você foi incrível, mesmo se não achar isso 🌷"
+    ];
+
+    const GOODNIGHT_TEST =
+        new URLSearchParams(window.location.search).get("boanoite") === "teste";
+
+    function isNightTime() {
+
+        const h = new Date().getHours();
+
+        return GOODNIGHT_TEST || h >= 22 || h < 5;
+    }
+
+    function updateNightBanner() {
+
+        document.getElementById("nightBanner")
+            .classList.toggle("hidden", !isNightTime());
+    }
+
+    updateNightBanner();
+
+    setInterval(updateNightBanner, 60000);
+
+    function openGoodnight() {
+
+        loadCat();
+
+        // MM dormindo, com a roupinha que ela estiver usando
+        const stage = document.getElementById("gnStage");
+        const svg = document.querySelector("#catStage svg").cloneNode(true);
+
+        svg.removeAttribute("onclick");
+        svg.querySelectorAll("[id]").forEach(el => {
+            el.setAttribute("id", "gn-" + el.id);
+            el.setAttribute("data-acc", el.id.replace("gn-", ""));
+        });
+
+        stage.innerHTML = "";
+        stage.appendChild(svg);
+
+        const outfit = getOutfit();
+
+        MM_ITEMS.forEach(item => {
+            [item.id, ...(item.extra || [])].forEach(id => {
+                const el = stage.querySelector("#gn-acc-" + id);
+                if (el) el.style.display = outfit.includes(item.id) ? "" : "none";
+            });
+        });
+
+        const dayIndex =
+            Math.floor(Date.now() / 86400000) % goodnightMessages.length;
+
+        document.getElementById("gnMessage").textContent =
+            goodnightMessages[dayIndex];
+
+        openFunModal("goodnightOverlay");
+    }
+
+    function closeGoodnight() {
+
+        stopSleepSound(true);
+
+        closeFunModal("goodnightOverlay");
+    }
+
+    /* barulhinhos feitos no próprio navegador (sem arquivo de áudio) */
+
+    let audioCtx = null;
+    let masterGain = null;
+    let soundNodes = [];
+    let dropTimer = null;
+    let sleepTimer = null;
+    let sleepSound = "rain";
+    let sleepMinutes = 30;
+    let sleepPlaying = false;
+    let sleepVolume = 0.6;
+
+    function makeNoise(ctx, kind) {
+
+        const length = ctx.sampleRate * 4;
+        const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        let last = 0;
+
+        for (let i = 0; i < length; i++) {
+
+            const white = Math.random() * 2 - 1;
+
+            if (kind === "brown") {
+                last = (last + 0.02 * white) / 1.02;
+                data[i] = last * 3.5;
+            } else {
+                data[i] = white;
+            }
+        }
+
+        const src = ctx.createBufferSource();
+
+        src.buffer = buffer;
+        src.loop = true;
+
+        return src;
+    }
+
+    function startSleepSound() {
+
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        audioCtx.resume();
+
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+        masterGain.gain.linearRampToValueAtTime(sleepVolume, audioCtx.currentTime + 2);
+        masterGain.connect(audioCtx.destination);
+
+        soundNodes = [];
+
+        if (sleepSound === "rain") {
+
+            const noise = makeNoise(audioCtx, "white");
+            const low = audioCtx.createBiquadFilter();
+            const high = audioCtx.createBiquadFilter();
+            const g = audioCtx.createGain();
+
+            low.type = "lowpass";
+            low.frequency.value = 2600;
+            high.type = "highpass";
+            high.frequency.value = 500;
+            g.gain.value = 0.22;
+
+            noise.connect(low).connect(high).connect(g).connect(masterGain);
+            noise.start();
+
+            const rumble = makeNoise(audioCtx, "brown");
+            const rg = audioCtx.createGain();
+
+            rg.gain.value = 0.5;
+            rumble.connect(rg).connect(masterGain);
+            rumble.start();
+
+            soundNodes.push(noise, rumble);
+
+            // gotinhas caindo
+            dropTimer = setInterval(() => {
+
+                if (Math.random() > 0.55) return;
+
+                const t = audioCtx.currentTime;
+                const drop = makeNoise(audioCtx, "white");
+                const bp = audioCtx.createBiquadFilter();
+                const dg = audioCtx.createGain();
+
+                bp.type = "bandpass";
+                bp.frequency.value = 2500 + Math.random() * 3500;
+                bp.Q.value = 6;
+
+                dg.gain.setValueAtTime(0.0001, t);
+                dg.gain.exponentialRampToValueAtTime(0.25 + Math.random() * 0.3, t + 0.005);
+                dg.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+
+                drop.connect(bp).connect(dg).connect(masterGain);
+                drop.start(t);
+                drop.stop(t + 0.08);
+
+            }, 45);
+        }
+
+        if (sleepSound === "sea") {
+
+            const noise = makeNoise(audioCtx, "brown");
+            const low = audioCtx.createBiquadFilter();
+            const waveGain = audioCtx.createGain();
+            const lfo = audioCtx.createOscillator();
+            const lfoGain = audioCtx.createGain();
+
+            low.type = "lowpass";
+            low.frequency.value = 900;
+
+            waveGain.gain.value = 0.55;
+
+            lfo.frequency.value = 0.09;
+            lfoGain.gain.value = 0.45;
+
+            lfo.connect(lfoGain).connect(waveGain.gain);
+
+            noise.connect(low).connect(waveGain).connect(masterGain);
+
+            noise.start();
+            lfo.start();
+
+            soundNodes.push(noise, lfo);
+        }
+
+        if (sleepSound === "fan") {
+
+            const noise = makeNoise(audioCtx, "brown");
+            const low = audioCtx.createBiquadFilter();
+            const hum = audioCtx.createOscillator();
+            const humGain = audioCtx.createGain();
+
+            low.type = "lowpass";
+            low.frequency.value = 1400;
+
+            hum.type = "sine";
+            hum.frequency.value = 58;
+            humGain.gain.value = 0.04;
+
+            noise.connect(low).connect(masterGain);
+            hum.connect(humGain).connect(masterGain);
+
+            noise.start();
+            hum.start();
+
+            soundNodes.push(noise, hum);
+        }
+
+        sleepPlaying = true;
+
+        scheduleSleepTimer();
+        updateSleepUi();
+    }
+
+    function stopSleepSound(instant) {
+
+        clearInterval(dropTimer);
+        clearTimeout(sleepTimer);
+
+        if (audioCtx && masterGain) {
+
+            const g = masterGain;
+            const nodes = soundNodes;
+            const fade = instant ? 0.3 : 4;
+
+            g.gain.cancelScheduledValues(audioCtx.currentTime);
+            g.gain.setValueAtTime(g.gain.value, audioCtx.currentTime);
+            g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + fade);
+
+            setTimeout(() => {
+                nodes.forEach(n => { try { n.stop(); } catch (e) {} });
+                try { g.disconnect(); } catch (e) {}
+            }, fade * 1000 + 100);
+        }
+
+        masterGain = null;
+        soundNodes = [];
+        sleepPlaying = false;
+
+        updateSleepUi();
+    }
+
+    function toggleSleepSound() {
+
+        if (sleepPlaying) {
+            stopSleepSound(false);
+        } else {
+            startSleepSound();
+        }
+    }
+
+    function chooseSound(kind, el) {
+
+        sleepSound = kind;
+
+        document.querySelectorAll(".gn-chip[data-sound]")
+            .forEach(c => c.classList.toggle("active", c === el));
+
+        if (sleepPlaying) {
+            stopSleepSound(true);
+            setTimeout(startSleepSound, 350);
+        }
+    }
+
+    function chooseTimer(min, el) {
+
+        sleepMinutes = min;
+
+        document.querySelectorAll(".gn-chip.timer")
+            .forEach(c => c.classList.toggle("active", c === el));
+
+        if (sleepPlaying) scheduleSleepTimer();
+
+        updateSleepUi();
+    }
+
+    function setSleepVolume(v) {
+
+        sleepVolume = v / 100;
+
+        if (masterGain && audioCtx) {
+            masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
+            masterGain.gain.setTargetAtTime(sleepVolume, audioCtx.currentTime, 0.1);
+        }
+    }
+
+    let sleepEndsAt = null;
+
+    function scheduleSleepTimer() {
+
+        clearTimeout(sleepTimer);
+
+        sleepEndsAt = null;
+
+        if (!sleepMinutes) return;
+
+        sleepEndsAt = Date.now() + sleepMinutes * 60000;
+
+        sleepTimer = setTimeout(() => stopSleepSound(false), sleepMinutes * 60000);
+    }
+
+    function updateSleepUi() {
+
+        const btn = document.getElementById("gnPlay");
+        const status = document.getElementById("gnStatus");
+
+        btn.textContent = sleepPlaying ? "⏸️ Parar barulhinho" : "▶️ Tocar barulhinho";
+        btn.classList.toggle("playing", sleepPlaying);
+
+        if (sleepPlaying && sleepEndsAt) {
+
+            const end = new Date(sleepEndsAt)
+                .toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+
+            status.textContent = `Desliga sozinho às ${end} 😴 Apaga a luz e fecha o olho 💤`;
+
+        } else if (sleepPlaying) {
+
+            status.textContent = "Tocando a noite toda 🌙 Boa noite, meu amor 💤";
+
+        } else {
+
+            status.textContent = "Deixa essa tela aberta, apaga a luz e fecha o olho 💤";
+        }
+    }
 
     /* ==================================================
        🗺️ DAQUI ATÉ VOCÊ
