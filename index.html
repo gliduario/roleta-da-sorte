@@ -5331,9 +5331,11 @@
         user-select: none;
         -webkit-tap-highlight-color: transparent;
         border-radius: 24px;
+        border: 2px solid var(--border);
         background:
-            radial-gradient(ellipse at 50% 92%, var(--pink-glow), transparent 60%),
-            radial-gradient(circle at 20% 20%, var(--blue-glow), transparent 45%);
+            radial-gradient(ellipse at 50% 100%, var(--pink-glow), transparent 62%),
+            linear-gradient(180deg, var(--blue-glow), transparent 75%),
+            var(--surface-soft);
     }
 
     .baby-care-area .baby-svg {
@@ -5353,8 +5355,10 @@
 
     .baby-care-area.napping {
         background:
-            radial-gradient(ellipse at 50% 92%, var(--blue-glow), transparent 60%),
-            radial-gradient(circle at 80% 18%, rgba(255, 230, 150, 0.5), transparent 30%);
+            radial-gradient(ellipse at 50% 100%, var(--blue-glow), transparent 62%),
+            radial-gradient(circle at 82% 18%, rgba(255, 230, 150, 0.45), transparent 32%),
+            linear-gradient(180deg, rgba(120, 110, 200, 0.25), transparent 80%),
+            var(--surface-soft);
     }
 
     .baby-care-area.napping .baby-body { animation-duration: 3.6s; }
@@ -5494,6 +5498,84 @@
         flex: 0 1 38%;
         min-width: 0;
     }
+
+    /* 🌈 jeitinho, 🗣️ primeira palavra, 📸 foto e 😴 boa noite em família */
+
+    .baby-trait {
+        margin: -2px 0 8px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .baby-trait:empty { display: none; }
+
+    .cat-speech.first-word {
+        background: linear-gradient(135deg, #ffe0ec, #e3efff);
+        border-color: #ff9cc2;
+        color: #b0306a;
+        font-weight: 700;
+        font-size: 17px;
+        box-shadow: 0 6px 22px rgba(255, 120, 170, 0.3);
+    }
+
+    .cat-speech.first-word::after { background: #f0e8f6; border-color: #ff9cc2; }
+
+    .family-links .family-wide.photo {
+        background: linear-gradient(135deg, var(--pink-glow), var(--warm-glow));
+    }
+
+    .family-photo {
+        display: block;
+        width: 100%;
+        border-radius: 18px;
+        margin: 6px 0 4px;
+        box-shadow: 0 10px 30px rgba(150, 90, 130, 0.22);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .family-photo-tip {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    .gn-pile {
+        position: relative;
+        width: min(320px, 100%);
+        height: 185px;
+        margin: 0 auto;
+        pointer-events: none;
+    }
+
+    .gn-pile .gn-gg,
+    .gn-pile .gn-stage {
+        position: absolute;
+        bottom: 14px;
+        width: 56%;
+        height: auto;
+        aspect-ratio: 230 / 210;
+        margin: 0;
+    }
+
+    .gn-pile .gn-gg { left: 0; z-index: 1; }
+    .gn-pile .gn-stage { right: 0; z-index: 2; }
+
+    .gn-gg svg { width: 100%; height: 100%; overflow: visible; }
+
+    .gn-gg .cat-body-group { animation-duration: 4s; }
+
+    .gn-babies {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: flex-end;
+        z-index: 3;
+    }
+
+    .gn-babies .gn-kid { width: 48px; margin: 0 -3px; }
+
+    .gn-babies .gn-kid .baby-body { animation-duration: 3.6s; }
 
     /* ==========================================
        RESPONSIVO
@@ -7014,10 +7096,24 @@
             Boa noite, Diane
         </h2>
 
-        <div
-            id="gnStage"
-            class="cat-stage sleep gn-stage"
-        ></div>
+        <div class="gn-pile">
+
+            <div
+                id="gnGG"
+                class="cat-stage gn-gg"
+            ></div>
+
+            <div
+                id="gnStage"
+                class="cat-stage sleep gn-stage"
+            ></div>
+
+            <div
+                id="gnBabies"
+                class="gn-babies"
+            ></div>
+
+        </div>
 
         <div class="gn-letter">
             <span
@@ -8292,6 +8388,13 @@
                 🍼 Ver o filhotinho
             </button>
 
+            <button
+                class="family-wide photo"
+                onclick="openFamilyPhoto()"
+            >
+                📸 Foto de família
+            </button>
+
         </div>
 
         <div
@@ -8333,6 +8436,11 @@
         <div
             id="babyStagePill"
             class="mm-bday-pill"
+        ></div>
+
+        <div
+            id="babyTrait"
+            class="baby-trait"
         ></div>
 
         <div
@@ -8428,6 +8536,13 @@
                 💙 Papai GG
             </button>
 
+            <button
+                class="family-wide photo"
+                onclick="openFamilyPhoto()"
+            >
+                📸 Foto de família
+            </button>
+
         </div>
 
         <div
@@ -8439,6 +8554,65 @@
 
 </div>
 
+
+<!-- ==================================================
+     📸 MODAL — FOTO DE FAMÍLIA
+================================================== -->
+
+<div
+    id="photoOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('photoOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Foto de família 📸
+        </h2>
+
+        <p
+            id="familyPhotoStatus"
+            class="fun-text"
+        ></p>
+
+        <img
+            id="familyPhotoImg"
+            class="family-photo hidden"
+            alt="Foto da família capivara"
+        >
+
+        <div class="bday-actions">
+
+            <button
+                class="primary-btn"
+                onclick="downloadFamilyPhoto()"
+            >
+                ⬇️ Baixar foto
+            </button>
+
+            <button
+                id="familyShareBtn"
+                class="secondary-btn"
+                onclick="shareFamilyPhoto()"
+            >
+                📤 Mandar
+            </button>
+
+        </div>
+
+        <p class="fun-text family-photo-tip">
+            Toda vez que alguém crescer ou nascer, tira outra pra guardar 🥹
+        </p>
+
+    </div>
+
+</div>
 
 <template id="babyTemplate">
 <svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
@@ -13188,7 +13362,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -14158,6 +14332,7 @@ Te amo muito.
             const key = todayKey(d);
             const rec = (cat.days || {})[key];
             const seed = Math.floor(d.getTime() / 86400000);
+            const fam = familyDiaryEvents(key);
 
             let text;
 
@@ -14187,6 +14362,10 @@ Te amo muito.
 
                 text += " " + closers[seed % closers.length];
 
+            } else if (fam) {
+
+                text = "";
+
             } else if (i === 0) {
 
                 continue;
@@ -14195,6 +14374,8 @@ Te amo muito.
 
                 text = sad[seed % sad.length];
             }
+
+            if (fam) text = (text ? text + " " : "") + fam;
 
             const label = i === 0
                 ? "HOJE"
@@ -14693,6 +14874,8 @@ Te amo muito.
         stage.appendChild(svg);
 
         applyOutfit(stage);
+
+        try { renderGoodnightFamily(); } catch (e) {}
 
         const dayIndex =
             Math.floor(Date.now() / 86400000) % goodnightMessages.length;
@@ -15534,7 +15717,7 @@ Te amo muito.
 
         if (list.length >= MAX_BABIES) return;
 
-        list.push({ name, born: Date.now(), cares: 0, stage: 0, love: 80, food: 80, fun: 80, lastVisit: Date.now() });
+        list.push({ name, born: Date.now(), trait: newBabyTrait(list), cares: 0, stage: 0, love: 80, food: 80, fun: 80, lastVisit: Date.now() });
 
         writeStore(BABY_KEY, list);
         writeStore("babyCurrent", list.length - 1);
@@ -18410,6 +18593,7 @@ Te amo muito.
             setBabySpeech(babyGreeting());
             sfx("kiu");
             saveBaby();
+            maybeFirstWord(600);
         }
     }
 
@@ -18434,6 +18618,8 @@ Te amo muito.
         if (baby.love < 30) return stage === 0 ? "Buá... 🥺 (quer colinho)" : "Me dá um abraço? Tava com saudade 🥺";
 
         if (baby.fun < 30) return stage === 0 ? "*olhando pro móbile, entediado* 🥱" : "Brinca comigo? Por favorzinho 🧸";
+
+        if (stage >= 1 && Math.random() < 0.3) return pick(babyTrait(baby, currentBabyIndex()).lines);
 
         const siblings = getBabies().filter((_, i) => i !== currentBabyIndex());
 
@@ -18482,6 +18668,7 @@ Te amo muito.
 
             document.getElementById("babyTitle").textContent = "??? 🍼";
             document.getElementById("babyStagePill").textContent = "";
+            document.getElementById("babyTrait").textContent = "";
             area.innerHTML = `<div class="baby-egg">🥚</div>`;
 
             setBabySpeech(left > 0
@@ -18542,8 +18729,13 @@ Te amo muito.
                     : `Quase virando ${prog.next.name} ${prog.next.icon}!`;
         }
 
+        const tr = babyTrait(baby, currentBabyIndex());
+
+        document.getElementById("babyTrait").textContent = `${tr.icon} ${tr.name} · ${tr.likes}`;
+
         document.getElementById("babyFooter").textContent =
-            `🍼 ${plural(baby.cares, "cuidado", "cuidados")} da mamãe e do papai`;
+            `🍼 ${plural(baby.cares, "cuidado", "cuidados")} da mamãe e do papai` +
+            (baby.firstWord ? ` · 🗣️ primeira palavrinha: “${baby.firstWord}”` : "");
 
         updateBabyCard();
     }
@@ -18611,6 +18803,7 @@ Te amo muito.
         if (baby) {
             setBabySpeech(babyGreeting());
             saveBaby();
+            maybeFirstWord(900);
         }
 
         openFunModal("babyOverlay");
@@ -18780,6 +18973,19 @@ Te amo muito.
 
         if (counted) baby.cares = (baby.cares || 0) + 1;
 
+        // o cuidado preferido vale em dobro 💖
+        const tr = babyTrait(baby, currentBabyIndex());
+
+        if (counted && type === tr.fav) {
+
+            baby.cares++;
+            baby.love = clampStat(baby.love + 5);
+
+            if (stage >= 1 || type === "nap" || Math.random() < 0.5) setBabySpeech(pick(tr.favLines));
+
+            popIn("babyArea", "💖");
+        }
+
         const newStage = babyStageOf(baby);
 
         if (newStage > (baby.stage || 0)) {
@@ -18795,6 +19001,12 @@ Te amo muito.
                 sfx("yay");
                 createConfetti();
             }, 700);
+
+            if (!baby.firstWord) {
+                baby.firstWord = chooseFirstWord(baby, currentBabyIndex());
+                baby.firstWordAt = Date.now();
+                showFirstWord(3600);
+            }
         }
 
         renderBaby();
@@ -18807,6 +19019,514 @@ Te amo muito.
         updateBabyCard();
         updateFertileUI();
     } catch (e) {}
+
+    /* ==================================================
+       🌈 JEITINHO DE CADA FILHOTINHO
+    ================================================== */
+
+    // ✏️ Personalidades (fav = o cuidado preferido)
+    const BABY_TRAITS = {
+        dorminhoco: {
+            name: "Dorminhoco", icon: "😴", fav: "nap", likes: "ama um soninho",
+            lines: [
+                "*bocejo gigante* 🥱 ...que horas é a soneca?",
+                "Sonhei que eu era uma nuvem 😴☁️",
+                "Me acorda só quando tiver melancia, tá? 😴"
+            ],
+            favLines: [
+                "Zzz... *dormindo de barriguinha pra cima* 😴💖",
+                "Soninho é a melhor coisa do mundo 😴💖",
+                "*ronquinho de capivara* 💖"
+            ]
+        },
+        comilao: {
+            name: "Comilão", icon: "🍉", fav: "feed", likes: "nunca recusa um petisco",
+            lines: [
+                "Já é hora de comer? E agora? E agora? 🍉",
+                "Eu sonhei com um milho do tamanho da casa 🌽",
+                "Sabia que melancia tem 92% de felicidade? 🍉"
+            ],
+            favLines: [
+                "NHAC NHAC NHAC 😋💖 mais!",
+                "Essa foi a melhor comida da minha vida (de novo) 💖",
+                "*barriguinha redondinha e feliz* 🍉💖"
+            ]
+        },
+        bagunceiro: {
+            name: "Bagunceiro", icon: "🤸", fav: "play", likes: "não para quieto",
+            lines: [
+                "Eu escondi a laranjinha da mamãe 🤭 shhh",
+                "Bora brincar? Bora? Bora?? 🤸",
+                "Hoje eu dei 47 cambalhotas 🤸"
+            ],
+            favLines: [
+                "IHUUU! De novo, de novo! 🤸💖",
+                "Melhor brincadeira de todas!!! 💖",
+                "*rolando de rir* 🤭💖"
+            ]
+        },
+        grudento: {
+            name: "Grudento", icon: "🤗", fav: "pet", likes: "vive pedindo colo",
+            lines: [
+                "Posso ficar no seu colo pra sempre? 🥺",
+                "Abraço de 5 minutos, por favorzinho 🤗",
+                "Eu amo vocês do tamanho do Paranapanema 💗"
+            ],
+            favLines: [
+                "*se aninha todinho* 🥹💖",
+                "Esse colinho é o meu lugar favorito 💖",
+                "Não solta não, tá? 🤗💖"
+            ]
+        },
+        aventureiro: {
+            name: "Aventureiro", icon: "🧭", fav: "bath", likes: "ama explorar o laguinho",
+            lines: [
+                "Um dia vou nadar de Rio Preto até Londrina 🏊",
+                "Achei uma pedrinha brilhante no laguinho! 💎",
+                "Quando eu crescer vou explorar o mundo todo 🧭"
+            ],
+            favLines: [
+                "SPLASH! Expedição ao fundo da banheira 🫧💖",
+                "Mergulhei igual um submarino 🫧💖",
+                "Achei um tesouro: uma bolinha de sabão! 🫧💖"
+            ]
+        }
+    };
+
+    function nameHash(s) {
+
+        let h = 7;
+
+        String(s || "").split("").forEach(c => h = (h * 31 + c.charCodeAt(0)) >>> 0);
+
+        return h;
+    }
+
+    // filhotinhos de antes ganham um jeitinho fixo (igual em todos os celulares)
+    function babyTrait(b, i) {
+
+        const keys = Object.keys(BABY_TRAITS);
+
+        if (b && BABY_TRAITS[b.trait]) return { key: b.trait, ...BABY_TRAITS[b.trait] };
+
+        // escolhe um jeitinho que nenhum irmão tenha ainda
+        const list = getBabies();
+        const used = new Set();
+
+        list.forEach((x, j) => { if (j !== i && BABY_TRAITS[x.trait]) used.add(x.trait); });
+
+        for (let j = 0; j < Math.min(i || 0, list.length); j++) used.add(babyTrait(list[j], j).key);
+
+        const free = keys.filter(k => !used.has(k));
+        const pool = free.length ? free : keys;
+        const key = pool[nameHash(b && b.name) % pool.length];
+
+        return { key, ...BABY_TRAITS[key] };
+    }
+
+    function newBabyTrait(list) {
+
+        const keys = Object.keys(BABY_TRAITS);
+        const used = list.map((b, i) => babyTrait(b, i).key);
+        const free = keys.filter(k => !used.includes(k));
+
+        return pick(free.length ? free : keys);
+    }
+
+    /* ==================================================
+       🗣️ PRIMEIRA PALAVRINHA
+    ================================================== */
+
+    function chooseFirstWord(b, i) {
+
+        const special = {
+            dorminhoco: "Naninha!",
+            comilao: "Mamá... melancia!",
+            bagunceiro: "De novo!",
+            grudento: "Colo!",
+            aventureiro: "Laguinho!"
+        };
+
+        if (Math.random() < 0.2) return special[babyTrait(b, i).key];
+
+        return pick(["Mamãe!", "Papai!", "Mamãe MM!", "Papai GG!"]);
+    }
+
+    function showFirstWord(delay) {
+
+        setTimeout(() => {
+
+            if (!baby || !baby.firstWord) return;
+
+            const speech = document.getElementById("babySpeech");
+
+            setBabySpeech(`🥹 ${baby.name} falou a primeira palavrinha: “${baby.firstWord}”`);
+
+            speech.classList.add("first-word");
+            setTimeout(() => speech.classList.remove("first-word"), 6000);
+
+            sfx("baby");
+            createConfetti();
+            popIn("babyArea", "🗣️");
+
+        }, delay || 0);
+    }
+
+    // já cresceu e ainda não falou? fala agora (uma vez só)
+    function maybeFirstWord(delay) {
+
+        if (!baby || baby.firstWord || babyStageOf(baby) < 1) return false;
+
+        baby.firstWord = chooseFirstWord(baby, currentBabyIndex());
+        baby.firstWordAt = Date.now();
+
+        saveBaby();
+        showFirstWord(delay);
+
+        return true;
+    }
+
+    function familyDiaryEvents(dayKey) {
+
+        const ev = [];
+
+        getBabies().forEach(b => {
+
+            if (b.born && todayKey(new Date(b.born)) === dayKey) {
+                ev.push(`Hoje nasceu ${b.name}, meu filhotinho com o GG 🍼🥹`);
+            }
+
+            if (b.firstWordAt && todayKey(new Date(b.firstWordAt)) === dayKey) {
+                ev.push(`${b.name} falou a primeira palavrinha: “${b.firstWord}” 😭💗`);
+            }
+        });
+
+        return ev.join(" ");
+    }
+
+    /* ==================================================
+       📸 FOTO DE FAMÍLIA
+    ================================================== */
+
+    // transforma um desenho da página em imagem (com o que estiver escondido/visível)
+    function svgToImage(svgEl, w, h) {
+
+        const clone = svgEl.cloneNode(true);
+        const src = svgEl.querySelectorAll("*");
+        const dst = clone.querySelectorAll("*");
+
+        src.forEach((el, i) => {
+
+            const cs = getComputedStyle(el);
+
+            if (cs.display === "none") dst[i].setAttribute("display", "none");
+            if (cs.opacity !== "1") dst[i].setAttribute("opacity", cs.opacity);
+
+            dst[i].removeAttribute("class");
+        });
+
+        clone.removeAttribute("class");
+        clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        clone.setAttribute("width", w);
+        clone.setAttribute("height", h);
+
+        const xml = new XMLSerializer().serializeToString(clone);
+
+        return new Promise((resolve, reject) => {
+
+            const img = new Image();
+
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
+        });
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+
+    const KID_FILTERS = [
+        "none",
+        "brightness(1.07) saturate(0.85)",
+        "hue-rotate(-10deg) saturate(1.25)",
+        "brightness(0.92) saturate(1.1)",
+        "hue-rotate(14deg) brightness(1.04)"
+    ];
+
+    async function buildFamilyPhoto() {
+
+        if (!cat) loadCat();
+
+        // monta a família escondidinha fora da tela
+        const box = document.createElement("div");
+
+        box.style.cssText = "position:fixed;left:-3000px;top:0;width:600px;pointer-events:none;";
+
+        const mmWrap = document.createElement("div");
+        mmWrap.className = "cat-stage happy";
+
+        const mmSvg = document.querySelector("#catStage svg").cloneNode(true);
+        mmSvg.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+        mmWrap.appendChild(mmSvg);
+
+        const ggWrap = document.createElement("div");
+        ggWrap.className = "cat-stage happy";
+        ggWrap.appendChild(document.querySelector(".gg-stage svg").cloneNode(true));
+
+        const kids = getBabies();
+        const kidWrap = document.createElement("div");
+
+        kidWrap.innerHTML = kids.map((b, i) => babySvg(babyStageOf(b), i)).join("");
+
+        box.append(mmWrap, ggWrap, kidWrap);
+        document.body.appendChild(box);
+
+        applyOutfit(mmWrap);
+
+        mmWrap.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"]')
+            .forEach(el => el.style.display = "none");
+
+        try { await document.fonts.load("64px Caveat"); await document.fonts.load("600 30px Fredoka"); } catch (e) {}
+
+        const W = 1080, H = 1350;
+        const canvas = document.createElement("canvas");
+
+        canvas.width = W;
+        canvas.height = H;
+
+        const ctx = canvas.getContext("2d");
+
+        try {
+
+            const mmImg = await svgToImage(mmWrap.querySelector("svg"), 460, 420);
+            const ggImg = await svgToImage(ggWrap.querySelector("svg"), 460, 420);
+            const kidImgs = [];
+
+            for (const svg of kidWrap.querySelectorAll("svg")) {
+                kidImgs.push(await svgToImage(svg, 240, 200));
+            }
+
+            // fundo
+            const bg = ctx.createLinearGradient(0, 0, W, H);
+            bg.addColorStop(0, "#ffe3ee");
+            bg.addColorStop(1, "#dcecff");
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, W, H);
+
+            ctx.font = "44px serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            [["💗", 70, 70], ["✨", 1010, 70], ["🍊", 60, 1290], ["💙", 1020, 1290]]
+                .forEach(([e, x, y]) => ctx.fillText(e, x, y));
+
+            // polaroid
+            ctx.save();
+            ctx.shadowColor = "rgba(150, 90, 130, 0.28)";
+            ctx.shadowBlur = 40;
+            ctx.shadowOffsetY = 14;
+            ctx.fillStyle = "#fffdf8";
+            roundRect(ctx, 80, 90, 920, 1160, 34);
+            ctx.fill();
+            ctx.restore();
+
+            // "foto"
+            const px = 120, py = 130, pw = 840, ph = 800;
+
+            ctx.save();
+            roundRect(ctx, px, py, pw, ph, 22);
+            ctx.clip();
+
+            const sky = ctx.createLinearGradient(0, py, 0, py + ph);
+            sky.addColorStop(0, "#ffd6e6");
+            sky.addColorStop(0.62, "#fff1f6");
+            sky.addColorStop(0.63, "#cfe8c4");
+            sky.addColorStop(1, "#b3dba6");
+            ctx.fillStyle = sky;
+            ctx.fillRect(px, py, pw, ph);
+
+            ctx.fillStyle = "rgba(255,255,255,0.75)";
+            [[260, 250, 60], [330, 240, 46], [720, 300, 54], [790, 290, 40]].forEach(([x, y, r]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            ctx.font = "70px serif";
+            ctx.fillText("☀️", 860, 220);
+
+            // GG e MM lado a lado
+            ctx.drawImage(ggImg, px + 20, py + 300, 440, 402);
+            ctx.drawImage(mmImg, px + pw - 460, py + 300, 440, 402);
+
+            ctx.font = "54px serif";
+            ctx.fillText("💗", px + pw / 2, py + 380);
+
+            // filhotinhos na frente
+            if (kidImgs.length) {
+
+                const sizes = kids.map(b => [130, 150, 170, 190][babyStageOf(b)]);
+                const total = sizes.reduce((a, s) => a + s, 0) + (kids.length - 1) * 6;
+                const scale = Math.min(1, (pw - 60) / total);
+                let x = px + (pw - total * scale) / 2;
+
+                kidImgs.forEach((img, i) => {
+
+                    const w = sizes[i] * scale;
+                    const h = w * 100 / 120;
+
+                    ctx.save();
+                    ctx.filter = KID_FILTERS[i % 5];
+                    ctx.drawImage(img, x, py + ph - h - 18, w, h);
+                    ctx.restore();
+
+                    x += w + 6 * scale;
+                });
+            }
+
+            ctx.restore();
+
+            // legenda
+            ctx.fillStyle = "#e0558f";
+            ctx.font = "84px Caveat, 'Comic Sans MS', cursive";
+            ctx.fillText("Família Capivara 💗", W / 2, 1020);
+
+            const names = ["MM", "GG"].concat(kids.map(b => b.name));
+
+            ctx.fillStyle = "#7a6170";
+            ctx.font = "600 32px Fredoka, sans-serif";
+
+            const line = names.slice(0, -1).join(", ") + " e " + names[names.length - 1];
+
+            ctx.fillText(line.length > 52 ? line.slice(0, 50) + "…" : line, W / 2, 1100);
+
+            ctx.fillStyle = "#a08996";
+            ctx.font = "28px Fredoka, sans-serif";
+            ctx.fillText(
+                "Londrina 💙 Rio Preto · " + new Date().toLocaleDateString("pt-BR"),
+                W / 2, 1160);
+
+        } finally {
+            box.remove();
+        }
+
+        return canvas;
+    }
+
+    let familyPhotoBlob = null;
+    let familyPhotoUrl = null;
+
+    async function openFamilyPhoto() {
+
+        ["ggOverlay", "babyOverlay"].forEach(id => {
+            if (!document.getElementById(id).classList.contains("hidden")) closeFunModal(id);
+        });
+
+        const img = document.getElementById("familyPhotoImg");
+        const status = document.getElementById("familyPhotoStatus");
+
+        img.classList.add("hidden");
+        status.textContent = "Arrumando todo mundo pra foto... 📸";
+        status.classList.remove("hidden");
+
+        document.getElementById("familyShareBtn")
+            .classList.toggle("hidden", !(navigator.share && navigator.canShare));
+
+        openFunModal("photoOverlay");
+
+        try {
+
+            const canvas = await buildFamilyPhoto();
+
+            familyPhotoBlob = await new Promise(r => canvas.toBlob(r, "image/png"));
+
+            if (familyPhotoUrl) URL.revokeObjectURL(familyPhotoUrl);
+
+            familyPhotoUrl = URL.createObjectURL(familyPhotoBlob);
+
+            img.src = familyPhotoUrl;
+            img.classList.remove("hidden");
+            status.classList.add("hidden");
+
+            sfx("plim");
+
+        } catch (e) {
+
+            status.textContent = "Ops, alguém piscou na foto 🙈 Tenta de novo?";
+        }
+    }
+
+    function downloadFamilyPhoto() {
+
+        if (!familyPhotoUrl) return;
+
+        const a = document.createElement("a");
+
+        a.href = familyPhotoUrl;
+        a.download = "familia-capivara.png";
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    }
+
+    async function shareFamilyPhoto() {
+
+        if (!familyPhotoBlob) return;
+
+        const file = new File([familyPhotoBlob], "familia-capivara.png", { type: "image/png" });
+
+        try {
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({ files: [file], title: "Família Capivara 💗" });
+            } else {
+                downloadFamilyPhoto();
+            }
+
+        } catch (e) {}
+    }
+
+    /* ==================================================
+       😴 BOA NOITE EM FAMÍLIA
+    ================================================== */
+
+    function renderGoodnightFamily() {
+
+        const ggBox = document.getElementById("gnGG");
+        const kidsBox = document.getElementById("gnBabies");
+
+        if (!ggBox) return;
+
+        const src = document.querySelector(".gg-stage svg");
+
+        ggBox.innerHTML = "";
+
+        if (src) {
+
+            const svg = src.cloneNode(true);
+
+            // olhinhos fechados de sono
+            svg.querySelectorAll("path").forEach(p => {
+                const d = p.getAttribute("d");
+                if (d === "M74 95 Q82 84 90 95") p.setAttribute("d", "M74 92 Q82 101 90 92");
+                if (d === "M136 95 Q144 84 152 95") p.setAttribute("d", "M136 92 Q144 101 152 92");
+            });
+
+            ggBox.appendChild(svg);
+        }
+
+        kidsBox.innerHTML = getBabies().map((b, i) =>
+            `<div class="gn-kid napping">${babySvg(babyStageOf(b), i)}</div>`).join("");
+    }
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
