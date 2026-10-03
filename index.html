@@ -5291,6 +5291,137 @@
     }
 
     /* ==========================================
+       💙 CANTINHO DO GG + 🍼 FILHOTINHO
+    ========================================== */
+
+    .mini-card:nth-child(4) { background: radial-gradient(circle at top, var(--blue-glow), transparent 65%), var(--surface-soft); }
+    .mini-card:nth-child(5) { background: radial-gradient(circle at top, var(--pink-glow), var(--blue-glow) 75%), var(--surface-soft); }
+
+    .mini-card.locked .mini-icon { filter: grayscale(0.6); opacity: 0.75; }
+
+    .gg-care-stage { cursor: pointer; }
+
+    .gg-care-stage .cat-svg { width: 100%; height: 100%; }
+
+    /* esconde/mostra acessórios do filhotinho conforme cresce */
+    .bb-orange, .bb-cap, .bb-bow, .bb-sleep { display: none; }
+
+    .baby-stage-1 .bb-orange,
+    .baby-stage-2 .bb-cap,
+    .baby-stage-3 .bb-cap,
+    .baby-stage-3 .bb-bow { display: inline; }
+
+    .baby-stage-1 .bb-paci,
+    .baby-stage-2 .bb-paci,
+    .baby-stage-3 .bb-paci { display: none; }
+
+    .napping .bb-eyes { display: none; }
+    .napping .bb-sleep { display: inline; }
+    .napping .bb-paci { display: inline; }
+
+    .baby-care-area {
+        --baby-size: 120px;
+        position: relative;
+        height: 200px;
+        margin: 10px auto 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        border-radius: 24px;
+        background:
+            radial-gradient(ellipse at 50% 92%, var(--pink-glow), transparent 60%),
+            radial-gradient(circle at 20% 20%, var(--blue-glow), transparent 45%);
+    }
+
+    .baby-care-area .baby-svg {
+        width: var(--baby-size);
+        transition: width 0.8s cubic-bezier(.34, 1.4, .64, 1);
+        margin-bottom: 10px;
+    }
+
+    .baby-care-area.bounce .baby-svg {
+        animation: babyHop 0.45s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    @keyframes babyHop {
+        0%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-14px) scale(1.04, 0.97); }
+    }
+
+    .baby-care-area.napping {
+        background:
+            radial-gradient(ellipse at 50% 92%, var(--blue-glow), transparent 60%),
+            radial-gradient(circle at 80% 18%, rgba(255, 230, 150, 0.5), transparent 30%);
+    }
+
+    .baby-care-area.napping .baby-body { animation-duration: 3.6s; }
+
+    .baby-egg {
+        font-size: 84px;
+        margin-bottom: 30px;
+        animation: eggWobble 2.4s ease-in-out infinite;
+    }
+
+    @keyframes eggWobble {
+        0%, 70%, 100% { transform: rotate(0); }
+        78% { transform: rotate(-10deg); }
+        86% { transform: rotate(10deg); }
+        94% { transform: rotate(-5deg); }
+    }
+
+    .baby-growth {
+        margin: 14px 0 0;
+        text-align: left;
+    }
+
+    .cat-stat-fill.growth {
+        background: linear-gradient(90deg, #b8e6a0, #6cc59a);
+    }
+
+    .baby-growth-hint {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--text-muted);
+        text-align: center;
+    }
+
+    .cat-actions.baby-actions {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+    }
+
+    .cat-actions.baby-actions button {
+        font-size: 11.5px;
+        padding: 10px 2px;
+    }
+
+    .cat-actions.baby-actions button span { font-size: 22px; }
+
+    .baby-locked .baby-growth,
+    .baby-locked .cat-stats,
+    .baby-locked .baby-actions,
+    .baby-locked #babyStagePill,
+    .baby-locked #babyFooter { display: none; }
+
+    #babyStagePill:empty { display: none; }
+
+    .family-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    @media (min-width: 651px) {
+        .mini-grid { grid-template-columns: repeat(6, 1fr); }
+        .mini-grid .mini-card { grid-column: span 2; }
+        .mini-grid .mini-card:nth-child(n+4) { grid-column: span 3; }
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -5751,6 +5882,66 @@
                 <div class="mini-desc">
                     Futura esposa oficial,
                     com validade eterna
+                </div>
+            </div>
+
+
+            <div
+                class="mini-card"
+                onclick="openGG()"
+            >
+                <span
+                    id="ggBadge"
+                    class="mini-badge"
+                >💙</span>
+
+                <span class="mini-icon">
+                    <svg viewBox="0 0 60 50" width="46" height="40" aria-hidden="true" style="vertical-align: middle;">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#b08458" stroke="#4a3329" stroke-width="2"/>
+                        <path d="M10 20 Q12 4 30 4 Q48 4 50 20 Q30 15 10 20 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="1.5"/>
+                        <path d="M14 26 Q18 23 22 26 M38 26 Q42 23 46 26" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#8a6343" stroke="#4a3329" stroke-width="1.5"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </svg>
+                </span>
+
+                <div class="mini-title">
+                    GG
+                </div>
+
+                <div class="mini-desc">
+                    O capivaro de Londrina.
+                    Cuida dele também! 💙
+                </div>
+            </div>
+
+            <div
+                id="babyCard"
+                class="mini-card"
+                onclick="openBaby()"
+            >
+                <span
+                    id="babyBadge"
+                    class="mini-badge"
+                >🔒</span>
+
+                <span class="mini-icon">🍼</span>
+
+                <div
+                    id="babyCardTitle"
+                    class="mini-title"
+                >
+                    ???
+                </div>
+
+                <div
+                    id="babyCardDesc"
+                    class="mini-desc"
+                >
+                    Uma surpresinha da MM e do GG... 👀
                 </div>
             </div>
 
@@ -7913,6 +8104,248 @@
 
 </div>
 
+<!-- ==================================================
+     💙 MODAL — CANTINHO DO GG
+================================================== -->
+
+<div
+    id="ggOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('ggOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            GG 💙
+        </h2>
+
+        <div
+            id="ggSpeech"
+            class="cat-speech"
+        >Kiu kiu! 💙</div>
+
+        <div
+            id="ggStage"
+            class="cat-stage happy gg-care-stage"
+            onclick="ggAction('pet')"
+        ></div>
+
+        <div class="cat-stats">
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>💙 Carinho</span>
+                    <span id="ggLoveText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="ggLoveBar" class="cat-stat-fill fun"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>🌽 Barriguinha</span>
+                    <span id="ggFoodText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="ggFoodBar" class="cat-stat-fill food"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>💦 Diversão</span>
+                    <span id="ggFunText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="ggFunBar" class="cat-stat-fill love"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cat-actions">
+
+            <button onclick="ggAction('pet')">
+                <span>🤚</span>Carinho
+            </button>
+
+            <button onclick="ggAction('feed')">
+                <span>🌽</span>Petisco
+            </button>
+
+            <button onclick="ggAction('play')">
+                <span>💦</span>Banho
+            </button>
+
+            <button onclick="ggAction('note')">
+                <span>💌</span>Recado
+            </button>
+
+        </div>
+
+        <div class="mm-extra-actions family-links">
+
+            <button onclick="closeFunModal('ggOverlay'); openCat()">
+                🍊 Ver a MM
+            </button>
+
+            <button
+                id="ggBabyLink"
+                onclick="closeFunModal('ggOverlay'); openBaby()"
+            >
+                🍼 Ver o filhotinho
+            </button>
+
+        </div>
+
+        <div
+            id="ggFooter"
+            class="cat-footer"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🍼 MODAL — CANTINHO DO FILHOTINHO
+================================================== -->
+
+<div
+    id="babyOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('babyOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2
+            id="babyTitle"
+            class="fun-title"
+        >Filhotinho 🍼</h2>
+
+        <div
+            id="babyStagePill"
+            class="mm-bday-pill"
+        ></div>
+
+        <div
+            id="babySpeech"
+            class="cat-speech"
+        >Gugu dadá 🍼</div>
+
+        <div
+            id="babyArea"
+            class="baby-care-area"
+            onclick="babyAction('pet')"
+        ></div>
+
+        <div class="baby-growth">
+            <div class="cat-stat-label">
+                <span id="babyGrowthLabel">🌱 Crescimento</span>
+                <span id="babyGrowthText"></span>
+            </div>
+            <div class="cat-stat-bar">
+                <div id="babyGrowthBar" class="cat-stat-fill growth"></div>
+            </div>
+            <div
+                id="babyGrowthHint"
+                class="baby-growth-hint"
+            ></div>
+        </div>
+
+        <div class="cat-stats">
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>💗 Carinho</span>
+                    <span id="babyLoveText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="babyLoveBar" class="cat-stat-fill love"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>🍼 Barriguinha</span>
+                    <span id="babyFoodText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="babyFoodBar" class="cat-stat-fill food"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="cat-stat-label">
+                    <span>🧸 Diversão</span>
+                    <span id="babyFunText">0%</span>
+                </div>
+                <div class="cat-stat-bar">
+                    <div id="babyFunBar" class="cat-stat-fill fun"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cat-actions baby-actions">
+
+            <button onclick="babyAction('feed')">
+                <span>🍼</span>Mamadeira
+            </button>
+
+            <button onclick="babyAction('pet')">
+                <span>🤗</span>Colinho
+            </button>
+
+            <button onclick="babyAction('play')">
+                <span>🧸</span>Brincar
+            </button>
+
+            <button onclick="babyAction('bath')">
+                <span>🫧</span>Banho
+            </button>
+
+            <button onclick="babyAction('nap')">
+                <span>😴</span>Soninho
+            </button>
+
+        </div>
+
+        <div class="mm-extra-actions family-links">
+
+            <button onclick="closeFunModal('babyOverlay'); openCat()">
+                🍊 Mamãe MM
+            </button>
+
+            <button onclick="closeFunModal('babyOverlay'); openGG()">
+                💙 Papai GG
+            </button>
+
+        </div>
+
+        <div
+            id="babyFooter"
+            class="cat-footer"
+        ></div>
+
+    </div>
+
+</div>
+
+
 <template id="babyTemplate">
 <svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
     <ellipse cx="60" cy="95" rx="40" ry="4" fill="rgba(90,60,100,0.15)"/>
@@ -7924,17 +8357,40 @@
         <ellipse cx="88" cy="26" rx="8" ry="7" fill="#c39466" stroke="#5a4036" stroke-width="2.5"/>
         <rect x="22" y="22" width="76" height="58" rx="27" fill="#e2bf93" stroke="#5a4036" stroke-width="2.5"/>
         <path d="M56 22 Q60 12 66 18" fill="none" stroke="#5a4036" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="44" cy="46" r="6" fill="#2e211f"/>
-        <circle cx="76" cy="46" r="6" fill="#2e211f"/>
-        <circle cx="46" cy="44" r="2.2" fill="#ffffff"/>
-        <circle cx="78" cy="44" r="2.2" fill="#ffffff"/>
+        <g class="bb-eyes">
+            <circle cx="44" cy="46" r="6" fill="#2e211f"/>
+            <circle cx="76" cy="46" r="6" fill="#2e211f"/>
+            <circle cx="46" cy="44" r="2.2" fill="#ffffff"/>
+            <circle cx="78" cy="44" r="2.2" fill="#ffffff"/>
+        </g>
         <ellipse cx="34" cy="60" rx="6" ry="3.5" fill="#ffb3cc"/>
         <ellipse cx="86" cy="60" rx="6" ry="3.5" fill="#ffb3cc"/>
         <rect x="44" y="52" width="32" height="22" rx="11" fill="#c39466" stroke="#5a4036" stroke-width="2"/>
         <ellipse cx="54" cy="59" rx="2.5" ry="2" fill="#2e211f"/>
         <ellipse cx="66" cy="59" rx="2.5" ry="2" fill="#2e211f"/>
-        <circle cx="60" cy="70" r="6" fill="#8fd3ee" stroke="#5a4036" stroke-width="1.8"/>
-        <circle cx="60" cy="70" r="2.2" fill="#ffffff"/>
+        <g class="bb-paci">
+            <circle cx="60" cy="70" r="6" fill="#8fd3ee" stroke="#5a4036" stroke-width="1.8"/>
+            <circle cx="60" cy="70" r="2.2" fill="#ffffff"/>
+        </g>
+        <!-- acessórios que mudam conforme o filhotinho cresce -->
+        <g class="bb-orange">
+            <circle cx="60" cy="14" r="7" fill="#ffa94d" stroke="#5a4036" stroke-width="2"/>
+            <path d="M60 7 Q65 1 70 4 Q65 9 60 7 Z" fill="#7cc97a" stroke="#5a4036" stroke-width="1.2"/>
+        </g>
+        <g class="bb-cap">
+            <path d="M28 34 Q30 8 60 8 Q90 8 92 34 Q60 26 28 34 Z" fill="#6c8fd6" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M20 36 Q38 26 58 30 L56 34 Q38 32 22 40 Z" fill="#5677c0" stroke="#5a4036" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="60" cy="9" r="3" fill="#ffd27d" stroke="#5a4036" stroke-width="1.2"/>
+        </g>
+        <g class="bb-bow" transform="translate(94 26) rotate(18)">
+            <path d="M0 0 L-9 -6 L-9 6 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M0 0 L9 -6 L9 6 Z" fill="#ff8fb8" stroke="#5a4036" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle r="3" fill="#ff6aa8" stroke="#5a4036" stroke-width="1.2"/>
+        </g>
+        <g class="bb-sleep" fill="none" stroke="#2e211f" stroke-width="3" stroke-linecap="round">
+            <path d="M38 46 Q44 51 50 46"/>
+            <path d="M70 46 Q76 51 82 46"/>
+        </g>
     </g>
 </svg>
 </template>
@@ -12601,7 +13057,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -14757,9 +15213,12 @@ Te amo muito.
 
     const BABY_KEY = "mmBaby";
 
-    function babySvg() {
+    function babySvg(stage) {
 
-        return document.getElementById("babyTemplate").innerHTML;
+        if (stage === undefined) stage = babyStageOf(getBaby());
+
+        return document.getElementById("babyTemplate").innerHTML
+            .replace('class="baby-svg"', `class="baby-svg baby-stage-${stage}"`);
     }
 
     function getBaby() {
@@ -14822,7 +15281,9 @@ Te amo muito.
             return;
         }
 
-        writeStore(BABY_KEY, { name, born: Date.now() });
+        writeStore(BABY_KEY, { name, born: Date.now(), cares: 0, stage: 0, love: 80, food: 80, fun: 80, lastVisit: Date.now() });
+
+        updateBabyCard();
 
         clearTimeout(coupleTalkTimer);
 
@@ -15214,7 +15675,7 @@ Te amo muito.
 
     // tudo que o site guarda no celular
     const BACKUP_KEYS = [
-        "mmCapivara", "mmVisitsGG", "mmBaby", "mmWishes",
+        "mmCapivara", "mmVisitsGG", "mmBaby", "ggPet", "mmWishes",
         "hugsSent", "idCardPhoto",
         "siteTheme", "siteLightTheme", "siteSounds",
         "careChecklist",
@@ -16653,6 +17114,7 @@ Te amo muito.
                     k === "loveMemSynced" ||
                     k === "loveMemDeleted" ||
                     k === "mmCloudLinked" ||
+                    k.startsWith("cloudLinked_") ||
                     k.startsWith("cloudSynced_") ||
                     k.startsWith("cloudDeleted_")
                 ) drop.push(k);
@@ -16863,13 +17325,9 @@ Te amo muito.
         }
     }
 
-    /* 🍊 a MM inteira */
+    /* 🍊💙🍼 a família inteira (MM, GG e filhotinho), cada um salvo separado */
 
-    const MM_STATE_AT_KEY = "mmStateAt";
-    const MM_LINKED_KEY = "mmCloudLinked";
-    const MM_SYNC_KEYS = ["mmCapivara", "mmBaby", "mmVisitsGG", "hugsSent"];
-
-    let mmUploadTimer = null;
+    let stateUploadTimers = {};
 
     function lsGet(k) {
         try { return localStorage.getItem(k); } catch (e) { return null; }
@@ -16882,111 +17340,191 @@ Te amo muito.
         } catch (e) {}
     }
 
-    function mmLinked() {
+    function petsOf(json) {
 
-        return lsGet(MM_LINKED_KEY) === "1";
+        try { return JSON.parse(json).pets || 0; } catch (e) { return 0; }
     }
 
-    function mmLocalState() {
+    const SYNC_STATES = {
 
-        return {
-            cat: lsGet("mmCapivara") || "",
-            baby: lsGet("mmBaby") || "",
-            visits: lsGet("mmVisitsGG") || "",
-            hugs: lsGet("hugsSent") || "",
-            at: Number(lsGet(MM_STATE_AT_KEY) || 0)
-        };
+        mm: {
+            keys: ["mmCapivara", "mmVisitsGG", "hugsSent"],
+            atKey: "mmStateAt",
+            linkedKey: "mmCloudLinked",
+            score: d => petsOf(d.mmCapivara),
+            applied: () => {
+                loadCat();
+                updateCatBadge(catMood());
+                if (!document.getElementById("catOverlay").classList.contains("hidden")) {
+                    renderCat(catMood());
+                }
+            }
+        },
+
+        gg: {
+            keys: ["ggPet"],
+            atKey: "ggStateAt",
+            linkedKey: "cloudLinked_gg",
+            score: d => petsOf(d.ggPet),
+            applied: () => {
+                updateGGBadge();
+                if (!document.getElementById("ggOverlay").classList.contains("hidden")) renderGG();
+            }
+        },
+
+        bebe: {
+            keys: ["mmBaby"],
+            atKey: "bebeStateAt",
+            linkedKey: "cloudLinked_bebe",
+            score: d => {
+                try {
+                    const b = JSON.parse(d.mmBaby);
+                    return b ? 1 + (b.cares || 0) : 0;
+                } catch (e) { return 0; }
+            },
+            applied: () => {
+                updateBabyCard();
+                if (!document.getElementById("babyOverlay").classList.contains("hidden")) renderBaby();
+            }
+        }
+    };
+
+    function stateOfKey(key) {
+
+        return Object.keys(SYNC_STATES).find(n => SYNC_STATES[n].keys.includes(key));
     }
 
-    function petsOf(catJson) {
+    function localStateData(name) {
 
-        try { return JSON.parse(catJson).pets || 0; } catch (e) { return 0; }
+        const data = {};
+
+        SYNC_STATES[name].keys.forEach(k => data[k] = lsGet(k) || "");
+
+        return data;
     }
 
-    // toda vez que algo da MM muda no celular
+    function hasData(data) {
+
+        return Object.values(data).some(v => v);
+    }
+
+    // toda vez que algo da MM, do GG ou do filhotinho muda no celular
     function onLocalWrite(key) {
 
-        if (applyingRemote || !MM_SYNC_KEYS.includes(key)) return;
+        if (applyingRemote) return;
 
-        lsSet(MM_STATE_AT_KEY, String(Date.now()));
+        const name = stateOfKey(key);
 
-        if (!cloudReady() || !mmLinked()) return;
+        if (!name) return;
 
-        clearTimeout(mmUploadTimer);
+        const cfg = SYNC_STATES[name];
 
-        mmUploadTimer = setTimeout(uploadMM, 2500);
+        lsSet(cfg.atKey, String(Date.now()));
+
+        if (!cloudReady() || lsGet(cfg.linkedKey) !== "1") return;
+
+        clearTimeout(stateUploadTimers[name]);
+
+        stateUploadTimers[name] = setTimeout(() => uploadState(name), 2500);
     }
 
-    function uploadMM() {
+    function uploadState(name) {
 
         if (!cloudReady()) return;
 
-        const s = mmLocalState();
+        const cfg = SYNC_STATES[name];
+        const data = localStateData(name);
 
-        if (!s.cat) return;
+        if (!hasData(data)) return;
 
-        if (!s.at) {
-            s.at = Date.now();
-            lsSet(MM_STATE_AT_KEY, String(s.at));
+        let at = Number(lsGet(cfg.atKey) || 0);
+
+        if (!at) {
+            at = Date.now();
+            lsSet(cfg.atKey, String(at));
         }
 
-        window.loveCloud.setState("mm", s).catch(() => {});
+        window.loveCloud.setState(name, { data, at }).catch(() => {});
     }
 
-    function applyRemoteMM(r) {
+    function applyRemoteState(name, remote) {
+
+        const cfg = SYNC_STATES[name];
 
         applyingRemote = true;
 
-        lsSet("mmCapivara", r.cat);
-        lsSet("mmBaby", r.baby);
-        lsSet("mmVisitsGG", r.visits);
-        lsSet("hugsSent", r.hugs);
-        lsSet(MM_STATE_AT_KEY, String(r.at || Date.now()));
+        cfg.keys.forEach(k => lsSet(k, remote.data[k]));
+        lsSet(cfg.atKey, String(remote.at || Date.now()));
 
         applyingRemote = false;
 
-        loadCat();
-        updateCatBadge(catMood());
-
-        if (!document.getElementById("catOverlay").classList.contains("hidden")) {
-            renderCat(catMood());
-        }
+        try { cfg.applied(); } catch (e) {}
     }
 
-    function onCloudMM(remote) {
+    function normalizeRemote(name, remote) {
 
-        const local = mmLocalState();
+        if (!remote) return null;
 
-        if (!remote || !remote.cat) {
+        // formato antigo da MM (de antes de separar MM, GG e filhotinho)
+        if (name === "mm" && !remote.data && remote.cat) {
 
-            // a nuvem ainda não tem MM: sobe a deste celular
-            lsSet(MM_LINKED_KEY, "1");
-            if (local.cat) uploadMM();
+            // o filhotinho morava junto no doc da MM: muda pro doc dele
+            if (remote.baby && !lsGet("mmBaby")) {
+                lsSet("mmBaby", remote.baby);
+                lsSet("bebeStateAt", String(remote.at || Date.now()));
+                setTimeout(() => {
+                    try { SYNC_STATES.bebe.applied(); } catch (e) {}
+                    if (lsGet("cloudLinked_bebe") === "1") uploadState("bebe");
+                }, 0);
+            }
+
+            return {
+                data: { mmCapivara: remote.cat, mmVisitsGG: remote.visits || "", hugsSent: remote.hugs || "" },
+                at: remote.at || 0
+            };
+        }
+
+        return remote.data ? remote : null;
+    }
+
+    function onCloudState(name, rawRemote) {
+
+        const cfg = SYNC_STATES[name];
+        const remote = normalizeRemote(name, rawRemote);
+        const local = localStateData(name);
+        const localAt = Number(lsGet(cfg.atKey) || 0);
+
+        if (!remote || !hasData(remote.data)) {
+
+            // a nuvem ainda não tem: sobe a deste celular
+            lsSet(cfg.linkedKey, "1");
+            if (hasData(local)) uploadState(name);
             return;
         }
 
-        if (!mmLinked()) {
+        if (lsGet(cfg.linkedKey) !== "1") {
 
-            // primeira vez neste celular: fica a MM mais "cuidada"
-            lsSet(MM_LINKED_KEY, "1");
+            // primeira vez neste celular: fica o mais "cuidado"
+            lsSet(cfg.linkedKey, "1");
 
-            if (local.cat && petsOf(local.cat) > petsOf(remote.cat)) {
-                lsSet(MM_STATE_AT_KEY, String(Date.now()));
-                uploadMM();
+            if (hasData(local) && cfg.score(local) > cfg.score(remote.data)) {
+                lsSet(cfg.atKey, String(Date.now()));
+                uploadState(name);
             } else {
-                if (local.cat) lsSet("mmPreCloudBackup", JSON.stringify(local));
-                applyRemoteMM(remote);
+                if (hasData(local)) lsSet("preCloudBackup_" + name, JSON.stringify(local));
+                applyRemoteState(name, remote);
             }
 
             return;
         }
 
-        if ((remote.at || 0) > local.at + 500) {
-            applyRemoteMM(remote);
-        } else if (local.at > (remote.at || 0) + 500) {
-            uploadMM();
+        if ((remote.at || 0) > localAt + 500) {
+            applyRemoteState(name, remote);
+        } else if (localAt > (remote.at || 0) + 500) {
+            uploadState(name);
         }
     }
+
 
     /* login e conexões */
 
@@ -17027,7 +17565,8 @@ Te amo muito.
         });
 
         cloudListeners.push(window.loveCloud.listenState("vales", onCloudVales, err));
-        cloudListeners.push(window.loveCloud.listenState("mm", onCloudMM, err));
+        Object.keys(SYNC_STATES).forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(n, d => onCloudState(n, d), err)));
     }
 
     function onCloudError(kind) {
@@ -17170,6 +17709,673 @@ Te amo muito.
     updateMemCount();
 
     renderCloudPill();
+
+    /* ==================================================
+       💙 CANTINHO DO GG (o capivaro de Londrina)
+    ================================================== */
+
+    const GG_PET_KEY = "ggPet";
+
+    // ✏️ Falinhas do GG
+    const ggPetLines = [
+        "Kiu kiu! 💙 (isso é capivarês pra \"de novo\")",
+        "Cafuné no boné não vale, tem que ser na cabecinha 🧢",
+        "O Gabriel faz igualzinho... deve ter aprendido com você 🥹",
+        "Fiquei todo derretido aqui 🫠💙",
+        "Agora entendi por que a MM fala tanto de você 🥰"
+    ];
+
+    const ggFeedLines = [
+        "Milho verde?! Você sabe o caminho do meu coração 🌽",
+        "Nhac nhac! Petisco de Rio Preto é outro nível 😋",
+        "Vou guardar um pedacinho pra MM... ou não 🤭",
+        "Barriguinha cheia, GG feliz 💙"
+    ];
+
+    const ggPlayLines = [
+        "Splash! Banho de capivaro é sagrado 💦",
+        "Boiando que nem o Gabriel no domingo 😌",
+        "Não molha o boné!!! ...tá, pode molhar 🧢💦",
+        "De novo! De novo! 💦"
+    ];
+
+    const ggNotes = [
+        "Recado do Gabriel: \"tô morrendo de saudade, viu?\" 🥺",
+        "O Gabriel pediu pra eu te dar um abraço apertado 🫂 (pronto, dei)",
+        "Ele disse que você é a coisa mais linda de Rio Preto. Eu disse que era a MM. Empatamos 😌",
+        "Recadinho: \"bebe água e lembra que eu te amo\" 💧💙",
+        "O Gabriel mandou avisar que a melhor parte do dia dele é falar com você 💙",
+        "Tradução do capivarês: o Gabriel te ama muito, muito 💙"
+    ];
+
+    let gg = null;
+
+    function loadGG() {
+
+        const now = Date.now();
+
+        gg = readStore(GG_PET_KEY, null) || {
+            love: 70, food: 70, fun: 70, pets: 0, born: now, lastVisit: now
+        };
+
+        const hoursAway = Math.max(0, (now - (gg.lastVisit || now)) / 3600000);
+
+        gg.food = clampStat(gg.food - hoursAway * 3);
+        gg.fun = clampStat(gg.fun - hoursAway * 2);
+        gg.love = clampStat(gg.love - hoursAway * 1.5);
+        gg.lastVisit = now;
+
+        return gg;
+    }
+
+    function saveGG() {
+
+        if (!gg) return;
+
+        gg.lastVisit = Date.now();
+
+        writeStore(GG_PET_KEY, gg);
+    }
+
+    function ggGreeting() {
+
+        if (gg.food < 30) return "Kiu... minha barriguinha tá roncando 🌽";
+        if (gg.fun < 30) return "Tô entediado... bora um banho? 💦";
+        if (gg.love < 30) return "Faz tempo que ninguém me dá cafuné... 🥺";
+
+        const baby = getBaby();
+
+        if (baby && Math.random() < 0.4) {
+            return `Você viu como ${baby.name} tá crescendo? Papai coruja aqui 🥹`;
+        }
+
+        const hour = new Date().getHours();
+
+        if (hour < 12) return "Bom dia, Diane! O Gabriel mandou um beijo ☀️💙";
+        if (hour < 18) return "Oi, Diane! Veio me visitar em Londrina? 💙";
+
+        return "Boa noite, Diane! Já falou com o Gabriel hoje? 🌙";
+    }
+
+    function setGGSpeech(text) {
+
+        const speech = document.getElementById("ggSpeech");
+
+        speech.textContent = text;
+        speech.classList.remove("pop");
+        void speech.offsetWidth;
+        speech.classList.add("pop");
+    }
+
+    function popIn(stageId, emoji) {
+
+        const stage = document.getElementById(stageId);
+
+        for (let i = 0; i < 3; i++) {
+
+            const el = document.createElement("span");
+
+            el.className = "cat-pop";
+            el.textContent = emoji;
+            el.style.left = (35 + Math.random() * 30) + "%";
+            el.style.top = (10 + Math.random() * 25) + "%";
+            el.style.animationDelay = (i * 0.12) + "s";
+
+            stage.appendChild(el);
+
+            setTimeout(() => el.remove(), 1500);
+        }
+    }
+
+    function bounceIn(stageId) {
+
+        const stage = document.getElementById(stageId);
+
+        stage.classList.remove("bounce");
+        void stage.offsetWidth;
+        stage.classList.add("bounce");
+    }
+
+    function renderGG() {
+
+        if (!gg) loadGG();
+
+        [["Love", gg.love], ["Food", gg.food], ["Fun", gg.fun]].forEach(([k, v]) => {
+            document.getElementById(`gg${k}Bar`).style.width = v + "%";
+            document.getElementById(`gg${k}Text`).textContent = v + "%";
+        });
+
+        const days = Math.max(1, Math.ceil((Date.now() - gg.born) / 86400000));
+
+        document.getElementById("ggFooter").textContent =
+            `💙 ${plural(days, "dia", "dias")} de amizade · ${plural(gg.pets, "carinho recebido", "carinhos recebidos")}`;
+
+        const baby = getBaby();
+
+        document.getElementById("ggBabyLink").innerHTML =
+            baby ? `🍼 Ver ${escapeFamily(baby.name)}` : "🍼 Filhotinho? 👀";
+
+        updateGGBadge();
+    }
+
+    function updateGGBadge() {
+
+        const badge = document.getElementById("ggBadge");
+
+        if (!badge) return;
+
+        const g = readStore(GG_PET_KEY, null);
+
+        if (!g) {
+            badge.textContent = "💙";
+            return;
+        }
+
+        const hoursAway = Math.max(0, (Date.now() - (g.lastVisit || Date.now())) / 3600000);
+        const food = g.food - hoursAway * 3;
+        const fun = g.fun - hoursAway * 2;
+        const love = g.love - hoursAway * 1.5;
+
+        if (Math.min(food, fun, love) < 30) badge.textContent = "🥺 saudade";
+        else if (love >= 60 && food >= 40 && fun >= 40) badge.textContent = "🥰 feliz";
+        else badge.textContent = "💙";
+    }
+
+    function openGG() {
+
+        loadGG();
+
+        const stage = document.getElementById("ggStage");
+        const src = document.querySelector(".gg-stage svg");
+
+        stage.innerHTML = "";
+
+        if (src) stage.appendChild(src.cloneNode(true));
+
+        renderGG();
+
+        setGGSpeech(ggGreeting());
+
+        openFunModal("ggOverlay");
+
+        saveGG();
+    }
+
+    function ggAction(type) {
+
+        if (!gg) loadGG();
+
+        if (type === "pet") {
+
+            gg.love = clampStat(gg.love + 12);
+            gg.pets++;
+
+            sfx("kiu");
+            setGGSpeech(pick(ggPetLines));
+            popIn("ggStage", "💙");
+        }
+
+        if (type === "feed") {
+
+            if (gg.food >= 100) {
+                setGGSpeech("Não cabe mais nada, juro 🫃🌽");
+                bounceIn("ggStage");
+                return;
+            }
+
+            gg.food = clampStat(gg.food + 25);
+
+            sfx("nhac");
+            setGGSpeech(pick(ggFeedLines));
+            popIn("ggStage", "🌽");
+        }
+
+        if (type === "play") {
+
+            gg.fun = clampStat(gg.fun + 22);
+
+            sfx("splash");
+            setGGSpeech(pick(ggPlayLines));
+            popIn("ggStage", "💦");
+        }
+
+        if (type === "note") {
+
+            gg.love = clampStat(gg.love + 4);
+
+            sfx("plim");
+            setGGSpeech(pick(ggNotes));
+            popIn("ggStage", "💌");
+        }
+
+        bounceIn("ggStage");
+
+        renderGG();
+
+        saveGG();
+    }
+
+    /* ==================================================
+       🍼 CANTINHO DO FILHOTINHO (que cresce de verdade)
+    ================================================== */
+
+    // ✏️ Fases: precisa ter X dias de vida E Y cuidados pra crescer
+    const BABY_STAGES = [
+        { name: "Bebê", icon: "🍼", days: 0, cares: 0, size: 120 },
+        { name: "Filhotinho", icon: "🧸", days: 3, cares: 10, size: 145 },
+        { name: "Criança", icon: "🎒", days: 10, cares: 30, size: 170 },
+        { name: "Jovem", icon: "🌟", days: 25, cares: 60, size: 195 }
+    ];
+
+    const babyLines = [
+        [
+            "Gugu dadá 🍼",
+            "Bububu... 🥹",
+            "*chupando a chupeta bem forte* 🍼",
+            "Aaagu! (isso foi um \"oi\") 💗",
+            "*segurou seu dedinho e não quer soltar* 🥺"
+        ],
+        [
+            "Kiu! Kiu! 💗",
+            "Mamá... MM! 🍊",
+            "Papá... GG! 💙",
+            "*tentou pegar a laranjinha e caiu sentado* 🤭",
+            "Brinca comigo? 🧸"
+        ],
+        [
+            "Mamãe MM! Papai GG! Olha o que eu sei fazer! 🤸",
+            "Hoje eu aprendi a nadar sozinho no laguinho 💦",
+            "Quando eu crescer quero ser igual a vocês 🥹",
+            "Por que o céu é azul? Por que a laranja é laranja? 🤔",
+            "Me conta de novo como o papai GG conheceu a mamãe MM? 💗"
+        ],
+        [
+            "Já tô grandão, mas ainda gosto de colinho, tá? 🥹",
+            "Obrigado por cuidar de mim desde bebê 💗",
+            "Um dia vou visitar Londrina e Rio Preto sozinho ✈️",
+            "Herdei o boné do papai e o laçinho da mamãe 🧢🎀",
+            "Vocês são a melhor família que uma capivara podia ter 🥰"
+        ]
+    ];
+
+    function escapeFamily(s) {
+
+        return String(s || "").replace(/[&<>"']/g, c =>
+            ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[c]);
+    }
+
+    function babyAgeDays(b) {
+
+        return Math.max(0, (Date.now() - (b.born || Date.now())) / 86400000);
+    }
+
+    function babyStageOf(b) {
+
+        if (!b) return 0;
+
+        const days = babyAgeDays(b);
+        const cares = b.cares || 0;
+
+        let stage = 0;
+
+        BABY_STAGES.forEach((s, i) => {
+            if (days >= s.days && cares >= s.cares) stage = i;
+        });
+
+        return stage;
+    }
+
+    // progresso (0 a 1) até a próxima fase
+    function babyProgress(b) {
+
+        const stage = babyStageOf(b);
+        const next = BABY_STAGES[stage + 1];
+
+        if (!next) return { pct: 1, next: null, daysLeft: 0, caresLeft: 0 };
+
+        const cur = BABY_STAGES[stage];
+        const days = babyAgeDays(b);
+        const cares = b.cares || 0;
+
+        const dPct = Math.min(1, (days - cur.days) / (next.days - cur.days));
+        const cPct = Math.min(1, (cares - cur.cares) / (next.cares - cur.cares));
+
+        return {
+            pct: Math.max(0, Math.min(dPct, cPct)),
+            next,
+            daysLeft: Math.max(0, Math.ceil(next.days - days)),
+            caresLeft: Math.max(0, next.cares - cares)
+        };
+    }
+
+    let baby = null;
+    let babyNapTimer = null;
+
+    function loadBaby() {
+
+        const b = getBaby();
+
+        if (!b) {
+            baby = null;
+            return null;
+        }
+
+        const now = Date.now();
+        const last = b.lastVisit || now;
+        const hoursAway = Math.max(0, (now - last) / 3600000);
+
+        b.love = clampStat((b.love ?? 80) - hoursAway * 1.5);
+        b.food = clampStat((b.food ?? 80) - hoursAway * 3);
+        b.fun = clampStat((b.fun ?? 80) - hoursAway * 2);
+        b.cares = b.cares || 0;
+        b.lastVisit = now;
+
+        if (b.stage === undefined) b.stage = babyStageOf(b);
+
+        baby = b;
+
+        return b;
+    }
+
+    function saveBaby() {
+
+        if (!baby) return;
+
+        baby.lastVisit = Date.now();
+
+        writeStore(BABY_KEY, baby);
+    }
+
+    function setBabySpeech(text) {
+
+        const speech = document.getElementById("babySpeech");
+
+        speech.textContent = text;
+        speech.classList.remove("pop");
+        void speech.offsetWidth;
+        speech.classList.add("pop");
+    }
+
+    function babyGreeting() {
+
+        const stage = babyStageOf(baby);
+
+        if (baby.food < 30) {
+            return stage === 0 ? "Buáááá 😭🍼 (tradução: fome!)" : "Tô com fominha... 🥺🍼";
+        }
+
+        if (baby.love < 30) return stage === 0 ? "Buá... 🥺 (quer colinho)" : "Me dá um abraço? Tava com saudade 🥺";
+
+        if (baby.fun < 30) return stage === 0 ? "*olhando pro móbile, entediado* 🥱" : "Brinca comigo? Por favorzinho 🧸";
+
+        return pick(babyLines[stage]);
+    }
+
+    function renderBaby() {
+
+        const overlay = document.getElementById("babyOverlay");
+        const area = document.getElementById("babyArea");
+
+        if (!baby) {
+
+            overlay.classList.add("baby-locked");
+
+            const visits = Number(readStore(GG_VISITS_KEY, 0)) || 0;
+            const left = Math.max(0, BABY_VISITS_NEEDED - visits);
+
+            document.getElementById("babyTitle").textContent = "??? 🍼";
+            document.getElementById("babyStagePill").textContent = "";
+            area.innerHTML = `<div class="baby-egg">🥚</div>`;
+
+            setBabySpeech(left > 0
+                ? `Psiu... leva a MM pra visitar o GG mais ${plural(left, "vez", "vezes")} e vê o que acontece 👀💗`
+                : "Leva a MM pra visitar o GG... acho que vem novidade aí 👀💗");
+
+            return;
+        }
+
+        overlay.classList.remove("baby-locked");
+
+        const stage = babyStageOf(baby);
+        const st = BABY_STAGES[stage];
+        const prog = babyProgress(baby);
+
+        document.getElementById("babyTitle").textContent = `${baby.name} ${st.icon}`;
+
+        const days = Math.floor(babyAgeDays(baby));
+
+        document.getElementById("babyStagePill").textContent =
+            `${st.icon} ${st.name} · ${days === 0 ? "nasceu hoje" : plural(days, "dia", "dias") + " de vida"}`;
+
+        if (!area.querySelector(".baby-svg")) area.innerHTML = babySvg(stage);
+
+        const svg = area.querySelector(".baby-svg");
+
+        BABY_STAGES.forEach((_, i) => svg.classList.toggle("baby-stage-" + i, i === stage));
+
+        area.style.setProperty("--baby-size", st.size + "px");
+
+        [["Love", baby.love], ["Food", baby.food], ["Fun", baby.fun]].forEach(([k, v]) => {
+            document.getElementById(`baby${k}Bar`).style.width = v + "%";
+            document.getElementById(`baby${k}Text`).textContent = v + "%";
+        });
+
+        document.getElementById("babyGrowthBar").style.width = Math.round(prog.pct * 100) + "%";
+
+        if (!prog.next) {
+
+            document.getElementById("babyGrowthText").textContent = "100% 🌟";
+            document.getElementById("babyGrowthHint").textContent =
+                `${baby.name} cresceu! Mas continua sendo o bebê da MM e do GG 🥹`;
+
+        } else {
+
+            document.getElementById("babyGrowthText").textContent = Math.round(prog.pct * 100) + "%";
+
+            const parts = [];
+
+            if (prog.caresLeft > 0) parts.push(plural(prog.caresLeft, "cuidadinho", "cuidadinhos"));
+            if (prog.daysLeft > 0) parts.push(plural(prog.daysLeft, "dia", "dias"));
+
+            document.getElementById("babyGrowthHint").textContent =
+                parts.length
+                    ? `${(prog.caresLeft === 1 && !prog.daysLeft) || (prog.daysLeft === 1 && !prog.caresLeft) ? "Falta" : "Faltam"} ${parts.join(" e ")} pra virar ${prog.next.name} ${prog.next.icon}`
+                    : `Quase virando ${prog.next.name} ${prog.next.icon}!`;
+        }
+
+        document.getElementById("babyFooter").textContent =
+            `🍼 ${plural(baby.cares, "cuidado", "cuidados")} da mamãe e do papai`;
+
+        updateBabyCard();
+    }
+
+    function updateBabyCard() {
+
+        const card = document.getElementById("babyCard");
+
+        if (!card) return;
+
+        const b = getBaby();
+
+        const badge = document.getElementById("babyBadge");
+        const title = document.getElementById("babyCardTitle");
+        const desc = document.getElementById("babyCardDesc");
+
+        if (!b) {
+
+            card.classList.add("locked");
+            badge.textContent = "🔒";
+            title.textContent = "???";
+            desc.textContent = "Uma surpresinha da MM e do GG... 👀";
+
+            return;
+        }
+
+        card.classList.remove("locked");
+
+        const st = BABY_STAGES[babyStageOf(b)];
+        const hoursAway = Math.max(0, (Date.now() - (b.lastVisit || Date.now())) / 3600000);
+        const food = (b.food ?? 80) - hoursAway * 3;
+        const love = (b.love ?? 80) - hoursAway * 1.5;
+
+        badge.textContent = (food < 30 || love < 30) ? "🥺 colo" : st.icon + " " + st.name.toLowerCase();
+        title.textContent = b.name;
+        desc.textContent = "O filhotinho da MM e do GG. Ele cresce com carinho! 🌱";
+    }
+
+    function openBaby() {
+
+        loadBaby();
+
+        clearTimeout(babyNapTimer);
+
+        document.getElementById("babyArea").innerHTML = "";
+        document.getElementById("babyArea").classList.remove("napping");
+
+        renderBaby();
+
+        if (baby) {
+            setBabySpeech(babyGreeting());
+            saveBaby();
+        }
+
+        openFunModal("babyOverlay");
+    }
+
+    function babyPop(emoji) {
+
+        popIn("babyArea", emoji);
+
+        bounceIn("babyArea");
+    }
+
+    function babyAction(type) {
+
+        if (!baby) loadBaby();
+        if (!baby) return;
+
+        const area = document.getElementById("babyArea");
+        const stage = babyStageOf(baby);
+
+        if (area.classList.contains("napping") && type !== "nap") {
+
+            clearTimeout(babyNapTimer);
+            area.classList.remove("napping");
+
+            setBabySpeech(stage === 0 ? "Buá... acordei 😴 *esfrega os olhinhos*" : "Hmm... já acordei 😴💗");
+            bounceIn("babyArea");
+
+            return;
+        }
+
+        let counted = true;
+
+        if (type === "feed") {
+
+            if (baby.food >= 100) {
+                setBabySpeech(stage === 0 ? "*vira a carinha* 🙅 (tá cheinho)" : "Não cabe mais nada! 🫃");
+                bounceIn("babyArea");
+                return;
+            }
+
+            baby.food = clampStat(baby.food + 25);
+
+            sfx("nhac");
+            setBabySpeech(stage === 0 ? "*glub glub glub* 🍼 ...*arrotinho*" : pick([
+                "Nhac nhac! Melancia igual a da mamãe 🍉",
+                "Milho igual o do papai! 🌽",
+                "Hmmm que delícia 😋"
+            ]));
+            babyPop(stage === 0 ? "🍼" : "🍉");
+        }
+
+        if (type === "pet") {
+
+            baby.love = clampStat(baby.love + 14);
+
+            sfx("kiu");
+            setBabySpeech(pick(babyLines[stage]));
+            babyPop("💗");
+        }
+
+        if (type === "play") {
+
+            baby.fun = clampStat(baby.fun + 20);
+
+            sfx("plim");
+            setBabySpeech(pick([
+                [ "*risadinha de bebê* 🤭", "Hihihi 🧸", "*balança o chocalho* 🎶" ],
+                [ "De novo! De novo! 🧸", "Pega-pega! Você tá com ele! 🏃", "Olha eu rolando! 🤸" ],
+                [ "Esconde-esconde! Conta até 10! 🙈", "Ganhei! Ganhei! 🏆", "Vamos fazer um castelo de areia? 🏰" ],
+                [ "Bora uma partida de UNO? 🃏", "Te desafio no laguinho, quem nada mais rápido! 🏊", "Joguinho de perguntas: qual minha cor favorita? 🍊" ]
+            ][stage]));
+            babyPop("🧸");
+        }
+
+        if (type === "bath") {
+
+            baby.fun = clampStat(baby.fun + 10);
+            baby.love = clampStat(baby.love + 6);
+
+            sfx("splash");
+            setBabySpeech(stage === 0 ? "*bate as mãozinhas na água* 💦🥹" : pick([
+                "Splash! Capivara ama água 💦",
+                "Mais bolhinhas! 🫧",
+                "Fiquei cheiroso igual o papai 🫧"
+            ]));
+            babyPop("🫧");
+        }
+
+        if (type === "nap") {
+
+            if (area.classList.contains("napping")) {
+                counted = false;
+            } else {
+
+                baby.love = clampStat(baby.love + 6);
+
+                area.classList.add("napping");
+
+                setBabySpeech(stage === 0 ? "Zzz... *soninho de anjo* 😴🌙" : "Só mais 5 minutinhos... zzz 😴");
+                popIn("babyArea", "💤");
+
+                clearTimeout(babyNapTimer);
+
+                babyNapTimer = setTimeout(() => {
+                    area.classList.remove("napping");
+                    setBabySpeech(stage === 0 ? "*acordou sorrindo* 🥹" : "Acordei! Dormi tão bem 🥰");
+                }, 6000);
+            }
+        }
+
+        if (counted) baby.cares = (baby.cares || 0) + 1;
+
+        const newStage = babyStageOf(baby);
+
+        if (newStage > (baby.stage || 0)) {
+
+            baby.stage = newStage;
+
+            const st = BABY_STAGES[newStage];
+
+            setTimeout(() => {
+                area.innerHTML = "";
+                renderBaby();
+                setBabySpeech(`🎉 ${baby.name} cresceu!!! Agora é ${st.name} ${st.icon} — obrigado por cuidarem de mim 🥹`);
+                sfx("yay");
+                createConfetti();
+            }, 700);
+        }
+
+        renderBaby();
+
+        saveBaby();
+    }
+
+    try {
+        updateGGBadge();
+        updateBabyCard();
+    } catch (e) {}
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
