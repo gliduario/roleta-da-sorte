@@ -16400,16 +16400,11 @@ Te amo muito.
     const LOVE_MEM_KEY = "loveMemories";
     const LOVE_AUTHOR_KEY = "loveAuthor";
 
-    // ✏️ PASSO B (banco de dados): por enquanto fica vazio.
-    //    Quando você criar o Firebase, a configuração entra aqui
-    //    e as memórias passam a aparecer nos dois celulares.
-    const FIREBASE_CONFIG = {
-        apiKey: "AIzaSyDJhJnUJy9oRTTBDUhiStXYPr1qhajPhpc",
-        authDomain: "noite-de-love.firebaseapp.com",
-        projectId: "noite-de-love",
-        storageBucket: "noite-de-love.firebasestorage.app",
-        messagingSenderId: "706562207688",
-        appId: "1:706562207688:web:1b5af70347db8eb9b25afd"
+    // ✏️ BANCO DE DADOS (Supabase): endereço do projeto e a chave
+    //    "publishable" (essa pode ficar no site; NUNCA coloque a "secret").
+    const CLOUD_CONFIG = {
+        url: "https://debwkgfpkmwitltdiwnt.supabase.co",
+        key: "sb_publishable_zXdn14ye9DC_vWOOg6ek9A_hHLAqG-b"
     };
 
     const MEM_TYPES = {
@@ -16636,7 +16631,39 @@ Te amo muito.
     ================================================== */
 
     let loveCloudUser = null;
-    let loveCloudState = FIREBASE_CONFIG ? "loading" : "off";
+    let loveCloudState = CLOUD_CONFIG ? "loading" : "off";
+
+    // trocou de banco (ex.: Firebase → Supabase)? começa a sincronização do zero,
+    // sem achar que "alguém apagou tudo": o que tá no celular sobe pro banco novo
+    (function resetSyncIfNewBackend() {
+
+        const tag = CLOUD_CONFIG ? CLOUD_CONFIG.url : "";
+
+        try {
+
+            if (localStorage.getItem("cloudBackend") === tag) return;
+
+            const drop = [];
+
+            for (let i = 0; i < localStorage.length; i++) {
+
+                const k = localStorage.key(i);
+
+                if (
+                    k === "loveMemSynced" ||
+                    k === "loveMemDeleted" ||
+                    k === "mmCloudLinked" ||
+                    k.startsWith("cloudSynced_") ||
+                    k.startsWith("cloudDeleted_")
+                ) drop.push(k);
+            }
+
+            drop.forEach(k => localStorage.removeItem(k));
+
+            localStorage.setItem("cloudBackend", tag);
+
+        } catch (e) {}
+    })();
     let cloudListeners = [];
     let applyingRemote = false;
 
@@ -16769,7 +16796,7 @@ Te amo muito.
 
     function cloudDrop(name, id) {
 
-        if (!FIREBASE_CONFIG) return;
+        if (!CLOUD_CONFIG) return;
 
         if (cloudReady()) {
             window.loveCloud.remove(name, id).catch(() => rememberDeleted(name, id));
@@ -17082,8 +17109,10 @@ Te amo muito.
             box.innerHTML = `
                 <div class="cloud-login">
                     <div class="cloud-login-title">☁️ Entra pra sincronizar tudo nos dois celulares</div>
-                    <input class="cloud-email" type="email" placeholder="E-mail" autocomplete="username">
+                    <input class="cloud-email" type="email" placeholder="E-mail" autocomplete="username"
+                        autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email">
                     <input class="cloud-pass" type="password" placeholder="Senha" autocomplete="current-password"
+                        autocapitalize="off" autocorrect="off" spellcheck="false"
                         onkeydown="if (event.key === 'Enter') cloudLogin(this)">
                     <button class="primary-btn care-wide" onclick="cloudLogin(this)">Entrar 💗</button>
                     <div class="cloud-msg">Só precisa entrar uma vez em cada celular.</div>
@@ -17123,7 +17152,7 @@ Te amo muito.
 
             msg.textContent =
                 code.includes("invalid") || code.includes("wrong-password") || code.includes("user-not-found")
-                    ? "E-mail ou senha não batem 🥺 Confere e tenta de novo"
+                    ? "E-mail ou senha não batem 🥺 Confere maiúsculas/minúsculas e se não ficou espaço no final (" + code + ")"
                     : code.includes("too-many-requests")
                         ? "Muitas tentativas... espera um pouquinho e tenta de novo 🙏"
                         : code.includes("network")
@@ -17315,69 +17344,160 @@ Te amo muito.
 
 
 <!-- ==================================================
-     ☁️ FIREBASE — sincroniza tudo entre os celulares
+     ☁️ SUPABASE — sincroniza tudo entre os celulares
 ================================================== -->
 
 <script type="module">
 
-    const FB = "https://www.gstatic.com/firebasejs/10.12.2/";
-
     (async () => {
 
-        if (!FIREBASE_CONFIG) return;
+        if (!CLOUD_CONFIG) return;
 
         try {
 
-            const { initializeApp } = await import(FB + "firebase-app.js");
+            const { createClient } = await import(
+                "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"
+            );
 
-            const {
-                getAuth,
-                onAuthStateChanged,
-                signInWithEmailAndPassword,
-                signOut
-            } = await import(FB + "firebase-auth.js");
+            const sb = createClient(CLOUD_CONFIG.url, CLOUD_CONFIG.key, {
+                auth: {
+                    persistSession: true,
+                    autoRefreshToken: true,
+                    storageKey: "nossoCantinhoLogin"
+                }
+            });
 
-            const {
-                getFirestore,
-                collection,
-                doc,
-                setDoc,
-                deleteDoc,
-                onSnapshot,
-                query,
-                orderBy
-            } = await import(FB + "firebase-firestore.js");
+            const uniq = () => Math.random().toString(36).slice(2);
 
-            const app = initializeApp(FIREBASE_CONFIG);
-            const auth = getAuth(app);
-            const db = getFirestore(app);
+            const fail = error => {
+                const e = new Error(error.message || "erro");
+                e.code = error.code ||
+                    String(error.message || "erro").toLowerCase().replace(/\s+/g, "-");
+                return e;
+            };
 
             window.loveCloud = {
 
-                login: (email, pass) => signInWithEmailAndPassword(auth, email, pass),
+                login: async (email, pass) => {
+                    const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+                    if (error) throw fail(error);
+                },
 
-                logout: () => signOut(auth),
+                logout: () => sb.auth.signOut(),
 
-                save: (col, id, data) => setDoc(doc(db, col, id), data),
+                save: async (col, id, data) => {
+                    const { error } = await sb.from("itens").upsert({
+                        colecao: col,
+                        id,
+                        dados: data,
+                        at: data.at || Date.now()
+                    });
+                    if (error) throw fail(error);
+                },
 
-                remove: (col, id) => deleteDoc(doc(db, col, id)),
+                remove: async (col, id) => {
+                    const { error } = await sb.from("itens").delete()
+                        .eq("colecao", col)
+                        .eq("id", id);
+                    if (error) throw fail(error);
+                },
 
-                listen: (col, cb, onErr) => onSnapshot(
-                    query(collection(db, col), orderBy("at", "desc")),
-                    snap => cb(snap.docs.map(d => ({ id: d.id, ...d.data() }))),
-                    onErr
-                ),
+                listen: (col, cb, onErr) => {
 
-                setState: (id, data) => setDoc(doc(db, "estado", id), data),
+                    let alive = true;
 
-                listenState: (id, cb, onErr) => onSnapshot(
-                    doc(db, "estado", id),
-                    snap => cb(snap.exists() ? snap.data() : null),
-                    onErr
-                )
+                    const load = async () => {
+
+                        const { data, error } = await sb.from("itens")
+                            .select("id, dados, at")
+                            .eq("colecao", col)
+                            .order("at", { ascending: false });
+
+                        if (!alive) return;
+
+                        if (error) {
+                            if (onErr) onErr(error);
+                            return;
+                        }
+
+                        cb(data.map(r => ({ ...r.dados, id: r.id, at: r.at })));
+                    };
+
+                    load();
+
+                    const channel = sb.channel("itens-" + col + "-" + uniq())
+                        .on("postgres_changes",
+                            { event: "*", schema: "public", table: "itens" },
+                            p => {
+                                const c = (p.new && p.new.colecao) || (p.old && p.old.colecao);
+                                if (!c || c === col) load();
+                            })
+                        .subscribe();
+
+                    return () => {
+                        alive = false;
+                        sb.removeChannel(channel);
+                    };
+                },
+
+                setState: async (id, data) => {
+                    const { error } = await sb.from("estado").upsert({ id, dados: data });
+                    if (error) throw fail(error);
+                },
+
+                listenState: (id, cb, onErr) => {
+
+                    let alive = true;
+
+                    const load = async () => {
+
+                        const { data, error } = await sb.from("estado")
+                            .select("dados")
+                            .eq("id", id)
+                            .maybeSingle();
+
+                        if (!alive) return;
+
+                        if (error) {
+                            if (onErr) onErr(error);
+                            return;
+                        }
+
+                        cb(data ? data.dados : null);
+                    };
+
+                    load();
+
+                    const channel = sb.channel("estado-" + id + "-" + uniq())
+                        .on("postgres_changes",
+                            { event: "*", schema: "public", table: "estado" },
+                            p => {
+                                const rid = (p.new && p.new.id) || (p.old && p.old.id);
+                                if (!rid || rid === id) load();
+                            })
+                        .subscribe();
+
+                    return () => {
+                        alive = false;
+                        sb.removeChannel(channel);
+                    };
+                }
             };
 
-            onAuthStateChanged(auth, user => onCloudAuth(user));
+            // só avisa o site quando entra ou sai alguém (não a cada renovação)
+            let currentUid;
+
+            sb.auth.onAuthStateChange((event, session) => {
+
+                const user = session ? session.user : null;
+                const uid = user ? user.id : null;
+
+                if (uid === currentUid) return;
+
+                currentUid = uid;
+
+                setTimeout(() => onCloudAuth(user), 0);
+            });
 
         } catch (e) {
 
