@@ -4189,6 +4189,358 @@
     }
 
     /* ==========================================
+       🐾 AMIGOS, 🎨 ATELIÊ, 🪩 FESTA E 🧖‍♀️ SPA
+    ========================================== */
+
+    .mm-extra-actions {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    .mm-extra-actions button {
+        grid-column: span 3;
+    }
+
+    .mm-extra-actions button.half,
+    .mm-extra-actions button.third {
+        grid-column: span 4;
+    }
+
+    .mm-extra-actions button.third {
+        background: linear-gradient(135deg, var(--pink-glow), var(--lilac-glow));
+    }
+
+    .house-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .house-actions button {
+        padding: 11px 6px;
+        font-size: 14px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    .house-actions button.on {
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        border-color: transparent;
+        color: #ffffff;
+    }
+
+    /* visitante */
+
+    .house-visitor {
+        position: absolute;
+        z-index: 5;
+        padding: 0;
+        background: transparent;
+        border: none;
+        font-size: 2em;
+        line-height: 1;
+        filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.18));
+        animation: visitorIn 0.8s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .house-visitor:hover {
+        transform: scale(1.15);
+    }
+
+    .house-visitor.fly {
+        animation: visitorIn 0.8s cubic-bezier(.34, 1.56, .64, 1), flutter 1.6s ease-in-out 0.8s infinite;
+    }
+
+    .house-visitor.swim {
+        animation: visitorIn 0.8s cubic-bezier(.34, 1.56, .64, 1), swim 2.6s ease-in-out 0.8s infinite;
+    }
+
+    .house-visitor.met::after {
+        content: "💗";
+        position: absolute;
+        top: -0.6em;
+        right: -0.4em;
+        font-size: 0.5em;
+    }
+
+    .house-visitor.leaving {
+        animation: visitorOut 0.6s ease forwards;
+    }
+
+    @keyframes visitorIn {
+        from { opacity: 0; transform: translateY(20px) scale(0.4); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes visitorOut {
+        to { opacity: 0; transform: translateY(-20px) scale(0.5); }
+    }
+
+    @keyframes flutter {
+        0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+        50% { transform: translate(8px, -8px) rotate(6deg); }
+    }
+
+    @keyframes swim {
+        0%, 100% { transform: translateX(0) rotate(-3deg); }
+        50% { transform: translateX(-10px) rotate(3deg); }
+    }
+
+    .friends-grid .wardrobe-item .wi-icon {
+        font-size: 30px;
+    }
+
+    .friends-grid .wardrobe-item.unknown .wi-icon {
+        filter: grayscale(1) brightness(0.4);
+        opacity: 0.5;
+    }
+
+    /* desenho na parede */
+
+    .house-drawing {
+        position: absolute;
+        top: 11%;
+        left: 38%;
+        width: 19%;
+        aspect-ratio: 1;
+        padding: 4px;
+        background: #ffffff;
+        border: 5px solid #8fd3ee;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: rotate(-3deg);
+        z-index: 1;
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .house-drawing img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* ateliê */
+
+    .atelier-board {
+        margin: 12px auto 10px;
+        width: min(100%, 340px);
+        aspect-ratio: 1;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 3px solid var(--border);
+        background: #ffffff;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+    }
+
+    #atelierCanvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+        cursor: crosshair;
+    }
+
+    .atelier-colors {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .atelier-color {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        border: 3px solid var(--surface-solid);
+        box-shadow: 0 0 0 2px var(--border);
+    }
+
+    .atelier-color.active {
+        box-shadow: 0 0 0 3px var(--accent);
+        transform: scale(1.12);
+    }
+
+    .atelier-tools {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .atelier-size,
+    .atelier-tool {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 14px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .atelier-size i {
+        display: block;
+        border-radius: 50%;
+        background: var(--text);
+    }
+
+    .atelier-size.active,
+    .atelier-tool.active {
+        border-color: var(--accent);
+        background: var(--chip-bg);
+    }
+
+    .atelier-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .atelier-gallery button {
+        padding: 4px;
+        border-radius: 12px;
+        background: #ffffff;
+        border: 3px solid var(--border);
+    }
+
+    .atelier-gallery button.on {
+        border-color: var(--accent);
+    }
+
+    .atelier-gallery img {
+        display: block;
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    /* festa */
+
+    .party-lights,
+    .party-ball {
+        display: none;
+    }
+
+    .house-room.party .party-lights {
+        display: block;
+        position: absolute;
+        inset: -50%;
+        z-index: 6;
+        pointer-events: none;
+        background: conic-gradient(
+            rgba(255, 106, 168, 0.35),
+            rgba(255, 210, 125, 0.3),
+            rgba(143, 211, 238, 0.35),
+            rgba(180, 156, 255, 0.35),
+            rgba(124, 201, 122, 0.3),
+            rgba(255, 106, 168, 0.35)
+        );
+        mix-blend-mode: soft-light;
+        animation: partySpin 3s linear infinite;
+    }
+
+    .house-room.party .party-ball {
+        display: block;
+        position: absolute;
+        top: 1%;
+        left: 50%;
+        z-index: 7;
+        font-size: 2.4em;
+        transform-origin: 50% -40%;
+        animation: ballSwing 1s ease-in-out infinite alternate;
+    }
+
+    .house-room.party::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        pointer-events: none;
+        background: rgba(30, 20, 60, 0.25);
+        animation: partyFlash 0.5s steps(2) infinite;
+    }
+
+    .house-room.party .house-mm,
+    .house-room.party .house-baby {
+        animation: dance 0.5s ease-in-out infinite alternate;
+    }
+
+    .house-room.party .house-baby {
+        animation-delay: 0.25s;
+    }
+
+    @keyframes partySpin {
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes ballSwing {
+        from { transform: translateX(-50%) rotate(-12deg); }
+        to { transform: translateX(-50%) rotate(12deg); }
+    }
+
+    @keyframes partyFlash {
+        50% { background: rgba(30, 20, 60, 0.05); }
+    }
+
+    @keyframes dance {
+        from { transform: translateY(0) rotate(-6deg); }
+        to { transform: translateY(-10%) rotate(6deg); }
+    }
+
+    @media (max-width: 650px) {
+
+        .mm-extra-actions {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .mm-extra-actions button,
+        .mm-extra-actions button.half,
+        .mm-extra-actions button.third {
+            grid-column: span 1;
+        }
+
+        .mm-extra-actions button.half.gg {
+            grid-column: span 2;
+        }
+    }
+
+    /* 🎵 player da música da festa */
+
+    .party-player {
+        margin-top: 10px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 2px solid var(--border);
+        background: #000000;
+        animation: careIn 0.5s ease;
+    }
+
+    .party-player iframe {
+        display: block;
+        width: 100%;
+        border: 0;
+    }
+
+    .party-player.youtube iframe {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .party-player.spotify {
+        background: transparent;
+        border: none;
+    }
+
+    .party-player.spotify iframe {
+        height: 152px;
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -5641,6 +5993,28 @@
 
 
 
+                    <!-- 🧖‍♀️ dia de spa: toalhinha + pepininhos -->
+                    <g class="mm-acc" data-acc="spa" style="display:none">
+                        <path d="M56 70 Q54 34 117 30 Q180 34 178 70 Q150 58 117 60 Q84 58 56 70 Z" fill="#fff0f6" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M70 56 Q117 44 164 56" fill="none" stroke="#ffc8dd" stroke-width="3" stroke-linecap="round"/>
+                        <ellipse cx="117" cy="30" rx="18" ry="13" fill="#fff0f6" stroke="#5a4036" stroke-width="2.5"/>
+                        <path d="M106 28 Q117 22 128 30" fill="none" stroke="#ffc8dd" stroke-width="2.5" stroke-linecap="round"/>
+                        <g transform="translate(86 93)">
+                            <circle r="12" fill="#a8d88f" stroke="#5f9a4c" stroke-width="2.5"/>
+                            <circle r="8" fill="#d6f0c4"/>
+                            <circle cx="-3" cy="-2" r="1.2" fill="#9cc98a"/>
+                            <circle cx="3" cy="1" r="1.2" fill="#9cc98a"/>
+                            <circle cx="0" cy="4" r="1.2" fill="#9cc98a"/>
+                        </g>
+                        <g transform="translate(148 93)">
+                            <circle r="12" fill="#a8d88f" stroke="#5f9a4c" stroke-width="2.5"/>
+                            <circle r="8" fill="#d6f0c4"/>
+                            <circle cx="-3" cy="-2" r="1.2" fill="#9cc98a"/>
+                            <circle cx="3" cy="1" r="1.2" fill="#9cc98a"/>
+                            <circle cx="0" cy="4" r="1.2" fill="#9cc98a"/>
+                        </g>
+                    </g>
+
                 </g>
 
                 <text class="cat-zzz" x="172" y="44" font-size="22">z</text>
@@ -5745,6 +6119,13 @@
             </button>
 
             <button
+                class="third"
+                onclick="toggleMmPanel('mmSpa')"
+            >
+                🧖‍♀️ Spa
+            </button>
+
+            <button
                 class="half"
                 onclick="openHouse()"
             >
@@ -5832,6 +6213,26 @@
             <div class="mm-wardrobe-hint">
                 Ela vai repetir do jeitinho dela de vez em quando 🍊
             </div>
+
+        </div>
+
+        <div
+            id="mmSpa"
+            class="mm-wardrobe hidden"
+        >
+
+            <div class="mm-wardrobe-title">
+                Dia de spa com a MM 🧖‍♀️
+            </div>
+
+            <div class="mm-wardrobe-hint" style="margin: -4px 0 10px;">
+                Faz junto com ela, bem devagarinho 🌿
+            </div>
+
+            <div
+                id="spaList"
+                class="care-checklist"
+            ></div>
 
         </div>
 
@@ -6027,6 +6428,24 @@
             <span class="h-item h-emoji h-bear" data-house="bear">🧸</span>
             <span class="h-item h-emoji h-pouf" data-house="pouf">🍉</span>
 
+            <!-- 🖼️ desenho da Diane pendurado -->
+            <div
+                id="houseDrawing"
+                class="house-drawing hidden"
+            ></div>
+
+            <!-- 🐾 visitante -->
+            <button
+                id="houseVisitor"
+                class="house-visitor hidden"
+                onclick="meetVisitor(event)"
+                aria-label="Um amiguinho veio visitar!"
+            ></button>
+
+            <!-- 🪩 festa -->
+            <div class="party-lights" aria-hidden="true"></div>
+            <div class="party-ball" aria-hidden="true">🪩</div>
+
             <div
                 id="houseMM"
                 class="house-mm cat-stage"
@@ -6037,6 +6456,53 @@
                 id="houseBaby"
                 class="house-baby hidden"
             ></div>
+
+        </div>
+
+        <div class="house-actions">
+
+            <button
+                id="friendsBtn"
+                onclick="toggleFriends()"
+            >
+                🐾 Amigos
+            </button>
+
+            <button onclick="openAtelier()">
+                🎨 Ateliê
+            </button>
+
+            <button
+                id="partyBtn"
+                onclick="toggleParty()"
+            >
+                🪩 Festa!
+            </button>
+
+        </div>
+
+        <div
+            id="partyPlayer"
+            class="party-player hidden"
+        ></div>
+
+        <div
+            id="friendsBox"
+            class="mm-wardrobe hidden"
+        >
+
+            <div class="mm-wardrobe-title">
+                Amigos da MM 🐾
+            </div>
+
+            <div
+                id="friendsGrid"
+                class="mm-wardrobe-grid friends-grid"
+            ></div>
+
+            <div class="mm-wardrobe-hint">
+                Capivara é amiga de todo mundo! Quando aparecer um bichinho na casinha, toca nele 👆
+            </div>
 
         </div>
 
@@ -6140,6 +6606,112 @@
 
         <div class="mm-wardrobe-hint">
             Os móveis desbloqueiam com os carinhos na MM 💗
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🎨 MODAL — ATELIÊ DA DIANE
+================================================== -->
+
+<div
+    id="atelierOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeAtelier()"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Ateliê da Diane 🎨
+        </h2>
+
+        <p class="fun-text">
+            Desenha alguma coisa pra MM pendurar na parede da casinha 🖼️
+        </p>
+
+        <div class="atelier-board">
+            <canvas
+                id="atelierCanvas"
+                width="480"
+                height="480"
+            ></canvas>
+        </div>
+
+        <div
+            id="atelierColors"
+            class="atelier-colors"
+        ></div>
+
+        <div class="atelier-tools">
+
+            <button class="atelier-size" data-size="6" onclick="setBrush(6, this)">
+                <i style="width:6px;height:6px"></i>
+            </button>
+
+            <button class="atelier-size active" data-size="14" onclick="setBrush(14, this)">
+                <i style="width:11px;height:11px"></i>
+            </button>
+
+            <button class="atelier-size" data-size="28" onclick="setBrush(28, this)">
+                <i style="width:17px;height:17px"></i>
+            </button>
+
+            <button
+                id="eraserBtn"
+                class="atelier-tool"
+                onclick="toggleEraser()"
+            >🧽</button>
+
+            <button
+                class="atelier-tool"
+                onclick="undoStroke()"
+            >↩️</button>
+
+            <button
+                class="atelier-tool"
+                onclick="clearCanvas()"
+            >🗑️</button>
+
+        </div>
+
+        <button
+            class="primary-btn care-wide"
+            onclick="hangDrawing()"
+        >
+            Pendurar na casinha 🖼️
+        </button>
+
+        <div
+            id="atelierStatus"
+            class="voucher-feedback"
+        ></div>
+
+        <div
+            id="atelierGalleryBox"
+            class="hidden"
+        >
+
+            <div class="mm-wardrobe-title" style="margin-top: 8px;">
+                Quadrinhos já feitos
+            </div>
+
+            <div
+                id="atelierGallery"
+                class="atelier-gallery"
+            ></div>
+
+            <div class="mm-wardrobe-hint">
+                Toca num quadrinho pra pendurar ele de novo 🖼️
+            </div>
+
         </div>
 
     </div>
@@ -10158,6 +10730,8 @@ Te amo muito.
         if (id === "houseOverlay") {
             stopMorse();
             stopStars();
+            stopVisitors();
+            stopParty();
         }
     }
 
@@ -10171,7 +10745,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -10430,7 +11004,7 @@ Te amo muito.
 
         logDay("visits");
 
-        ["mmWardrobe", "mmDiary", "mmTeach"].forEach(id =>
+        ["mmWardrobe", "mmDiary", "mmTeach", "mmSpa"].forEach(id =>
             document.getElementById(id).classList.add("hidden"));
 
         if (isBirthdayToday()) {
@@ -10882,6 +11456,14 @@ Te amo muito.
             visible.delete("flower");
         }
 
+        // 🧖‍♀️ no spa ela tira tudo e fica de toalhinha e pepino
+        if (isSpaActive()) {
+            HEAD_ITEMS.forEach(h => visible.delete(h));
+            ["bow", "flower", "glasses", "earmuffs", "umbrella", "rain", "balloon", "sweat"]
+                .forEach(x => visible.delete(x));
+            visible.add("spa");
+        }
+
         return visible;
     }
 
@@ -10897,7 +11479,7 @@ Te amo muito.
 
     function toggleMmPanel(id) {
 
-        ["mmWardrobe", "mmDiary", "mmTeach"].forEach(p => {
+        ["mmWardrobe", "mmDiary", "mmTeach", "mmSpa"].forEach(p => {
 
             const el = document.getElementById(p);
 
@@ -10920,6 +11502,11 @@ Te amo muito.
         if (id === "mmDiary") {
             renderDiary();
             setCatSpeech("Ei! Não era pra você ler meu diário... tá bom, pode ler 🙈");
+        }
+
+        if (id === "mmSpa") {
+            startSpa();
+            setCatSpeech("Dia de spa!! Coloquei minha toalhinha e meus pepininhos 🥒🧖‍♀️ Faz comigo?");
         }
 
         if (id === "mmTeach") {
@@ -12494,6 +13081,13 @@ Te amo muito.
         renderWishList();
         scheduleStar();
 
+        stopParty();
+        stopVisitors();
+        document.getElementById("friendsBox").classList.add("hidden");
+        updateFriendsButton();
+        renderHouseDrawing();
+        scheduleVisitor();
+
         document.getElementById("houseSpeech").textContent =
             isHouseNight() && !getWishes().length
                 ? "Boa noite! Fica de olho na janela... às vezes passa estrela cadente 🌠"
@@ -12765,7 +13359,8 @@ Te amo muito.
         "hugsSent", "idCardPhoto",
         "siteTheme", "siteLightTheme", "siteSounds",
         "careChecklist",
-        "loveQuestion", "lovePlaylist", "loveCapsule"
+        "loveQuestion", "lovePlaylist", "loveCapsule",
+        "mmDrawings"
     ];
 
     const BACKUP_PREFIXES = ["birthdayVouchersUsed"];
@@ -13197,6 +13792,719 @@ Te amo muito.
         document.getElementById("wishList").classList.toggle("hidden");
 
         renderWishList();
+    }
+
+    /* ==================================================
+       🐾 AMIGOS DA MM (visitas na casinha)
+    ================================================== */
+
+    // 🧪 Pra testar: ?amigo=teste (sempre aparece um, rapidinho)
+    const FRIEND_TEST =
+        new URLSearchParams(window.location.search).get("amigo") === "teste";
+
+    // ✏️ Os amiguinhos, onde aparecem e o que a MM fala
+    const MM_FRIENDS = [
+        { id: "passarinho", name: "Passarinho", icon: "🐦", weight: 5, pos: { left: "47%", bottom: "40%" }, line: "Um passarinho pousou na minha cabeça! Capivara é o melhor poleiro do mundo 🐦" },
+        { id: "patinho", name: "Patinho", icon: "🦆", weight: 5, pos: { right: "11%", bottom: "10%" }, move: "swim", line: "Um patinho veio nadar no meu laguinho 🦆 Quack quack!" },
+        { id: "borboleta", name: "Borboleta", icon: "🦋", weight: 5, pos: { left: "40%", top: "26%" }, move: "fly", line: "Uma borboleta! Ela quase pousou no meu nariz 🦋 Não espirra, não espirra..." },
+        { id: "joaninha", name: "Joaninha", icon: "🐞", weight: 4, pos: { left: "30%", top: "52%" }, line: "Joaninha dá sorte, sabia? 🐞🍀" },
+        { id: "sapinho", name: "Sapinho", icon: "🐸", weight: 4, pos: { right: "31%", bottom: "5%" }, line: "Um sapinho! Será que se der um beijo ele vira príncipe? 🐸👑 (melhor não, você já tem o Gabriel)" },
+        { id: "tartaruga", name: "Tartaruga", icon: "🐢", weight: 4, pos: { left: "24%", bottom: "3%" }, line: "A tartaruga veio me visitar... saiu de casa semana passada kkkk 🐢" },
+        { id: "caracol", name: "Caracol", icon: "🐌", weight: 4, pos: { right: "3%", bottom: "2%" }, line: "O caracol trouxe a casinha dele junto 🐌🏠 Agora temos duas casas!" },
+        { id: "coelhinho", name: "Coelhinho", icon: "🐇", weight: 3, pos: { left: "19%", bottom: "5%" }, line: "Um coelhinho! A gente vai tirar uma soneca juntinhos 🐇💤" },
+        { id: "gatinho", name: "Gatinho", icon: "🐈", weight: 3, pos: { left: "4%", bottom: "17%" }, line: "Um gatinho deitou na minha caminha. Agora ela é dele, né 🐈" },
+        { id: "macaquinho", name: "Macaquinho", icon: "🐒", weight: 2, pos: { right: "5%", top: "30%" }, line: "Um macaquinho veio pedir banana... só tenho melancia 🐒🍉" },
+        { id: "arara", name: "Arara", icon: "🦜", weight: 2, pos: { left: "45%", top: "8%" }, move: "fly", line: "Uma arara! Ela disse que o Gabriel te ama muito 🦜💙" },
+        { id: "lontra", name: "Lontra", icon: "🦦", weight: 1, pos: { right: "12%", bottom: "9%" }, move: "swim", line: "UMA LONTRA!! Ela é super rara de aparecer, que sorte 🦦✨" }
+    ];
+
+    let visitorTimer = null;
+    let visitorLeaveTimer = null;
+    let currentVisitor = null;
+
+    function getFriends() {
+
+        if (!Array.isArray(cat.friends)) cat.friends = [];
+
+        return cat.friends;
+    }
+
+    function pickVisitor() {
+
+        const known = getFriends();
+        const unknown = MM_FRIENDS.filter(f => !known.includes(f.id));
+
+        // metade das vezes prefere quem ela ainda não conhece
+        const pool = unknown.length && Math.random() < 0.5 ? unknown : MM_FRIENDS;
+        const total = pool.reduce((s, f) => s + f.weight, 0);
+
+        let r = Math.random() * total;
+
+        for (const f of pool) {
+            r -= f.weight;
+            if (r <= 0) return f;
+        }
+
+        return pool[0];
+    }
+
+    function scheduleVisitor() {
+
+        clearTimeout(visitorTimer);
+
+        if (!FRIEND_TEST && Math.random() > 0.65) {
+
+            // às vezes ninguém vem... tenta de novo daqui a pouco
+            visitorTimer = setTimeout(scheduleVisitor, 20000);
+            return;
+        }
+
+        visitorTimer = setTimeout(showVisitor, FRIEND_TEST ? 1200 : 3000 + Math.random() * 5000);
+    }
+
+    function showVisitor() {
+
+        if (document.getElementById("houseOverlay").classList.contains("hidden")) return;
+
+        const f = pickVisitor();
+        const el = document.getElementById("houseVisitor");
+
+        currentVisitor = f;
+
+        el.className = "house-visitor" + (f.move ? " " + f.move : "");
+        el.removeAttribute("style");
+
+        Object.entries(f.pos).forEach(([k, v]) => el.style[k] = v);
+
+        el.textContent = f.icon;
+
+        if (getFriends().includes(f.id)) el.classList.add("met");
+
+        sfx("plim");
+
+        clearTimeout(visitorLeaveTimer);
+
+        visitorLeaveTimer = setTimeout(hideVisitor, 30000);
+    }
+
+    function hideVisitor() {
+
+        const el = document.getElementById("houseVisitor");
+
+        if (el.classList.contains("hidden")) return;
+
+        el.classList.add("leaving");
+
+        setTimeout(() => {
+            el.className = "house-visitor hidden";
+            currentVisitor = null;
+            scheduleVisitor();
+        }, 600);
+    }
+
+    function stopVisitors() {
+
+        clearTimeout(visitorTimer);
+        clearTimeout(visitorLeaveTimer);
+
+        currentVisitor = null;
+
+        document.getElementById("houseVisitor").className = "house-visitor hidden";
+    }
+
+    function meetVisitor(event) {
+
+        if (event) event.stopPropagation();
+
+        const f = currentVisitor;
+
+        if (!f) return;
+
+        const friends = getFriends();
+        const isNew = !friends.includes(f.id);
+
+        if (isNew) {
+
+            friends.push(f.id);
+
+            saveCat();
+
+            setHouseSpeech(`✨ Amigo novo! ${f.line}`);
+
+            sfx("yay");
+            createConfetti();
+
+            document.getElementById("houseVisitor").classList.add("met");
+
+        } else {
+
+            setHouseSpeech(pick([
+                `O ${f.name.toLowerCase()} voltou! Ele gosta muito da gente ${f.icon}`,
+                `Olha quem veio de novo: ${f.name.toLowerCase()} ${f.icon} 💗`,
+                f.line
+            ]));
+
+            sfx("kiu");
+        }
+
+        updateFriendsButton();
+
+        if (!document.getElementById("friendsBox").classList.contains("hidden")) {
+            renderFriends();
+        }
+    }
+
+    function updateFriendsButton() {
+
+        document.getElementById("friendsBtn").textContent =
+            `🐾 Amigos ${getFriends().length}/${MM_FRIENDS.length}`;
+    }
+
+    function toggleFriends() {
+
+        const box = document.getElementById("friendsBox");
+
+        box.classList.toggle("hidden");
+
+        if (!box.classList.contains("hidden")) renderFriends();
+    }
+
+    function renderFriends() {
+
+        const friends = getFriends();
+
+        document.getElementById("friendsGrid").innerHTML =
+            MM_FRIENDS.map(f => {
+
+                const known = friends.includes(f.id);
+
+                return `
+                    <div class="wardrobe-item ${known ? "on" : "unknown"}">
+                        <span class="wi-icon">${known ? f.icon : "❓"}</span>
+                        ${known ? f.name : "???"}
+                        <span class="wi-state">${known ? "amigo 💗" : "ainda não veio"}</span>
+                    </div>
+                `;
+
+            }).join("");
+
+        if (friends.length === MM_FRIENDS.length) {
+            setHouseSpeech("Eu conheço TODOS os bichinhos! Sou a capivara mais popular de Rio Preto 😎🐾");
+        }
+    }
+
+    /* ==================================================
+       🎨 ATELIÊ DA DIANE
+    ================================================== */
+
+    const DRAWINGS_KEY = "mmDrawings";
+
+    const ATELIER_COLORS = [
+        "#4a3a52", "#e5484d", "#ff8fb8", "#ffa94d", "#ffd34d",
+        "#7cc97a", "#6cb8e6", "#9b7be6", "#b98a5e", "#ffffff"
+    ];
+
+    let atelierCtx = null;
+    let brushColor = "#ff8fb8";
+    let brushSize = 14;
+    let erasing = false;
+    let drawingNow = false;
+    let lastPoint = null;
+    let atelierHistory = [];
+    let canvasTouched = false;
+
+    function getDrawings() {
+
+        return readStore(DRAWINGS_KEY, { list: [], hung: 0 });
+    }
+
+    function openAtelier() {
+
+        const canvas = document.getElementById("atelierCanvas");
+
+        atelierCtx = canvas.getContext("2d");
+
+        clearCanvas(true);
+
+        document.getElementById("atelierColors").innerHTML =
+            ATELIER_COLORS.map(c => `
+                <button
+                    class="atelier-color ${c === brushColor ? "active" : ""}"
+                    style="background:${c}"
+                    onclick="setColor('${c}', this)"
+                    aria-label="Cor"
+                ></button>
+            `).join("");
+
+        document.getElementById("atelierStatus").textContent = "";
+
+        renderAtelierGallery();
+
+        openFunModal("atelierOverlay");
+    }
+
+    function closeAtelier() {
+
+        closeFunModal("atelierOverlay");
+
+        // volta pra casinha
+        document.body.style.overflow = "hidden";
+    }
+
+    function setColor(c, el) {
+
+        brushColor = c;
+        erasing = false;
+
+        document.getElementById("eraserBtn").classList.remove("active");
+
+        document.querySelectorAll(".atelier-color")
+            .forEach(b => b.classList.toggle("active", b === el));
+    }
+
+    function setBrush(size, el) {
+
+        brushSize = size;
+
+        document.querySelectorAll(".atelier-size")
+            .forEach(b => b.classList.toggle("active", b === el));
+    }
+
+    function toggleEraser() {
+
+        erasing = !erasing;
+
+        document.getElementById("eraserBtn").classList.toggle("active", erasing);
+    }
+
+    function clearCanvas(silent) {
+
+        if (!atelierCtx) return;
+
+        if (!silent && canvasTouched) {
+            atelierHistory.push(atelierCtx.getImageData(0, 0, 480, 480));
+        }
+
+        atelierCtx.fillStyle = "#ffffff";
+        atelierCtx.fillRect(0, 0, 480, 480);
+
+        if (silent) {
+            atelierHistory = [];
+            canvasTouched = false;
+        }
+    }
+
+    function undoStroke() {
+
+        const last = atelierHistory.pop();
+
+        if (last) atelierCtx.putImageData(last, 0, 0);
+    }
+
+    function canvasPoint(e) {
+
+        const canvas = document.getElementById("atelierCanvas");
+        const r = canvas.getBoundingClientRect();
+
+        return {
+            x: (e.clientX - r.left) * (480 / r.width),
+            y: (e.clientY - r.top) * (480 / r.height)
+        };
+    }
+
+    function strokeTo(p) {
+
+        const ctx = atelierCtx;
+
+        ctx.strokeStyle = erasing ? "#ffffff" : brushColor;
+        ctx.lineWidth = erasing ? brushSize * 2 : brushSize;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        ctx.beginPath();
+        ctx.moveTo(lastPoint.x, lastPoint.y);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+
+        lastPoint = p;
+    }
+
+    (function () {
+
+        const canvas = document.getElementById("atelierCanvas");
+
+        canvas.addEventListener("pointerdown", e => {
+
+            e.preventDefault();
+
+            if (!atelierCtx) return;
+
+            atelierHistory.push(atelierCtx.getImageData(0, 0, 480, 480));
+
+            if (atelierHistory.length > 25) atelierHistory.shift();
+
+            drawingNow = true;
+            canvasTouched = true;
+
+            canvas.setPointerCapture(e.pointerId);
+
+            lastPoint = canvasPoint(e);
+
+            strokeTo({ x: lastPoint.x + 0.1, y: lastPoint.y + 0.1 });
+        });
+
+        canvas.addEventListener("pointermove", e => {
+
+            if (!drawingNow) return;
+
+            strokeTo(canvasPoint(e));
+        });
+
+        const end = () => { drawingNow = false; };
+
+        canvas.addEventListener("pointerup", end);
+        canvas.addEventListener("pointercancel", end);
+    })();
+
+    function hangDrawing() {
+
+        const status = document.getElementById("atelierStatus");
+
+        if (!canvasTouched) {
+            status.textContent = "Desenha alguma coisinha primeiro 🎨";
+            return;
+        }
+
+        // diminui pra guardar levinho no celular
+        const small = document.createElement("canvas");
+
+        small.width = 220;
+        small.height = 220;
+
+        small.getContext("2d").drawImage(document.getElementById("atelierCanvas"), 0, 0, 220, 220);
+
+        const data = small.toDataURL("image/jpeg", 0.85);
+        const drawings = getDrawings();
+
+        drawings.list.unshift({ img: data, at: Date.now() });
+        drawings.list = drawings.list.slice(0, 6);
+        drawings.hung = 0;
+
+        writeStore(DRAWINGS_KEY, drawings);
+
+        renderHouseDrawing();
+        renderAtelierGallery();
+
+        clearCanvas(true);
+
+        sfx("yay");
+        createConfetti();
+
+        closeAtelier();
+
+        setHouseSpeech(pick([
+            "Que lindo!!! Vou mostrar pra todo mundo 🖼️🥹",
+            "Pendurei! Agora minha casinha tem uma obra de arte original da Diane ✨",
+            "Esse quadro vale mais que todas as melancias do mundo 🍉🖼️"
+        ]));
+    }
+
+    function renderAtelierGallery() {
+
+        const d = getDrawings();
+        const box = document.getElementById("atelierGalleryBox");
+
+        if (!d.list.length) {
+            box.classList.add("hidden");
+            return;
+        }
+
+        box.classList.remove("hidden");
+
+        document.getElementById("atelierGallery").innerHTML =
+            d.list.map((item, i) => `
+                <button
+                    class="${i === d.hung ? "on" : ""}"
+                    onclick="hangOld(${i})"
+                >
+                    <img src="${item.img}" alt="Desenho ${i + 1}">
+                </button>
+            `).join("");
+    }
+
+    function hangOld(i) {
+
+        const d = getDrawings();
+
+        d.hung = i;
+
+        writeStore(DRAWINGS_KEY, d);
+
+        renderHouseDrawing();
+        renderAtelierGallery();
+
+        document.getElementById("atelierStatus").textContent =
+            "Pendurei esse na parede 🖼️";
+    }
+
+    function renderHouseDrawing() {
+
+        const d = getDrawings();
+        const el = document.getElementById("houseDrawing");
+        const item = d.list[d.hung] || d.list[0];
+
+        if (!item) {
+            el.classList.add("hidden");
+            return;
+        }
+
+        el.innerHTML = `<img src="${item.img}" alt="Desenho da Diane">`;
+        el.classList.remove("hidden");
+    }
+
+    /* ==================================================
+       🪩 MODO FESTA NA CASINHA
+    ================================================== */
+
+    // ✏️ MÚSICA DA FESTA 🎵
+    // Cole aqui o link da música no YouTube ou no Spotify, entre as aspas.
+    // Ex.: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+    //  ou: "https://open.spotify.com/track/XXXXXXXXXXXXXXXXXXXXXX"
+    // Se deixar vazio, toca a musiquinha feita pelo navegador.
+    const PARTY_SONG_URL = "https://www.youtube.com/watch?v=diBO0gMuTXo&list=RDdiBO0gMuTXo&start_radio=1";
+
+    function partyEmbed(url) {
+
+        if (!url) return null;
+
+        try {
+
+            const u = new URL(url.trim());
+            const host = u.hostname.replace(/^www\.|^m\.|^music\./, "");
+
+            let id = null;
+
+            if (host === "youtu.be") id = u.pathname.slice(1);
+            if (host === "youtube.com") {
+                id = u.searchParams.get("v") ||
+                    (u.pathname.match(/\/(shorts|embed|live)\/([^/?]+)/) || [])[2];
+            }
+
+            if (id) {
+                return {
+                    kind: "youtube",
+                    src: `https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&playsinline=1&rel=0`
+                };
+            }
+
+            const sp = u.pathname.match(/^\/(?:intl-[a-z]+\/)?(track|album|playlist)\/([A-Za-z0-9]+)/);
+
+            if (host === "open.spotify.com" && sp) {
+                return {
+                    kind: "spotify",
+                    src: `https://open.spotify.com/embed/${sp[1]}/${sp[2]}?utm_source=generator`
+                };
+            }
+
+        } catch (e) {}
+
+        return null;
+    }
+
+    let partyOn = false;
+    let partyBeat = null;
+    let partyStep = 0;
+
+    // C  Am  F  G (bem simplezinho)
+    const PARTY_BASS = [131, 131, 110, 110, 87, 87, 98, 98];
+    const PARTY_CHORDS = [
+        [523, 659, 784], [440, 523, 659],
+        [349, 440, 523], [392, 494, 587]
+    ];
+
+    function partyTick() {
+
+        if (!sfxOn) return;
+
+        try {
+
+            const s = partyStep % 16;
+            const bar = Math.floor(partyStep / 4) % 4;
+
+            // bumbo
+            if (s % 4 === 0) sfxTone(110, 45, 0.18, "sine", 0.28, 0);
+
+            // chimbal
+            if (s % 2 === 1) sfxNoise(0.04, 8000, 0.06, 0);
+
+            // baixo
+            if (s % 2 === 0) {
+                const f = PARTY_BASS[Math.floor(partyStep / 2) % 8];
+                sfxTone(f, f, 0.2, "triangle", 0.12, 0);
+            }
+
+            // acordes
+            if (s % 4 === 2) {
+                PARTY_CHORDS[bar].forEach(f => sfxTone(f, f, 0.14, "square", 0.018, 0));
+            }
+
+        } catch (e) {}
+
+        partyStep++;
+    }
+
+    function toggleParty() {
+
+        if (partyOn) {
+            stopParty();
+            setHouseSpeech("Ufa... que festa! Agora preciso de um cochilo de 5 horas 😴");
+            return;
+        }
+
+        partyOn = true;
+        partyStep = 0;
+
+        document.getElementById("houseRoom").classList.add("party");
+        document.getElementById("partyBtn").classList.add("on");
+        document.getElementById("partyBtn").textContent = "⏹️ Parar";
+
+        setHouseSpeech(pick([
+            "FESTAAAA!! 🪩 Bora dançar!!",
+            "Solta o som, DJ!! 🎶🍊",
+            "Capivara também sabe rebolar, tá? 💃"
+        ]));
+
+        createConfetti();
+
+        const song = partyEmbed(PARTY_SONG_URL);
+
+        if (song) {
+
+            // música de verdade pelo player oficial 🎵
+            const box = document.getElementById("partyPlayer");
+
+            box.className = "party-player " + song.kind;
+            box.innerHTML =
+                `<iframe src="${song.src}" title="Música da festa" ` +
+                `allow="autoplay; encrypted-media; clipboard-write; fullscreen; picture-in-picture" ` +
+                `allowfullscreen loading="lazy"></iframe>`;
+
+        } else {
+
+            partyBeat = setInterval(partyTick, 150);
+        }
+    }
+
+    function stopParty() {
+
+        partyOn = false;
+
+        clearInterval(partyBeat);
+
+        const box = document.getElementById("partyPlayer");
+
+        box.innerHTML = "";
+        box.className = "party-player hidden";
+
+        document.getElementById("houseRoom").classList.remove("party");
+
+        const btn = document.getElementById("partyBtn");
+
+        btn.classList.remove("on");
+        btn.textContent = "🪩 Festa!";
+    }
+
+    /* ==================================================
+       🧖‍♀️ DIA DE SPA COM A MM
+    ================================================== */
+
+    // ✏️ Passinhos do spa
+    const SPA_STEPS = [
+        { id: "agua", label: "💧 Tomar um copo de água", line: "Hidratação por dentro primeiro! 💧" },
+        { id: "rosto", label: "🫧 Lavar o rosto com água fresquinha", line: "Aaah, que refrescante 🫧" },
+        { id: "creme", label: "🧴 Passar um creminho", line: "Pele de capivara macia, pele de Diane mais ainda 🧴" },
+        { id: "musica", label: "🎶 Colocar uma música calminha", line: "Uma musiquinha calma deixa tudo melhor 🎶" },
+        { id: "ombros", label: "💆‍♀️ Soltar os ombros e alongar o pescoço", line: "Solta os ombrinhos... isso 💆‍♀️" },
+        { id: "olhos", label: "😌 Ficar 1 minutinho de olhos fechados", line: "Shhh... só respira e descansa 😌" }
+    ];
+
+    const SPA_MINUTES = 30;
+
+    function isSpaActive() {
+
+        return cat && cat.spaUntil && Date.now() < cat.spaUntil;
+    }
+
+    function getSpaDone() {
+
+        if (!cat.spa || cat.spa.date !== todayKey()) {
+            cat.spa = { date: todayKey(), done: [] };
+        }
+
+        return cat.spa;
+    }
+
+    function startSpa() {
+
+        cat.spaUntil = Date.now() + SPA_MINUTES * 60000;
+
+        applyOutfit();
+        renderSpa();
+        saveCat();
+    }
+
+    function renderSpa() {
+
+        const spa = getSpaDone();
+
+        document.getElementById("spaList").innerHTML =
+            SPA_STEPS.map(s => {
+
+                const done = spa.done.includes(s.id);
+
+                return `
+                    <button
+                        class="care-check ${done ? "done" : ""}"
+                        onclick="toggleSpaStep('${s.id}')"
+                    >
+                        <span class="box">${done ? "✓" : ""}</span>
+                        ${s.label}
+                    </button>
+                `;
+
+            }).join("");
+    }
+
+    function toggleSpaStep(id) {
+
+        const spa = getSpaDone();
+        const step = SPA_STEPS.find(s => s.id === id);
+
+        if (spa.done.includes(id)) {
+            spa.done = spa.done.filter(x => x !== id);
+            setCatSpeech("Tudo bem, sem pressa 🌿");
+        } else {
+            spa.done.push(id);
+            setCatSpeech(step.line);
+            catPopEmoji(pick(["🫧", "🌿", "💧", "✨"]));
+        }
+
+        renderSpa();
+
+        const idx = SPA_STEPS.findIndex(s => s.id === id);
+        const btn = document.querySelectorAll("#spaList .care-check")[idx];
+
+        if (btn && spa.done.includes(id)) btn.classList.add("just");
+
+        if (spa.done.length === SPA_STEPS.length) {
+
+            setCatSpeech("Spa completo!! Pele renovada, coração quentinho ✨ Você merece todo esse carinho 🧖‍♀️💗");
+
+            sfx("yay");
+            createConfetti();
+        }
+
+        saveCat();
     }
 
     /* ==================================================
