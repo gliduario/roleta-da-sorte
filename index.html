@@ -5421,6 +5421,80 @@
         .mini-grid .mini-card:nth-child(n+4) { grid-column: span 3; }
     }
 
+    /* 💗 período fértil, ✈️ GG em Rio Preto e 🍼 vários filhotinhos */
+
+    .mm-extra-actions button.fertile-btn {
+        background: var(--surface-soft);
+        color: var(--text-soft);
+    }
+
+    .mm-extra-actions button.fertile-btn.on {
+        background: linear-gradient(135deg, #ffd1e3, #ffb3cc);
+        color: #b0306a;
+        border-color: #ff8fb8;
+        animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    .family-links .family-wide {
+        grid-column: 1 / -1;
+        background: linear-gradient(135deg, var(--blue-glow), var(--warm-glow));
+    }
+
+    .baby-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin: 0 28px 6px;
+    }
+
+    .baby-tabs:empty { display: none; }
+
+    .baby-tabs button {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text-soft);
+    }
+
+    .baby-tabs button.on {
+        background: linear-gradient(135deg, var(--pink-glow), var(--blue-glow));
+        border-color: var(--border-strong);
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    /* cada filhotinho com um tonzinho de pelo diferente */
+    .baby-svg.kid-1 { filter: brightness(1.07) saturate(0.85); }
+    .baby-svg.kid-2 { filter: hue-rotate(-10deg) saturate(1.25); }
+    .baby-svg.kid-3 { filter: brightness(0.92) saturate(1.1); }
+    .baby-svg.kid-4 { filter: hue-rotate(14deg) brightness(1.04); }
+
+    #coupleBabySlot {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+        max-width: 120px;
+    }
+
+    #coupleBabySlot.many .couple-baby { width: 40px; }
+
+    .house-baby {
+        display: flex;
+        align-items: flex-end;
+        gap: 1%;
+        left: 56%;
+        width: 40%;
+    }
+
+    .house-baby .house-kid {
+        flex: 0 1 38%;
+        min-width: 0;
+    }
+
     /* ==========================================
        RESPONSIVO
     ========================================== */
@@ -7444,6 +7518,14 @@
                 💙 Visitar o GG
             </button>
 
+            <button
+                id="mmFertileBtn"
+                class="wide fertile-btn"
+                onclick="toggleFertile()"
+            >
+                🤍 Período fértil: desligado
+            </button>
+
         </div>
 
         <div
@@ -8192,6 +8274,13 @@
 
         <div class="mm-extra-actions family-links">
 
+            <button
+                class="family-wide"
+                onclick="visitMM()"
+            >
+                ✈️ Visitar a MM em Rio Preto
+            </button>
+
             <button onclick="closeFunModal('ggOverlay'); openCat()">
                 🍊 Ver a MM
             </button>
@@ -8230,6 +8319,11 @@
             onclick="closeFunModal('babyOverlay')"
             aria-label="Fechar"
         >✕</button>
+
+        <div
+            id="babyTabs"
+            class="baby-tabs"
+        ></div>
 
         <h2
             id="babyTitle"
@@ -8412,7 +8506,10 @@
             aria-label="Fechar"
         >✕</button>
 
-        <h2 class="fun-title">
+        <h2
+            id="coupleTitle"
+            class="fun-title"
+        >
             MM chegou em Londrina! 💙
         </h2>
 
@@ -8506,11 +8603,17 @@
             class="baby-event hidden"
         >
 
-            <div class="baby-event-title">
+            <div
+                id="babyEventTitle"
+                class="baby-event-title"
+            >
                 🍼 SURPRESA!!! Nasceu uma capivarinha!
             </div>
 
-            <p class="fun-text">
+            <p
+                id="babyEventText"
+                class="fun-text"
+            >
                 O filhotinho da MM e do GG chegou 🥹 Que nome vamos dar?
             </p>
 
@@ -8540,6 +8643,7 @@
         <div class="bday-actions">
 
             <button
+                id="coupleBackBtn"
                 class="secondary-btn"
                 onclick="closeFunModal('coupleOverlay')"
             >
@@ -8663,6 +8767,24 @@
                     </g>
                 </g>
 
+                <g
+                    id="mapGG"
+                    class="map-capy"
+                    style="opacity:0"
+                    transform="translate(0 0)"
+                >
+                    <g transform="scale(0.5)">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#b08458" stroke="#4a3329" stroke-width="2"/>
+                        <path d="M10 20 Q12 4 30 4 Q48 4 50 20 Q30 15 10 20 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="1.5"/>
+                        <path d="M14 26 Q18 23 22 26 M38 26 Q42 23 46 26" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#8a6343" stroke="#4a3329" stroke-width="1.5"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </g>
+                </g>
+
                 <!-- coração que viaja -->
                 <text
                     id="mapTraveler"
@@ -8734,6 +8856,15 @@
             style="width: 100%; margin-top: 12px;"
         >
             Mandar a MM visitar o GG 🍊
+        </button>
+
+        <button
+            id="ggTravelButton"
+            class="secondary-btn"
+            onclick="sendGGToRioPreto()"
+            style="width: 100%; margin-top: 8px;"
+        >
+            Mandar o GG visitar a MM 💙
         </button>
 
     </div>
@@ -13263,6 +13394,10 @@ Te amo muito.
         } else if (mood !== "sad" && wk) {
             badge.textContent = weatherIcon() + " " + weatherTemp() + "°";
         }
+
+        if (!isBirthdayToday() && mood !== "sad" && isFertile()) {
+            badge.textContent = "💗 fértil";
+        }
     }
 
     function setCatSpeech(text) {
@@ -14174,8 +14309,21 @@ Te amo muito.
         ["Um dia a gente vai morar todo mundo junto, né?", "Com certeza. Eu já escolhi meu cantinho no sofá 🛋️"]
     ];
 
+    // ✏️ Conversinhas quando o GG vai pra Rio Preto
+    const coupleTalksRP = [
+        ["Você veio de Londrina só pra me ver?! 🥹", "Vim! Atravessei o Paranapanema nadando 🏊 (mentira, vim de ônibus)"],
+        ["Bem-vindo a Rio Preto! Aqui é quentinho ☀️", "Quentinho é pouco, tô derretendo kkkk 🫠"],
+        ["Trouxe o quê pra mim? 👀", "Um milho e muito amor 🌽💙"],
+        ["A Diane te mostrou a cidade?", "Mostrou! Mas a vista mais bonita é você 🍊"],
+        ["Bora no laguinho daqui?", "Só se você segurar minha patinha 🐾"],
+        ["O Gabriel mandou alguma coisa?", "Mandou um beijo enorme pra Diane 😚"],
+        ["Fica mais uns dias? 🥺", "Fico o quanto você quiser 💙"],
+        ["Aqui é minha casa, viu? Fica à vontade 🏡", "Já tô à vontade. Cadê o sofá? 🛋️"]
+    ];
+
     let coupleIndex = 0;
     let coupleTalkTimer = null;
+    let coupleWhere = "ldn";
 
     function visitGG() {
 
@@ -14187,6 +14335,70 @@ Te amo muito.
     }
 
     let capyTraveling = false;
+
+    function visitMM() {
+
+        closeFunModal("ggOverlay");
+
+        openMap();
+
+        setTimeout(sendGGToRioPreto, 450);
+    }
+
+    function sendGGToRioPreto() {
+
+        if (capyTraveling) return;
+
+        capyTraveling = true;
+
+        sfx("whoosh");
+
+        const path = document.getElementById("mapPath");
+        const capy = document.getElementById("mapGG");
+        const btn = document.getElementById("ggTravelButton");
+        const length = path.getTotalLength();
+        const duration = 2600;
+        const start = performance.now();
+
+        btn.disabled = true;
+        btn.textContent = "O GG tá a caminho... 💙💨";
+
+        capy.style.opacity = "1";
+
+        function step(now) {
+
+            const t = Math.min(1, (now - start) / duration);
+            const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            const p = path.getPointAtLength(eased * length);
+            const hop = Math.abs(Math.sin(t * Math.PI * 8)) * -6;
+
+            capy.setAttribute("transform", `translate(${p.x - 15} ${p.y - 26 + hop})`);
+
+            if (t < 1) {
+
+                requestAnimationFrame(step);
+
+            } else {
+
+                setTimeout(() => {
+
+                    capy.style.opacity = "0";
+
+                    btn.disabled = false;
+                    btn.textContent = "Mandar o GG visitar a MM 💙";
+
+                    capyTraveling = false;
+
+                    closeFunModal("mapOverlay");
+
+                    openCouple("rp");
+
+                }, 500);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
 
     function sendMMToLondrina() {
 
@@ -14243,7 +14455,11 @@ Te amo muito.
         requestAnimationFrame(step);
     }
 
-    function openCouple() {
+    function openCouple(where) {
+
+        coupleWhere = where === "rp" ? "rp" : "ldn";
+
+        const inRP = coupleWhere === "rp";
 
         if (!cat) loadCat();
 
@@ -14259,24 +14475,37 @@ Te amo muito.
         applyOutfit(stage);
 
         // na casa do GG não chove 😌
-        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"]')
-            .forEach(el => el.style.display = "none");
+        if (!inRP) {
+            stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"]')
+                .forEach(el => el.style.display = "none");
+        }
 
         document.getElementById("ggName").textContent = GG_NAME + " 💙";
 
-        const visits = readStore(GG_VISITS_KEY, 0) + 1;
+        const key = inRP ? "ggVisitsMM" : GG_VISITS_KEY;
+        const visits = (Number(readStore(key, 0)) || 0) + 1;
 
-        writeStore(GG_VISITS_KEY, visits);
+        writeStore(key, visits);
 
-        document.getElementById("coupleSub").textContent =
-            `Ela atravessou ${ourDistance} km e o Rio Paranapanema só pra ver o ${GG_NAME} 🥹`;
+        document.getElementById("coupleTitle").textContent =
+            inRP ? "GG chegou em Rio Preto! 🍊" : "MM chegou em Londrina! 💙";
 
-        document.getElementById("coupleCounter").textContent =
-            `🍊💙 ${plural(visits, "visita", "visitas")} da MM em Londrina`;
+        document.getElementById("coupleBackBtn").textContent =
+            inRP ? "Voltar pra Londrina 💙" : "Voltar pra Rio Preto 🍊";
 
-        renderCoupleBaby(visits);
+        document.getElementById("coupleSub").textContent = inRP
+            ? `Ele atravessou ${ourDistance} km e o Rio Paranapanema só pra ver a MM 🥹`
+            : `Ela atravessou ${ourDistance} km e o Rio Paranapanema só pra ver o ${GG_NAME} 🥹`;
+
+        document.getElementById("coupleCounter").textContent = inRP
+            ? `💙🍊 ${plural(visits, "visita", "visitas")} do GG em Rio Preto`
+            : `🍊💙 ${plural(visits, "visita", "visitas")} da MM em Londrina`;
+
+        renderCoupleBaby();
 
         coupleIndex = Math.floor(Math.random() * coupleTalks.length);
+
+        document.getElementById("coupleOverlay").classList.toggle("in-rp", inRP);
 
         renderCoupleTalk();
 
@@ -14287,7 +14516,8 @@ Te amo muito.
 
     function renderCoupleTalk() {
 
-        const [mm, gg] = coupleTalks[coupleIndex % coupleTalks.length];
+        const talks = coupleWhere === "rp" ? coupleTalksRP : coupleTalks;
+        const [mm, gg] = talks[coupleIndex % talks.length];
 
         const mmEl = document.getElementById("coupleMMSpeech");
         const ggEl = document.getElementById("coupleGGSpeech");
@@ -15213,44 +15443,61 @@ Te amo muito.
 
     const BABY_KEY = "mmBaby";
 
-    function babySvg(stage) {
+    function babySvg(stage, kid) {
 
-        if (stage === undefined) stage = babyStageOf(getBaby());
+        if (kid === undefined) kid = currentBabyIndex();
+        if (stage === undefined) stage = babyStageOf(getBabies()[kid] || null);
 
         return document.getElementById("babyTemplate").innerHTML
-            .replace('class="baby-svg"', `class="baby-svg baby-stage-${stage}"`);
+            .replace('class="baby-svg"', `class="baby-svg baby-stage-${stage} kid-${kid % 5}"`);
     }
 
+    // o filhotinho que está aberto no cantinho (ou o primeiro)
     function getBaby() {
 
-        return readStore(BABY_KEY, null);
+        const list = getBabies();
+
+        return list.length ? list[currentBabyIndex()] : null;
     }
 
-    function renderCoupleBaby(visits) {
+    function allBabiesSvg(cls) {
 
-        const baby = getBaby();
+        return getBabies().map((b, i) =>
+            `<div class="${cls}">${babySvg(babyStageOf(b), i)}</div>`).join("");
+    }
+
+    function renderCoupleBaby() {
+
+        const list = getBabies();
         const slot = document.getElementById("coupleBabySlot");
         const event = document.getElementById("babyEvent");
+        const counter = document.getElementById("coupleCounter");
+        const visits = totalVisits();
 
-        slot.innerHTML = "";
+        slot.innerHTML = allBabiesSvg("couple-baby");
+        slot.classList.toggle("many", list.length > 2);
         event.classList.add("hidden");
 
-        if (baby) {
+        if (list.length) counter.textContent += ` · 🍼 ${babyNames(list)} ${list.length > 1 ? "vieram" : "veio"} junto!`;
 
-            slot.innerHTML =
-                `<div class="couple-baby">${babySvg()}</div>`;
+        const firstBaby = !list.length && visits >= BABY_VISITS_NEEDED;
+        const another = isFertile() && list.length < MAX_BABIES;
 
-            document.getElementById("coupleCounter").textContent +=
-                ` · 🍼 ${baby.name} veio junto!`;
+        if (firstBaby || another) {
 
-            return;
-        }
+            document.getElementById("babyEventTitle").textContent = list.length
+                ? "🍼 SURPRESA!!! Veio mais um filhotinho!"
+                : "🍼 SURPRESA!!! Nasceu uma capivarinha!";
 
-        if (visits >= BABY_VISITS_NEEDED) {
+            document.getElementById("babyEventText").textContent = list.length
+                ? `${babyNames(list)} ${list.length > 1 ? "ganharam" : "ganhou"} um irmãozinho 🥹 Que nome vamos dar?`
+                : "O filhotinho da MM e do GG chegou 🥹 Que nome vamos dar?";
+
+            document.getElementById("babyNameInput").value = "";
 
             event.classList.remove("hidden");
 
-            document.getElementById("babyEventArt").innerHTML = babySvg();
+            document.getElementById("babyEventArt").innerHTML = babySvg(0, list.length);
 
             setTimeout(() => {
                 sfx("baby");
@@ -15265,10 +15512,12 @@ Te amo muito.
             return;
         }
 
-        const left = BABY_VISITS_NEEDED - visits;
+        if (!list.length) {
 
-        document.getElementById("coupleCounter").textContent +=
-            ` · 🍼 faltam ${plural(left, "visita", "visitas")} pra uma surpresinha... 👀`;
+            const left = BABY_VISITS_NEEDED - visits;
+
+            counter.textContent += ` · 🍼 faltam ${plural(left, "visita", "visitas")} pra uma surpresinha... 👀`;
+        }
     }
 
     function nameBaby() {
@@ -15281,7 +15530,17 @@ Te amo muito.
             return;
         }
 
-        writeStore(BABY_KEY, { name, born: Date.now(), cares: 0, stage: 0, love: 80, food: 80, fun: 80, lastVisit: Date.now() });
+        const list = getBabies();
+
+        if (list.length >= MAX_BABIES) return;
+
+        list.push({ name, born: Date.now(), cares: 0, stage: 0, love: 80, food: 80, fun: 80, lastVisit: Date.now() });
+
+        writeStore(BABY_KEY, list);
+        writeStore("babyCurrent", list.length - 1);
+
+        // filhotinho nasceu: o período fértil acaba
+        if (isFertile()) setFertile(false);
 
         updateBabyCard();
 
@@ -15290,13 +15549,15 @@ Te amo muito.
         document.getElementById("babyEvent").classList.add("hidden");
 
         document.getElementById("coupleMMSpeech").textContent =
-            `Bem-vindo(a), ${name}! 🥹`;
+            list.length > 1 ? `Mais um!!! Bem-vindo(a), ${name}! 🥹` : `Bem-vindo(a), ${name}! 🥹`;
 
         document.getElementById("coupleGGSpeech").textContent =
-            `Eu sou papai!!! 😭💙`;
+            list.length > 1 ? `Papai de ${list.length}!!! 😭💙` : `Eu sou papai!!! 😭💙`;
 
-        document.getElementById("coupleBabySlot").innerHTML =
-            `<div class="couple-baby">${babySvg()}</div>`;
+        const slot = document.getElementById("coupleBabySlot");
+
+        slot.innerHTML = allBabiesSvg("couple-baby");
+        slot.classList.toggle("many", list.length > 2);
 
         sfx("yay");
         createConfetti();
@@ -15381,7 +15642,7 @@ Te amo muito.
         const babyEl = document.getElementById("houseBaby");
 
         if (baby) {
-            babyEl.innerHTML = babySvg();
+            babyEl.innerHTML = allBabiesSvg("house-kid");
             babyEl.classList.remove("hidden");
         } else {
             babyEl.classList.add("hidden");
@@ -15412,7 +15673,7 @@ Te amo muito.
             isHouseNight() && !getWishes().length
                 ? "Boa noite! Fica de olho na janela... às vezes passa estrela cadente 🌠"
                 : baby
-                ? `Bem-vinda! O ${baby.name} tá brincando aqui do lado 🍼`
+                ? (getBabies().length > 1 ? `Bem-vinda! ${babyNames(getBabies())} estão brincando aqui do lado 🍼` : `Bem-vinda! ${baby.name} tá brincando aqui do lado 🍼`)
                 : "Bem-vinda à minha casinha! Me ajuda a decorar? 🏡";
 
         openFunModal("houseOverlay");
@@ -15675,7 +15936,7 @@ Te amo muito.
 
     // tudo que o site guarda no celular
     const BACKUP_KEYS = [
-        "mmCapivara", "mmVisitsGG", "mmBaby", "ggPet", "mmWishes",
+        "mmCapivara", "mmVisitsGG", "mmBaby", "ggPet", "ggVisitsMM", "mmFertil", "mmWishes",
         "hugsSent", "idCardPhoto",
         "siteTheme", "siteLightTheme", "siteSounds",
         "careChecklist",
@@ -15747,7 +16008,7 @@ Te amo muito.
             `💗 ${cat.pets} carinhos`,
             `👗 ${(cat.outfit || []).length} roupinhas usando`,
             `🏡 ${(cat.house || []).length} móveis`,
-            baby ? `🍼 ${escapeHtml(baby.name)}` : null,
+            baby ? `🍼 ${escapeHtml(babyNames(getBabies()))}` : null,
             days === null
                 ? "💾 nunca salvou backup"
                 : days === 0
@@ -17348,13 +17609,14 @@ Te amo muito.
     const SYNC_STATES = {
 
         mm: {
-            keys: ["mmCapivara", "mmVisitsGG", "hugsSent"],
+            keys: ["mmCapivara", "mmVisitsGG", "hugsSent", "mmFertil"],
             atKey: "mmStateAt",
             linkedKey: "mmCloudLinked",
             score: d => petsOf(d.mmCapivara),
             applied: () => {
                 loadCat();
                 updateCatBadge(catMood());
+                updateFertileUI();
                 if (!document.getElementById("catOverlay").classList.contains("hidden")) {
                     renderCat(catMood());
                 }
@@ -17362,7 +17624,7 @@ Te amo muito.
         },
 
         gg: {
-            keys: ["ggPet"],
+            keys: ["ggPet", "ggVisitsMM"],
             atKey: "ggStateAt",
             linkedKey: "cloudLinked_gg",
             score: d => petsOf(d.ggPet),
@@ -17379,7 +17641,8 @@ Te amo muito.
             score: d => {
                 try {
                     const b = JSON.parse(d.mmBaby);
-                    return b ? 1 + (b.cares || 0) : 0;
+                    const list = Array.isArray(b) ? b : b ? [b] : [];
+                    return list.reduce((n, x) => n + 1 + (x.cares || 0), 0);
                 } catch (e) { return 0; }
             },
             applied: () => {
@@ -17853,7 +18116,7 @@ Te amo muito.
         const baby = getBaby();
 
         document.getElementById("ggBabyLink").innerHTML =
-            baby ? `🍼 Ver ${escapeFamily(baby.name)}` : "🍼 Filhotinho? 👀";
+            baby ? (getBabies().length > 1 ? "🍼 Ver os filhotinhos" : `🍼 Ver ${escapeFamily(baby.name)}`) : "🍼 Filhotinho? 👀";
 
         updateGGBadge();
     }
@@ -18048,8 +18311,42 @@ Te amo muito.
         };
     }
 
+    // ✏️ Quantos filhotinhos cabem na família
+    const MAX_BABIES = 5;
+
     let baby = null;
     let babyNapTimer = null;
+
+    function getBabies() {
+
+        const raw = readStore("mmBaby", null);
+
+        if (!raw) return [];
+
+        return (Array.isArray(raw) ? raw : [raw]).filter(b => b && b.name);
+    }
+
+    function currentBabyIndex() {
+
+        const list = getBabies();
+        const i = Number(readStore("babyCurrent", 0)) || 0;
+
+        return list.length ? Math.min(Math.max(0, i), list.length - 1) : 0;
+    }
+
+    function babyNames(list) {
+
+        const names = list.map(b => b.name);
+
+        if (names.length <= 1) return names.join("");
+
+        return names.slice(0, -1).join(", ") + " e " + names[names.length - 1];
+    }
+
+    function totalVisits() {
+
+        return (Number(readStore(GG_VISITS_KEY, 0)) || 0) + (Number(readStore("ggVisitsMM", 0)) || 0);
+    }
 
     function loadBaby() {
 
@@ -18083,7 +18380,37 @@ Te amo muito.
 
         baby.lastVisit = Date.now();
 
-        writeStore(BABY_KEY, baby);
+        const list = getBabies();
+        const i = currentBabyIndex();
+
+        if (!list.length) return;
+
+        list[i] = baby;
+
+        writeStore(BABY_KEY, list);
+    }
+
+    function selectBaby(i) {
+
+        saveBaby();
+
+        writeStore("babyCurrent", i);
+
+        clearTimeout(babyNapTimer);
+
+        const area = document.getElementById("babyArea");
+
+        area.innerHTML = "";
+        area.classList.remove("napping");
+
+        loadBaby();
+        renderBaby();
+
+        if (baby) {
+            setBabySpeech(babyGreeting());
+            sfx("kiu");
+            saveBaby();
+        }
     }
 
     function setBabySpeech(text) {
@@ -18108,7 +18435,36 @@ Te amo muito.
 
         if (baby.fun < 30) return stage === 0 ? "*olhando pro móbile, entediado* 🥱" : "Brinca comigo? Por favorzinho 🧸";
 
+        const siblings = getBabies().filter((_, i) => i !== currentBabyIndex());
+
+        if (siblings.length && stage >= 1 && Math.random() < 0.3) {
+
+            const s = pick(siblings);
+
+            return pick([
+                `Cadê ${s.name}? Quero brincar junto! 🧸`,
+                `${s.name} pegou minha laranjinha!!! 😤🍊`,
+                `Eu e ${s.name} somos melhores amigos 🥹`
+            ]);
+        }
+
         return pick(babyLines[stage]);
+    }
+
+    function renderBabyTabs() {
+
+        const tabs = document.getElementById("babyTabs");
+        const list = getBabies();
+        const cur = currentBabyIndex();
+
+        if (list.length < 2) {
+            tabs.innerHTML = "";
+            return;
+        }
+
+        tabs.innerHTML = list.map((b, i) =>
+            `<button class="${i === cur ? "on" : ""}" onclick="selectBaby(${i})">${BABY_STAGES[babyStageOf(b)].icon} ${escapeFamily(b.name)}</button>`
+        ).join("");
     }
 
     function renderBaby() {
@@ -18116,20 +18472,21 @@ Te amo muito.
         const overlay = document.getElementById("babyOverlay");
         const area = document.getElementById("babyArea");
 
+        renderBabyTabs();
+
         if (!baby) {
 
             overlay.classList.add("baby-locked");
 
-            const visits = Number(readStore(GG_VISITS_KEY, 0)) || 0;
-            const left = Math.max(0, BABY_VISITS_NEEDED - visits);
+            const left = Math.max(0, BABY_VISITS_NEEDED - totalVisits());
 
             document.getElementById("babyTitle").textContent = "??? 🍼";
             document.getElementById("babyStagePill").textContent = "";
             area.innerHTML = `<div class="baby-egg">🥚</div>`;
 
             setBabySpeech(left > 0
-                ? `Psiu... leva a MM pra visitar o GG mais ${plural(left, "vez", "vezes")} e vê o que acontece 👀💗`
-                : "Leva a MM pra visitar o GG... acho que vem novidade aí 👀💗");
+                ? `Psiu... a MM e o GG precisam se visitar mais ${plural(left, "vez", "vezes")} e vê o que acontece 👀💗`
+                : "Leva a MM pra visitar o GG (ou o GG pra visitar a MM)... acho que vem novidade aí 👀💗");
 
             return;
         }
@@ -18147,7 +18504,7 @@ Te amo muito.
         document.getElementById("babyStagePill").textContent =
             `${st.icon} ${st.name} · ${days === 0 ? "nasceu hoje" : plural(days, "dia", "dias") + " de vida"}`;
 
-        if (!area.querySelector(".baby-svg")) area.innerHTML = babySvg(stage);
+        if (!area.querySelector(".baby-svg")) area.innerHTML = babySvg(stage, currentBabyIndex());
 
         const svg = area.querySelector(".baby-svg");
 
@@ -18177,9 +18534,11 @@ Te amo muito.
             if (prog.caresLeft > 0) parts.push(plural(prog.caresLeft, "cuidadinho", "cuidadinhos"));
             if (prog.daysLeft > 0) parts.push(plural(prog.daysLeft, "dia", "dias"));
 
+            const one = parts.length === 1 && (prog.caresLeft === 1 || prog.daysLeft === 1);
+
             document.getElementById("babyGrowthHint").textContent =
                 parts.length
-                    ? `${(prog.caresLeft === 1 && !prog.daysLeft) || (prog.daysLeft === 1 && !prog.caresLeft) ? "Falta" : "Faltam"} ${parts.join(" e ")} pra virar ${prog.next.name} ${prog.next.icon}`
+                    ? `${one ? "Falta" : "Faltam"} ${parts.join(" e ")} pra virar ${prog.next.name} ${prog.next.icon}`
                     : `Quase virando ${prog.next.name} ${prog.next.icon}!`;
         }
 
@@ -18189,19 +18548,26 @@ Te amo muito.
         updateBabyCard();
     }
 
+    function babyNeedy(b) {
+
+        const hoursAway = Math.max(0, (Date.now() - (b.lastVisit || Date.now())) / 3600000);
+
+        return (b.food ?? 80) - hoursAway * 3 < 30 || (b.love ?? 80) - hoursAway * 1.5 < 30;
+    }
+
     function updateBabyCard() {
 
         const card = document.getElementById("babyCard");
 
         if (!card) return;
 
-        const b = getBaby();
+        const list = getBabies();
 
         const badge = document.getElementById("babyBadge");
         const title = document.getElementById("babyCardTitle");
         const desc = document.getElementById("babyCardDesc");
 
-        if (!b) {
+        if (!list.length) {
 
             card.classList.add("locked");
             badge.textContent = "🔒";
@@ -18213,14 +18579,22 @@ Te amo muito.
 
         card.classList.remove("locked");
 
-        const st = BABY_STAGES[babyStageOf(b)];
-        const hoursAway = Math.max(0, (Date.now() - (b.lastVisit || Date.now())) / 3600000);
-        const food = (b.food ?? 80) - hoursAway * 3;
-        const love = (b.love ?? 80) - hoursAway * 1.5;
+        const needy = list.some(babyNeedy);
 
-        badge.textContent = (food < 30 || love < 30) ? "🥺 colo" : st.icon + " " + st.name.toLowerCase();
-        title.textContent = b.name;
-        desc.textContent = "O filhotinho da MM e do GG. Ele cresce com carinho! 🌱";
+        if (list.length === 1) {
+
+            const st = BABY_STAGES[babyStageOf(list[0])];
+
+            badge.textContent = needy ? "🥺 colo" : st.icon + " " + st.name.toLowerCase();
+            title.textContent = list[0].name;
+            desc.textContent = "O filhotinho da MM e do GG. Ele cresce com carinho! 🌱";
+
+            return;
+        }
+
+        badge.textContent = needy ? "🥺 colo" : `🍼 ${list.length}`;
+        title.textContent = "Filhotinhos";
+        desc.textContent = `${babyNames(list)} 🌱`;
     }
 
     function openBaby() {
@@ -18240,6 +18614,62 @@ Te amo muito.
         }
 
         openFunModal("babyOverlay");
+    }
+
+    /* ==================================================
+       💗 PERÍODO FÉRTIL DA MM (liga e desliga no botão)
+    ================================================== */
+
+    function isFertile() {
+
+        const f = readStore("mmFertil", null);
+
+        return !!(f && f.on);
+    }
+
+    function setFertile(on) {
+
+        writeStore("mmFertil", { on, at: Date.now() });
+
+        updateFertileUI();
+    }
+
+    function updateFertileUI() {
+
+        const btn = document.getElementById("mmFertileBtn");
+
+        if (btn) {
+
+            const on = isFertile();
+
+            btn.classList.toggle("on", on);
+            btn.textContent = on ? "💗 Período fértil: ligado" : "🤍 Período fértil: desligado";
+        }
+
+        try { if (cat) updateCatBadge(catMood()); } catch (e) {}
+    }
+
+    function toggleFertile() {
+
+        if (!isFertile() && getBabies().length >= MAX_BABIES) {
+
+            setCatSpeech(`A casa tá cheia! ${MAX_BABIES} filhotinhos já é capivara demais kkkk 🥹`);
+            catBounce();
+            return;
+        }
+
+        setFertile(!isFertile());
+
+        sfx("plim");
+
+        if (isFertile()) {
+            setCatSpeech("🙈 Tô no período fértil... se o GG vier me visitar (ou eu for lá), vai que vem filhotinho? 👀💗");
+            catPopEmoji("💗");
+        } else {
+            setCatSpeech("Período fértil desligado. Por enquanto é só namoro mesmo kkkk 💗");
+        }
+
+        catBounce();
     }
 
     function babyPop(emoji) {
@@ -18375,6 +18805,7 @@ Te amo muito.
     try {
         updateGGBadge();
         updateBabyCard();
+        updateFertileUI();
     } catch (e) {}
 
     /* ==================================================
