@@ -5251,6 +5251,45 @@
         max-height: 50vh;
     }
 
+    /* ☁️ aviso da nuvem na tela inicial */
+
+    .cloud-pill {
+        margin-top: 14px;
+        padding: 7px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text-soft);
+    }
+
+    .cloud-pill.ok {
+        background: rgba(200, 240, 210, 0.45);
+        border-color: #9fd8b0;
+        color: #3f7a52;
+    }
+
+    .cloud-pill.warn {
+        background: rgba(255, 228, 190, 0.5);
+        border-color: #f3c58a;
+        color: #9a6324;
+    }
+
+    .cloud-pill.wait {
+        opacity: 0.75;
+    }
+
+    :root[data-theme="dark"] .cloud-pill.ok {
+        background: rgba(80, 160, 110, 0.18);
+        color: #a8e6bd;
+    }
+
+    :root[data-theme="dark"] .cloud-pill.warn {
+        background: rgba(200, 140, 60, 0.18);
+        color: #ffd7a3;
+    }
+
     /* ==========================================
        RESPONSIVO
     ========================================== */
@@ -5481,6 +5520,12 @@
                 Porque escolher o que assistir é uma decisão séria...
                 Então vamos levar bem a sério o sorteio. 😂💕
             </p>
+
+            <button
+                id="cloudPill"
+                class="cloud-pill hidden"
+                onclick="openCloudModal()"
+            ></button>
 
         </div>
 
@@ -7316,6 +7361,38 @@
         >
             💾 Backup da MM
         </button>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     ☁️ MODAL — NUVEM (login)
+================================================== -->
+
+<div
+    id="cloudOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('cloudOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Nuvem do casal ☁️
+        </h2>
+
+        <p class="fun-text">
+            Conectado, tudo que vocês guardam aparece nos dois celulares:
+            memórias, playlist, pote, pedidos, desenhos, vales e a MM 🍊
+        </p>
+
+        <div class="cloud-box"></div>
 
     </div>
 
@@ -12524,7 +12601,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -16933,7 +17010,47 @@ Te amo muito.
         renderCloudBox();
     }
 
+    function renderCloudPill() {
+
+        const pill = document.getElementById("cloudPill");
+
+        if (!pill) return;
+
+        const states = {
+            loading: ["☁️ Conectando com a nuvem...", "wait"],
+            on: ["☁️ Conectado · tudo sincronizado 💗", "ok"],
+            login: ["☁️ Não conectado · toca aqui pra entrar", "warn"],
+            offline: ["📴 Sem conexão com a nuvem agora", "warn"]
+        };
+
+        const st = states[loveCloudState];
+
+        if (!st) {
+            pill.classList.add("hidden");
+            return;
+        }
+
+        pill.textContent = st[0];
+        pill.className = "cloud-pill " + st[1];
+    }
+
+    function openCloudModal() {
+
+        renderCloudBox();
+
+        openFunModal("cloudOverlay");
+    }
+
     function renderCloudBox() {
+
+        renderCloudPill();
+
+        // logou pela janelinha da nuvem? fecha sozinha
+        const cloudModal = document.getElementById("cloudOverlay");
+
+        if (loveCloudState === "on" && cloudModal && !cloudModal.classList.contains("hidden")) {
+            setTimeout(() => closeFunModal("cloudOverlay"), 1500);
+        }
 
         document.querySelectorAll(".cloud-box").forEach(box => {
 
@@ -17022,6 +17139,8 @@ Te amo muito.
 
 
     updateMemCount();
+
+    renderCloudPill();
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
