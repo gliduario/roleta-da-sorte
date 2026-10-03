@@ -5736,6 +5736,661 @@
             transition-duration: 0.01ms !important;
         }
     }
+    /* ==========================================
+       ✨ HOME NOVA (capa + seções)
+    ========================================== */
+
+    #home.home-v2 {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+    }
+
+    /* ---------- capa ---------- */
+
+    #home .hero {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        text-align: center;
+        color: #ffffff;
+        padding: 34px 28px 30px;
+        border-radius: 34px;
+        background:
+            radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, 0.28), transparent 55%),
+            linear-gradient(135deg, var(--btn-1) 0%, var(--accent-3) 55%, var(--btn-2) 100%);
+        box-shadow:
+            0 2px 0 rgba(255, 255, 255, 0.35) inset,
+            0 30px 60px -20px var(--btn-shadow),
+            0 18px 40px -24px rgba(60, 30, 90, 0.35);
+    }
+
+    #home .hero-glow {
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.55;
+        animation: heroFloat 12s ease-in-out infinite alternate;
+    }
+
+    #home .hero-glow-1 { width: 260px; height: 260px; background: #ffd6e8; top: -90px; left: -60px; }
+    #home .hero-glow-2 { width: 220px; height: 220px; background: #b9d8ff; bottom: -90px; right: -40px; animation-delay: -4s; }
+    #home .hero-glow-3 { width: 160px; height: 160px; background: #ffe6a8; top: 40%; left: 60%; opacity: 0.35; animation-delay: -8s; }
+
+    @keyframes heroFloat {
+        from { transform: translate(0, 0) scale(1); }
+        to { transform: translate(30px, 20px) scale(1.15); }
+    }
+
+    #home .hero-sparkles i {
+        position: absolute;
+        z-index: -1;
+        font-style: normal;
+        color: rgba(255, 255, 255, 0.8);
+        animation: sparkle 3.2s ease-in-out infinite;
+    }
+
+    #home .hero-sparkles i:nth-child(1) { top: 14%; left: 8%; font-size: 18px; }
+    #home .hero-sparkles i:nth-child(2) { top: 26%; right: 10%; font-size: 14px; animation-delay: -1s; }
+    #home .hero-sparkles i:nth-child(3) { bottom: 22%; left: 12%; font-size: 12px; animation-delay: -2s; }
+    #home .hero-sparkles i:nth-child(4) { top: 8%; right: 26%; font-size: 16px; animation-delay: -0.5s; }
+    #home .hero-sparkles i:nth-child(5) { bottom: 12%; right: 16%; font-size: 18px; animation-delay: -1.6s; }
+    #home .hero-sparkles i:nth-child(6) { top: 48%; left: 4%; font-size: 10px; animation-delay: -2.4s; }
+
+    @keyframes sparkle {
+        0%, 100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); }
+        50% { opacity: 1; transform: scale(1.15) rotate(20deg); }
+    }
+
+    #home .hero-greet {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 16px;
+        border-radius: 999px;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    #home .hero-couple {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0 6px;
+    }
+
+    #home .hero-avatar {
+        display: grid;
+        place-items: center;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow:
+            0 0 0 5px rgba(255, 255, 255, 0.28),
+            0 12px 24px rgba(70, 30, 90, 0.25);
+        transition: transform 0.35s cubic-bezier(.34, 1.8, .64, 1);
+        animation: avatarBob 3.4s ease-in-out infinite;
+    }
+
+    #home .hero-avatar.gg { animation-delay: -1.7s; }
+
+    #home .hero-avatar:hover { transform: scale(1.1) rotate(-6deg); }
+
+    @keyframes avatarBob {
+        0%, 100% { translate: 0 0; }
+        50% { translate: 0 -6px; }
+    }
+
+    #home .hero-heart {
+        font-size: 30px;
+        filter: drop-shadow(0 4px 10px rgba(120, 20, 60, 0.35));
+        animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    #home .hero h1 {
+        color: #ffffff;
+        font-size: clamp(34px, 7vw, 54px);
+        line-height: 1.15;
+        margin: 10px 0 10px;
+        text-shadow: 0 4px 18px rgba(90, 20, 70, 0.25);
+    }
+
+    #home .hero h1 span {
+        display: block;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-weight: 700;
+        font-size: 0.62em;
+        letter-spacing: 0.5px;
+        opacity: 0.95;
+        margin-top: 2px;
+    }
+
+    #home .hero .subtitle {
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 15.5px;
+        max-width: 470px;
+        margin: 0 auto;
+    }
+
+    #home .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 520px;
+        margin: 22px auto 0;
+    }
+
+    #home .hero-stat {
+        padding: 12px 6px 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: transform 0.3s cubic-bezier(.34, 1.8, .64, 1), background 0.2s ease;
+    }
+
+    #home .hero-stat:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.26);
+    }
+
+    #home .hero-stat b {
+        display: block;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #home .hero-stat small {
+        display: block;
+        margin-top: 3px;
+        font-size: 11.5px;
+        line-height: 1.25;
+        opacity: 0.92;
+    }
+
+    #home .hero .cloud-pill {
+        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.92);
+        border: none;
+        color: var(--text-soft);
+        box-shadow: 0 6px 16px rgba(70, 30, 90, 0.18);
+    }
+
+    #home .hero .cloud-pill.ok { color: #3f7a52; }
+    #home .hero .cloud-pill.warn { color: #9a6324; }
+
+    :root[data-theme="dark"] #home .hero {
+        background:
+            radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+            linear-gradient(135deg, #d6458c 0%, #8250d8 55%, #4a5bd0 100%);
+    }
+
+    :root[data-theme="dark"] #home .hero-glow { opacity: 0.3; }
+
+    :root[data-theme="dark"] #home .hero .cloud-pill { background: rgba(20, 16, 50, 0.55); color: #f4eefe; }
+
+    #home .night-banner { margin: 18px 0 0; }
+
+    /* ---------- seções ---------- */
+
+    #home .home-section { margin-top: 30px; }
+
+    #home .section-head {
+        text-align: left;
+        margin: 0 4px 14px;
+    }
+
+    #home .eyebrow {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 3px;
+    }
+
+    #home .section-head h3 {
+        font-size: 21px;
+        font-weight: 600;
+        color: var(--text);
+        letter-spacing: -0.2px;
+    }
+
+    /* todos os cartões da home seguem o mesmo estilo */
+    #home .option,
+    #home .mini-card,
+    #home .comfort-card,
+    #home .bday-card,
+    #home .love-card {
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--surface-solid);
+        box-shadow:
+            0 1px 2px rgba(80, 40, 90, 0.05),
+            0 10px 28px -12px var(--shadow);
+        transition:
+            transform 0.35s cubic-bezier(.34, 1.56, .64, 1),
+            box-shadow 0.3s ease,
+            border-color 0.2s ease;
+    }
+
+    #home .option:hover,
+    #home .mini-card:hover,
+    #home .comfort-card:hover,
+    #home .bday-card:hover,
+    #home .love-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--border-strong);
+        box-shadow:
+            0 1px 2px rgba(80, 40, 90, 0.05),
+            0 20px 38px -14px var(--shadow);
+    }
+
+    #home .option:active,
+    #home .mini-card:active,
+    #home .comfort-card:active,
+    #home .bday-card:active,
+    #home .love-card:active {
+        transform: scale(0.97);
+        transition-duration: 0.08s;
+    }
+
+    /* ---------- roleta ---------- */
+
+    #home .options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 0;
+    }
+
+    #home .option {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 14px;
+        padding: 20px;
+    }
+
+    #home .option .icon {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        margin: 0;
+        font-size: 30px;
+        border-radius: 18px;
+        box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s cubic-bezier(.34, 1.8, .64, 1);
+    }
+
+    #home .option:hover .icon { transform: rotate(-8deg) scale(1.08); }
+
+    #home .opt-movie .icon { background: linear-gradient(135deg, #ffe0ec, #ffc2d9); }
+    #home .opt-anime .icon { background: linear-gradient(135deg, #e3eeff, #c4dafd); }
+    #home .opt-series .icon { background: linear-gradient(135deg, #efe5ff, #dccbf7); }
+
+    :root[data-theme="dark"] #home .opt-movie .icon { background: linear-gradient(135deg, #5a2c55, #7a3466); }
+    :root[data-theme="dark"] #home .opt-anime .icon { background: linear-gradient(135deg, #2c3a70, #34508c); }
+    :root[data-theme="dark"] #home .opt-series .icon { background: linear-gradient(135deg, #3e3070, #563f8e); }
+
+    #home .option-text { flex: 1; }
+
+    #home .option strong {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    #home .option small {
+        display: block;
+        margin-top: 3px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    #home .option-go {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 20px;
+        line-height: 1;
+        color: var(--accent);
+        background: var(--surface-tint);
+        transition: transform 0.3s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    #home .option:hover .option-go {
+        transform: translateX(3px);
+        background: var(--accent);
+        color: #ffffff;
+    }
+
+    /* ---------- família ---------- */
+
+    #home .family-row,
+    #home .duo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 0;
+    }
+
+    #home .duo-grid { grid-template-columns: repeat(2, 1fr); }
+
+    #home .mini-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 22px 16px 18px;
+        grid-column: auto;
+    }
+
+    #home .mini-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 86px;
+        z-index: 0;
+        opacity: 0.9;
+    }
+
+    #home .fam-mm::before { background: linear-gradient(180deg, #ffe7d1, transparent); }
+    #home .fam-gg::before { background: linear-gradient(180deg, #dfeaff, transparent); }
+    #home .fam-baby::before { background: linear-gradient(180deg, #ffe0ee, transparent); }
+    #home .duo-map::before { background: linear-gradient(180deg, #ddf2e6, transparent); }
+    #home .duo-id::before { background: linear-gradient(180deg, #f0e6ff, transparent); }
+
+    :root[data-theme="dark"] #home .mini-card::before { opacity: 0.12; }
+
+    #home .mini-card > * { position: relative; z-index: 1; }
+
+    #home .mini-card .mini-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        font-size: 11px;
+        padding: 4px 9px;
+        background: var(--surface-solid);
+        box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    #home .mini-card .mini-icon {
+        display: grid;
+        place-items: center;
+        width: 74px;
+        height: 74px;
+        margin: 4px 0 10px;
+        font-size: 36px;
+        border-radius: 50%;
+        background: var(--surface-solid);
+        box-shadow:
+            0 0 0 4px rgba(255, 255, 255, 0.7),
+            0 8px 18px -6px var(--shadow);
+        transition: transform 0.4s cubic-bezier(.34, 1.8, .64, 1);
+    }
+
+    :root[data-theme="dark"] #home .mini-card .mini-icon { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06), 0 8px 18px -6px var(--shadow); }
+
+    #home .mini-card:hover .mini-icon { transform: scale(1.08) rotate(-5deg); }
+
+    #home .mini-card .mini-title {
+        font-size: 17px;
+        margin-bottom: 4px;
+    }
+
+    #home .mini-card .mini-desc {
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--text-soft);
+    }
+
+    /* ---------- cantinhos ---------- */
+
+    #home .comfort-card {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        text-align: left;
+        padding: 24px;
+        background:
+            radial-gradient(circle at 0% 0%, var(--pink-glow), transparent 55%),
+            radial-gradient(circle at 100% 100%, var(--blue-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    #home .comfort-icon,
+    #home .bday-card-icon,
+    #home .love-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 76px;
+        height: 76px;
+        margin: 0;
+        font-size: 34px;
+        border-radius: 24px;
+        background: var(--surface-solid);
+        box-shadow: 0 8px 20px -8px var(--shadow);
+        letter-spacing: -6px;
+        text-indent: -6px;
+    }
+
+    #home .love-icon { letter-spacing: 0; text-indent: 0; }
+
+    #home .comfort-title,
+    #home .bday-card-title,
+    #home .love-title {
+        font-size: 19px;
+        margin: 0 0 5px;
+    }
+
+    #home .comfort-description,
+    #home .bday-card-description,
+    #home .love-description {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 12px;
+    }
+
+    #home .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+    }
+
+    #home .bday-card,
+    #home .love-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 22px;
+    }
+
+    #home .bday-card-icon,
+    #home .love-icon { margin-bottom: 14px; width: 62px; height: 62px; font-size: 28px; border-radius: 20px; }
+
+    #home .bday-card {
+        border-color: var(--warm-border);
+        background:
+            radial-gradient(circle at 100% 0%, var(--warm-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    #home .love-card {
+        background:
+            radial-gradient(circle at 100% 0%, var(--lilac-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    #home .bday-card .lock,
+    #home .love-card .lock {
+        top: 16px;
+        right: 16px;
+        opacity: 0.8;
+    }
+
+    #home .bday-mini,
+    #home .coming-soon,
+    #home .comfort-badge {
+        margin-top: auto;
+        font-size: 11.5px;
+        letter-spacing: 0.8px;
+    }
+
+    /* ---------- rodapé ---------- */
+
+    #home .footer {
+        margin-top: 34px;
+        padding-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    #home .footer-hearts {
+        color: var(--accent);
+        letter-spacing: 6px;
+        margin-bottom: 4px;
+        opacity: 0.7;
+    }
+
+    /* ---------- entrada suave ---------- */
+
+    #home .reveal {
+        animation: homeReveal 0.7s cubic-bezier(.2, .9, .3, 1) both;
+    }
+
+    #home .reveal:nth-of-type(2) { animation-delay: 0.08s; }
+    #home .reveal:nth-of-type(3) { animation-delay: 0.16s; }
+    #home .reveal:nth-of-type(4) { animation-delay: 0.24s; }
+    #home .reveal:nth-of-type(5) { animation-delay: 0.32s; }
+    #home .reveal:nth-of-type(6) { animation-delay: 0.4s; }
+
+    @keyframes homeReveal {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #home .reveal,
+        #home .hero-glow,
+        #home .hero-sparkles i,
+        #home .hero-avatar { animation: none; }
+    }
+
+    /* ---------- celular ---------- */
+
+    @media (max-width: 650px) {
+
+        #home .hero {
+            padding: 28px 18px 24px;
+            border-radius: 28px;
+        }
+
+        #home .hero-avatar { width: 66px; height: 66px; }
+        #home .hero-avatar svg { width: 46px; height: 38px; }
+
+        #home .hero-stat b { font-size: 22px; }
+        #home .hero-stat small { font-size: 10.5px; }
+
+        #home .home-section { margin-top: 26px; }
+
+        #home .section-head h3 { font-size: 19px; }
+
+        #home .options { grid-template-columns: 1fr; gap: 10px; }
+
+        #home .option {
+            flex-direction: row;
+            align-items: center;
+            padding: 14px 16px;
+        }
+
+        #home .option .icon { width: 52px; height: 52px; font-size: 26px; border-radius: 16px; }
+
+        #home .option-go { position: static; }
+
+        /* família: deslizar pro lado */
+        #home .family-row {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            margin: 0 -16px;
+            padding: 4px 16px 14px;
+            scrollbar-width: none;
+        }
+
+        #home .family-row::-webkit-scrollbar { display: none; }
+
+        #home .family-row .mini-card {
+            flex: 0 0 72%;
+            scroll-snap-align: center;
+        }
+
+        #home .mini-card {
+            display: flex;
+            grid-template-columns: none;
+        }
+
+        #home .duo-grid { gap: 10px; }
+
+        #home .duo-grid .mini-card { padding: 18px 12px 16px; }
+
+        #home .duo-grid .mini-card .mini-icon { width: 60px; height: 60px; font-size: 30px; }
+
+        #home .comfort-card { padding: 18px; gap: 14px; }
+
+        #home .comfort-icon { width: 64px; height: 64px; font-size: 28px; border-radius: 20px; }
+
+        #home .feature-grid { grid-template-columns: 1fr; gap: 12px; }
+
+        #home .bday-card,
+        #home .love-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 14px;
+            align-items: center;
+            padding: 18px;
+        }
+
+        #home .bday-card-icon,
+        #home .love-icon { grid-row: span 3; margin: 0; }
+
+        #home .bday-mini,
+        #home .coming-soon { justify-self: start; }
+    }
+
+
 </style>
 
 
@@ -5792,21 +6447,86 @@
          HOME
     ================================================== -->
 
-    <section id="home" class="card">
+    <section id="home" class="card home-v2">
 
-        <div class="header">
+        <!-- ==========================================
+             ✨ CAPA
+        ========================================== -->
 
-            <div class="emoji">🎀</div>
+        <div class="hero reveal">
+
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
+            <div class="hero-glow hero-glow-3"></div>
+
+            <div class="hero-sparkles" aria-hidden="true">
+                <i>✦</i><i>✧</i><i>✦</i><i>♡</i><i>✧</i><i>✦</i>
+            </div>
+
+            <div
+                id="heroGreet"
+                class="hero-greet"
+            >Oi, Diane 💗</div>
+
+            <div class="hero-couple" aria-hidden="true">
+                <span class="hero-avatar mm" onclick="openCat()">
+                    <svg viewBox="0 0 60 50" width="54" height="45" aria-hidden="true">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#c79a6b" stroke="#5a4036" stroke-width="2"/>
+                        <circle cx="30" cy="8" r="6" fill="#ffa94d" stroke="#5a4036" stroke-width="1.5"/>
+                        <path d="M30 2 Q34 -2 37 1 Q33 4 30 2Z" fill="#7cc97a"/>
+                        <path d="M14 24 Q18 27 22 24 M38 24 Q42 27 46 24" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#a77750" stroke="#5a4036" stroke-width="1.5"/>
+                        <circle cx="25" cy="34" r="1.6" fill="#2e211f"/>
+                        <circle cx="35" cy="34" r="1.6" fill="#2e211f"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </svg>
+                </span>
+                <span class="hero-heart">💗</span>
+                <span class="hero-avatar gg" onclick="openGG()">
+                    <svg viewBox="0 0 60 50" width="54" height="45" aria-hidden="true">
+                        <ellipse cx="12" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <ellipse cx="48" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
+                        <rect x="5" y="10" width="50" height="38" rx="18" fill="#b08458" stroke="#4a3329" stroke-width="2"/>
+                        <path d="M10 20 Q12 4 30 4 Q48 4 50 20 Q30 15 10 20 Z" fill="#6c8fd6" stroke="#4a3329" stroke-width="1.5"/>
+                        <path d="M14 26 Q18 23 22 26 M38 26 Q42 23 46 26" fill="none" stroke="#2e211f" stroke-width="2.2" stroke-linecap="round"/>
+                        <rect x="18" y="29" width="24" height="15" rx="7.5" fill="#8a6343" stroke="#4a3329" stroke-width="1.5"/>
+                        <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                        <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
+                    </svg>
+                </span>
+            </div>
 
             <h1>
-                Roleta da Sorte<br>
-                da Nossa Noiteeee &lt;3
+                Roleta da Sorte
+                <span>da Nossa Noiteeee &lt;3</span>
             </h1>
 
             <p class="subtitle">
                 Porque escolher o que assistir é uma decisão séria...
                 Então vamos levar bem a sério o sorteio. 😂💕
             </p>
+
+            <div class="hero-stats">
+
+                <div class="hero-stat" onclick="openMap()">
+                    <b id="heroKm">333</b>
+                    <small>km de saudade</small>
+                </div>
+
+                <div class="hero-stat" onclick="openBirthdayCapsule()">
+                    <b id="heroBday">—</b>
+                    <small id="heroBdayLabel">dias pro seu niver</small>
+                </div>
+
+                <div class="hero-stat" onclick="openBaby()">
+                    <b id="heroFamily">2</b>
+                    <small id="heroFamilyLabel">capivaras na família</small>
+                </div>
+
+            </div>
 
             <button
                 id="cloudPill"
@@ -5837,148 +6557,83 @@
 
         </div>
 
-        <div class="options">
-
-            <div
-                class="option"
-                onclick="chooseType('movie')"
-            >
-                <span class="icon">🎬</span>
-                <strong>Noite do Filme</strong>
-            </div>
-
-            <div
-                class="option"
-                onclick="chooseType('anime')"
-            >
-                <span class="icon">🍥</span>
-                <strong>Noite de Anime</strong>
-            </div>
-
-            <div
-                class="option"
-                onclick="chooseType('series')"
-            >
-                <span class="icon">📺</span>
-                <strong>Noite da Série</strong>
-            </div>
-
-        </div>
-
-        <div class="section-title">
-            Nossos cantinhos 💗
-        </div>
-
         <!-- ==========================================
-             NOVO CARD DE CARINHO
+             🎲 ROLETA
         ========================================== -->
 
-        <div
-            class="comfort-card"
-            onclick="openComfortMessages()"
-        >
+        <div class="home-section reveal">
 
-            <span class="comfort-icon">
-                🥹💗
-            </span>
-
-            <div class="comfort-title">
-                Se o coração apertar...
+            <div class="section-head">
+                <span class="eyebrow">Hoje é noite de quê?</span>
+                <h3>Escolhe e deixa a sorte decidir 🎲</h3>
             </div>
 
-            <div class="comfort-description">
-                Um cantinho calmo pra quando bater aquela tristeza.
-                Respira, fica um pouquinho... eu tô aqui com você. 💌
-            </div>
+            <div class="options">
 
-            <span class="comfort-badge">
-                ENTRAR NO CANTINHO
-            </span>
+                <div
+                    class="option opt-movie"
+                    onclick="chooseType('movie')"
+                >
+                    <span class="icon">🎬</span>
+                    <div class="option-text">
+                        <strong>Noite do Filme</strong>
+                        <small>Pipoca, coberta e um filminho 🍿</small>
+                    </div>
+                    <span class="option-go">›</span>
+                </div>
+
+                <div
+                    class="option opt-anime"
+                    onclick="chooseType('anime')"
+                >
+                    <span class="icon">🍥</span>
+                    <div class="option-text">
+                        <strong>Noite de Anime</strong>
+                        <small>Só mais um episódio... 👀</small>
+                    </div>
+                    <span class="option-go">›</span>
+                </div>
+
+                <div
+                    class="option opt-series"
+                    onclick="chooseType('series')"
+                >
+                    <span class="icon">📺</span>
+                    <div class="option-text">
+                        <strong>Noite da Série</strong>
+                        <small>Maratona de casal 🛋️</small>
+                    </div>
+                    <span class="option-go">›</span>
+                </div>
+
+            </div>
 
         </div>
 
         <!-- ==========================================
-             🎂 CÁPSULA DO ANIVERSÁRIO
+             🐾 FAMÍLIA CAPIVARA
         ========================================== -->
 
-        <div
-            id="bdayCard"
-            class="bday-card"
-            onclick="openBirthdayCapsule()"
-        >
+        <div class="home-section reveal">
 
-            <span
-                id="bdayLock"
-                class="lock"
-            >🔒</span>
-
-            <span class="bday-card-icon">
-                🎁🎂
-            </span>
-
-            <div class="bday-card-title">
-                Cápsula do Aniversário
+            <div class="section-head">
+                <span class="eyebrow">Família Capivara</span>
+                <h3>Quem tá esperando um carinho 🐾</h3>
             </div>
 
-            <div
-                id="bdayCardDescription"
-                class="bday-card-description"
-            >
-                Guardei umas coisinhas aqui dentro...
-                mas só abre no seu dia. 👀
-            </div>
+            <div class="family-row">
 
-            <span
-                id="bdayMini"
-                class="bday-mini"
-            >
-                ...
-            </span>
+                <div
+                    class="mini-card fam-mm"
+                    onclick="openCat()"
+                >
+                    <span
+                        id="catBadge"
+                        class="mini-badge"
+                    >🍊</span>
 
-        </div>
-
-        <div
-            class="love-card"
-            onclick="openLovePassword()"
-        >
-
-            <span class="lock">🔒</span>
-
-            <span class="love-icon">
-                🌹
-            </span>
-
-            <div class="love-title">
-                Noite de Love
-            </div>
-
-            <div class="love-description">
-                Uma área especial para uma noite ainda mais especial...
-            </div>
-
-            <span class="coming-soon">
-                EM BREVE
-            </span>
-
-        </div>
-
-        <!-- ==========================================
-             ✨ MINI CARDS
-        ========================================== -->
-
-        <div class="mini-grid">
-
-            <div
-                class="mini-card"
-                onclick="openCat()"
-            >
-                <span
-                    id="catBadge"
-                    class="mini-badge"
-                >🍊</span>
-
-                <span class="mini-icon">
-                    <svg viewBox="0 0 60 50" width="46" height="40" aria-hidden="true" style="vertical-align: middle;">
+                    <span class="mini-icon">
+                        <svg viewBox="0 0 60 50" width="58" height="48" aria-hidden="true">
                         <ellipse cx="12" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
                         <ellipse cx="48" cy="12" rx="6" ry="5" fill="#a77750" stroke="#5a4036" stroke-width="2"/>
                         <rect x="5" y="10" width="50" height="38" rx="18" fill="#c79a6b" stroke="#5a4036" stroke-width="2"/>
@@ -5991,68 +6646,29 @@
                         <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
                         <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
                     </svg>
-                </span>
+                    </span>
 
-                <div class="mini-title">
-                    MM
+                    <div class="mini-title">
+                        MM
+                    </div>
+
+                    <div class="mini-desc">
+                        Nossa capivara virtual.
+                        Ela sente sua falta! 🥺
+                    </div>
                 </div>
 
-                <div class="mini-desc">
-                    Nossa capivara virtual.
-                    Ela sente sua falta! 🥺
-                </div>
-            </div>
+                <div
+                    class="mini-card fam-gg"
+                    onclick="openGG()"
+                >
+                    <span
+                        id="ggBadge"
+                        class="mini-badge"
+                    >💙</span>
 
-            <div
-                class="mini-card"
-                onclick="openMap()"
-            >
-                <span
-                    id="mapBadge"
-                    class="mini-badge"
-                >333 km</span>
-
-                <span class="mini-icon">🗺️</span>
-
-                <div class="mini-title">
-                    Daqui até você
-                </div>
-
-                <div class="mini-desc">
-                    Londrina 💙 Rio Preto
-                </div>
-            </div>
-
-            <div
-                class="mini-card"
-                onclick="openIdCard()"
-            >
-                <span class="mini-badge">OFICIAL</span>
-
-                <span class="mini-icon">🪪</span>
-
-                <div class="mini-title">
-                    Carteirinha
-                </div>
-
-                <div class="mini-desc">
-                    Futura esposa oficial,
-                    com validade eterna
-                </div>
-            </div>
-
-
-            <div
-                class="mini-card"
-                onclick="openGG()"
-            >
-                <span
-                    id="ggBadge"
-                    class="mini-badge"
-                >💙</span>
-
-                <span class="mini-icon">
-                    <svg viewBox="0 0 60 50" width="46" height="40" aria-hidden="true" style="vertical-align: middle;">
+                    <span class="mini-icon">
+                        <svg viewBox="0 0 60 50" width="58" height="48" aria-hidden="true">
                         <ellipse cx="12" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
                         <ellipse cx="48" cy="12" rx="6" ry="5" fill="#8a6343" stroke="#4a3329" stroke-width="2"/>
                         <rect x="5" y="10" width="50" height="38" rx="18" fill="#b08458" stroke="#4a3329" stroke-width="2"/>
@@ -6062,48 +6678,212 @@
                         <ellipse cx="11" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
                         <ellipse cx="49" cy="31" rx="3.5" ry="2" fill="#ffb3cc"/>
                     </svg>
-                </span>
+                    </span>
 
-                <div class="mini-title">
-                    GG
-                </div>
+                    <div class="mini-title">
+                        GG
+                    </div>
 
-                <div class="mini-desc">
-                    O capivaro de Londrina.
-                    Cuida dele também! 💙
-                </div>
-            </div>
-
-            <div
-                id="babyCard"
-                class="mini-card"
-                onclick="openBaby()"
-            >
-                <span
-                    id="babyBadge"
-                    class="mini-badge"
-                >🔒</span>
-
-                <span class="mini-icon">🍼</span>
-
-                <div
-                    id="babyCardTitle"
-                    class="mini-title"
-                >
-                    ???
+                    <div class="mini-desc">
+                        O capivaro de Londrina.
+                        Cuida dele também! 💙
+                    </div>
                 </div>
 
                 <div
-                    id="babyCardDesc"
-                    class="mini-desc"
+                    id="babyCard"
+                    class="mini-card fam-baby"
+                    onclick="openBaby()"
                 >
-                    Uma surpresinha da MM e do GG... 👀
+                    <span
+                        id="babyBadge"
+                        class="mini-badge"
+                    >🔒</span>
+
+                    <span class="mini-icon">🍼</span>
+
+                    <div
+                        id="babyCardTitle"
+                        class="mini-title"
+                    >
+                        ???
+                    </div>
+
+                    <div
+                        id="babyCardDesc"
+                        class="mini-desc"
+                    >
+                        Uma surpresinha da MM e do GG... 👀
+                    </div>
                 </div>
+
             </div>
 
         </div>
 
-        <div class="footer">
+        <!-- ==========================================
+             💗 CANTINHOS
+        ========================================== -->
+
+        <div class="home-section reveal">
+
+            <div class="section-head">
+                <span class="eyebrow">Nossos cantinhos</span>
+                <h3>Feitos só pra você 💗</h3>
+            </div>
+
+            <div
+                class="comfort-card"
+                onclick="openComfortMessages()"
+            >
+
+                <span class="comfort-icon">
+                    🥹💗
+                </span>
+
+                <div class="feature-text">
+
+                    <div class="comfort-title">
+                        Se o coração apertar...
+                    </div>
+
+                    <div class="comfort-description">
+                        Um cantinho calmo pra quando bater aquela tristeza.
+                        Respira, fica um pouquinho... eu tô aqui com você. 💌
+                    </div>
+
+                    <span class="comfort-badge">
+                        ENTRAR NO CANTINHO
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="feature-grid">
+
+                <div
+                    id="bdayCard"
+                    class="bday-card"
+                    onclick="openBirthdayCapsule()"
+                >
+
+                    <span
+                        id="bdayLock"
+                        class="lock"
+                    >🔒</span>
+
+                    <span class="bday-card-icon">
+                        🎁🎂
+                    </span>
+
+                    <div class="bday-card-title">
+                        Cápsula do Aniversário
+                    </div>
+
+                    <div
+                        id="bdayCardDescription"
+                        class="bday-card-description"
+                    >
+                        Guardei umas coisinhas aqui dentro...
+                        mas só abre no seu dia. 👀
+                    </div>
+
+                    <span
+                        id="bdayMini"
+                        class="bday-mini"
+                    >
+                        ...
+                    </span>
+
+                </div>
+
+                <div
+                    class="love-card"
+                    onclick="openLovePassword()"
+                >
+
+                    <span class="lock">🔒</span>
+
+                    <span class="love-icon">
+                        🌹
+                    </span>
+
+                    <div class="love-title">
+                        Noite de Love
+                    </div>
+
+                    <div class="love-description">
+                        Uma área especial para uma noite ainda mais especial...
+                    </div>
+
+                    <span class="coming-soon">
+                        EM BREVE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             💑 NÓS DOIS
+        ========================================== -->
+
+        <div class="home-section reveal">
+
+            <div class="section-head">
+                <span class="eyebrow">Nós dois</span>
+                <h3>Londrina 💙 Rio Preto</h3>
+            </div>
+
+            <div class="duo-grid">
+
+                <div
+                    class="mini-card duo-map"
+                    onclick="openMap()"
+                >
+                    <span
+                        id="mapBadge"
+                        class="mini-badge"
+                    >333 km</span>
+
+                    <span class="mini-icon">🗺️</span>
+
+                    <div class="mini-title">
+                        Daqui até você
+                    </div>
+
+                    <div class="mini-desc">
+                        Abraços, visitas e a distância que não é nada
+                    </div>
+                </div>
+
+                <div
+                    class="mini-card duo-id"
+                    onclick="openIdCard()"
+                >
+                    <span class="mini-badge">OFICIAL</span>
+
+                    <span class="mini-icon">🪪</span>
+
+                    <div class="mini-title">
+                        Carteirinha
+                    </div>
+
+                    <div class="mini-desc">
+                        Futura esposa oficial,
+                        com validade eterna
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer reveal">
+            <div class="footer-hearts">♡ ♡ ♡</div>
             Feito com amor para duas pessoas indecisas
             (Diane, Gabriel kkkkkk) 💗
         </div>
@@ -19527,6 +20307,54 @@ Te amo muito.
         kidsBox.innerHTML = getBabies().map((b, i) =>
             `<div class="gn-kid napping">${babySvg(babyStageOf(b), i)}</div>`).join("");
     }
+
+    /* ==================================================
+       ✨ CAPA DA HOME (saudação + numerozinhos)
+    ================================================== */
+
+    function updateHero() {
+
+        const greet = document.getElementById("heroGreet");
+
+        if (!greet) return;
+
+        const now = new Date();
+        const h = now.getHours();
+
+        const hello =
+            h < 5 ? "Boa madrugada, Diane 🌙" :
+            h < 12 ? "Bom dia, Diane ☀️" :
+            h < 18 ? "Boa tarde, Diane 🌤️" :
+            "Boa noite, Diane 🌙";
+
+        const day = now.toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" });
+
+        greet.textContent = `${hello} · ${day}`;
+
+        document.getElementById("heroKm").textContent = ourDistance;
+
+        const bday = document.getElementById("heroBday");
+        const bdayLabel = document.getElementById("heroBdayLabel");
+
+        if (isBirthdayOpen()) {
+            bday.textContent = "🎉";
+            bdayLabel.textContent = "a cápsula abriu!";
+        } else {
+            const d = getBirthdayTimeLeft().d;
+            bday.textContent = d;
+            bdayLabel.textContent = d === 1 ? "dia pro seu niver" : "dias pro seu niver";
+        }
+
+        const total = 2 + getBabies().length;
+
+        document.getElementById("heroFamily").textContent = total;
+        document.getElementById("heroFamilyLabel").textContent =
+            total === 2 ? "capivaras apaixonadas" : "capivaras na família";
+    }
+
+    try { updateHero(); } catch (e) {}
+
+    setInterval(() => { try { updateHero(); } catch (e) {} }, 5000);
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
