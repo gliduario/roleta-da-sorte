@@ -5241,6 +5241,11 @@
         min-height: 16px;
     }
 
+    .song-by {
+        margin-left: 4px;
+        font-size: 12px;
+    }
+
     /* ==========================================
        RESPONSIVO
     ========================================== */
@@ -7325,7 +7330,7 @@
             Tudo que a gente já guardou nas nossas noites 💗
         </p>
 
-        <div id="cloudBox"></div>
+        <div class="cloud-box"></div>
 
         <div
             id="memTabs"
@@ -7377,6 +7382,8 @@
             id="backupSummary"
             class="backup-summary"
         ></div>
+
+        <div class="cloud-box"></div>
 
         <div class="backup-section">
 
@@ -10104,7 +10111,11 @@
 
     function getJar() {
 
-        return readStore(JAR_KEY, []);
+        const list = readStore(JAR_KEY, []);
+
+        if (ensureIds(list)) writeStore(JAR_KEY, list);
+
+        return list;
     }
 
     function renderJar() {
@@ -10140,9 +10151,13 @@
 
         const jar = getJar();
 
-        jar.unshift({ text, at: Date.now() });
+        const memory = { id: newId(), text, author: getLoveAuthor(), at: Date.now() };
+
+        jar.unshift(memory);
 
         writeStore(JAR_KEY, jar.slice(0, 200));
+
+        cloudPush("pote", memory);
 
         input.value = "";
 
@@ -10168,7 +10183,7 @@
         mem.innerHTML =
             `<b>Uma coisa boa de ${new Date(m.at).toLocaleDateString("pt-BR")} ⭐</b>` +
             `<p>${escapeHtml(m.text)}</p>` +
-            `<span class="lp-sign">Coisas boas acontecem com você 💗</span>`;
+            `<span class="lp-sign">${m.author === "Gabriel" ? "Guardada pelo Gabriel 💙" : "Coisas boas acontecem com você 💗"}</span>`;
 
         mem.classList.remove("hidden");
 
@@ -10996,6 +11011,8 @@ Te amo muito.
         used.push(index);
 
         saveUsedVouchers(used);
+
+        cloudSetVales(used);
 
         renderBirthdayVoucherList();
 
@@ -11865,11 +11882,15 @@ Te amo muito.
 
     function getSongs() {
 
-        return JSON.parse(
-            localStorage.getItem(
-                "lovePlaylist"
-            ) || "[]"
-        );
+        let songs = [];
+
+        try {
+            songs = JSON.parse(localStorage.getItem("lovePlaylist") || "[]");
+        } catch (e) {}
+
+        if (ensureIds(songs, true)) writeStore("lovePlaylist", songs);
+
+        return songs;
     }
 
     function addSong() {
@@ -11898,15 +11919,22 @@ Te amo muito.
         const songs =
             getSongs();
 
-        songs.push({
+        const song = {
+            id: newId(),
             name,
-            link
-        });
+            link,
+            author: getLoveAuthor(),
+            at: Date.now()
+        };
+
+        songs.push(song);
 
         localStorage.setItem(
             "lovePlaylist",
             JSON.stringify(songs)
         );
+
+        cloudPush("playlist", song);
 
         document.getElementById(
             "songName"
@@ -11953,6 +11981,7 @@ Te amo muito.
 
                     <span class="song-name">
                         ${escapeHtml(song.name)}
+                        ${song.author === "Gabriel" ? '<small class="song-by">💙</small>' : ""}
                     </span>
 
                     ${
@@ -11989,10 +12018,14 @@ Te amo muito.
         const songs =
             getSongs();
 
+        const removed = songs[index];
+
         songs.splice(
             index,
             1
         );
+
+        if (removed && removed.id) cloudDrop("playlist", removed.id);
 
         localStorage.setItem(
             "lovePlaylist",
@@ -12436,6 +12469,9 @@ Te amo muito.
         try {
             localStorage.setItem(key, JSON.stringify(value));
         } catch (e) {}
+
+        // avisa a nuvem quando algo da MM muda
+        try { onLocalWrite(key); } catch (e) {}
     }
 
     /* ==================================================
@@ -15113,6 +15149,7 @@ Te amo muito.
         document.getElementById("backupCodeInput").value = "";
 
         renderBackupSummary();
+        renderCloudBox();
 
         openFunModal("backupOverlay");
     }
@@ -15392,7 +15429,11 @@ Te amo muito.
 
     function getWishes() {
 
-        return readStore(WISHES_KEY, []);
+        const list = readStore(WISHES_KEY, []);
+
+        if (ensureIds(list)) writeStore(WISHES_KEY, list);
+
+        return list;
     }
 
     function saveWish() {
@@ -15407,9 +15448,13 @@ Te amo muito.
 
         const wishes = getWishes();
 
-        wishes.unshift({ text, at: Date.now() });
+        const wish = { id: newId(), text, at: Date.now() };
+
+        wishes.unshift(wish);
 
         writeStore(WISHES_KEY, wishes.slice(0, 50));
+
+        cloudPush("pedidos", wish);
 
         input.value = "";
 
@@ -15682,7 +15727,20 @@ Te amo muito.
 
     function getDrawings() {
 
-        return readStore(DRAWINGS_KEY, { list: [], hung: 0 });
+        const d = readStore(DRAWINGS_KEY, { list: [], hung: 0 });
+
+        if (!Array.isArray(d.list)) d.list = [];
+
+        let changed = ensureIds(d.list);
+
+        if (d.hungId === undefined && d.list.length) {
+            d.hungId = (d.list[d.hung] || d.list[0]).id;
+            changed = true;
+        }
+
+        if (changed) writeStore(DRAWINGS_KEY, d);
+
+        return d;
     }
 
     function openAtelier() {
@@ -15853,11 +15911,15 @@ Te amo muito.
         const data = small.toDataURL("image/jpeg", 0.85);
         const drawings = getDrawings();
 
-        drawings.list.unshift({ img: data, at: Date.now() });
-        drawings.list = drawings.list.slice(0, 6);
-        drawings.hung = 0;
+        const drawing = { id: newId(), img: data, at: Date.now() };
+
+        drawings.list.unshift(drawing);
+        drawings.list = drawings.list.slice(0, 12);
+        drawings.hungId = drawing.id;
 
         writeStore(DRAWINGS_KEY, drawings);
+
+        cloudPush("desenhos", drawing);
 
         renderHouseDrawing();
         renderAtelierGallery();
@@ -15891,7 +15953,7 @@ Te amo muito.
         document.getElementById("atelierGallery").innerHTML =
             d.list.map((item, i) => `
                 <button
-                    class="${i === d.hung ? "on" : ""}"
+                    class="${item.id === d.hungId ? "on" : ""}"
                     onclick="hangOld(${i})"
                 >
                     <img src="${item.img}" alt="Desenho ${i + 1}">
@@ -15903,7 +15965,7 @@ Te amo muito.
 
         const d = getDrawings();
 
-        d.hung = i;
+        if (d.list[i]) d.hungId = d.list[i].id;
 
         writeStore(DRAWINGS_KEY, d);
 
@@ -15918,7 +15980,7 @@ Te amo muito.
 
         const d = getDrawings();
         const el = document.getElementById("houseDrawing");
-        const item = d.list[d.hung] || d.list[0];
+        const item = d.list.find(x => x.id === d.hungId) || d.list[0];
 
         if (!item) {
             el.classList.add("hidden");
@@ -16412,173 +16474,433 @@ Te amo muito.
         updateMemCount();
     }
 
-    /* passo B: banco de dados (Firebase) ☁️ */
-
-    const LOVE_SYNCED_KEY = "loveMemSynced";
-    const LOVE_DELETED_KEY = "loveMemDeleted";
+    /* ==================================================
+       ☁️ NUVEM (Firebase): sincroniza tudo entre os celulares
+    ================================================== */
 
     let loveCloudUser = null;
     let loveCloudState = FIREBASE_CONFIG ? "loading" : "off";
+    let cloudListeners = [];
+    let applyingRemote = false;
 
     function cloudReady() {
 
         return !!(window.loveCloud && loveCloudUser);
     }
 
-    function cloudSaveMemory(entry) {
+    function newId() {
+
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    }
+
+    // garante que cada item tenha id e data (pra juntar os dois celulares)
+    function ensureIds(list, oldestFirst) {
+
+        let changed = false;
+        const base = Date.now() - list.length * 1000;
+
+        list.forEach((item, i) => {
+            if (!item.id) { item.id = newId() + i; changed = true; }
+            if (!item.at) {
+                item.at = oldestFirst ? base + i * 1000 : Date.now() - i * 1000;
+                changed = true;
+            }
+        });
+
+        return changed;
+    }
+
+    /* listas que sincronizam */
+
+    const SYNC_LISTS = {
+
+        memorias: {
+            syncedKey: "loveMemSynced",
+            deletedKey: "loveMemDeleted",
+            get: () => getLoveMemories(),
+            set: l => writeStore(LOVE_MEM_KEY, l),
+            fields: m => ({ type: m.type, text: m.text, author: m.author || "Diane", at: m.at }),
+            order: "desc",
+            changed: () => {
+                updateMemCount();
+                if (!document.getElementById("memoriesOverlay").classList.contains("hidden")) renderMemories();
+            }
+        },
+
+        playlist: {
+            get: () => getSongs(),
+            set: l => writeStore("lovePlaylist", l),
+            fields: s => ({ name: s.name, link: s.link || "", author: s.author || "Diane", at: s.at }),
+            order: "asc",
+            changed: () => renderPlaylistItems()
+        },
+
+        pedidos: {
+            get: () => getWishes(),
+            set: l => writeStore(WISHES_KEY, l.slice(0, 50)),
+            fields: w => ({ text: w.text, at: w.at }),
+            order: "desc",
+            changed: () => {
+                if (!document.getElementById("houseOverlay").classList.contains("hidden")) renderWishList();
+            }
+        },
+
+        pote: {
+            get: () => getJar(),
+            set: l => writeStore(JAR_KEY, l.slice(0, 200)),
+            fields: j => ({ text: j.text, author: j.author || "Diane", at: j.at }),
+            order: "desc",
+            changed: () => {
+                if (!document.getElementById("careJar").classList.contains("hidden")) renderJar();
+            }
+        },
+
+        desenhos: {
+            get: () => getDrawings().list,
+            set: l => {
+                const d = getDrawings();
+                d.list = l.slice(0, 12);
+                writeStore(DRAWINGS_KEY, d);
+            },
+            fields: x => ({ img: x.img, at: x.at }),
+            order: "desc",
+            changed: () => {
+                renderHouseDrawing();
+                if (!document.getElementById("atelierOverlay").classList.contains("hidden")) renderAtelierGallery();
+            }
+        }
+    };
+
+    function syncKeys(name) {
+
+        const cfg = SYNC_LISTS[name];
+
+        return {
+            synced: cfg.syncedKey || `cloudSynced_${name}`,
+            deleted: cfg.deletedKey || `cloudDeleted_${name}`
+        };
+    }
+
+    function markSynced(name, ids) {
+
+        const k = syncKeys(name).synced;
+        const set = new Set(readStore(k, []));
+
+        ids.forEach(id => set.add(id));
+
+        writeStore(k, [...set]);
+    }
+
+    function rememberDeleted(name, id) {
+
+        const k = syncKeys(name).deleted;
+        const del = readStore(k, []);
+
+        if (!del.includes(id)) del.push(id);
+
+        writeStore(k, del);
+    }
+
+    function cloudPush(name, entry) {
 
         if (!cloudReady()) return;
 
-        window.loveCloud.save(entry)
-            .then(() => markSynced([entry.id]))
+        window.loveCloud.save(name, entry.id, SYNC_LISTS[name].fields(entry))
+            .then(() => markSynced(name, [entry.id]))
             .catch(() => {});
     }
 
-    function cloudDeleteMemory(id) {
+    function cloudDrop(name, id) {
 
         if (!FIREBASE_CONFIG) return;
 
         if (cloudReady()) {
-            window.loveCloud.remove(id).catch(() => rememberDeleted(id));
+            window.loveCloud.remove(name, id).catch(() => rememberDeleted(name, id));
         } else {
-            rememberDeleted(id);
+            rememberDeleted(name, id);
         }
     }
 
-    function rememberDeleted(id) {
+    // memórias da Noite de Love usam o mesmo esquema
+    function cloudSaveMemory(entry) { cloudPush("memorias", entry); }
+    function cloudDeleteMemory(id) { cloudDrop("memorias", id); }
 
-        const del = readStore(LOVE_DELETED_KEY, []);
+    function onCloudList(name, cloudList) {
 
-        if (!del.includes(id)) del.push(id);
+        const cfg = SYNC_LISTS[name];
+        const keys = syncKeys(name);
+        const cloudIds = new Set(cloudList.map(m => m.id));
+        const synced = new Set(readStore(keys.synced, []));
+        const deleted = new Set(readStore(keys.deleted, []));
+        const local = cfg.get();
 
-        writeStore(LOVE_DELETED_KEY, del);
+        const toUpload = local.filter(m =>
+            !cloudIds.has(m.id) &&      // não tá na nuvem
+            !synced.has(m.id) &&        // e não foi apagado no outro celular
+            !deleted.has(m.id)
+        );
+
+        toUpload.forEach(m => cloudPush(name, m));
+
+        const merged = [...cloudList, ...toUpload]
+            .filter(m => !deleted.has(m.id))
+            .sort((a, b) => cfg.order === "asc" ? a.at - b.at : b.at - a.at);
+
+        applyingRemote = true;
+        cfg.set(merged);
+        writeStore(keys.synced, [...cloudIds]);
+        applyingRemote = false;
+
+        try { cfg.changed(); } catch (e) {}
     }
 
-    function markSynced(ids) {
+    /* 🎟️ vales do aniversário */
 
-        const synced = new Set(readStore(LOVE_SYNCED_KEY, []));
+    function cloudSetVales(used) {
 
-        ids.forEach(id => synced.add(id));
+        if (!cloudReady()) return;
 
-        writeStore(LOVE_SYNCED_KEY, [...synced]);
+        window.loveCloud.setState("vales", { used, at: Date.now() }).catch(() => {});
+    }
+
+    function onCloudVales(data) {
+
+        const remote = (data && Array.isArray(data.used)) ? data.used : [];
+        const local = getUsedVouchers();
+        const union = [...new Set([...remote, ...local])].sort((a, b) => a - b);
+
+        saveUsedVouchers(union);
+
+        if (union.length !== remote.length) cloudSetVales(union);
+
+        if (document.getElementById("bdayVouchers") &&
+            !document.getElementById("bdayOverlay").classList.contains("hidden")) {
+            renderBirthdayVoucherList();
+        }
+    }
+
+    /* 🍊 a MM inteira */
+
+    const MM_STATE_AT_KEY = "mmStateAt";
+    const MM_LINKED_KEY = "mmCloudLinked";
+    const MM_SYNC_KEYS = ["mmCapivara", "mmBaby", "mmVisitsGG", "hugsSent"];
+
+    let mmUploadTimer = null;
+
+    function lsGet(k) {
+        try { return localStorage.getItem(k); } catch (e) { return null; }
+    }
+
+    function lsSet(k, v) {
+        try {
+            if (v === null || v === undefined || v === "") localStorage.removeItem(k);
+            else localStorage.setItem(k, v);
+        } catch (e) {}
+    }
+
+    function mmLinked() {
+
+        return lsGet(MM_LINKED_KEY) === "1";
+    }
+
+    function mmLocalState() {
+
+        return {
+            cat: lsGet("mmCapivara") || "",
+            baby: lsGet("mmBaby") || "",
+            visits: lsGet("mmVisitsGG") || "",
+            hugs: lsGet("hugsSent") || "",
+            at: Number(lsGet(MM_STATE_AT_KEY) || 0)
+        };
+    }
+
+    function petsOf(catJson) {
+
+        try { return JSON.parse(catJson).pets || 0; } catch (e) { return 0; }
+    }
+
+    // toda vez que algo da MM muda no celular
+    function onLocalWrite(key) {
+
+        if (applyingRemote || !MM_SYNC_KEYS.includes(key)) return;
+
+        lsSet(MM_STATE_AT_KEY, String(Date.now()));
+
+        if (!cloudReady() || !mmLinked()) return;
+
+        clearTimeout(mmUploadTimer);
+
+        mmUploadTimer = setTimeout(uploadMM, 2500);
+    }
+
+    function uploadMM() {
+
+        if (!cloudReady()) return;
+
+        const s = mmLocalState();
+
+        if (!s.cat) return;
+
+        if (!s.at) {
+            s.at = Date.now();
+            lsSet(MM_STATE_AT_KEY, String(s.at));
+        }
+
+        window.loveCloud.setState("mm", s).catch(() => {});
+    }
+
+    function applyRemoteMM(r) {
+
+        applyingRemote = true;
+
+        lsSet("mmCapivara", r.cat);
+        lsSet("mmBaby", r.baby);
+        lsSet("mmVisitsGG", r.visits);
+        lsSet("hugsSent", r.hugs);
+        lsSet(MM_STATE_AT_KEY, String(r.at || Date.now()));
+
+        applyingRemote = false;
+
+        loadCat();
+        updateCatBadge(catMood());
+
+        if (!document.getElementById("catOverlay").classList.contains("hidden")) {
+            renderCat(catMood());
+        }
+    }
+
+    function onCloudMM(remote) {
+
+        const local = mmLocalState();
+
+        if (!remote || !remote.cat) {
+
+            // a nuvem ainda não tem MM: sobe a deste celular
+            lsSet(MM_LINKED_KEY, "1");
+            if (local.cat) uploadMM();
+            return;
+        }
+
+        if (!mmLinked()) {
+
+            // primeira vez neste celular: fica a MM mais "cuidada"
+            lsSet(MM_LINKED_KEY, "1");
+
+            if (local.cat && petsOf(local.cat) > petsOf(remote.cat)) {
+                lsSet(MM_STATE_AT_KEY, String(Date.now()));
+                uploadMM();
+            } else {
+                if (local.cat) lsSet("mmPreCloudBackup", JSON.stringify(local));
+                applyRemoteMM(remote);
+            }
+
+            return;
+        }
+
+        if ((remote.at || 0) > local.at + 500) {
+            applyRemoteMM(remote);
+        } else if (local.at > (remote.at || 0) + 500) {
+            uploadMM();
+        }
+    }
+
+    /* login e conexões */
+
+    function stopCloudListeners() {
+
+        cloudListeners.forEach(stop => { try { stop(); } catch (e) {} });
+
+        cloudListeners = [];
     }
 
     // chamado pelo Firebase quando entra ou sai do login
     function onCloudAuth(user) {
 
+        stopCloudListeners();
+
         loveCloudUser = user || null;
         loveCloudState = user ? "on" : "login";
 
-        if (user) {
+        renderCloudBox();
+
+        if (!user) return;
+
+        const err = () => onCloudError("offline");
+
+        Object.keys(SYNC_LISTS).forEach(name => {
 
             // apaga na nuvem o que foi apagado sem internet
-            const del = readStore(LOVE_DELETED_KEY, []);
+            const dk = syncKeys(name).deleted;
 
-            del.forEach(id => window.loveCloud.remove(id).catch(() => {}));
+            readStore(dk, []).forEach(id =>
+                window.loveCloud.remove(name, id).catch(() => {}));
 
-            writeStore(LOVE_DELETED_KEY, []);
-        }
+            writeStore(dk, []);
 
-        renderCloudBox();
-    }
-
-    // chamado pelo Firebase sempre que as memórias mudam na nuvem
-    function onCloudMemories(cloudList) {
-
-        const cloudIds = new Set(cloudList.map(m => m.id));
-        const synced = new Set(readStore(LOVE_SYNCED_KEY, []));
-        const deleted = new Set(readStore(LOVE_DELETED_KEY, []));
-        const local = getLoveMemories();
-
-        const toUpload = [];
-
-        local.forEach(m => {
-
-            if (cloudIds.has(m.id)) return;
-
-            // já esteve na nuvem e sumiu: alguém apagou no outro celular
-            if (synced.has(m.id)) return;
-
-            if (deleted.has(m.id)) return;
-
-            toUpload.push(m);
+            cloudListeners.push(
+                window.loveCloud.listen(name, list => onCloudList(name, list), err)
+            );
         });
 
-        toUpload.forEach(m => {
-            window.loveCloud.save(m)
-                .then(() => markSynced([m.id]))
-                .catch(() => {});
-        });
-
-        const merged = [...cloudList, ...toUpload]
-            .filter(m => !deleted.has(m.id))
-            .sort((a, b) => b.at - a.at);
-
-        writeStore(LOVE_MEM_KEY, merged);
-        writeStore(LOVE_SYNCED_KEY, [...cloudIds]);
-
-        updateMemCount();
-
-        if (!document.getElementById("memoriesOverlay").classList.contains("hidden")) {
-            renderMemories();
-        }
+        cloudListeners.push(window.loveCloud.listenState("vales", onCloudVales, err));
+        cloudListeners.push(window.loveCloud.listenState("mm", onCloudMM, err));
     }
 
     function onCloudError(kind) {
 
-        loveCloudState = kind === "offline" ? "offline" : loveCloudState;
+        if (kind === "offline" && loveCloudState !== "on") loveCloudState = "offline";
 
         renderCloudBox();
     }
 
     function renderCloudBox() {
 
-        const box = document.getElementById("cloudBox");
+        document.querySelectorAll(".cloud-box").forEach(box => {
 
-        if (!box) return;
+            if (loveCloudState === "off") {
+                box.innerHTML = "";
+                return;
+            }
 
-        if (loveCloudState === "off") {
-            box.innerHTML = "";
-            return;
-        }
+            if (loveCloudState === "loading") {
+                box.innerHTML = `<div class="cloud-status">☁️ Conectando com a nuvem...</div>`;
+                return;
+            }
 
-        if (loveCloudState === "loading") {
-            box.innerHTML = `<div class="cloud-status">☁️ Conectando com a nuvem...</div>`;
-            return;
-        }
+            if (loveCloudState === "offline") {
+                box.innerHTML = `<div class="cloud-status">📴 Sem conexão com a nuvem agora. Mostrando o que tá guardado neste celular.</div>`;
+                return;
+            }
 
-        if (loveCloudState === "offline") {
-            box.innerHTML = `<div class="cloud-status">📴 Sem conexão com a nuvem agora. Mostrando o que tá guardado neste celular.</div>`;
-            return;
-        }
+            if (loveCloudState === "on") {
+                box.innerHTML = `
+                    <div class="cloud-status ok">
+                        ☁️ Sincronizado: tudo aparece nos dois celulares 💗
+                        <button class="cloud-logout" onclick="cloudLogout()">sair</button>
+                    </div>
+                `;
+                return;
+            }
 
-        if (loveCloudState === "on") {
             box.innerHTML = `
-                <div class="cloud-status ok">
-                    ☁️ Sincronizado: as memórias aparecem nos dois celulares 💗
-                    <button class="cloud-logout" onclick="cloudLogout()">sair</button>
+                <div class="cloud-login">
+                    <div class="cloud-login-title">☁️ Entra pra sincronizar tudo nos dois celulares</div>
+                    <input class="cloud-email" type="email" placeholder="E-mail" autocomplete="username">
+                    <input class="cloud-pass" type="password" placeholder="Senha" autocomplete="current-password"
+                        onkeydown="if (event.key === 'Enter') cloudLogin(this)">
+                    <button class="primary-btn care-wide" onclick="cloudLogin(this)">Entrar 💗</button>
+                    <div class="cloud-msg">Só precisa entrar uma vez em cada celular.</div>
                 </div>
             `;
-            return;
-        }
-
-        box.innerHTML = `
-            <div class="cloud-login">
-                <div class="cloud-login-title">☁️ Entra pra ver as memórias nos dois celulares</div>
-                <input id="cloudEmail" type="email" placeholder="E-mail" autocomplete="username">
-                <input id="cloudPass" type="password" placeholder="Senha" autocomplete="current-password"
-                    onkeydown="if (event.key === 'Enter') cloudLogin()">
-                <button class="primary-btn care-wide" onclick="cloudLogin()">Entrar 💗</button>
-                <div id="cloudMsg" class="cloud-msg">Só precisa entrar uma vez em cada celular.</div>
-            </div>
-        `;
+        });
     }
 
-    async function cloudLogin() {
+    async function cloudLogin(el) {
 
-        const email = document.getElementById("cloudEmail").value.trim();
-        const pass = document.getElementById("cloudPass").value;
-        const msg = document.getElementById("cloudMsg");
+        const box = el.closest(".cloud-login");
+        const email = box.querySelector(".cloud-email").value.trim();
+        const pass = box.querySelector(".cloud-pass").value;
+        const msg = box.querySelector(".cloud-msg");
 
         if (!email || !pass) {
             msg.textContent = "Preenche o e-mail e a senha 💗";
@@ -16617,6 +16939,7 @@ Te amo muito.
 
         if (window.loveCloud) window.loveCloud.logout();
     }
+
 
     updateMemCount();
 
@@ -16793,7 +17116,7 @@ Te amo muito.
 
 
 <!-- ==================================================
-     ☁️ FIREBASE — sincroniza as memórias da Noite de Love
+     ☁️ FIREBASE — sincroniza tudo entre os celulares
 ================================================== -->
 
 <script type="module">
@@ -16830,45 +17153,32 @@ Te amo muito.
             const auth = getAuth(app);
             const db = getFirestore(app);
 
-            let stopListening = null;
-
             window.loveCloud = {
 
-                login: (email, pass) =>
-                    signInWithEmailAndPassword(auth, email, pass),
+                login: (email, pass) => signInWithEmailAndPassword(auth, email, pass),
 
                 logout: () => signOut(auth),
 
-                save: entry =>
-                    setDoc(doc(db, "memorias", entry.id), {
-                        type: entry.type,
-                        text: entry.text,
-                        author: entry.author,
-                        at: entry.at
-                    }),
+                save: (col, id, data) => setDoc(doc(db, col, id), data),
 
-                remove: id => deleteDoc(doc(db, "memorias", id))
+                remove: (col, id) => deleteDoc(doc(db, col, id)),
+
+                listen: (col, cb, onErr) => onSnapshot(
+                    query(collection(db, col), orderBy("at", "desc")),
+                    snap => cb(snap.docs.map(d => ({ id: d.id, ...d.data() }))),
+                    onErr
+                ),
+
+                setState: (id, data) => setDoc(doc(db, "estado", id), data),
+
+                listenState: (id, cb, onErr) => onSnapshot(
+                    doc(db, "estado", id),
+                    snap => cb(snap.exists() ? snap.data() : null),
+                    onErr
+                )
             };
 
-            onAuthStateChanged(auth, user => {
-
-                if (stopListening) {
-                    stopListening();
-                    stopListening = null;
-                }
-
-                onCloudAuth(user);
-
-                if (!user) return;
-
-                stopListening = onSnapshot(
-                    query(collection(db, "memorias"), orderBy("at", "desc")),
-                    snap => onCloudMemories(
-                        snap.docs.map(d => ({ id: d.id, ...d.data() }))
-                    ),
-                    () => onCloudError("offline")
-                );
-            });
+            onAuthStateChanged(auth, user => onCloudAuth(user));
 
         } catch (e) {
 
