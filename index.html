@@ -4541,6 +4541,512 @@
     }
 
     /* ==========================================
+       💗 CANTINHO DE CUIDADO — VERSÃO ACONCHEGANTE
+    ========================================== */
+
+    .care-modal {
+        background:
+            radial-gradient(circle at 15% 10%, var(--pink-glow), transparent 45%),
+            radial-gradient(circle at 90% 30%, var(--lilac-glow), transparent 50%),
+            radial-gradient(circle at 30% 100%, var(--blue-glow), transparent 55%),
+            var(--surface-solid);
+        overflow-x: hidden;
+    }
+
+    .care-clouds {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        border-radius: inherit;
+    }
+
+    .care-clouds span {
+        position: absolute;
+        font-size: 34px;
+        opacity: 0.35;
+        animation: cloudDrift 38s linear infinite;
+    }
+
+    .care-clouds span:nth-child(1) { top: 6%; animation-delay: -5s; }
+    .care-clouds span:nth-child(2) { top: 38%; font-size: 26px; animation-delay: -22s; animation-duration: 46s; }
+    .care-clouds span:nth-child(3) { top: 72%; font-size: 30px; animation-delay: -12s; animation-duration: 52s; }
+
+    @keyframes cloudDrift {
+        from { left: -15%; }
+        to { left: 110%; }
+    }
+
+    .care-view {
+        position: relative;
+        z-index: 1;
+    }
+
+    .care-rain-btn {
+        position: absolute;
+        top: 10px;
+        right: 58px;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        font-size: 18px;
+        opacity: 0.75;
+    }
+
+    .care-rain-btn.on {
+        opacity: 1;
+        border-color: var(--accent-3);
+        box-shadow: 0 0 0 4px var(--lilac-glow);
+    }
+
+    .care-modal .bday-close-x {
+        z-index: 3;
+    }
+
+    .care-speech {
+        margin-top: 8px;
+    }
+
+    .care-home-mm {
+        width: 170px;
+        height: 155px;
+        margin: 0 auto 4px;
+        pointer-events: none;
+        transition: transform 1.2s ease-in-out;
+    }
+
+    .care-home-mm .cat-body-group {
+        animation-duration: 4.5s;
+    }
+
+    /* olhinhos preocupados (sem lágrima) */
+    .cat-stage.worried .cat-eyes-open { display: none; }
+    .cat-stage.worried .cat-eyes-sad { display: inline; }
+
+    .care-home-mm.hop {
+        animation: careHop 0.7s ease-in-out 3;
+    }
+
+    @keyframes careHop {
+        0%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-14px) rotate(-3deg); }
+        70% { transform: translateY(0) scale(1.04, 0.96); }
+    }
+
+    .care-home-mm.lean {
+        transform: scale(1.1) rotate(-7deg) translateX(-6px);
+    }
+
+    .care-group-title {
+        margin: 20px 0 8px;
+        text-align: left;
+        color: var(--text-soft);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .care-label {
+        display: none;
+    }
+
+    .care-toast {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: var(--chip-bg);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.5;
+        animation: careIn 0.5s ease;
+    }
+
+    /* plástico bolha */
+
+    .bubble-sheet {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        padding: 14px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(200, 230, 255, 0.45), rgba(255, 220, 240, 0.45));
+        border: 2px solid var(--border);
+        touch-action: manipulation;
+    }
+
+    .bubble {
+        aspect-ratio: 1;
+        padding: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        background: radial-gradient(circle at 32% 30%, #ffffff 0 14%, rgba(255, 255, 255, 0.5) 15% 35%, rgba(190, 220, 255, 0.55) 70%);
+        box-shadow: inset -2px -3px 6px rgba(120, 150, 200, 0.3), 0 3px 6px rgba(120, 100, 160, 0.15);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .bubble:hover {
+        transform: scale(1.06);
+    }
+
+    .bubble.popped {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.35), rgba(220, 220, 235, 0.25));
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+        border-style: dashed;
+        border-color: rgba(200, 200, 220, 0.8);
+        transform: scale(0.88);
+        animation: bubblePop 0.25s ease;
+    }
+
+    @keyframes bubblePop {
+        0% { transform: scale(1.15); }
+        100% { transform: scale(0.88); }
+    }
+
+    /* cantinho quieto */
+
+    .care-quiet {
+        margin: -34px -24px -26px;
+        padding: 34px 24px 40px;
+        min-height: 480px;
+        border-radius: 30px;
+        background: linear-gradient(180deg, #1e1b3a, #2b2155 60%, #3a2d62);
+        color: #f4eefe;
+        overflow: hidden;
+    }
+
+    .care-quiet .care-back {
+        color: #9189b8;
+        position: relative;
+        z-index: 2;
+    }
+
+    .quiet-rain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .quiet-rain i {
+        position: absolute;
+        top: -10%;
+        width: 2px;
+        height: 40px;
+        border-radius: 2px;
+        background: linear-gradient(transparent, rgba(190, 210, 255, 0.55));
+        animation: quietRain 1.6s linear infinite;
+    }
+
+    .quiet-rain i:nth-child(1) { left: 8%; animation-delay: 0s; }
+    .quiet-rain i:nth-child(2) { left: 18%; animation-delay: 0.6s; }
+    .quiet-rain i:nth-child(3) { left: 29%; animation-delay: 1.1s; }
+    .quiet-rain i:nth-child(4) { left: 40%; animation-delay: 0.3s; }
+    .quiet-rain i:nth-child(5) { left: 51%; animation-delay: 0.9s; }
+    .quiet-rain i:nth-child(6) { left: 62%; animation-delay: 1.4s; }
+    .quiet-rain i:nth-child(7) { left: 71%; animation-delay: 0.2s; }
+    .quiet-rain i:nth-child(8) { left: 80%; animation-delay: 0.75s; }
+    .quiet-rain i:nth-child(9) { left: 89%; animation-delay: 1.25s; }
+    .quiet-rain i:nth-child(10) { left: 96%; animation-delay: 0.45s; }
+
+    @keyframes quietRain {
+        from { transform: translateY(0); }
+        to { transform: translateY(560px); }
+    }
+
+    .quiet-mm {
+        position: relative;
+        width: 200px;
+        height: 182px;
+        margin: 70px auto 10px;
+        pointer-events: none;
+    }
+
+    .quiet-mm .cat-body-group {
+        animation-duration: 5s;
+    }
+
+    .quiet-text {
+        position: relative;
+        font-family: "Caveat", cursive;
+        font-size: 26px;
+        color: #e8e0ff;
+        line-height: 1.3;
+    }
+
+    .quiet-text small {
+        font-family: "Fredoka", sans-serif;
+        font-size: 13px;
+        color: #9189b8;
+    }
+
+    /* abre quando */
+
+    .letter-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .letter-envelope {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        padding: 0;
+        border-radius: 12px;
+        background: #ffd9e6;
+        border: none;
+        overflow: hidden;
+        box-shadow: 0 6px 14px rgba(200, 100, 150, 0.15);
+        color: #4a3a52;
+    }
+
+    .letter-envelope::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 55%;
+        background: #ffc2d6;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .letter-envelope:nth-child(3n+2) { background: #dcebff; }
+    .letter-envelope:nth-child(3n+2)::before { background: #c8defc; }
+    .letter-envelope:nth-child(3n) { background: #ece2ff; }
+    .letter-envelope:nth-child(3n)::before { background: #ddd0fb; }
+
+    .le-seal {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 26px;
+        z-index: 1;
+    }
+
+    .le-text {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        font-size: 12.5px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+
+    .letter-envelope.opened {
+        opacity: 0.7;
+    }
+
+    .letter-envelope.opened::after {
+        content: "lida 💗";
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #c4497d;
+        z-index: 1;
+    }
+
+    .letter-paper {
+        text-align: left;
+        padding: 22px 22px 18px;
+        border-radius: 18px;
+        background-color: var(--paper);
+        background-image: repeating-linear-gradient(transparent 0 31px, var(--paper-line) 31px 32px);
+        box-shadow: inset 0 0 0 2px var(--border);
+        font-family: "Caveat", cursive;
+        font-size: 23px;
+        line-height: 32px;
+        color: var(--text);
+        animation: careIn 0.6s ease;
+    }
+
+    .letter-paper b {
+        display: block;
+        color: var(--accent);
+        font-size: 25px;
+        margin-bottom: 6px;
+    }
+
+    .letter-paper p {
+        white-space: pre-line;
+    }
+
+    .lp-sign {
+        display: block;
+        margin-top: 10px;
+        text-align: right;
+        color: var(--accent);
+    }
+
+    /* preocupações */
+
+    .worry-input {
+        min-height: 130px;
+        font-family: "Caveat", cursive;
+        font-size: 22px;
+        line-height: 1.35;
+    }
+
+    .worry-scene {
+        position: relative;
+        height: 210px;
+        margin-top: 4px;
+        border-radius: 22px;
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--blue-glow), transparent 60%);
+    }
+
+    .worry-pond {
+        position: absolute;
+        left: -10%;
+        right: -10%;
+        bottom: -30px;
+        height: 110px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at 50% 30%, #bde8ff, #6cb8e6);
+    }
+
+    .worry-mm {
+        position: absolute;
+        left: 0;
+        bottom: 20px;
+        width: 120px;
+        height: 110px;
+        margin: 0;
+        pointer-events: none;
+    }
+
+    .worry-boat {
+        position: absolute;
+        left: 30%;
+        bottom: 40px;
+        font-size: 34px;
+        opacity: 0;
+    }
+
+    .worry-boat.sail {
+        animation: sailAway 4s ease-in-out forwards;
+    }
+
+    @keyframes sailAway {
+        0% { opacity: 0; transform: translate(0, 10px) scale(0.6); }
+        12% { opacity: 1; transform: translate(0, 0) scale(1); }
+        30% { transform: translate(40px, -4px) rotate(-6deg) scale(0.95); }
+        55% { transform: translate(110px, 2px) rotate(5deg) scale(0.8); }
+        80% { opacity: 0.8; transform: translate(170px, -6px) rotate(-4deg) scale(0.6); }
+        100% { opacity: 0; transform: translate(220px, -10px) scale(0.4); }
+    }
+
+    /* pote */
+
+    .jar {
+        position: relative;
+        width: 170px;
+        height: 200px;
+        margin: 8px auto 0;
+        border-radius: 30px 30px 40px 40px;
+        border: 4px solid rgba(255, 255, 255, 0.95);
+        background: linear-gradient(135deg, rgba(220, 240, 255, 0.55), rgba(255, 230, 245, 0.5));
+        box-shadow: inset -8px 0 16px rgba(255, 255, 255, 0.6), 0 8px 20px var(--shadow);
+        overflow: hidden;
+    }
+
+    .jar-lid {
+        position: absolute;
+        top: -2px;
+        left: 22%;
+        right: 22%;
+        height: 18px;
+        border-radius: 6px 6px 3px 3px;
+        background: #ffc8dd;
+        border: 3px solid #f4a3c4;
+    }
+
+    .jar-stars {
+        position: absolute;
+        inset: 0;
+    }
+
+    .jar-stars span {
+        position: absolute;
+        font-size: 18px;
+        animation: reasonPop 0.4s ease;
+    }
+
+    .jar-count {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -30px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .care-modal .jar + .mm-teach-row {
+        margin-top: 40px !important;
+    }
+
+    .jar-memory {
+        margin-top: 12px;
+    }
+
+    /* despedida */
+
+    #careBye {
+        cursor: pointer;
+        padding: 30px 0 10px;
+    }
+
+    .care-bye-mm {
+        width: 170px;
+        height: 155px;
+        margin: 0 auto;
+        pointer-events: none;
+        animation: careHop 0.9s ease-in-out 2;
+    }
+
+    .care-bye-text {
+        margin-top: 10px;
+        font-family: "Caveat", cursive;
+        font-size: 27px;
+        line-height: 1.3;
+        color: var(--text);
+        animation: careIn 0.8s ease;
+    }
+
+    .care-bye-text small {
+        display: block;
+        margin-top: 6px;
+        font-size: 22px;
+        color: var(--accent);
+    }
+
+    .care-bye-small {
+        display: block;
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    @media (max-width: 650px) {
+
+        .care-quiet {
+            margin: -25px -20px -25px;
+            padding: 30px 20px 40px;
+        }
+
+        .bubble-sheet {
+            gap: 6px;
+            padding: 10px;
+        }
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -5327,6 +5833,19 @@
         class="comfort-modal care-modal"
     >
 
+        <!-- nuvenzinhas flutuando -->
+        <div class="care-clouds" aria-hidden="true">
+            <span>☁️</span><span>☁️</span><span>☁️</span>
+        </div>
+
+        <button
+            id="careRainBtn"
+            class="care-rain-btn"
+            onclick="toggleCareRain()"
+            aria-label="Ligar ou desligar o barulhinho de chuva"
+            title="Barulhinho de chuva"
+        >🌧️</button>
+
         <button
             class="bday-close-x"
             onclick="closeComfortMessages()"
@@ -5340,15 +5859,20 @@
             class="care-view"
         >
 
-            <div class="comfort-modal-icon">
-                💗
-            </div>
+            <div
+                id="careHomeSpeech"
+                class="cat-speech care-speech"
+            >Oi, meu bem... vem cá, senta aqui comigo 🥺</div>
 
-            <h2>
-                Ei, meu amor...
-            </h2>
+            <div
+                id="careHomeMM"
+                class="cat-stage worried care-home-mm"
+            ></div>
 
-            <p class="care-sub">
+            <p
+                id="careQuestion"
+                class="care-sub"
+            >
                 Esse é o seu cantinho. Aqui não tem pressa nenhuma.<br>
                 Como você tá agora?
             </p>
@@ -5378,9 +5902,7 @@
                 class="care-reply hidden"
             ></div>
 
-            <div class="care-label">
-                O que você precisa agora?
-            </div>
+            <div class="care-group-title">🫧 Pra acalmar</div>
 
             <div class="care-tools">
 
@@ -5390,11 +5912,53 @@
                     <small>devagarinho, junto com ela</small>
                 </button>
 
+                <button class="care-tool" data-tool="bubble" onclick="openCareTool('bubble')">
+                    <span>🫙</span>
+                    <b>Plástico bolha</b>
+                    <small>pop, pop, pop... calmante</small>
+                </button>
+
+                <button class="care-tool" data-tool="quiet" onclick="openCareTool('quiet')">
+                    <span>🌧️</span>
+                    <b>Cantinho quieto</b>
+                    <small>só ficar, sem fazer nada</small>
+                </button>
+
+            </div>
+
+            <div class="care-group-title">🫂 Pra se sentir abraçada</div>
+
+            <div class="care-tools">
+
                 <button class="care-tool" data-tool="hug" onclick="openCareTool('hug')">
                     <span>🫂</span>
                     <b>Abraço de segurar</b>
                     <small>segura a tela e recebe um abraço</small>
                 </button>
+
+                <button class="care-tool" data-tool="letters" onclick="openCareTool('letters')">
+                    <span>💌</span>
+                    <b>Abre quando...</b>
+                    <small>cartinhas pra cada momento</small>
+                </button>
+
+                <button class="care-tool" data-tool="notes" onclick="openCareTool('notes')">
+                    <span>💗</span>
+                    <b>Ler um carinho</b>
+                    <small>coisas que eu queria te lembrar</small>
+                </button>
+
+                <button class="care-tool" data-tool="call" onclick="callGabriel()">
+                    <span>📲</span>
+                    <b>Me chama</b>
+                    <small>abre o direct do Gabriel</small>
+                </button>
+
+            </div>
+
+            <div class="care-group-title">🌷 Pra cuidar de você</div>
+
+            <div class="care-tools">
 
                 <button class="care-tool" data-tool="check" onclick="openCareTool('check')">
                     <span>🌷</span>
@@ -5402,14 +5966,24 @@
                     <small>coisinhas pra cuidar de você</small>
                 </button>
 
-                <button class="care-tool" data-tool="notes" onclick="openCareTool('notes')">
-                    <span>💌</span>
-                    <b>Ler um carinho</b>
-                    <small>coisas que eu queria te lembrar</small>
+                <button class="care-tool" data-tool="worry" onclick="openCareTool('worry')">
+                    <span>⛵</span>
+                    <b>Caixinha das preocupações</b>
+                    <small>deixa o que pesa ir embora</small>
+                </button>
+
+                <button class="care-tool" data-tool="jar" onclick="openCareTool('jar')">
+                    <span>🫙</span>
+                    <b>Pote de coisas boas</b>
+                    <small>guardar e reler lembranças felizes</small>
                 </button>
 
             </div>
 
+            <div
+                id="careCallToast"
+                class="care-toast hidden"
+            ></div>
 
         </div>
 
@@ -5586,6 +6160,269 @@
                 id="comfortCounter"
                 class="comfort-counter"
             ></div>
+
+        </div>
+
+        <!-- ===== PLÁSTICO BOLHA ===== -->
+
+        <div
+            id="careBubble"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Plástico bolha 🫧</h2>
+
+            <p class="care-sub">
+                Estoura uma de cada vez, sem pressa. Pop... pop... 💗
+            </p>
+
+            <div
+                id="bubbleSheet"
+                class="bubble-sheet"
+            ></div>
+
+            <div
+                id="bubbleText"
+                class="breath-count"
+            ></div>
+
+            <button
+                id="bubbleNew"
+                class="secondary-btn care-wide hidden"
+                onclick="newBubbleSheet()"
+            >
+                Quero outra folha 🫧
+            </button>
+
+        </div>
+
+        <!-- ===== CANTINHO QUIETO ===== -->
+
+        <div
+            id="careQuiet"
+            class="care-view care-quiet hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <div class="quiet-rain" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <div
+                id="quietMM"
+                class="cat-stage sleep quiet-mm"
+            ></div>
+
+            <div class="quiet-text">
+                Fica aqui o quanto quiser 🌙<br>
+                <small>não precisa fazer nada</small>
+            </div>
+
+        </div>
+
+        <!-- ===== ABRE QUANDO... ===== -->
+
+        <div
+            id="careLetters"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Abre quando... 💌</h2>
+
+            <p class="care-sub">
+                Escolhe a cartinha que combina com agora
+            </p>
+
+            <div
+                id="letterList"
+                class="letter-list"
+            ></div>
+
+            <div
+                id="letterOpen"
+                class="hidden"
+            >
+
+                <div
+                    id="letterPaper"
+                    class="letter-paper"
+                ></div>
+
+                <button
+                    class="secondary-btn care-wide"
+                    onclick="closeCareLetter()"
+                >
+                    Guardar cartinha 💗
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- ===== CAIXINHA DAS PREOCUPAÇÕES ===== -->
+
+        <div
+            id="careWorry"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Caixinha das preocupações ⛵</h2>
+
+            <p class="care-sub">
+                Escreve o que tá pesando. Depois a gente dobra num barquinho
+                e deixa ele ir no laguinho da MM. 🌊<br>
+                <small>(não fica guardado em lugar nenhum)</small>
+            </p>
+
+            <div
+                id="worryForm"
+            >
+
+                <textarea
+                    id="worryInput"
+                    class="worry-input"
+                    maxlength="400"
+                    placeholder="O que tá pesando no seu coração agora..."
+                ></textarea>
+
+                <button
+                    class="primary-btn care-wide"
+                    onclick="sailWorry()"
+                >
+                    Dobrar num barquinho ⛵
+                </button>
+
+            </div>
+
+            <div
+                id="worryScene"
+                class="worry-scene hidden"
+            >
+                <div class="worry-pond"></div>
+                <div
+                    id="worryBoat"
+                    class="worry-boat"
+                >⛵</div>
+                <div
+                    id="worryMM"
+                    class="cat-stage happy worry-mm"
+                ></div>
+            </div>
+
+            <div
+                id="worryText"
+                class="breath-text"
+            ></div>
+
+            <button
+                id="worryAgain"
+                class="secondary-btn care-wide hidden"
+                onclick="resetWorry()"
+            >
+                Soltar outro barquinho
+            </button>
+
+        </div>
+
+        <!-- ===== POTE DE COISAS BOAS ===== -->
+
+        <div
+            id="careJar"
+            class="care-view hidden"
+        >
+
+            <button class="care-back" onclick="careBack()">
+                ← voltar pro cantinho
+            </button>
+
+            <h2>Pote de coisas boas 🫙</h2>
+
+            <p class="care-sub">
+                Nos dias bons, guarda aqui uma coisinha boa que aconteceu.<br>
+                Nos dias difíceis, abre o pote e relê 💗
+            </p>
+
+            <div class="jar">
+                <div
+                    id="jarStars"
+                    class="jar-stars"
+                ></div>
+                <div class="jar-lid"></div>
+                <div
+                    id="jarCount"
+                    class="jar-count"
+                ></div>
+            </div>
+
+            <div class="mm-teach-row" style="margin-top: 14px;">
+
+                <input
+                    id="jarInput"
+                    type="text"
+                    maxlength="160"
+                    placeholder="Hoje foi bom porque..."
+                    autocomplete="off"
+                    onkeydown="if (event.key === 'Enter') addToJar()"
+                >
+
+                <button
+                    class="primary-btn"
+                    onclick="addToJar()"
+                >
+                    Guardar ⭐
+                </button>
+
+            </div>
+
+            <button
+                id="jarOpenBtn"
+                class="secondary-btn care-wide"
+                onclick="openJarMemory()"
+            >
+                Abrir o pote e ler uma lembrança 🫙
+            </button>
+
+            <div
+                id="jarMemory"
+                class="letter-paper jar-memory hidden"
+            ></div>
+
+        </div>
+
+        <!-- ===== DESPEDIDA ===== -->
+
+        <div
+            id="careBye"
+            class="care-view hidden"
+            onclick="finishCareClose()"
+        >
+
+            <div
+                id="careByeMM"
+                class="cat-stage happy care-bye-mm"
+            ></div>
+
+            <div
+                id="careByeText"
+                class="care-bye-text"
+            ></div>
+
+            <small class="care-bye-small">toca em qualquer lugar pra fechar</small>
 
         </div>
 
@@ -6013,6 +6850,15 @@
                             <circle cx="3" cy="1" r="1.2" fill="#9cc98a"/>
                             <circle cx="0" cy="4" r="1.2" fill="#9cc98a"/>
                         </g>
+                    </g>
+
+                    <!-- 🧸 cobertorzinho (cantinho de cuidado) -->
+                    <g class="mm-acc" data-acc="blanket" style="display:none">
+                        <path d="M34 160 Q36 132 72 140 Q117 152 162 140 Q198 132 200 160 Q202 192 180 200 L54 200 Q32 192 34 160 Z" fill="#ffc8dd" stroke="#5a4036" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M44 168 Q117 182 190 168" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+                        <text x="70" y="188" font-size="12">🤍</text>
+                        <text x="112" y="194" font-size="12">🤍</text>
+                        <text x="152" y="186" font-size="12">🤍</text>
                     </g>
 
                 </g>
@@ -7956,7 +8802,17 @@
        💗 CANTINHO DE CUIDADO
     ================================================== */
 
-    const CARE_VIEWS = ["careHome", "careBreathe", "careHug", "careCheck", "careNotes"];
+    const CARE_VIEWS = [
+        "careHome", "careBreathe", "careHug", "careCheck", "careNotes",
+        "careBubble", "careQuiet", "careLetters", "careWorry", "careJar", "careBye"
+    ];
+
+    const MOOD_RANK = { bem: 0, meio: 1, triste: 2, dificil: 3 };
+
+    let careFirstMood = null;
+    let careLastMood = null;
+    let careUsedTool = false;
+    let careClosing = null;
 
     function showCareView(id) {
 
@@ -7966,7 +8822,7 @@
         document.getElementById("careModal").scrollTop = 0;
     }
 
-    function cloneMMInto(stageId) {
+    function cloneMMInto(stageId, opts) {
 
         if (!cat) loadCat();
 
@@ -7982,17 +8838,52 @@
         applyOutfit(stage);
 
         // no cantinho é sempre calminho: sem chuva, sem guarda-chuva
-        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"], [data-acc="sweat"]')
+        stage.querySelectorAll('[data-acc="umbrella"], [data-acc="rain"], [data-acc="sweat"], [data-acc="balloon"], [data-acc="icecream"]')
             .forEach(el => el.style.display = "none");
+
+        // enroladinha no cobertor 🧸
+        if (opts && opts.blanket) {
+            stage.querySelectorAll('[data-acc="blanket"]')
+                .forEach(el => el.style.display = "");
+        }
+    }
+
+    function setCareSpeech(text) {
+
+        const el = document.getElementById("careHomeSpeech");
+
+        el.textContent = text;
+
+        el.classList.remove("pop");
+        void el.offsetWidth;
+        el.classList.add("pop");
+    }
+
+    function setCareMMState(state) {
+
+        const mm = document.getElementById("careHomeMM");
+
+        mm.classList.remove("worried", "happy", "hop", "lean", "sleep");
+
+        void mm.offsetWidth;
+
+        state.split(" ").forEach(c => c && mm.classList.add(c));
     }
 
     function openComfortMessages() {
+
+        clearTimeout(careClosing);
+        careClosing = null;
 
         comfortCurrentIndex =
             Math.floor(
                 Math.random() *
                 comfortMessages.length
             );
+
+        careFirstMood = null;
+        careLastMood = null;
+        careUsedTool = false;
 
         document.querySelectorAll(".care-mood")
             .forEach(b => b.classList.remove("chosen"));
@@ -8001,6 +8892,20 @@
             .forEach(b => b.classList.remove("suggested"));
 
         document.getElementById("careReply").classList.add("hidden");
+        document.getElementById("careCallToast").classList.add("hidden");
+
+        document.getElementById("careQuestion").innerHTML =
+            "Esse é o seu cantinho. Aqui não tem pressa nenhuma.<br>Como você tá agora?";
+
+        cloneMMInto("careHomeMM", { blanket: true });
+        setCareMMState("worried");
+
+        document.getElementById("careHomeSpeech").textContent =
+            pick([
+                "Oi, meu bem... vem cá, senta aqui comigo 🥺",
+                "Ei... que bom que você veio. Puxa a coberta e fica aqui 🧸",
+                "Oi, meu amor... trouxe meu cobertor pra gente dividir 🥺💗"
+            ]);
 
         showCareView("careHome");
 
@@ -8012,10 +8917,49 @@
             "hidden";
     }
 
+    // ✏️ Despedidas quando ela fecha o cantinho
+    const careGoodbyes = [
+        "Obrigado por ter vindo aqui. Volta sempre que precisar, tá? Eu te amo 💗",
+        "Que bom que você passou aqui. Lembra: você nunca tá sozinha 🫂",
+        "Vai com calma, meu amor. O cantinho fica aqui te esperando 🌷",
+        "Orgulho de você por cuidar de você. Te amo muito 💗"
+    ];
+
     function closeComfortMessages() {
+
+        const modal = document.getElementById("comfortModal");
+
+        if (modal.classList.contains("hidden")) return;
+
+        // já tá na despedida? fecha de vez
+        if (careClosing) {
+            finishCareClose();
+            return;
+        }
 
         stopBreath();
         stopHugHold();
+        stopQuiet();
+
+        cloneMMInto("careByeMM", { blanket: true });
+
+        document.getElementById("careByeText").innerHTML =
+            `${escapeHtml(pick(careGoodbyes))}<small>— Gabriel</small>`;
+
+        showCareView("careBye");
+
+        careClosing = setTimeout(finishCareClose, 3800);
+    }
+
+    function finishCareClose() {
+
+        clearTimeout(careClosing);
+        careClosing = null;
+
+        stopBreath();
+        stopHugHold();
+        stopQuiet();
+        stopCareRain();
 
         document
             .getElementById("comfortModal")
@@ -8029,27 +8973,53 @@
 
         stopBreath();
         stopHugHold();
+        stopQuiet();
+
+        closeCareLetter();
 
         showCareView("careHome");
+
+        if (careUsedTool) {
+
+            // depois de usar alguma coisinha, pergunta de novo
+            document.getElementById("careQuestion").innerHTML =
+                "E agora, meu amor... como você tá? 💗";
+
+            document.querySelectorAll(".care-mood")
+                .forEach(b => b.classList.remove("chosen"));
+
+            document.getElementById("careReply").classList.add("hidden");
+
+            setCareSpeech("Fiquei aqui te esperando 🍊 Melhorou um pouquinho?");
+            setCareMMState("happy");
+        }
     }
 
     // ✏️ O que o cantinho responde pra cada jeitinho de se sentir
     const careReplies = {
         bem: {
-            text: "Que bom, meu amor! 🥰 Fico muito feliz de saber. Aproveita esse momento bom... e se quiser, lê um carinho que eu deixei aqui pra você.",
-            tools: ["notes", "check"]
+            text: "Que bom, meu amor! 🥰 Fico muito feliz de saber. Aproveita esse momento bom... guarda ele no pote de coisas boas, ou lê um carinho que eu deixei aqui pra você.",
+            tools: ["jar", "notes", "check"],
+            mm: "happy hop",
+            speech: "Ebaaa!! Fico tão feliz 🥰"
         },
         meio: {
-            text: "Tudo bem ficar meio assim, viu? Nem todo dia precisa ser incrível. Que tal respirar um pouquinho com a MM e ver se você tá se cuidando direitinho? 🌷",
-            tools: ["breathe", "check"]
+            text: "Tudo bem ficar meio assim, viu? Nem todo dia precisa ser incrível. Que tal respirar um pouquinho com a MM, estourar umas bolhinhas e ver se você tá se cuidando direitinho? 🌷",
+            tools: ["breathe", "bubble", "check"],
+            mm: "worried",
+            speech: "Tô aqui do seu ladinho, tá? 🍊"
         },
         triste: {
-            text: "Vem cá... 🫂 Tá tudo bem ficar triste, você não precisa esconder isso de mim. Deixa eu te abraçar um pouquinho, e depois lê umas coisinhas que eu escrevi pra você.",
-            tools: ["hug", "notes"]
+            text: "Vem cá... 🫂 Tá tudo bem ficar triste, você não precisa esconder isso de mim. Deixa eu te abraçar um pouquinho, e depois abre uma cartinha que eu escrevi pra você.",
+            tools: ["hug", "letters", "call"],
+            mm: "worried lean",
+            speech: "Vem cá... encosta aqui em mim 🫂"
         },
         dificil: {
-            text: "Eu tô aqui com você, tá? 💗 Vamos bem devagar, uma coisa de cada vez. Primeiro respira com a MM. Depois, se quiser, me chama, mesmo que seja só pra ficar em silêncio junto.",
-            tools: ["breathe", "hug"]
+            text: "Eu tô aqui com você, tá? 💗 Vamos bem devagar, uma coisa de cada vez. Primeiro respira com a MM, ou só fica no cantinho quieto. E me chama, mesmo que seja só pra ficar em silêncio junto.",
+            tools: ["breathe", "quiet", "call"],
+            mm: "worried lean",
+            speech: "Eu não vou sair daqui, tá? 💗"
         }
     };
 
@@ -8060,19 +9030,42 @@
         document.querySelectorAll(".care-mood").forEach(b =>
             b.classList.toggle("chosen", b.dataset.mood === mood));
 
+        let text = reply.text;
+
+        if (careUsedTool && careLastMood) {
+
+            if (MOOD_RANK[mood] < MOOD_RANK[careLastMood]) {
+                text = "Fico muito feliz que melhorou um pouquinho 🥹💗 " +
+                    (mood === "bem" ? "Você foi muito forte. " : "Um passinho de cada vez, tá? ") + text;
+            } else if (MOOD_RANK[mood] >= MOOD_RANK[careLastMood] && mood !== "bem") {
+                text = "Tudo bem, às vezes leva um tempinho mesmo. Vamos tentar outra coisinha juntas? 💗";
+            }
+        }
+
+        if (!careFirstMood) careFirstMood = mood;
+
+        careLastMood = mood;
+        careUsedTool = false;
+
         const box = document.getElementById("careReply");
 
         box.innerHTML =
-            `${escapeHtml(reply.text)}<small>— Gabriel 💗</small>`;
+            `${escapeHtml(text)}<small>— Gabriel 💗</small>`;
 
         box.classList.remove("hidden");
 
         document.querySelectorAll(".care-tool").forEach(b =>
             b.classList.toggle("suggested", reply.tools.includes(b.dataset.tool)));
 
+        setCareMMState(reply.mm);
+        setCareSpeech(reply.speech);
+
+        if (mood === "bem") sfx("kiu");
     }
 
     function openCareTool(tool) {
+
+        careUsedTool = true;
 
         if (tool === "breathe") {
 
@@ -8106,6 +9099,44 @@
             renderComfortMessage();
 
             showCareView("careNotes");
+        }
+
+        if (tool === "bubble") {
+
+            newBubbleSheet();
+
+            showCareView("careBubble");
+        }
+
+        if (tool === "quiet") {
+
+            startQuiet();
+
+            showCareView("careQuiet");
+        }
+
+        if (tool === "letters") {
+
+            closeCareLetter();
+            renderLetterList();
+
+            showCareView("careLetters");
+        }
+
+        if (tool === "worry") {
+
+            resetWorry();
+
+            showCareView("careWorry");
+        }
+
+        if (tool === "jar") {
+
+            renderJar();
+
+            document.getElementById("jarMemory").classList.add("hidden");
+
+            showCareView("careJar");
         }
     }
 
@@ -8538,6 +9569,400 @@
 
             sfx("yay");
         }
+    }
+
+
+    /* --------------------------------------------------
+       🌧️ CHUVINHA DE FUNDO NO CANTINHO
+    -------------------------------------------------- */
+
+    let careRainOn = false;
+
+    function toggleCareRain() {
+
+        if (careRainOn) {
+            stopCareRain();
+            return;
+        }
+
+        careRainOn = true;
+
+        sleepSound = "rain";
+        sleepMinutes = 0;
+
+        if (!sleepPlaying) startSleepSound();
+
+        document.getElementById("careRainBtn").classList.add("on");
+    }
+
+    function stopCareRain() {
+
+        if (!careRainOn) return;
+
+        careRainOn = false;
+
+        if (sleepPlaying) stopSleepSound(false);
+
+        sleepMinutes = 30;
+
+        document.getElementById("careRainBtn").classList.remove("on");
+    }
+
+    /* --------------------------------------------------
+       🫧 PLÁSTICO BOLHA
+    -------------------------------------------------- */
+
+    const BUBBLE_COUNT = 30;
+
+    let bubblesPopped = 0;
+
+    function newBubbleSheet() {
+
+        bubblesPopped = 0;
+
+        const sheet = document.getElementById("bubbleSheet");
+
+        sheet.innerHTML = Array.from({ length: BUBBLE_COUNT }, (_, i) =>
+            `<button class="bubble" aria-label="Bolha" onpointerdown="popBubble(this, event)"></button>`
+        ).join("");
+
+        document.getElementById("bubbleNew").classList.add("hidden");
+
+        document.getElementById("bubbleText").textContent =
+            "30 bolhinhas esperando 🫧";
+    }
+
+    function popBubble(el, event) {
+
+        if (event) event.preventDefault();
+
+        if (el.classList.contains("popped")) return;
+
+        el.classList.add("popped");
+
+        bubblesPopped++;
+
+        lastSfxAt = performance.now();
+
+        if (sfxOn) {
+            try {
+                sfxNoise(0.05, 2200 + Math.random() * 1500, 0.35, 0);
+                sfxTone(900 + Math.random() * 400, 300, 0.05, "sine", 0.06, 0);
+            } catch (e) {}
+        }
+
+        if (navigator.vibrate) {
+            try { navigator.vibrate(12); } catch (e) {}
+        }
+
+        const left = BUBBLE_COUNT - bubblesPopped;
+
+        document.getElementById("bubbleText").textContent =
+            left === 0
+                ? "Todas estouradas! Que sensação boa né? 😌"
+                : `${plural(left, "bolhinha", "bolhinhas")} ainda 🫧`;
+
+        if (left === 0) {
+            document.getElementById("bubbleNew").classList.remove("hidden");
+        }
+    }
+
+    /* --------------------------------------------------
+       🌧️ CANTINHO QUIETO
+    -------------------------------------------------- */
+
+    let quietStartedRain = false;
+
+    function startQuiet() {
+
+        cloneMMInto("quietMM", { blanket: true });
+
+        // chuvinha baixinha se o som estiver ligado
+        if (sfxOn && !careRainOn && !sleepPlaying) {
+
+            quietStartedRain = true;
+
+            sleepSound = "rain";
+            sleepMinutes = 0;
+
+            startSleepSound();
+        }
+    }
+
+    function stopQuiet() {
+
+        if (quietStartedRain) {
+
+            quietStartedRain = false;
+
+            if (!careRainOn && sleepPlaying) stopSleepSound(false);
+
+            sleepMinutes = 30;
+        }
+    }
+
+    /* --------------------------------------------------
+       💌 ABRE QUANDO...
+    -------------------------------------------------- */
+
+    // ✏️ As cartinhas (pode reescrever do seu jeitinho)
+    const CARE_LETTERS = [
+        {
+            id: "saudade", icon: "🥺", when: "estiver com saudade",
+            text: "Ei, saudade é só o amor fazendo barulho, sabia? 💗\n\nEu também tô sentindo, aqui de Londrina. Cada dia que passa é um dia a menos pra gente se ver.\n\nFecha o olho e imagina meu abraço bem apertado... tô aí com você."
+        },
+        {
+            id: "sozinha", icon: "😔", when: "se sentir sozinha",
+            text: "Você não tá sozinha, meu amor.\n\nMesmo quando parece, tem eu aqui, tem a Lia, tem a Fatiminha e tem um monte de gente que te ama muito.\n\nE se precisar, me chama. A qualquer hora. Sério. 🫂"
+        },
+        {
+            id: "suficiente", icon: "💭", when: "achar que não é suficiente",
+            text: "Você é suficiente. Do jeitinho que você é, hoje.\n\nNão precisa provar nada pra ninguém, muito menos pra mim.\n\nEu te escolho todos os dias, com tudo que você é. 🌷"
+        },
+        {
+            id: "ansiosa", icon: "😰", when: "estiver ansiosa",
+            text: "Ei, olha pra mim... tá tudo bem.\n\nA ansiedade fala alto, mas ela não sabe do futuro. Vamos cuidar só do agora, um passinho de cada vez.\n\nSe quiser, respira com a MM. Eu tô aqui. 💗"
+        },
+        {
+            id: "chorar", icon: "😢", when: "precisar chorar",
+            text: "Pode chorar, meu amor. Chorar não é fraqueza, é o coração se aliviando.\n\nQueria muito estar aí pra secar suas lágrimas e ficar quietinho do seu lado.\n\nQuando passar, toma uma água e lembra: eu te amo muito. 🥹"
+        },
+        {
+            id: "raiva", icon: "😤", when: "estiver com raiva",
+            text: "Pode ficar brava, tá? Sentimento nenhum é errado.\n\nRespira fundo, solta devagar... e se quiser desabafar, eu escuto tudo, sem julgar.\n\nDepois a gente pede uma comida gostosa e ri disso tudo 😌"
+        },
+        {
+            id: "diaruim", icon: "🌧️", when: "tiver um dia ruim",
+            text: "Dia ruim não é vida ruim, tá?\n\nAmanhã a gente começa de novo, do zero.\n\nHoje você só precisa descansar. O resto pode esperar. 🌈"
+        },
+        {
+            id: "dormir", icon: "🌙", when: "não conseguir dormir",
+            text: "Ei, dorminhoca que não tá conseguindo dormir 🌙\n\nDeita confortável, puxa a coberta e respira devagarinho.\n\nImagina eu fazendo cafuné no seu cabelo até você pegar no sono. Boa noite, meu amor."
+        }
+    ];
+
+    const LETTERS_KEY = "careLettersOpened";
+
+    function renderLetterList() {
+
+        const opened = readStore(LETTERS_KEY, []);
+
+        document.getElementById("letterList").innerHTML =
+            CARE_LETTERS.map(l => `
+                <button
+                    class="letter-envelope ${opened.includes(l.id) ? "opened" : ""}"
+                    onclick="openCareLetter('${l.id}')"
+                >
+                    <span class="le-seal">${l.icon}</span>
+                    <span class="le-text">Abre quando ${l.when}</span>
+                </button>
+            `).join("");
+    }
+
+    function openCareLetter(id) {
+
+        const letter = CARE_LETTERS.find(l => l.id === id);
+        const opened = readStore(LETTERS_KEY, []);
+
+        if (!opened.includes(id)) {
+            opened.push(id);
+            writeStore(LETTERS_KEY, opened);
+        }
+
+        document.getElementById("letterPaper").innerHTML =
+            `<b>Pra quando você ${escapeHtml(letter.when)} ${letter.icon}</b>` +
+            `<p>${escapeHtml(letter.text)}</p>` +
+            `<span class="lp-sign">Com todo o meu amor,<br>Gabriel 💗</span>`;
+
+        document.getElementById("letterList").classList.add("hidden");
+        document.getElementById("letterOpen").classList.remove("hidden");
+
+        document.getElementById("careModal").scrollTop = 0;
+
+        sfx("plim");
+    }
+
+    function closeCareLetter() {
+
+        document.getElementById("letterOpen").classList.add("hidden");
+        document.getElementById("letterList").classList.remove("hidden");
+
+        renderLetterList();
+    }
+
+    /* --------------------------------------------------
+       ⛵ CAIXINHA DAS PREOCUPAÇÕES
+    -------------------------------------------------- */
+
+    function resetWorry() {
+
+        document.getElementById("worryInput").value = "";
+        document.getElementById("worryForm").classList.remove("hidden");
+        document.getElementById("worryScene").classList.add("hidden");
+        document.getElementById("worryAgain").classList.add("hidden");
+        document.getElementById("worryText").textContent = "";
+
+        document.getElementById("worryBoat").classList.remove("sail");
+    }
+
+    function sailWorry() {
+
+        const input = document.getElementById("worryInput");
+
+        if (!input.value.trim()) {
+            input.focus();
+            document.getElementById("worryText").textContent =
+                "Pode escrever do jeito que vier, sem pensar muito 💗";
+            return;
+        }
+
+        // não guarda nada: só deixa ir 🌊
+        input.value = "";
+
+        cloneMMInto("worryMM");
+
+        document.getElementById("worryForm").classList.add("hidden");
+        document.getElementById("worryScene").classList.remove("hidden");
+
+        const boat = document.getElementById("worryBoat");
+
+        boat.classList.remove("sail");
+        void boat.offsetWidth;
+        boat.classList.add("sail");
+
+        document.getElementById("worryText").textContent =
+            "A MM tá soltando seu barquinho no laguinho... 🌊";
+
+        if (sfxOn) {
+            try { sfxNoise(1.2, 600, 0.12, 0, 300); } catch (e) {}
+        }
+
+        setTimeout(() => {
+
+            document.getElementById("worryText").innerHTML =
+                "Pronto. Por agora, deixa ele ir...<br>Você não precisa carregar isso sozinha 💗";
+
+            document.getElementById("worryAgain").classList.remove("hidden");
+
+        }, 4200);
+    }
+
+    /* --------------------------------------------------
+       🫙 POTE DE COISAS BOAS
+    -------------------------------------------------- */
+
+    const JAR_KEY = "careJar";
+
+    function getJar() {
+
+        return readStore(JAR_KEY, []);
+    }
+
+    function renderJar() {
+
+        const jar = getJar();
+
+        const stars = jar.slice(0, 40).map((_, i) => {
+            const left = 8 + ((i * 37) % 80);
+            const bottom = 4 + Math.floor(i / 6) * 9;
+            const rot = (i * 47) % 40 - 20;
+            return `<span style="left:${left}%;bottom:${bottom}%;transform:rotate(${rot}deg)">⭐</span>`;
+        }).join("");
+
+        document.getElementById("jarStars").innerHTML = stars;
+
+        document.getElementById("jarCount").textContent =
+            jar.length
+                ? `${plural(jar.length, "coisa boa guardada", "coisas boas guardadas")}`
+                : "o pote ainda tá vazio 🥺";
+
+        document.getElementById("jarOpenBtn").classList.toggle("hidden", !jar.length);
+    }
+
+    function addToJar() {
+
+        const input = document.getElementById("jarInput");
+        const text = input.value.trim();
+
+        if (!text) {
+            input.focus();
+            return;
+        }
+
+        const jar = getJar();
+
+        jar.unshift({ text, at: Date.now() });
+
+        writeStore(JAR_KEY, jar.slice(0, 200));
+
+        input.value = "";
+
+        renderJar();
+
+        const mem = document.getElementById("jarMemory");
+
+        mem.innerHTML = "Guardei no pote ⭐ Quando precisar, ela vai estar aqui te esperando 💗";
+        mem.classList.remove("hidden");
+
+        sfx("yay");
+    }
+
+    function openJarMemory() {
+
+        const jar = getJar();
+
+        if (!jar.length) return;
+
+        const m = pick(jar);
+        const mem = document.getElementById("jarMemory");
+
+        mem.innerHTML =
+            `<b>Uma coisa boa de ${new Date(m.at).toLocaleDateString("pt-BR")} ⭐</b>` +
+            `<p>${escapeHtml(m.text)}</p>` +
+            `<span class="lp-sign">Coisas boas acontecem com você 💗</span>`;
+
+        mem.classList.remove("hidden");
+
+        mem.style.animation = "none";
+        void mem.offsetWidth;
+        mem.style.animation = "";
+
+        sfx("plim");
+    }
+
+    /* --------------------------------------------------
+       📲 ME CHAMA (direct do Instagram)
+    -------------------------------------------------- */
+
+    // ✏️ Instagram do Gabriel (sem o @)
+    const GABRIEL_INSTAGRAM = "_.gab_liduuarioo";
+
+    const CALL_MESSAGE = "Ei, tô precisando de você 🥺";
+
+    async function callGabriel() {
+
+        careUsedTool = true;
+
+        const toast = document.getElementById("careCallToast");
+
+        let copied = false;
+
+        try {
+            await navigator.clipboard.writeText(CALL_MESSAGE);
+            copied = true;
+        } catch (e) {}
+
+        toast.innerHTML = copied
+            ? `Copiei a mensagem <b>"${CALL_MESSAGE}"</b> 💌<br>É só colar no direct e enviar. Eu vou correndo 🏃‍♂️💨`
+            : `Abrindo o direct do Gabriel... manda <b>"${CALL_MESSAGE}"</b> 💌`;
+
+        toast.classList.remove("hidden");
+
+        setCareSpeech("Vai lá, ele vai ficar muito feliz que você chamou 💗");
+
+        setTimeout(() => {
+            window.open(`https://ig.me/m/${GABRIEL_INSTAGRAM}`, "_blank", "noopener");
+        }, 700);
     }
 
 
@@ -13360,7 +14785,7 @@ Te amo muito.
         "siteTheme", "siteLightTheme", "siteSounds",
         "careChecklist",
         "loveQuestion", "lovePlaylist", "loveCapsule",
-        "mmDrawings"
+        "mmDrawings", "careJar", "careLettersOpened"
     ];
 
     const BACKUP_PREFIXES = ["birthdayVouchersUsed"];
