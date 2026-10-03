@@ -5047,6 +5047,201 @@
     }
 
     /* ==========================================
+       📖 NOSSAS MEMÓRIAS
+    ========================================== */
+
+    .memories-btn {
+        margin: -6px 0 22px;
+        padding: 10px 18px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--accent);
+    }
+
+    .author-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: var(--text-soft);
+    }
+
+    .author-chip {
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 14px;
+        background: var(--surface-solid);
+        border: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    .author-chip.active {
+        border-color: var(--accent);
+        background: var(--chip-bg);
+    }
+
+    .mem-inline-link {
+        margin-top: 14px;
+        padding: 6px 10px;
+        background: transparent;
+        color: var(--accent);
+        font-size: 14px;
+    }
+
+    .mem-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .mem-tab {
+        padding: 11px 8px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        color: var(--text);
+        font-size: 15px;
+    }
+
+    .mem-tab small {
+        display: inline-block;
+        min-width: 20px;
+        margin-left: 4px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        color: var(--chip-text);
+        font-size: 11px;
+    }
+
+    .mem-tab.active {
+        border-color: var(--accent);
+        background: var(--chip-bg);
+    }
+
+    .mem-list {
+        display: grid;
+        gap: 10px;
+        max-height: 55vh;
+        overflow-y: auto;
+        text-align: left;
+    }
+
+    .mem-card {
+        padding: 12px 16px 14px;
+        border-radius: 18px;
+        background-color: var(--paper);
+        background-image: repeating-linear-gradient(transparent 0 29px, var(--paper-line) 29px 30px);
+        box-shadow: inset 0 0 0 2px var(--border);
+        border-left: 5px solid #ff8fb8;
+        animation: careIn 0.5s ease;
+    }
+
+    .mem-card.gabriel {
+        border-left-color: #6c8fd6;
+    }
+
+    .mem-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+
+    .mem-head span:first-child {
+        color: var(--accent);
+    }
+
+    .mem-del {
+        margin-left: auto;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 12px;
+    }
+
+    .mem-del.armed {
+        background: #ffe1e1;
+        color: #c43c3c;
+    }
+
+    .mem-text {
+        margin-top: 4px;
+        font-family: "Caveat", cursive;
+        font-size: 22px;
+        line-height: 30px;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    /* ☁️ nuvem das memórias */
+
+    .cloud-status {
+        margin-top: 12px;
+        padding: 10px 14px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        font-size: 13px;
+        color: var(--text-soft);
+        line-height: 1.45;
+    }
+
+    .cloud-status.ok {
+        border-color: #9fd8b0;
+        background: rgba(200, 240, 210, 0.35);
+    }
+
+    .cloud-logout {
+        margin-left: 6px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 12px;
+        text-decoration: underline;
+    }
+
+    .cloud-login {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 2px dashed var(--border-strong);
+        display: grid;
+        gap: 8px;
+    }
+
+    .cloud-login-title {
+        font-weight: 600;
+        color: var(--accent);
+        font-size: 14px;
+    }
+
+    .cloud-login input {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .cloud-login .care-wide {
+        margin-top: 2px;
+    }
+
+    .cloud-msg {
+        font-size: 12px;
+        color: var(--text-muted);
+        min-height: 16px;
+    }
+
+    /* ==========================================
        RESPONSIVO
     ========================================== */
 
@@ -5748,6 +5943,13 @@
                 </div>
 
             </div>
+
+            <button
+                class="memories-btn"
+                onclick="openMemories()"
+            >
+                📖 Nossas memórias <span id="memCount"></span>
+            </button>
 
             <div id="loveContent"></div>
 
@@ -7093,6 +7295,53 @@
         >
             💾 Backup da MM
         </button>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     📖 MODAL — NOSSAS MEMÓRIAS
+================================================== -->
+
+<div
+    id="memoriesOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('memoriesOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Nossas memórias 📖
+        </h2>
+
+        <p class="fun-text">
+            Tudo que a gente já guardou nas nossas noites 💗
+        </p>
+
+        <div id="cloudBox"></div>
+
+        <div
+            id="memTabs"
+            class="mem-tabs"
+        ></div>
+
+        <div
+            id="memTitle"
+            class="mm-wardrobe-title"
+            style="margin-top: 14px;"
+        ></div>
+
+        <div
+            id="memList"
+            class="mem-list"
+        ></div>
 
     </div>
 
@@ -11115,11 +11364,6 @@ Te amo muito.
 
     function renderQuestion() {
 
-        const saved =
-            localStorage.getItem(
-                "loveQuestion"
-            ) || "";
-
         loveContent.innerHTML = `
 
             <div class="love-stage">
@@ -11140,10 +11384,12 @@ Te amo muito.
                         de novo? 🥹
                     </div>
 
+                    ${authorChipsHtml()}
+
                     <textarea
                         id="questionAnswer"
                         placeholder="Escreve aqui... 💗"
-                    >${escapeHtml(saved)}</textarea>
+                    ></textarea>
 
                     <br><br>
 
@@ -11157,6 +11403,8 @@ Te amo muito.
                 </div>
 
                 <div id="questionSaved"></div>
+
+                ${memoriesLinkHtml("question")}
 
             </div>
 
@@ -11182,10 +11430,7 @@ Te amo muito.
             return;
         }
 
-        localStorage.setItem(
-            "loveQuestion",
-            answer
-        );
+        addLoveMemory("question", answer);
 
         document.getElementById(
             "questionSaved"
@@ -11198,7 +11443,7 @@ Te amo muito.
                 <br><br>
 
                 Agora ela faz parte
-                da nossa noite.
+                das nossas memórias 📖
 
                 <br><br>
 
@@ -11763,11 +12008,6 @@ Te amo muito.
 
     function renderCapsule() {
 
-        const saved =
-            localStorage.getItem(
-                "loveCapsule"
-            ) || "";
-
         loveContent.innerHTML = `
 
             <div class="love-stage">
@@ -11787,10 +12027,12 @@ Te amo muito.
 
                 <div class="stage-box">
 
+                    ${authorChipsHtml()}
+
                     <textarea
                         id="capsuleInput"
                         placeholder="Uma mensagem para nós do futuro... 💗"
-                    >${escapeHtml(saved)}</textarea>
+                    ></textarea>
 
                     <br><br>
 
@@ -11804,6 +12046,8 @@ Te amo muito.
                 </div>
 
                 <div id="capsuleResult"></div>
+
+                ${memoriesLinkHtml("capsule")}
 
             </div>
 
@@ -11829,10 +12073,7 @@ Te amo muito.
             return;
         }
 
-        localStorage.setItem(
-            "loveCapsule",
-            message
-        );
+        addLoveMemory("capsule", message);
 
         document.getElementById(
             "capsuleResult"
@@ -12170,7 +12411,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -14785,7 +15026,8 @@ Te amo muito.
         "siteTheme", "siteLightTheme", "siteSounds",
         "careChecklist",
         "loveQuestion", "lovePlaylist", "loveCapsule",
-        "mmDrawings", "careJar", "careLettersOpened"
+        "mmDrawings", "careJar", "careLettersOpened",
+        "loveMemories", "loveAuthor"
     ];
 
     const BACKUP_PREFIXES = ["birthdayVouchersUsed"];
@@ -15933,6 +16175,452 @@ Te amo muito.
     }
 
     /* ==================================================
+       📖 NOSSAS MEMÓRIAS (respostas da Noite de Love)
+    ================================================== */
+
+    const LOVE_MEM_KEY = "loveMemories";
+    const LOVE_AUTHOR_KEY = "loveAuthor";
+
+    // ✏️ PASSO B (banco de dados): por enquanto fica vazio.
+    //    Quando você criar o Firebase, a configuração entra aqui
+    //    e as memórias passam a aparecer nos dois celulares.
+    const FIREBASE_CONFIG = {
+        apiKey: "AIzaSyDJhJnUJy9oRTTBDUhiStXYPr1qhajPhpc",
+        authDomain: "noite-de-love.firebaseapp.com",
+        projectId: "noite-de-love",
+        storageBucket: "noite-de-love.firebasestorage.app",
+        messagingSenderId: "706562207688",
+        appId: "1:706562207688:web:1b5af70347db8eb9b25afd"
+    };
+
+    const MEM_TYPES = {
+        question: {
+            icon: "💭",
+            tab: "Momentos",
+            title: "Momentos pra viver de novo",
+            empty: "Ainda não tem nenhum momento guardado 🥺"
+        },
+        capsule: {
+            icon: "💌",
+            tab: "Cápsula",
+            title: "Recados pro nosso futuro",
+            empty: "A cápsula ainda tá vazia... 🥹"
+        }
+    };
+
+    let memTab = "question";
+    let memDeleteArmed = null;
+
+    function getLoveMemories() {
+
+        let list = readStore(LOVE_MEM_KEY, null);
+
+        if (!Array.isArray(list)) {
+
+            // traz as respostas antigas (de antes de ter o histórico)
+            list = [];
+
+            try {
+
+                const oldQ = localStorage.getItem("loveQuestion");
+                const oldC = localStorage.getItem("loveCapsule");
+
+                if (oldC) list.push(makeMemory("capsule", oldC, "Diane"));
+                if (oldQ) list.push(makeMemory("question", oldQ, "Diane"));
+
+            } catch (e) {}
+
+            writeStore(LOVE_MEM_KEY, list);
+        }
+
+        return list;
+    }
+
+    function makeMemory(type, text, author) {
+
+        return {
+            id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+            type,
+            text,
+            author,
+            at: Date.now()
+        };
+    }
+
+    function getLoveAuthor() {
+
+        try {
+            return localStorage.getItem(LOVE_AUTHOR_KEY) || "Diane";
+        } catch (e) {
+            return "Diane";
+        }
+    }
+
+    function setLoveAuthor(name) {
+
+        try { localStorage.setItem(LOVE_AUTHOR_KEY, name); } catch (e) {}
+
+        document.querySelectorAll(".author-chip").forEach(b =>
+            b.classList.toggle("active", b.dataset.author === name));
+    }
+
+    function authorChipsHtml() {
+
+        const now = getLoveAuthor();
+
+        return `
+            <div class="author-row">
+                <span>Quem tá escrevendo?</span>
+                <button
+                    class="author-chip ${now === "Diane" ? "active" : ""}"
+                    data-author="Diane"
+                    onclick="setLoveAuthor('Diane')"
+                >💗 Diane</button>
+                <button
+                    class="author-chip ${now === "Gabriel" ? "active" : ""}"
+                    data-author="Gabriel"
+                    onclick="setLoveAuthor('Gabriel')"
+                >💙 Gabriel</button>
+            </div>
+        `;
+    }
+
+    function addLoveMemory(type, text) {
+
+        const entry = makeMemory(type, text, getLoveAuthor());
+        const list = getLoveMemories();
+
+        list.unshift(entry);
+
+        writeStore(LOVE_MEM_KEY, list);
+
+        cloudSaveMemory(entry);
+
+        updateMemCount();
+
+        return entry;
+    }
+
+    function updateMemCount() {
+
+        const el = document.getElementById("memCount");
+
+        if (!el) return;
+
+        const n = getLoveMemories().length;
+
+        el.textContent = n ? `(${n})` : "";
+    }
+
+    function memoriesLinkHtml(type) {
+
+        const n = getLoveMemories().filter(m => m.type === type).length;
+
+        if (!n) return "";
+
+        return `
+            <button
+                class="mem-inline-link"
+                onclick="openMemories('${type}')"
+            >
+                📖 Ver ${n === 1 ? "o que já guardamos" : `os ${n} que já guardamos`}
+            </button>
+        `;
+    }
+
+    function openMemories(tab) {
+
+        memTab = tab || memTab;
+        memDeleteArmed = null;
+
+        renderMemories();
+        renderCloudBox();
+
+        openFunModal("memoriesOverlay");
+    }
+
+    function setMemTab(tab) {
+
+        memTab = tab;
+        memDeleteArmed = null;
+
+        renderMemories();
+    }
+
+    function renderMemories() {
+
+        const all = getLoveMemories();
+
+        document.getElementById("memTabs").innerHTML =
+            Object.entries(MEM_TYPES).map(([key, t]) => {
+
+                const n = all.filter(m => m.type === key).length;
+
+                return `
+                    <button
+                        class="mem-tab ${key === memTab ? "active" : ""}"
+                        onclick="setMemTab('${key}')"
+                    >
+                        ${t.icon} ${t.tab} <small>${n}</small>
+                    </button>
+                `;
+
+            }).join("");
+
+        const type = MEM_TYPES[memTab];
+        const list = all.filter(m => m.type === memTab);
+
+        document.getElementById("memTitle").textContent = type.title;
+
+        document.getElementById("memList").innerHTML =
+            list.length
+                ? list.map(m => `
+                    <div class="mem-card ${m.author === "Gabriel" ? "gabriel" : "diane"}">
+                        <div class="mem-head">
+                            <span>${m.author === "Gabriel" ? "💙 Gabriel" : "💗 Diane"}</span>
+                            <span>${new Date(m.at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
+                            <button
+                                class="mem-del ${memDeleteArmed === m.id ? "armed" : ""}"
+                                onclick="deleteLoveMemory('${m.id}')"
+                                aria-label="Apagar"
+                            >${memDeleteArmed === m.id ? "apagar?" : "✕"}</button>
+                        </div>
+                        <div class="mem-text">${escapeHtml(m.text)}</div>
+                    </div>
+                `).join("")
+                : `<div class="empty">${type.empty}</div>`;
+    }
+
+    function deleteLoveMemory(id) {
+
+        // primeiro toque pergunta, segundo apaga
+        if (memDeleteArmed !== id) {
+            memDeleteArmed = id;
+            renderMemories();
+            return;
+        }
+
+        const list = getLoveMemories().filter(m => m.id !== id);
+
+        writeStore(LOVE_MEM_KEY, list);
+
+        cloudDeleteMemory(id);
+
+        memDeleteArmed = null;
+
+        renderMemories();
+        updateMemCount();
+    }
+
+    /* passo B: banco de dados (Firebase) ☁️ */
+
+    const LOVE_SYNCED_KEY = "loveMemSynced";
+    const LOVE_DELETED_KEY = "loveMemDeleted";
+
+    let loveCloudUser = null;
+    let loveCloudState = FIREBASE_CONFIG ? "loading" : "off";
+
+    function cloudReady() {
+
+        return !!(window.loveCloud && loveCloudUser);
+    }
+
+    function cloudSaveMemory(entry) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.save(entry)
+            .then(() => markSynced([entry.id]))
+            .catch(() => {});
+    }
+
+    function cloudDeleteMemory(id) {
+
+        if (!FIREBASE_CONFIG) return;
+
+        if (cloudReady()) {
+            window.loveCloud.remove(id).catch(() => rememberDeleted(id));
+        } else {
+            rememberDeleted(id);
+        }
+    }
+
+    function rememberDeleted(id) {
+
+        const del = readStore(LOVE_DELETED_KEY, []);
+
+        if (!del.includes(id)) del.push(id);
+
+        writeStore(LOVE_DELETED_KEY, del);
+    }
+
+    function markSynced(ids) {
+
+        const synced = new Set(readStore(LOVE_SYNCED_KEY, []));
+
+        ids.forEach(id => synced.add(id));
+
+        writeStore(LOVE_SYNCED_KEY, [...synced]);
+    }
+
+    // chamado pelo Firebase quando entra ou sai do login
+    function onCloudAuth(user) {
+
+        loveCloudUser = user || null;
+        loveCloudState = user ? "on" : "login";
+
+        if (user) {
+
+            // apaga na nuvem o que foi apagado sem internet
+            const del = readStore(LOVE_DELETED_KEY, []);
+
+            del.forEach(id => window.loveCloud.remove(id).catch(() => {}));
+
+            writeStore(LOVE_DELETED_KEY, []);
+        }
+
+        renderCloudBox();
+    }
+
+    // chamado pelo Firebase sempre que as memórias mudam na nuvem
+    function onCloudMemories(cloudList) {
+
+        const cloudIds = new Set(cloudList.map(m => m.id));
+        const synced = new Set(readStore(LOVE_SYNCED_KEY, []));
+        const deleted = new Set(readStore(LOVE_DELETED_KEY, []));
+        const local = getLoveMemories();
+
+        const toUpload = [];
+
+        local.forEach(m => {
+
+            if (cloudIds.has(m.id)) return;
+
+            // já esteve na nuvem e sumiu: alguém apagou no outro celular
+            if (synced.has(m.id)) return;
+
+            if (deleted.has(m.id)) return;
+
+            toUpload.push(m);
+        });
+
+        toUpload.forEach(m => {
+            window.loveCloud.save(m)
+                .then(() => markSynced([m.id]))
+                .catch(() => {});
+        });
+
+        const merged = [...cloudList, ...toUpload]
+            .filter(m => !deleted.has(m.id))
+            .sort((a, b) => b.at - a.at);
+
+        writeStore(LOVE_MEM_KEY, merged);
+        writeStore(LOVE_SYNCED_KEY, [...cloudIds]);
+
+        updateMemCount();
+
+        if (!document.getElementById("memoriesOverlay").classList.contains("hidden")) {
+            renderMemories();
+        }
+    }
+
+    function onCloudError(kind) {
+
+        loveCloudState = kind === "offline" ? "offline" : loveCloudState;
+
+        renderCloudBox();
+    }
+
+    function renderCloudBox() {
+
+        const box = document.getElementById("cloudBox");
+
+        if (!box) return;
+
+        if (loveCloudState === "off") {
+            box.innerHTML = "";
+            return;
+        }
+
+        if (loveCloudState === "loading") {
+            box.innerHTML = `<div class="cloud-status">☁️ Conectando com a nuvem...</div>`;
+            return;
+        }
+
+        if (loveCloudState === "offline") {
+            box.innerHTML = `<div class="cloud-status">📴 Sem conexão com a nuvem agora. Mostrando o que tá guardado neste celular.</div>`;
+            return;
+        }
+
+        if (loveCloudState === "on") {
+            box.innerHTML = `
+                <div class="cloud-status ok">
+                    ☁️ Sincronizado: as memórias aparecem nos dois celulares 💗
+                    <button class="cloud-logout" onclick="cloudLogout()">sair</button>
+                </div>
+            `;
+            return;
+        }
+
+        box.innerHTML = `
+            <div class="cloud-login">
+                <div class="cloud-login-title">☁️ Entra pra ver as memórias nos dois celulares</div>
+                <input id="cloudEmail" type="email" placeholder="E-mail" autocomplete="username">
+                <input id="cloudPass" type="password" placeholder="Senha" autocomplete="current-password"
+                    onkeydown="if (event.key === 'Enter') cloudLogin()">
+                <button class="primary-btn care-wide" onclick="cloudLogin()">Entrar 💗</button>
+                <div id="cloudMsg" class="cloud-msg">Só precisa entrar uma vez em cada celular.</div>
+            </div>
+        `;
+    }
+
+    async function cloudLogin() {
+
+        const email = document.getElementById("cloudEmail").value.trim();
+        const pass = document.getElementById("cloudPass").value;
+        const msg = document.getElementById("cloudMsg");
+
+        if (!email || !pass) {
+            msg.textContent = "Preenche o e-mail e a senha 💗";
+            return;
+        }
+
+        if (!window.loveCloud) {
+            msg.textContent = "A nuvem ainda tá carregando... tenta de novo em alguns segundinhos ☁️";
+            return;
+        }
+
+        msg.textContent = "Entrando... ☁️";
+
+        try {
+
+            await window.loveCloud.login(email, pass);
+
+            sfx("yay");
+
+        } catch (e) {
+
+            const code = (e && e.code) || "";
+
+            msg.textContent =
+                code.includes("invalid") || code.includes("wrong-password") || code.includes("user-not-found")
+                    ? "E-mail ou senha não batem 🥺 Confere e tenta de novo"
+                    : code.includes("too-many-requests")
+                        ? "Muitas tentativas... espera um pouquinho e tenta de novo 🙏"
+                        : code.includes("network")
+                            ? "Sem internet agora 📴"
+                            : "Não consegui entrar 🥺 (" + code + ")";
+        }
+    }
+
+    function cloudLogout() {
+
+        if (window.loveCloud) window.loveCloud.logout();
+    }
+
+    updateMemCount();
+
+    /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
     ================================================== */
 
@@ -16100,6 +16788,94 @@ Te amo muito.
             if (!draw.classList.contains("hidden")) drawWheel();
         });
     }
+
+</script>
+
+
+<!-- ==================================================
+     ☁️ FIREBASE — sincroniza as memórias da Noite de Love
+================================================== -->
+
+<script type="module">
+
+    const FB = "https://www.gstatic.com/firebasejs/10.12.2/";
+
+    (async () => {
+
+        if (!FIREBASE_CONFIG) return;
+
+        try {
+
+            const { initializeApp } = await import(FB + "firebase-app.js");
+
+            const {
+                getAuth,
+                onAuthStateChanged,
+                signInWithEmailAndPassword,
+                signOut
+            } = await import(FB + "firebase-auth.js");
+
+            const {
+                getFirestore,
+                collection,
+                doc,
+                setDoc,
+                deleteDoc,
+                onSnapshot,
+                query,
+                orderBy
+            } = await import(FB + "firebase-firestore.js");
+
+            const app = initializeApp(FIREBASE_CONFIG);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+
+            let stopListening = null;
+
+            window.loveCloud = {
+
+                login: (email, pass) =>
+                    signInWithEmailAndPassword(auth, email, pass),
+
+                logout: () => signOut(auth),
+
+                save: entry =>
+                    setDoc(doc(db, "memorias", entry.id), {
+                        type: entry.type,
+                        text: entry.text,
+                        author: entry.author,
+                        at: entry.at
+                    }),
+
+                remove: id => deleteDoc(doc(db, "memorias", id))
+            };
+
+            onAuthStateChanged(auth, user => {
+
+                if (stopListening) {
+                    stopListening();
+                    stopListening = null;
+                }
+
+                onCloudAuth(user);
+
+                if (!user) return;
+
+                stopListening = onSnapshot(
+                    query(collection(db, "memorias"), orderBy("at", "desc")),
+                    snap => onCloudMemories(
+                        snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    ),
+                    () => onCloudError("offline")
+                );
+            });
+
+        } catch (e) {
+
+            onCloudError("offline");
+        }
+
+    })();
 
 </script>
 
