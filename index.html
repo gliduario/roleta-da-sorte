@@ -5246,6 +5246,11 @@
         font-size: 12px;
     }
 
+    .jar-list {
+        margin-top: 12px;
+        max-height: 50vh;
+    }
+
     /* ==========================================
        RESPONSIVO
     ========================================== */
@@ -6607,6 +6612,17 @@
             <div
                 id="jarMemory"
                 class="letter-paper jar-memory hidden"
+            ></div>
+
+            <button
+                id="jarAllBtn"
+                class="secondary-btn care-wide hidden"
+                onclick="toggleJarList()"
+            ></button>
+
+            <div
+                id="jarList"
+                class="mem-list jar-list hidden"
             ></div>
 
         </div>
@@ -9388,6 +9404,8 @@
 
         if (tool === "jar") {
 
+            document.getElementById("jarList").classList.add("hidden");
+
             renderJar();
 
             document.getElementById("jarMemory").classList.add("hidden");
@@ -10137,6 +10155,68 @@
                 : "o pote ainda tá vazio 🥺";
 
         document.getElementById("jarOpenBtn").classList.toggle("hidden", !jar.length);
+
+        const allBtn = document.getElementById("jarAllBtn");
+        const listOpen = !document.getElementById("jarList").classList.contains("hidden");
+
+        allBtn.classList.toggle("hidden", !jar.length);
+        allBtn.textContent = listOpen
+            ? "Esconder as lembranças"
+            : `📜 Ver todas as lembranças (${jar.length})`;
+
+        if (listOpen) renderJarList();
+    }
+
+    let jarDeleteArmed = null;
+
+    function toggleJarList() {
+
+        jarDeleteArmed = null;
+
+        document.getElementById("jarList").classList.toggle("hidden");
+
+        renderJar();
+    }
+
+    function renderJarList() {
+
+        const jar = getJar();
+
+        document.getElementById("jarList").innerHTML =
+            jar.length
+                ? jar.map(m => `
+                    <div class="mem-card ${m.author === "Gabriel" ? "gabriel" : "diane"}">
+                        <div class="mem-head">
+                            <span>${m.author === "Gabriel" ? "💙 Gabriel" : "⭐ Diane"}</span>
+                            <span>${new Date(m.at).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })}</span>
+                            <button
+                                class="mem-del ${jarDeleteArmed === m.id ? "armed" : ""}"
+                                onclick="deleteJarItem('${m.id}')"
+                                aria-label="Apagar"
+                            >${jarDeleteArmed === m.id ? "apagar?" : "✕"}</button>
+                        </div>
+                        <div class="mem-text">${escapeHtml(m.text)}</div>
+                    </div>
+                `).join("")
+                : `<div class="empty">O pote ainda tá vazio 🥺</div>`;
+    }
+
+    function deleteJarItem(id) {
+
+        // primeiro toque pergunta, segundo apaga
+        if (jarDeleteArmed !== id) {
+            jarDeleteArmed = id;
+            renderJarList();
+            return;
+        }
+
+        writeStore(JAR_KEY, getJar().filter(m => m.id !== id));
+
+        cloudDrop("pote", id);
+
+        jarDeleteArmed = null;
+
+        renderJar();
     }
 
     function addToJar() {
