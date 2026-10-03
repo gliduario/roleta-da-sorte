@@ -6391,6 +6391,700 @@
     }
 
 
+    /* ==========================================
+       💌 CARTAS, 📬 ABRA QUANDO, 🌡️ SAUDADE, 💭 PENSEI, 🌹 CORTINA
+    ========================================== */
+
+    #home .love-feature {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 22px;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--surface-solid);
+        box-shadow: 0 1px 2px rgba(80, 40, 90, 0.05), 0 10px 28px -12px var(--shadow);
+        transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.3s ease, border-color 0.2s ease;
+    }
+
+    #home .love-feature:hover {
+        transform: translateY(-4px);
+        border-color: var(--border-strong);
+        box-shadow: 0 1px 2px rgba(80, 40, 90, 0.05), 0 20px 38px -14px var(--shadow);
+    }
+
+    #home .love-feature:active { transform: scale(0.97); transition-duration: 0.08s; }
+
+    #home .thermo-card,
+    #home .pensei-card { cursor: default; }
+
+    #home .thermo-card:active,
+    #home .pensei-card:active { transform: none; }
+
+    #home .letter-card {
+        background:
+            radial-gradient(circle at 100% 0%, var(--pink-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    #home .abra-card {
+        background:
+            radial-gradient(circle at 100% 0%, var(--blue-glow), transparent 55%),
+            var(--surface-solid);
+    }
+
+    #home .thermo-card {
+        background:
+            radial-gradient(circle at 0% 100%, rgba(255, 120, 140, 0.16), transparent 60%),
+            var(--surface-solid);
+    }
+
+    #home .pensei-card {
+        align-items: stretch;
+        background:
+            radial-gradient(circle at 50% 60%, var(--lilac-glow), transparent 60%),
+            var(--surface-solid);
+    }
+
+    #home .feature-icon {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 62px;
+        height: 62px;
+        margin-bottom: 14px;
+        font-size: 28px;
+        border-radius: 20px;
+        background: var(--surface-solid);
+        box-shadow: 0 8px 20px -8px var(--shadow);
+    }
+
+    #home .feature-icon.small {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        border-radius: 16px;
+        margin: 0;
+        flex: 0 0 auto;
+    }
+
+    #home .new-dot {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ff4f8b;
+        border: 3px solid var(--surface-solid);
+        display: none;
+        animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    #home .letter-card.has-new .new-dot { display: block; }
+
+    #home .letter-card.has-new .letter-icon { animation: letterWiggle 2.6s ease-in-out infinite; }
+
+    @keyframes letterWiggle {
+        0%, 80%, 100% { transform: rotate(0); }
+        85% { transform: rotate(-10deg); }
+        90% { transform: rotate(9deg); }
+        95% { transform: rotate(-4deg); }
+    }
+
+    #home .feature-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 5px;
+    }
+
+    #home .feature-desc {
+        font-size: 14px;
+        line-height: 1.45;
+        color: var(--text-soft);
+        margin-bottom: 12px;
+    }
+
+    #home .feature-chip {
+        margin-top: auto;
+        display: inline-block;
+        padding: 6px 13px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        color: var(--chip-text);
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+    }
+
+    #home .letter-card.has-new .feature-chip {
+        background: linear-gradient(135deg, #ff6aa8, #ff9a8b);
+        color: #ffffff;
+    }
+
+    #home .conn-grid { margin-top: 14px; }
+
+    #home .conn-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        margin-bottom: 14px;
+    }
+
+    #home .conn-head .feature-desc { margin: 0; }
+
+    #home .thermo {
+        position: relative;
+        width: 100%;
+        height: 26px;
+        margin: 4px 0 10px;
+    }
+
+    #home .thermo-track {
+        position: absolute;
+        inset: 5px 0 5px 14px;
+        border-radius: 999px;
+        background: var(--surface-tint);
+        overflow: hidden;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    #home .thermo-fill {
+        width: 0;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #8fd3ee, #b49cff 40%, #ff8fb8 70%, #ff4f6d);
+        background-size: 100% 100%;
+        transition: width 0.8s cubic-bezier(.34, 1.3, .64, 1);
+    }
+
+    #home .thermo-bulb {
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        filter: drop-shadow(0 3px 6px rgba(255, 60, 100, 0.35));
+    }
+
+    #home .thermo-bulb.full { animation: heartbeat 0.9s ease-in-out infinite; }
+
+    #home .conn-who {
+        font-size: 12.5px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+    }
+
+    #home .conn-btn {
+        width: 100%;
+        margin-top: auto;
+        padding: 12px;
+        font-size: 15px;
+        color: #ffffff;
+        background: linear-gradient(135deg, #8fb8ff, #ff8fb8);
+        box-shadow: 0 8px 18px rgba(255, 120, 170, 0.28);
+    }
+
+    #home .pensei-heart {
+        align-self: center;
+        width: 92px;
+        height: 92px;
+        padding: 0;
+        margin: 2px 0 12px;
+        font-size: 44px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #ffffff, #ffe0ee 60%, #ffc2d9);
+        box-shadow:
+            0 0 0 8px rgba(255, 143, 184, 0.16),
+            0 0 0 16px rgba(255, 143, 184, 0.08),
+            0 12px 26px rgba(255, 90, 150, 0.3);
+        animation: penseiPulse 2.4s ease-in-out infinite;
+    }
+
+    :root[data-theme="dark"] #home .pensei-heart { background: radial-gradient(circle at 35% 30%, #5a3a7a, #3b2a66 70%); }
+
+    @keyframes penseiPulse {
+        0%, 100% { box-shadow: 0 0 0 8px rgba(255, 143, 184, 0.16), 0 0 0 16px rgba(255, 143, 184, 0.08), 0 12px 26px rgba(255, 90, 150, 0.3); }
+        50% { box-shadow: 0 0 0 12px rgba(255, 143, 184, 0.2), 0 0 0 24px rgba(255, 143, 184, 0.06), 0 12px 26px rgba(255, 90, 150, 0.3); }
+    }
+
+    #home .pensei-card .conn-who { text-align: center; }
+
+    #home .conn-iam {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 11.5px;
+        color: var(--text-muted);
+    }
+
+    #home .conn-iam .author-chip {
+        padding: 4px 10px;
+        font-size: 11.5px;
+        border-radius: 999px;
+        background: var(--surface-tint);
+        color: var(--text-soft);
+        border: 1px solid transparent;
+    }
+
+    #home .conn-iam .author-chip.active {
+        background: var(--chip-bg);
+        color: var(--chip-text);
+        border-color: var(--border-strong);
+    }
+
+    .conn-burst {
+        position: fixed;
+        z-index: 7000;
+        pointer-events: none;
+        font-size: 22px;
+        transform: translate(-50%, -50%);
+        animation: connBurst 1.1s ease-out forwards;
+    }
+
+    @keyframes connBurst {
+        from { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+        to { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.3); }
+    }
+
+    .love-toast {
+        position: fixed;
+        left: 50%;
+        bottom: 26px;
+        z-index: 7500;
+        width: max-content;
+        max-width: min(92vw, 420px);
+        padding: 14px 20px;
+        border-radius: 20px;
+        font-size: 14.5px;
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: center;
+        color: #ffffff;
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        box-shadow: 0 16px 40px var(--btn-shadow);
+        opacity: 0;
+        transform: translate(-50%, 30px);
+        pointer-events: none;
+        transition: opacity 0.35s ease, transform 0.45s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .love-toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    /* 🌹 card da Noite de Love com veludo */
+
+    #home .love-card {
+        border-color: rgba(200, 40, 80, 0.35);
+        background:
+            radial-gradient(circle at 100% 0%, rgba(255, 70, 110, 0.22), transparent 55%),
+            radial-gradient(circle at 0% 100%, rgba(160, 20, 60, 0.12), transparent 60%),
+            var(--surface-solid);
+    }
+
+    #home .love-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+        transform: translateX(-120%);
+        animation: velvetShine 5s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes velvetShine {
+        0%, 60% { transform: translateX(-120%); }
+        100% { transform: translateX(120%); }
+    }
+
+    #home .love-card .love-title { color: #c2185b; }
+
+    :root[data-theme="dark"] #home .love-card .love-title { color: #ff8fb0; }
+
+    #home .love-card .love-icon {
+        background: linear-gradient(135deg, #7a0f2e, #b81d4a);
+        box-shadow: 0 8px 20px -6px rgba(180, 20, 70, 0.6);
+    }
+
+    .love-curtain {
+        position: fixed;
+        inset: 0;
+        z-index: 6000;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .curtain-side {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 51%;
+        background:
+            repeating-linear-gradient(90deg,
+                rgba(0, 0, 0, 0.28) 0px,
+                rgba(255, 255, 255, 0.06) 18px,
+                rgba(0, 0, 0, 0.22) 36px,
+                rgba(0, 0, 0, 0.34) 46px),
+            linear-gradient(180deg, #8f0f2f, #5c0620);
+        box-shadow: inset 0 -40px 60px rgba(0, 0, 0, 0.35);
+        transition: transform 1.1s cubic-bezier(.7, 0, .3, 1);
+    }
+
+    .curtain-side.left { left: 0; transform: translateX(-102%); border-right: 3px solid #d4a64a; }
+    .curtain-side.right { right: 0; transform: translateX(102%); border-left: 3px solid #d4a64a; }
+
+    .curtain-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background:
+            radial-gradient(circle at 25px 0, transparent 22px, #7a0c28 23px) 0 0 / 50px 60px repeat-x;
+        transform: translateY(-100%);
+        transition: transform 0.6s ease;
+        border-bottom: 3px solid #d4a64a;
+        filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+    }
+
+    .curtain-rose {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 74px;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s cubic-bezier(.34, 1.8, .64, 1) 0.6s;
+        filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4));
+    }
+
+    .love-curtain.closing .curtain-side.left,
+    .love-curtain.closing .curtain-side.right { transform: translateX(0); }
+    .love-curtain.closing .curtain-top { transform: translateY(0); }
+    .love-curtain.closing .curtain-rose { transform: translate(-50%, -50%) scale(1); }
+
+    .love-curtain.opening .curtain-side.left { transform: translateX(-102%); transition-duration: 1.2s; }
+    .love-curtain.opening .curtain-side.right { transform: translateX(102%); transition-duration: 1.2s; }
+    .love-curtain.opening .curtain-top { transform: translateY(-100%); transition-delay: 0.6s; }
+    .love-curtain.opening .curtain-rose { transform: translate(-50%, -50%) scale(0); transition-delay: 0s; transition-duration: 0.3s; }
+
+    /* 💌 envelope e carta */
+
+    .letter-modal { max-width: 460px; }
+
+    .dl-envelope {
+        --env-color: #ffb3cc;
+        position: relative;
+        width: 230px;
+        height: 150px;
+        margin: 40px auto 20px;
+        perspective: 800px;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .dl-envelope.gone {
+        display: none;
+    }
+
+    .env-back,
+    .env-front {
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+    }
+
+    .env-back { background: var(--env-color); filter: brightness(0.9); }
+    .env-back { background: color-mix(in srgb, var(--env-color) 75%, #000 8%); }
+
+    .env-sheet {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        top: 10px;
+        height: 120px;
+        border-radius: 8px;
+        background: repeating-linear-gradient(180deg, #fffdf8 0 18px, #f6dfe9 18px 19px);
+        transition: transform 0.8s cubic-bezier(.34, 1.3, .64, 1) 0.35s;
+    }
+
+    .env-front {
+        background:
+            linear-gradient(32deg, var(--env-color) 49.5%, transparent 50%) left bottom / 50% 100% no-repeat,
+            linear-gradient(-32deg, var(--env-color) 49.5%, transparent 50%) right bottom / 50% 100% no-repeat;
+        filter: brightness(1.04);
+        box-shadow: 0 16px 30px -12px rgba(120, 50, 90, 0.4);
+    }
+
+    .env-flap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 90px;
+        background: var(--env-color);
+        background: color-mix(in srgb, var(--env-color) 88%, #000 6%);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top center;
+        transition: transform 0.6s ease;
+        z-index: 3;
+    }
+
+    .env-seal {
+        position: absolute;
+        left: 50%;
+        top: 70px;
+        z-index: 4;
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        border-radius: 50%;
+        background: #e0457f;
+        box-shadow: 0 4px 10px rgba(150, 30, 80, 0.4);
+        transform: translateX(-50%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .dl-envelope.open .env-flap { transform: rotateX(180deg); z-index: 0; }
+    .dl-envelope.open .env-seal { opacity: 0; transform: translateX(-50%) scale(0.4); }
+    .dl-envelope.open .env-sheet { transform: translateY(-60px); }
+
+    .dl-paper {
+        position: relative;
+        margin: 10px 0 6px;
+        padding: 26px 24px 20px;
+        border-radius: 18px;
+        text-align: left;
+        color: #4a3a52;
+        background:
+            repeating-linear-gradient(180deg, transparent 0 31px, #f3d6e3 31px 32px),
+            #fffdf8;
+        background-position: 0 56px;
+        box-shadow: 0 14px 34px -14px rgba(120, 50, 90, 0.4);
+        animation: paperIn 0.6s cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    .dl-paper.pop { animation: paperIn 0.5s cubic-bezier(.34, 1.4, .64, 1); }
+
+    @keyframes paperIn {
+        from { opacity: 0; transform: translateY(30px) rotate(-1.5deg); }
+        to { opacity: 1; transform: none; }
+    }
+
+    .dl-date {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #c4497d;
+        margin-bottom: 8px;
+    }
+
+    .dl-text {
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 24px;
+        line-height: 32px;
+        white-space: pre-wrap;
+    }
+
+    .dl-sign {
+        margin-top: 10px;
+        text-align: right;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 24px;
+        color: #e0568f;
+    }
+
+    .letter-archive-wrap { margin-top: 16px; }
+
+    .letter-archive-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+    }
+
+    .letter-archive {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .letter-archive button {
+        padding: 7px 12px;
+        font-size: 12.5px;
+        border-radius: 999px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        color: var(--text-soft);
+    }
+
+    .letter-empty {
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .letter-writer-btn { width: 100%; margin-top: 14px; }
+
+    /* 📬 envelopes do abra quando */
+
+    .abra-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 14px;
+    }
+
+    .abra-env {
+        position: relative;
+        height: 112px;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 14px;
+        color: #4a3a52;
+        background: var(--env-color);
+        box-shadow: 0 10px 20px -10px rgba(100, 40, 80, 0.45);
+    }
+
+    .abra-flap {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.35);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .abra-seal {
+        position: absolute;
+        left: 50%;
+        top: 38px;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        transition: transform 0.3s cubic-bezier(.34, 1.8, .64, 1);
+    }
+
+    .abra-env:hover .abra-seal { transform: translateX(-50%) scale(1.15) rotate(-10deg); }
+
+    .abra-label {
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        bottom: 9px;
+        font-size: 12.5px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    /* ✍️ modo carteiro */
+
+    .writer-select,
+    .writer-text {
+        width: 100%;
+        margin: 6px 0 10px;
+        padding: 12px 14px;
+        font-family: inherit;
+        font-size: 15px;
+        border-radius: 14px;
+        border: 2px solid var(--border);
+        background: var(--surface-soft);
+        color: var(--text);
+    }
+
+    .writer-text { resize: vertical; font-family: "Caveat", "Fredoka", cursive; font-size: 21px; line-height: 1.35; }
+
+    .writer-msg { min-height: 20px; margin: 8px 0; font-size: 13px; color: var(--accent); }
+
+    .writer-list { display: grid; gap: 8px; text-align: left; max-height: 300px; overflow: auto; }
+
+    .writer-item {
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+    }
+
+    .writer-item-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    .writer-item-top button {
+        padding: 4px 10px;
+        font-size: 12px;
+        border-radius: 999px;
+        background: var(--surface-tint);
+        color: var(--text-soft);
+    }
+
+    .writer-item-text {
+        margin-top: 4px;
+        font-size: 13.5px;
+        color: var(--text-soft);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    @media (max-width: 650px) {
+
+        #home .letter-card,
+        #home .abra-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 14px;
+            align-items: center;
+            padding: 18px;
+        }
+
+        #home .letter-card .feature-icon,
+        #home .abra-card .feature-icon { grid-row: span 3; margin: 0; }
+
+        #home .letter-card .feature-chip,
+        #home .abra-card .feature-chip { justify-self: start; }
+
+        #home .conn-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        #home .thermo-card,
+        #home .pensei-card { padding: 16px 14px; }
+
+        #home .conn-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+        #home .conn-head .feature-title { font-size: 15.5px; }
+
+        #home .conn-head .feature-desc { font-size: 12.5px; }
+
+        #home .conn-btn { font-size: 13.5px; padding: 11px 6px; }
+
+        #home .pensei-heart { width: 76px; height: 76px; font-size: 36px; }
+
+        #home .conn-iam { flex-wrap: wrap; }
+    }
+
+
 </style>
 
 
@@ -6763,6 +7457,134 @@
             <div class="feature-grid">
 
                 <div
+                    id="letterCard"
+                    class="love-feature letter-card"
+                    onclick="openDailyLetter()"
+                >
+
+                    <span class="feature-icon letter-icon">
+                        💌
+                        <i class="new-dot"></i>
+                    </span>
+
+                    <div class="feature-title">
+                        Carta do dia
+                    </div>
+
+                    <div
+                        id="letterCardDesc"
+                        class="feature-desc"
+                    >
+                        Tem uma cartinha nova te esperando hoje 🥹
+                    </div>
+
+                    <span
+                        id="letterCardChip"
+                        class="feature-chip"
+                    >NOVA!</span>
+
+                </div>
+
+                <div
+                    class="love-feature abra-card"
+                    onclick="openAbraQuando()"
+                >
+
+                    <span class="feature-icon">📬</span>
+
+                    <div class="feature-title">
+                        Abra quando…
+                    </div>
+
+                    <div class="feature-desc">
+                        Um envelope pra cada momento: triste, com saudade, sem sono…
+                    </div>
+
+                    <span class="feature-chip">6 ENVELOPES</span>
+
+                </div>
+
+            </div>
+
+            <div class="feature-grid conn-grid">
+
+                <div class="love-feature thermo-card">
+
+                    <div class="conn-head">
+                        <span class="feature-icon small">🌡️</span>
+                        <div>
+                            <div class="feature-title">Termômetro de saudade</div>
+                            <div
+                                id="thermoText"
+                                class="feature-desc"
+                            >Zerado hoje... por enquanto 👀</div>
+                        </div>
+                    </div>
+
+                    <div class="thermo">
+                        <div class="thermo-track">
+                            <div
+                                id="thermoFill"
+                                class="thermo-fill"
+                            ></div>
+                        </div>
+                        <span
+                            id="thermoBulb"
+                            class="thermo-bulb"
+                        >❤️</span>
+                    </div>
+
+                    <div
+                        id="thermoWho"
+                        class="conn-who"
+                    ></div>
+
+                    <button
+                        id="thermoBtn"
+                        class="conn-btn"
+                        onclick="missYou()"
+                    >🥺 Tô com saudade</button>
+
+                </div>
+
+                <div class="love-feature pensei-card">
+
+                    <div class="conn-head">
+                        <span class="feature-icon small">💭</span>
+                        <div>
+                            <div class="feature-title">Pensei em você</div>
+                            <div
+                                id="penseiOther"
+                                class="feature-desc"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <button
+                        id="penseiBtn"
+                        class="pensei-heart"
+                        onclick="thoughtOfYou()"
+                        aria-label="Mandar um pensei em você"
+                    >💗</button>
+
+                    <div
+                        id="penseiMine"
+                        class="conn-who"
+                    ></div>
+
+                    <div class="conn-iam">
+                        Sou:
+                        <button class="author-chip" data-author="Diane" onclick="setConnAuthor('Diane')">Diane</button>
+                        <button class="author-chip" data-author="Gabriel" onclick="setConnAuthor('Gabriel')">Gabriel</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="feature-grid">
+
+                <div
                     id="bdayCard"
                     class="bday-card"
                     onclick="openBirthdayCapsule()"
@@ -6800,7 +7622,7 @@
 
                 <div
                     class="love-card"
-                    onclick="openLovePassword()"
+                    onclick="openLoveCurtain()"
                 >
 
                     <span class="lock">🔒</span>
@@ -9392,6 +10214,185 @@
 
     </div>
 
+</div>
+
+<!-- ==================================================
+     💌 MODAL — CARTA (do dia e "abra quando")
+================================================== -->
+
+<div
+    id="letterOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal letter-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('letterOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2
+            id="letterTitle"
+            class="fun-title"
+        >Carta do dia 💌</h2>
+
+        <div
+            id="letterEnvelope"
+            class="dl-envelope"
+        >
+            <div class="env-back"></div>
+            <div class="env-sheet"></div>
+            <div class="env-front"></div>
+            <div class="env-flap"></div>
+            <div class="env-seal">💗</div>
+        </div>
+
+        <div
+            id="dlPaper"
+            class="dl-paper hidden"
+        >
+            <div
+                id="letterDate"
+                class="dl-date"
+            ></div>
+            <p
+                id="letterText"
+                class="dl-text"
+            ></p>
+            <div class="dl-sign">— Gabriel 💗</div>
+        </div>
+
+        <div
+            id="letterArchiveWrap"
+            class="letter-archive-wrap"
+        >
+            <div class="letter-archive-title">Cartas anteriores</div>
+            <div
+                id="letterArchive"
+                class="letter-archive"
+            ></div>
+        </div>
+
+        <button
+            class="secondary-btn writer-only hidden letter-writer-btn"
+            onclick="openLetterWriter()"
+        >✍️ Escrever cartas (só você vê)</button>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     📬 MODAL — ABRA QUANDO…
+================================================== -->
+
+<div
+    id="abraOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('abraOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Abra quando… 📬
+        </h2>
+
+        <p class="fun-text">
+            Escolhe o envelope do seu momento. Tem uma mensagem minha guardada em cada um 💗
+        </p>
+
+        <div
+            id="abraGrid"
+            class="abra-grid"
+        ></div>
+
+        <button
+            class="secondary-btn writer-only hidden letter-writer-btn"
+            onclick="openLetterWriter()"
+        >✍️ Escrever cartas (só você vê)</button>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     ✍️ MODAL — MODO CARTEIRO (só aparece pro Gabriel)
+================================================== -->
+
+<div
+    id="letterWriterOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('letterWriterOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Modo carteiro ✍️
+        </h2>
+
+        <p class="fun-text">
+            As cartas do dia saem uma por dia, na ordem que você escrever.
+            As do "Abra quando…" ficam guardadas no envelope certo.
+        </p>
+
+        <select
+            id="writerTipo"
+            class="writer-select"
+        ></select>
+
+        <textarea
+            id="writerText"
+            class="writer-text"
+            rows="6"
+            maxlength="1500"
+            placeholder="Escreve aqui sua cartinha pra Diane..."
+        ></textarea>
+
+        <button
+            class="primary-btn"
+            style="width: 100%;"
+            onclick="saveWrittenLetter()"
+        >Guardar carta 💌</button>
+
+        <div
+            id="writerMsg"
+            class="writer-msg"
+        ></div>
+
+        <div
+            id="writerList"
+            class="writer-list"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- 🌹 cortina da Noite de Love -->
+
+<div
+    id="loveCurtain"
+    class="love-curtain hidden"
+    aria-hidden="true"
+>
+    <div class="curtain-side left"></div>
+    <div class="curtain-side right"></div>
+    <div class="curtain-top"></div>
+    <div class="curtain-rose">🌹</div>
 </div>
 
 <template id="babyTemplate">
@@ -14142,7 +15143,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -16905,7 +17906,7 @@ Te amo muito.
         "careChecklist",
         "loveQuestion", "lovePlaylist", "loveCapsule",
         "mmDrawings", "careJar", "careLettersOpened",
-        "loveMemories", "loveAuthor"
+        "loveMemories", "loveAuthor", "loveCartas", "cartasDia"
     ];
 
     const BACKUP_PREFIXES = ["birthdayVouchersUsed"];
@@ -18425,6 +19426,17 @@ Te amo muito.
             }
         },
 
+        cartas: {
+            get: () => getCartas(),
+            set: l => writeStore("loveCartas", l),
+            fields: c => ({ text: c.text, tipo: c.tipo || "dia", author: c.author || "Gabriel", at: c.at }),
+            order: "asc",
+            changed: () => {
+                updateLetterCard();
+                if (!document.getElementById("letterWriterOverlay").classList.contains("hidden")) renderWriterList();
+            }
+        },
+
         desenhos: {
             get: () => getDrawings().list,
             set: l => {
@@ -18791,6 +19803,9 @@ Te amo muito.
         });
 
         cloudListeners.push(window.loveCloud.listenState("vales", onCloudVales, err));
+        ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(connKey(n), d => onCloudConn(n, d), err)));
+
         Object.keys(SYNC_STATES).forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(n, d => onCloudState(n, d), err)));
     }
@@ -20355,6 +21370,710 @@ Te amo muito.
     try { updateHero(); } catch (e) {}
 
     setInterval(() => { try { updateHero(); } catch (e) {} }, 5000);
+
+    /* ==================================================
+       💌 CARTA DO DIA + 📬 ABRA QUANDO…
+       ✏️ Gabriel: dá pra editar as cartas daqui de baixo,
+       ou escrever novas pelo próprio site abrindo
+       o link com ?gabriel=escrever no seu celular.
+    ================================================== */
+
+    const DEFAULT_DAILY_LETTERS = [
+        "Bom dia, meu amor. Só passei aqui pra lembrar que você é a parte mais bonita do meu dia, mesmo quando a gente tá a 333 km de distância. Bebe água, come direitinho e lembra que tem alguém em Londrina que te ama muito.",
+        "Sabe o que eu mais gosto em você? Tudo. Mas hoje especificamente é o seu jeito de rir das coisas mais bobas. Eu poderia ouvir essa risada o dia inteiro kkkk",
+        "Se hoje o dia estiver pesado, respira fundo. Você já passou por tanta coisa e continua sendo essa pessoa incrível. Eu tenho muito orgulho de você, de verdade.",
+        "Hoje eu pensei em como seria acordar do seu lado todo dia. Spoiler: seria a melhor coisa do mundo. Um dia vai ser assim, eu prometo.",
+        "Você já parou pra pensar que de todas as pessoas do mundo, a gente se achou? Eu não acredito muito em sorte, mas com você eu acredito.",
+        "Carta curtinha hoje: eu te amo. Pronto. Agora vai lá ter um dia lindo 💗",
+        "Obrigado por ter paciência comigo, por me ouvir, por me escolher todo dia. Eu sei que namorar à distância não é fácil, mas com você vale cada quilômetro.",
+        "Lembrete oficial do seu namorado: você é linda, inteligente, engraçada e a futura esposa mais perfeita que existe. Não aceito discordância kkkk",
+        "Hoje eu queria só te dar um abraço daqueles demorados, sem falar nada. Como não dá, fica essa carta como abraço provisório 🫂",
+        "Às vezes eu fico pensando em tudo que a gente ainda vai viver junto. As viagens, as noites de filme, as brigas por causa do controle... mal posso esperar.",
+        "Se alguém te fizer sentir menos do que você é hoje, lembra: tem um capivaro em Londrina que acha você a coisa mais especial do universo.",
+        "Fato do dia: a MM disse que você é a pessoa favorita dela. Eu disse que você é a minha. Ela ficou com ciúme kkkk",
+        "Hoje é um bom dia pra você se tratar com o mesmo carinho que você trata as pessoas que ama. Você merece isso também, tá?",
+        "Eu amo nossas conversas aleatórias, nossas piadas internas e até nossos silêncios na chamada. Com você até o nada é bom.",
+        "Quando a saudade apertar hoje, olha pro céu. É o mesmo céu que eu tô olhando aqui. A gente tá mais perto do que parece.",
+        "Prometo te fazer rir, te ouvir, te esperar e te escolher. Hoje, amanhã e em todos os dias que vierem.",
+        "Você é minha pessoa. Simples assim. Não tem outra forma de explicar.",
+        "Só queria dizer que eu tô muito feliz de ter você. Do jeitinho que você é, com tudo que vem junto. Te amo, Diane."
+    ];
+
+    // ✏️ Mensagens do "Abra quando…" (o site sorteia uma de cada vez)
+    const ABRA_QUANDO = {
+        triste: {
+            title: "Abra quando estiver triste", icon: "🥺", color: "#9ec9ff",
+            msgs: [
+                "Ei, meu amor. Tudo bem não estar bem às vezes. Chora se precisar, depois respira fundo. Eu tô aqui, mesmo de longe, segurando sua mão em pensamento. Isso vai passar, e eu vou estar aqui quando passar.",
+                "Se eu pudesse, agora eu ia te puxar pra um abraço e ficar fazendo cafuné até você dormir. Como não dá, me liga? Eu quero ouvir sua voz, mesmo que seja chorando.",
+                "Lembra de todas as vezes que você achou que não ia conseguir e conseguiu? Essa é mais uma. Você é muito mais forte do que imagina."
+            ]
+        },
+        saudade: {
+            title: "Abra quando estiver com saudade", icon: "🥹", color: "#ffb3cc",
+            msgs: [
+                "Eu também tô com saudade. Muita. Mas cada dia que passa é um dia a menos pra gente se ver. E quando chegar, eu vou te abraçar tão forte que vai compensar tudo.",
+                "Fecha os olhos e imagina eu chegando de surpresa na sua porta. Agora segura essa sensação, porque um dia ela vai ser real de novo 💗",
+                "Saudade é só o amor fazendo barulho. E o nosso é bem barulhento kkkk"
+            ]
+        },
+        dormir: {
+            title: "Abra quando não conseguir dormir", icon: "🌙", color: "#b9a3f0",
+            msgs: [
+                "Deita, ajeita o travesseiro e respira devagar. Inspira contando até 4, segura, solta contando até 6. Imagina que eu tô do seu lado fazendo carinho no seu cabelo. Dorme bem, meu amor.",
+                "Pensamento bom pra dormir: um dia a gente vai dormir de conchinha e eu vou roubar o cobertor. Desculpa desde já kkkk. Boa noite 🌙",
+                "Desliga o celular (depois de ler isso kkkk) e descansa. Amanhã é um novo dia e eu vou estar aqui. Te amo."
+            ]
+        },
+        brava: {
+            title: "Abra quando estiver brava comigo", icon: "😤", color: "#ff9a8b",
+            msgs: [
+                "Ok, pode ficar brava, você tem esse direito kkkk. Mas lembra que eu te amo e que eu quero resolver. Me chama pra conversar quando quiser, tá?",
+                "Desculpa se eu fiz besteira. Eu sou meio lerdo às vezes, mas meu coração é todinho seu. Me dá uma chance de consertar? 🥺",
+                "Antes de me xingar: eu te amo. Agora pode xingar kkkk. Depois a gente conversa e fica tudo bem 💗"
+            ]
+        },
+        coragem: {
+            title: "Abra quando precisar de coragem", icon: "💪", color: "#ffd27d",
+            msgs: [
+                "Você consegue. Eu acredito em você mais do que em qualquer coisa. Vai lá e arrasa, que eu tô aqui torcendo igual torcida de final de campeonato.",
+                "Medo é normal. Coragem não é não ter medo, é ir mesmo assim. E você é a pessoa mais corajosa que eu conheço.",
+                "Respira, levanta a cabeça e lembra: independente do resultado, eu tenho orgulho de você."
+            ]
+        },
+        feliz: {
+            title: "Abra quando estiver feliz", icon: "🥳", color: "#9fdcb0",
+            msgs: [
+                "AAAA que bom!!! Me conta tudo! Sua felicidade é a minha também, você sabe disso né?",
+                "Guarda esse momento bem guardadinho no coração. Você merece cada pedacinho de alegria que tá sentindo.",
+                "Feliz assim você fica ainda mais linda. Aproveita muito, meu amor 💗"
+            ]
+        }
+    };
+
+    const LETTER_KEY = "loveCartas";
+
+    function getCartas() {
+
+        const list = readStore(LETTER_KEY, []);
+
+        return Array.isArray(list) ? list : [];
+    }
+
+    function isLetterWriter() {
+
+        return readStore("cartaWriter", false) === true;
+    }
+
+    // Gabriel abre o site com ?gabriel=escrever uma vez e o celular dele vira "modo carteiro"
+    (function checkWriterLink() {
+
+        try {
+            if (new URLSearchParams(window.location.search).get("gabriel") === "escrever") {
+                writeStore("cartaWriter", true);
+                try { localStorage.setItem("loveAuthor", "Gabriel"); } catch (e) {}
+            }
+        } catch (e) {}
+    })();
+
+    function allDailyLetters() {
+
+        const written = getCartas()
+            .filter(c => (c.tipo || "dia") === "dia")
+            .sort((a, b) => a.at - b.at)
+            .map(c => ({ id: c.id, text: c.text, mine: true }));
+
+        const defaults = DEFAULT_DAILY_LETTERS.map((t, i) => ({ id: "d" + (i + 1), text: t }));
+
+        return { written, defaults };
+    }
+
+    function letterById(id) {
+
+        const { written, defaults } = allDailyLetters();
+
+        return written.concat(defaults).find(l => l.id === id) || null;
+    }
+
+    // escolhe (uma vez por dia) a carta de hoje
+    function todaysLetter() {
+
+        const map = readStore("cartasDia", {});
+        const today = todayKey();
+
+        if (map[today] && letterById(map[today])) return letterById(map[today]);
+
+        const used = new Set(Object.values(map));
+        const { written, defaults } = allDailyLetters();
+
+        let next =
+            written.find(l => !used.has(l.id)) ||
+            defaults.find(l => !used.has(l.id));
+
+        if (!next) {
+
+            // já saíram todas: recomeça pela que saiu há mais tempo
+            const lastDay = {};
+
+            Object.entries(map).forEach(([d, id]) => { lastDay[id] = d; });
+
+            next = written.concat(defaults)
+                .sort((a, b) => (lastDay[a.id] || "").localeCompare(lastDay[b.id] || ""))[0];
+        }
+
+        map[today] = next.id;
+
+        writeStore("cartasDia", map);
+
+        return next;
+    }
+
+    function letterReadToday() {
+
+        return readStore("cartaLida", "") === todayKey();
+    }
+
+    function updateLetterCard() {
+
+        const card = document.getElementById("letterCard");
+
+        if (!card) return;
+
+        const unread = !letterReadToday();
+
+        card.classList.toggle("has-new", unread);
+
+        document.getElementById("letterCardDesc").textContent = unread
+            ? "Tem uma cartinha nova te esperando hoje 🥹"
+            : "Você já leu a de hoje. Amanhã chega outra 💗";
+
+        document.getElementById("letterCardChip").textContent = unread ? "NOVA!" : "LIDA ✓";
+    }
+
+    function formatDayKey(key) {
+
+        const [y, m, d] = key.split("-").map(Number);
+
+        return new Date(y, m - 1, d).toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
+    }
+
+    let letterOpening = false;
+
+    // mostra o envelope abrindo e depois a carta
+    function showLetter({ title, text, date, color }) {
+
+        const overlay = document.getElementById("letterOverlay");
+        const env = document.getElementById("letterEnvelope");
+        const paper = document.getElementById("dlPaper");
+
+        document.getElementById("letterTitle").textContent = title;
+        document.getElementById("letterText").textContent = text;
+        document.getElementById("letterDate").textContent = date || "";
+
+        env.style.setProperty("--env-color", color || "#ffb3cc");
+
+        env.classList.remove("open", "gone");
+        paper.classList.add("hidden");
+
+        openFunModal("letterOverlay");
+
+        letterOpening = true;
+
+        setTimeout(() => {
+            env.classList.add("open");
+            sfx("plim");
+        }, 450);
+
+        setTimeout(() => {
+            env.classList.add("gone");
+            paper.classList.remove("hidden");
+            letterOpening = false;
+        }, 1500);
+
+        renderLetterArchive();
+    }
+
+    function openDailyLetter() {
+
+        const letter = todaysLetter();
+
+        writeStore("cartaLida", todayKey());
+
+        updateLetterCard();
+
+        document.getElementById("letterArchiveWrap").classList.remove("hidden");
+
+        showLetter({
+            title: "Carta do dia 💌",
+            text: letter.text,
+            date: formatDayKey(todayKey()),
+            color: "#ffb3cc"
+        });
+
+        updateWriterButtons();
+    }
+
+    function renderLetterArchive() {
+
+        const box = document.getElementById("letterArchive");
+
+        if (!box) return;
+
+        const map = readStore("cartasDia", {});
+        const today = todayKey();
+
+        const past = Object.keys(map)
+            .filter(d => d < today)
+            .sort()
+            .reverse()
+            .slice(0, 30);
+
+        box.innerHTML = past.length
+            ? past.map(d => `<button onclick="openPastLetter('${d}')">💌 ${escapeHtml(formatDayKey(d))}</button>`).join("")
+            : `<span class="letter-empty">As cartas anteriores vão aparecer aqui 💗</span>`;
+    }
+
+    function openPastLetter(day) {
+
+        const map = readStore("cartasDia", {});
+        const letter = letterById(map[day]);
+
+        if (!letter) return;
+
+        document.getElementById("letterTitle").textContent = "Carta do dia 💌";
+        document.getElementById("letterText").textContent = letter.text;
+        document.getElementById("letterDate").textContent = formatDayKey(day);
+
+        const paper = document.getElementById("dlPaper");
+
+        paper.classList.remove("pop");
+        void paper.offsetWidth;
+        paper.classList.add("pop");
+
+        paper.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    /* 📬 abra quando… */
+
+    function openAbraQuando() {
+
+        const grid = document.getElementById("abraGrid");
+
+        grid.innerHTML = Object.entries(ABRA_QUANDO).map(([k, a]) => `
+            <button class="abra-env" style="--env-color:${a.color}" onclick="openAbra('${k}')">
+                <span class="abra-flap"></span>
+                <span class="abra-seal">${a.icon}</span>
+                <span class="abra-label">${a.title.replace("Abra quando ", "…")}</span>
+            </button>
+        `).join("");
+
+        updateWriterButtons();
+
+        openFunModal("abraOverlay");
+    }
+
+    function openAbra(kind) {
+
+        const a = ABRA_QUANDO[kind];
+        const seenKey = "abraVistas";
+        const seen = new Set(readStore(seenKey, []));
+
+        const written = getCartas()
+            .filter(c => c.tipo === kind)
+            .sort((x, y) => x.at - y.at)
+            .map(c => ({ id: c.id, text: c.text }));
+
+        const defaults = a.msgs.map((t, i) => ({ id: kind + i, text: t }));
+
+        // primeiro as que o Gabriel escreveu e ela ainda não leu, depois as outras
+        const pool = written.concat(defaults);
+        const fresh = pool.filter(m => !seen.has(m.id));
+        const pickOne = (fresh.length ? fresh : pool)[fresh.length ? 0 : Math.floor(Math.random() * pool.length)];
+
+        seen.add(pickOne.id);
+        writeStore(seenKey, [...seen]);
+
+        closeFunModal("abraOverlay");
+
+        document.getElementById("letterArchiveWrap").classList.add("hidden");
+
+        showLetter({ title: a.title + " " + a.icon, text: pickOne.text, color: a.color });
+    }
+
+    /* ✍️ modo carteiro (só no celular do Gabriel) */
+
+    function updateWriterButtons() {
+
+        document.querySelectorAll(".writer-only").forEach(el =>
+            el.classList.toggle("hidden", !isLetterWriter()));
+    }
+
+    function openLetterWriter() {
+
+        ["letterOverlay", "abraOverlay"].forEach(id => {
+            if (!document.getElementById(id).classList.contains("hidden")) closeFunModal(id);
+        });
+
+        const sel = document.getElementById("writerTipo");
+
+        sel.innerHTML = `<option value="dia">💌 Carta do dia</option>` +
+            Object.entries(ABRA_QUANDO).map(([k, a]) => `<option value="${k}">${a.icon} ${a.title}</option>`).join("");
+
+        renderWriterList();
+
+        openFunModal("letterWriterOverlay");
+    }
+
+    function saveWrittenLetter() {
+
+        const input = document.getElementById("writerText");
+        const text = input.value.trim();
+
+        if (!text) {
+            input.focus();
+            return;
+        }
+
+        const entry = {
+            id: newId(),
+            text,
+            tipo: document.getElementById("writerTipo").value,
+            author: "Gabriel",
+            at: Date.now()
+        };
+
+        const list = getCartas();
+
+        list.push(entry);
+
+        writeStore(LETTER_KEY, list);
+
+        cloudPush("cartas", entry);
+
+        input.value = "";
+
+        sfx("plim");
+
+        renderWriterList();
+
+        document.getElementById("writerMsg").textContent = "Guardada! 💌 Ela vai receber no tempo certo.";
+    }
+
+    let writerDeleteArm = null;
+
+    function deleteWrittenLetter(id) {
+
+        if (writerDeleteArm !== id) {
+            writerDeleteArm = id;
+            renderWriterList();
+            return;
+        }
+
+        writerDeleteArm = null;
+
+        writeStore(LETTER_KEY, getCartas().filter(c => c.id !== id));
+
+        cloudDrop("cartas", id);
+
+        renderWriterList();
+    }
+
+    function renderWriterList() {
+
+        const box = document.getElementById("writerList");
+        const used = new Set(Object.values(readStore("cartasDia", {})));
+        const list = getCartas().slice().sort((a, b) => b.at - a.at);
+
+        box.innerHTML = list.length
+            ? list.map(c => {
+
+                const kind = c.tipo || "dia";
+                const label = kind === "dia" ? "💌 Carta do dia" : ABRA_QUANDO[kind] ? ABRA_QUANDO[kind].icon + " " + ABRA_QUANDO[kind].title.replace("Abra quando ", "…") : kind;
+                const status = kind === "dia" ? (used.has(c.id) ? "já saiu" : "na fila") : "no envelope";
+
+                return `
+                    <div class="writer-item">
+                        <div class="writer-item-top">
+                            <span>${escapeHtml(label)} · <em>${status}</em></span>
+                            <button onclick="deleteWrittenLetter('${c.id}')">${writerDeleteArm === c.id ? "Apagar mesmo?" : "🗑️"}</button>
+                        </div>
+                        <div class="writer-item-text">${escapeHtml(c.text)}</div>
+                    </div>`;
+            }).join("")
+            : `<div class="letter-empty">Nenhuma carta escrita ainda. Enquanto isso, ela recebe as que já vêm no site 💗</div>`;
+    }
+
+    try { updateLetterCard(); } catch (e) {}
+
+    // virou o dia com o site aberto? avisa a carta nova
+    setInterval(() => { try { updateLetterCard(); } catch (e) {} }, 60000);
+
+    /* ==================================================
+       🌡️ TERMÔMETRO DE SAUDADE + 💭 PENSEI EM VOCÊ
+       (cada um salva o seu, e os dois veem os dois)
+    ================================================== */
+
+    // ✏️ quantos "tô com saudade" somados enchem o termômetro
+    const SAUDADE_MAX = 20;
+
+    function myName() {
+
+        return getLoveAuthor() === "Gabriel" ? "Gabriel" : "Diane";
+    }
+
+    function otherName() {
+
+        return myName() === "Gabriel" ? "Diane" : "Gabriel";
+    }
+
+    function connKey(name) {
+
+        return "conexao_" + name.toLowerCase();
+    }
+
+    function getConn(name) {
+
+        const c = readStore(connKey(name), null) || {};
+
+        // só vale o que é de hoje
+        if (c.day !== todayKey()) return { day: todayKey(), saudade: 0, pensei: 0, at: 0 };
+
+        return { saudade: 0, pensei: 0, ...c };
+    }
+
+    function saveMyConn(c) {
+
+        c.day = todayKey();
+        c.at = Date.now();
+
+        writeStore(connKey(myName()), c);
+
+        if (cloudReady()) {
+            window.loveCloud.setState(connKey(myName()), c).catch(() => {});
+        }
+    }
+
+    function updateConnCards() {
+
+        const me = getConn(myName());
+        const other = getConn(otherName());
+        const total = me.saudade + other.saudade;
+        const pct = Math.min(100, Math.round(total / SAUDADE_MAX * 100));
+
+        const fill = document.getElementById("thermoFill");
+
+        if (!fill) return;
+
+        fill.style.width = pct + "%";
+
+        document.getElementById("thermoBulb").classList.toggle("full", pct >= 100);
+
+        document.getElementById("thermoText").textContent = pct >= 100
+            ? "Transbordou!!! 🥹"
+            : total === 0 ? "Zerado hoje... por enquanto 👀" : `${pct}% de saudade hoje`;
+
+        document.getElementById("thermoWho").textContent =
+            `${myName() === "Diane" ? "Você" : "Diane"}: ${myName() === "Diane" ? me.saudade : other.saudade} · ` +
+            `${myName() === "Gabriel" ? "Você" : "Gabriel"}: ${myName() === "Gabriel" ? me.saudade : other.saudade}`;
+
+        document.getElementById("penseiMine").textContent =
+            me.pensei ? `Você pensou ${me.pensei === 1 ? "1 vez" : me.pensei + " vezes"} hoje` : "Você ainda não mandou hoje";
+
+        document.getElementById("penseiOther").textContent = other.pensei
+            ? `${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} pensou em você ${other.pensei === 1 ? "1 vez" : other.pensei + " vezes"} hoje 💗`
+            : `${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} ainda não mandou hoje`;
+
+        document.querySelectorAll(".conn-iam .author-chip").forEach(b =>
+            b.classList.toggle("active", b.dataset.author === myName()));
+    }
+
+    function missYou() {
+
+        const me = getConn(myName());
+        const before = me.saudade + getConn(otherName()).saudade;
+
+        me.saudade++;
+
+        saveMyConn(me);
+
+        sfx("kiu");
+
+        const btn = document.getElementById("thermoBtn");
+
+        connBurst(btn, "🥺");
+
+        updateConnCards();
+
+        if (before < SAUDADE_MAX && before + 1 >= SAUDADE_MAX) {
+
+            setTimeout(() => {
+                createConfetti();
+                loveToast(myName() === "Diane"
+                    ? "A saudade transbordou! 🥹 O Gabriel também tá morrendo de saudade, viu? Cada dia é um a menos 💗"
+                    : "A saudade transbordou! 🥹 A Diane também tá com saudade de você 💗");
+            }, 300);
+        }
+    }
+
+    function thoughtOfYou() {
+
+        const me = getConn(myName());
+
+        me.pensei++;
+
+        saveMyConn(me);
+
+        sfx("plim");
+
+        connBurst(document.getElementById("penseiBtn"), "💭");
+
+        updateConnCards();
+
+        loveToast(`💭 Enviado! ${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} vai ver que você pensou nele${otherName() === "Diane" ? "a" : ""} 💗`);
+    }
+
+    function connBurst(el, emoji) {
+
+        if (!el) return;
+
+        const r = el.getBoundingClientRect();
+
+        for (let i = 0; i < 6; i++) {
+
+            const s = document.createElement("span");
+
+            s.className = "conn-burst";
+            s.textContent = i % 2 ? "💗" : emoji;
+            s.style.left = (r.left + r.width / 2) + "px";
+            s.style.top = (r.top + r.height / 2) + "px";
+            s.style.setProperty("--dx", (Math.random() * 140 - 70) + "px");
+            s.style.setProperty("--dy", (-60 - Math.random() * 80) + "px");
+
+            document.body.appendChild(s);
+
+            setTimeout(() => s.remove(), 1200);
+        }
+    }
+
+    let loveToastTimer = null;
+
+    function loveToast(text) {
+
+        let t = document.getElementById("loveToast");
+
+        if (!t) {
+            t = document.createElement("div");
+            t.id = "loveToast";
+            t.className = "love-toast";
+            document.body.appendChild(t);
+        }
+
+        t.textContent = text;
+        t.classList.remove("show");
+        void t.offsetWidth;
+        t.classList.add("show");
+
+        clearTimeout(loveToastTimer);
+
+        loveToastTimer = setTimeout(() => t.classList.remove("show"), 4200);
+    }
+
+    // chegou atualização do outro celular
+    function onCloudConn(name, data) {
+
+        if (!data || name === myName()) {
+
+            // o meu: se a nuvem não tiver o de hoje (ou tiver menos), sobe o deste celular
+            if (name === myName()) {
+                const mine = getConn(myName());
+                const cloudToday = data && data.day === todayKey();
+                if ((mine.saudade || mine.pensei) &&
+                    (!cloudToday || (data.saudade || 0) < mine.saudade || (data.pensei || 0) < mine.pensei)) {
+                    if (!cloudToday || ((data.saudade || 0) <= mine.saudade && (data.pensei || 0) <= mine.pensei)) {
+                        saveMyConn(mine);
+                        return;
+                    }
+                }
+            }
+
+            // o meu: se a nuvem tiver mais (ex.: outro aparelho meu), fica o maior
+            if (data && name === myName() && data.day === todayKey()) {
+                const me = getConn(myName());
+                if ((data.saudade || 0) > me.saudade || (data.pensei || 0) > me.pensei) {
+                    writeStore(connKey(name), {
+                        ...me,
+                        saudade: Math.max(me.saudade, data.saudade || 0),
+                        pensei: Math.max(me.pensei, data.pensei || 0),
+                        day: todayKey()
+                    });
+                    updateConnCards();
+                }
+            }
+
+            return;
+        }
+
+        const before = getConn(name);
+
+        writeStore(connKey(name), data);
+
+        const after = getConn(name);
+
+        if (after.pensei > before.pensei) {
+
+            sfx("plim");
+
+            loveToast(`💭 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} acabou de pensar em você! 💗`);
+
+            connBurst(document.getElementById("penseiBtn") || document.body, "💗");
+        }
+
+        updateConnCards();
+    }
+
+    function setConnAuthor(name) {
+
+        setLoveAuthor(name);
+
+        updateConnCards();
+    }
+
+    try { updateConnCards(); } catch (e) {}
+
+    setInterval(() => { try { updateConnCards(); } catch (e) {} }, 60000);
+
+    /* ==================================================
+       🌹 NOITE DE LOVE: cortina de veludo
+    ================================================== */
+
+    let curtainBusy = false;
+
+    function openLoveCurtain() {
+
+        if (curtainBusy) return;
+
+        curtainBusy = true;
+
+        const c = document.getElementById("loveCurtain");
+
+        c.classList.remove("hidden", "opening");
+        void c.offsetWidth;
+        c.classList.add("closing");
+
+        sfx("whoosh");
+
+        setTimeout(() => {
+            c.classList.remove("closing");
+            c.classList.add("opening");
+            openLovePassword();
+        }, 1300);
+
+        setTimeout(() => {
+            c.classList.add("hidden");
+            c.classList.remove("opening");
+            curtainBusy = false;
+        }, 2500);
+    }
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
