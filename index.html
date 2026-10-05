@@ -30455,7 +30455,7 @@ Te amo muito.
         const todayLine = `
             <div class="wish-today">
                 <span class="${meDone ? "ok" : ""}">${meDone ? "✓" : "🌠"} Você ${meDone ? "já fez o desejo de hoje" : "ainda pode fazer 1 desejo hoje"}</span>
-                <span class="${otherDone ? "ok" : ""}">${otherDone ? "✓" : "⏳"} ${otherDone ? `${ow[0].toUpperCase() + ow.slice(1)} já fez o dele${otherName() === "Diane" ? "a" : ""}` : `${ow[0].toUpperCase() + ow.slice(1)} ainda pode fazer o dele${otherName() === "Diane" ? "a" : ""}`}</span>
+                <span class="${otherDone ? "ok" : ""}">${otherDone ? "✓" : "⏳"} ${ow[0].toUpperCase() + ow.slice(1)} ${otherDone ? "já fez" : "ainda pode fazer"} o ${otherName() === "Diane" ? "dela" : "dele"}</span>
             </div>`;
 
         return todayLine + Object.keys(byMonth).sort().reverse().map(mk => {
