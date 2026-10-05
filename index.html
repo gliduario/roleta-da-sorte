@@ -10249,6 +10249,190 @@
         border: 1px solid rgba(255, 106, 154, 0.4);
     }
 
+    /* 🔥 cantinho: início com cartões + seções */
+
+    .hot-top { gap: 8px; }
+    .hot-top .hot-title { flex: 1; min-width: 0; }
+
+    .hot-back,
+    .hot-help-btn {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 22px;
+        line-height: 1;
+        color: #ffd0e0;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hot-back { font-size: 28px; padding-bottom: 3px; }
+    .hot-help-btn { font-size: 17px; font-weight: 700; }
+    .hot-help-btn.on { background: #ff4f8b; color: #fff; border-color: transparent; }
+
+    .hot-home {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 4px;
+    }
+
+    .hot-home-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        min-height: 132px;
+        padding: 16px 14px 14px;
+        text-align: left;
+        border-radius: 20px;
+        color: #fbe9f0;
+        background:
+            radial-gradient(90% 70% at 100% 0%, rgba(255, 90, 140, 0.18), transparent 70%),
+            rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 140, 180, 0.18);
+        transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), border-color 0.2s;
+    }
+
+    .hot-home-card:active { transform: scale(0.97); }
+    .hot-home-card.has-new { border-color: rgba(255, 90, 150, 0.7); box-shadow: 0 0 0 1px rgba(255, 90, 150, 0.3), 0 10px 26px -12px rgba(255, 60, 130, 0.7); }
+    .hot-home-card.wide { grid-column: 1 / -1; min-height: 0; }
+
+    .hot-home-icon {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        margin-bottom: 4px;
+        font-size: 24px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hot-home-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding-right: 30px; }
+    .hot-home-card.row { flex-direction: row; align-items: center; gap: 12px; }
+    .hot-home-card.row .hot-home-icon { margin-bottom: 0; }
+    .hot-home-card.row .hot-home-badge { top: calc(50% - 11px); }
+
+    .hot-home-title { font-size: 16px; font-weight: 700; color: #ffd0e0; }
+    .hot-home-line { font-size: 12.5px; line-height: 1.35; color: rgba(255, 220, 232, 0.75); }
+    .hot-home-card.has-new .hot-home-line { color: #ff9cc2; font-weight: 600; }
+
+    .hot-home-badge {
+        position: absolute;
+        top: 14px;
+        right: 12px;
+        min-width: 24px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+        color: #fff;
+        background: #ff4f8b;
+        animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    .hot-home-steps {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .hot-home-steps span {
+        padding: 4px 9px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(255, 220, 232, 0.8);
+    }
+
+    .hot-home-steps span.todo { background: rgba(255, 79, 139, 0.25); color: #fff; }
+    .hot-home-steps span.ready { background: rgba(120, 220, 160, 0.18); color: #b8f0cc; }
+    .hot-home-steps i { font-style: normal; opacity: 0.5; }
+
+    .hot-help {
+        position: relative;
+        margin-bottom: 14px;
+        padding: 14px 14px 12px;
+        border-radius: 16px;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: rgba(255, 230, 240, 0.92);
+        background: rgba(255, 79, 139, 0.12);
+        border: 1px solid rgba(255, 106, 154, 0.3);
+        animation: reasonPop 0.35s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .hot-help button {
+        display: block;
+        margin: 10px 0 0 auto;
+        padding: 7px 14px;
+        font-size: 13px;
+        border-radius: 999px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hot-stepper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 14px;
+    }
+
+    .hot-step {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 10px 4px 9px;
+        border-radius: 16px;
+        color: rgba(255, 220, 232, 0.75);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-step-n {
+        display: grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hot-step-label { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+    .hot-step small { font-size: 11px; opacity: 0.8; text-align: center; }
+
+    .hot-step.on { color: #fff; background: linear-gradient(135deg, #c4386e, #8a1d4c); border-color: transparent; }
+    .hot-step.on .hot-step-n { background: #fff; color: #8a1d4c; }
+    .hot-step.todo:not(.on) small { color: #ff9cc2; font-weight: 700; opacity: 1; }
+
+    .hot-next {
+        width: 100%;
+        margin-top: 20px;
+        padding: 14px;
+        font-size: 14.5px;
+        border-radius: 16px;
+        color: #ffd0e0;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px dashed rgba(255, 140, 180, 0.4);
+    }
+
+    .hot-signal.hidden,
+    .hot-clima.hidden { display: none; }
+
     /* 6 abas no cantinho */
 
     .hot-tabs { grid-template-columns: repeat(3, 1fr); }
@@ -14432,7 +14616,19 @@
     <div class="fun-modal hot-modal">
 
         <div class="hot-top">
-            <div class="hot-title">Só nós dois <span>🔥</span></div>
+            <button
+                id="hotBack"
+                class="hot-back hidden"
+                onclick="hotGoHome()"
+                aria-label="Voltar pro cantinho"
+            >‹</button>
+            <div id="hotTitle" class="hot-title">Só nós dois <span>🔥</span></div>
+            <button
+                id="hotHelpBtn"
+                class="hot-help-btn hidden"
+                onclick="toggleHotHelp()"
+                aria-label="Como funciona"
+            >?</button>
             <button
                 class="bday-close-x hot-exit"
                 onclick="closeHot()"
@@ -14449,27 +14645,6 @@
             id="hotClima"
             class="hot-clima"
         ></div>
-
-        <div class="hot-tabs">
-            <button class="hot-tab on" data-tab="sussurro" onclick="setHotTab('sussurro')">
-                🤫 Sussurros <i id="hotTabWhisperCount"></i>
-            </button>
-            <button class="hot-tab" data-tab="frase" onclick="setHotTab('frase')">
-                ✍️ Frases <i id="hotTabFraseCount"></i>
-            </button>
-            <button class="hot-tab" data-tab="quero" onclick="setHotTab('quero')">
-                💞 Quero
-            </button>
-            <button class="hot-tab" data-tab="limites" onclick="setHotTab('limites')">
-                🛡️ Combinados
-            </button>
-            <button class="hot-tab" data-tab="dados" onclick="setHotTab('dados')">
-                🎲 Dados
-            </button>
-            <button class="hot-tab" data-tab="pedidos" onclick="setHotTab('pedidos')">
-                🙏 Me pede <i id="hotTabPedidoCount"></i>
-            </button>
-        </div>
 
         <div
             id="hotBody"
@@ -27329,6 +27504,9 @@ Te amo muito.
 
             if (id === "goodnightOverlay") { closeGoodnight(); return; }
 
+            // no "só nós dois": de dentro de uma seção, volta pro início do cantinho
+            if (id === "hotOverlay" && hotTab !== "home") { hotGoHome(); return; }
+
             // no cantinho do coração: de uma telinha de dentro, volta pro cantinho
             if (id === "comfortModal") {
                 const view = document.getElementById("careModal").dataset.view;
@@ -28154,7 +28332,9 @@ Te amo muito.
 
     let hotRows = [];
     let hotStop = null;
-    let hotTab = "sussurro";
+    let hotTab = "home";       // home | sussurro | frase | lista | pedidos
+    let hotStep = "quero";     // dentro da "Nossa lista": quero | limites | dados
+    let hotHelpOpen = false;
     let hotError = null;
     let hotPlaying = null;
     let hotDeleteArm = null;
@@ -28281,6 +28461,8 @@ Te amo muito.
         if (!hotStop) startHotSync();
 
         hotPlaying = null;
+        hotTab = "home";
+        hotHelpOpen = false;
 
         renderHot();
 
@@ -28304,34 +28486,227 @@ Te amo muito.
         if (document.hidden && !document.getElementById("hotOverlay").classList.contains("hidden")) closeHot();
     });
 
+    const HOT_SECTIONS = {
+        sussurro: { icon: "🤫", title: "Sussurros" },
+        frase: { icon: "✍️", title: "Frases" },
+        lista: { icon: "💞", title: "Nossa lista" },
+        pedidos: { icon: "🙏", title: "Me pede" }
+    };
+
+    const HOT_STEPS = [
+        { key: "quero", n: 1, icon: "💞", label: "Querem" },
+        { key: "limites", n: 2, icon: "🛡️", label: "Combinados" },
+        { key: "dados", n: 3, icon: "🎲", label: "Dados" }
+    ];
+
+    // ✏️ ajudinhas do "?" (aparecem sozinhas só na primeira vez)
+    function hotHelpText(key) {
+
+        const o = hotWho(otherName());
+
+        return {
+            sussurro: `Escreve uma mensagem e ela aparece <b>letra por letra</b> no celular d${o.slice(0, 1) === "o" ? "ele" : "ela"}, como se fosse no ouvido. Se marcar "sumir depois de ouvir", ela se apaga sozinha 🤫`,
+            frase: `Você começa uma frase e ${o} termina do jeito que quiser. Depois os dois veem a frase completa ✍️`,
+            quero: `<b>Passo 1.</b> Coloquem ideias na lista e cada um marca escondido: Quero, Talvez ou Não. <b>Ninguém vê o que o outro marcou</b>, só aparece em cima o que os dois quiserem 💞`,
+            limites: `<b>Passo 2.</b> Aqui vocês combinam os limites. Cada um marca o seu e o app mostra o que <b>os dois topam</b>, o que é bom <b>conversar antes</b> e o que fica <b>fora</b>. Ninguém fica sabendo quem disse não 🤍`,
+            dados: `<b>Passo 3.</b> Cada um marca as faces que "Entram ✅". Só caem nos dados as faces que <b>os dois</b> liberaram, e a rolagem aparece nos dois celulares ao mesmo tempo 🎲`,
+            pedidos: `Pede alguma coisa pr${o.slice(0, 1) === "o" ? "o" : "a"} ${otherName()} (uma foto, um áudio, uma chamada…) e ${o} responde: Feito, Mais tarde ou Hoje não 🙏`
+        }[key] || "";
+    }
+
+    function hotHelpKey() {
+
+        return hotTab === "lista" ? hotStep : hotTab;
+    }
+
+    function hotHelpSeen(key) {
+
+        try { return localStorage.getItem("hotAjuda_" + key) === "1"; } catch (e) { return true; }
+    }
+
+    function hotHelpMarkSeen(key) {
+
+        try { localStorage.setItem("hotAjuda_" + key, "1"); } catch (e) {}
+    }
+
+    function toggleHotHelp() {
+
+        hotHelpOpen = !hotHelpOpen;
+
+        if (!hotHelpOpen) hotHelpMarkSeen(hotHelpKey());
+
+        const box = document.getElementById("hotHelp");
+
+        if (box) box.classList.toggle("hidden", !hotHelpOpen);
+
+        document.getElementById("hotHelpBtn").classList.toggle("on", hotHelpOpen);
+    }
+
+    function hotHelpHtml() {
+
+        const key = hotHelpKey();
+
+        return `
+            <div id="hotHelp" class="hot-help ${hotHelpOpen ? "" : "hidden"}">
+                <div>${hotHelpText(key)}</div>
+                <button onclick="toggleHotHelp()">Entendi 💗</button>
+            </div>`;
+    }
+
     function setHotTab(t) {
+
+        if (["quero", "limites", "dados"].includes(t)) {
+            hotStep = t;
+            t = "lista";
+        }
 
         hotTab = t;
         hotPlaying = null;
+        hotHelpOpen = t !== "home" && !hotHelpSeen(hotHelpKey());
 
         renderHot();
+
+        const modal = document.querySelector("#hotOverlay .hot-modal");
+
+        if (modal) modal.scrollTop = 0;
+    }
+
+    function setHotStep(step) {
+
+        setHotTab(step);
+    }
+
+    function hotGoHome() {
+
+        setHotTab("home");
+    }
+
+    /* resumo da "Nossa lista" (pros cartões e pro passo a passo) */
+
+    function hotListaStatus() {
+
+        const me = myName();
+        const other = otherName();
+
+        const ideas = hotOfType("ideia");
+        const im = hotMarks(me), it = hotMarks(other);
+        const matches = ideas.filter(i => im[i.id] === "sim" && it[i.id] === "sim").length;
+        const ideasToMark = ideas.filter(i => !im[i.id]).length;
+
+        const lim = hotOfType("limite");
+        const lm = hotLimitMarks(me), lt = hotLimitMarks(other);
+        const limYes = lim.filter(i => lm[i.id] === "topo" && lt[i.id] === "topo").length;
+        const limToMark = lim.filter(i => !lm[i.id]).length;
+
+        const faces = hotOfType("dado");
+        const dm = diceMarks(me);
+        const facesToMark = faces.filter(f => !dm[f.id]).length;
+        const diceReady = diceFaces("acao").some(diceAllowed) && diceFaces("como").some(diceAllowed);
+
+        return {
+            quero: { sub: ideasToMark ? `${ideasToMark} pra marcar` : matches ? `${matches} em comum` : ideas.length ? "nada em comum ainda" : "lista vazia", todo: ideasToMark },
+            limites: { sub: limToMark ? `${limToMark} pra marcar` : limYes ? `${limYes} topam` : lim.length ? "tudo marcado" : "lista vazia", todo: limToMark },
+            dados: { sub: facesToMark ? `${facesToMark} pra marcar` : diceReady ? "prontos pra rolar" : "faltam faces", todo: facesToMark, ready: diceReady },
+            matches,
+            todo: ideasToMark + limToMark + facesToMark,
+            diceReady
+        };
+    }
+
+    function hotHomeHtml() {
+
+        const p = hotPendingCount();
+        const other = otherName();
+        const de = other === "Gabriel" ? "do Gabriel" : "da Diane";
+        const L = hotListaStatus();
+
+        const card = (key, line, badge, extra = "") => {
+            const sec = HOT_SECTIONS[key];
+            return `
+                <button class="hot-home-card ${badge ? "has-new" : ""} ${key === "lista" ? "wide" : ""} ${key === "pedidos" ? "wide row" : ""}" onclick="setHotTab('${key}')">
+                    <span class="hot-home-icon">${sec.icon}</span>
+                    ${badge ? `<span class="hot-home-badge">${badge}</span>` : ""}
+                    <span class="hot-home-txt">
+                        <span class="hot-home-title">${sec.title}</span>
+                        <span class="hot-home-line">${line}</span>
+                    </span>
+                    ${extra}
+                </button>`;
+        };
+
+        const steps = `
+            <span class="hot-home-steps">
+                ${HOT_STEPS.map(st => `<span class="${L[st.key].todo ? "todo" : ""} ${st.key === "dados" && L.diceReady ? "ready" : ""}">${st.icon} ${st.label}</span>`).join('<i>›</i>')}
+            </span>`;
+
+        return `
+            <div class="hot-home">
+                ${card("sussurro",
+                    p.whispers ? `${p.whispers} novo${p.whispers > 1 ? "s" : ""} ${de} 👀` : "Uma mensagem no ouvido, letra por letra",
+                    p.whispers || "")}
+                ${card("frase",
+                    p.frases ? `${p.frases} frase${p.frases > 1 ? "s" : ""} esperando você terminar` : "Você começa, o outro termina",
+                    p.frases || "")}
+                ${card("lista",
+                    L.todo ? `Sua vez: ${L.todo} ${L.todo === 1 ? "item" : "itens"} pra marcar` : L.diceReady ? "Tudo marcado · os dados tão prontos 🎲" : "Querem → Combinados → Dados",
+                    L.todo ? "sua vez" : "",
+                    steps)}
+                ${card("pedidos",
+                    p.pedidos ? `${p.pedidos} pedido${p.pedidos > 1 ? "s" : ""} pra você` : "Pede o que quiser hoje",
+                    p.pedidos || "")}
+            </div>`;
+    }
+
+    function hotStepperHtml() {
+
+        const L = hotListaStatus();
+
+        return `
+            <div class="hot-stepper">
+                ${HOT_STEPS.map(st => `
+                    <button class="hot-step ${st.key === hotStep ? "on" : ""} ${L[st.key].todo ? "todo" : ""}" onclick="setHotStep('${st.key}')">
+                        <span class="hot-step-n">${st.n}</span>
+                        <span class="hot-step-label">${st.icon} ${st.label}</span>
+                        <small>${L[st.key].sub}</small>
+                    </button>`).join("")}
+            </div>`;
+    }
+
+    function hotStepNextHtml() {
+
+        const i = HOT_STEPS.findIndex(st => st.key === hotStep);
+        const next = HOT_STEPS[i + 1];
+
+        if (!next) return "";
+
+        return `<button class="hot-next" onclick="setHotStep('${next.key}')">Próximo passo: ${next.icon} ${next.label} →</button>`;
     }
 
     function renderHot() {
 
         const body = document.getElementById("hotBody");
+        const home = hotTab === "home";
+        const sec = HOT_SECTIONS[hotTab];
 
-        document.querySelectorAll(".hot-tab").forEach(b =>
-            b.classList.toggle("on", b.dataset.tab === hotTab));
-
-        const p = hotPendingCount();
-
-        document.getElementById("hotTabWhisperCount").textContent = p.whispers ? p.whispers : "";
-        document.getElementById("hotTabFraseCount").textContent = p.frases ? p.frases : "";
-        document.getElementById("hotTabPedidoCount").textContent = p.pedidos ? p.pedidos : "";
+        document.getElementById("hotBack").classList.toggle("hidden", home);
+        document.getElementById("hotHelpBtn").classList.toggle("hidden", home || !!hotError);
+        document.getElementById("hotHelpBtn").classList.toggle("on", hotHelpOpen);
+        document.getElementById("hotTitle").innerHTML = home || !sec
+            ? `Só nós dois <span>🔥</span>`
+            : `${sec.title} <span>${sec.icon}</span>`;
 
         const sig = document.getElementById("hotSignal");
-
-        if (sig) sig.innerHTML = hotError ? "" : signalSeenNote() + signalBarHtml();
-
         const clima = document.getElementById("hotClima");
 
-        if (clima) clima.innerHTML = hotError ? "" : hotClimaHtml();
+        if (sig) {
+            sig.innerHTML = hotError || !home ? "" : signalSeenNote() + signalBarHtml();
+            sig.classList.toggle("hidden", !home);
+        }
+
+        if (clima) {
+            clima.innerHTML = hotError || !home ? "" : hotClimaHtml();
+            clima.classList.toggle("hidden", !home);
+        }
 
         if (hotError) {
 
@@ -28343,12 +28718,21 @@ Te amo muito.
             return;
         }
 
-        if (hotTab === "sussurro") body.innerHTML = hotWhisperHtml();
-        if (hotTab === "frase") body.innerHTML = hotFraseHtml();
-        if (hotTab === "quero") body.innerHTML = hotQueroHtml();
-        if (hotTab === "limites") body.innerHTML = hotLimitesHtml();
-        if (hotTab === "dados") body.innerHTML = hotDadosHtml();
-        if (hotTab === "pedidos") body.innerHTML = hotPedidosHtml();
+        if (home) { body.innerHTML = hotHomeHtml(); return; }
+
+        let inner = "";
+
+        if (hotTab === "sussurro") inner = hotWhisperHtml();
+        if (hotTab === "frase") inner = hotFraseHtml();
+        if (hotTab === "pedidos") inner = hotPedidosHtml();
+
+        if (hotTab === "lista") {
+            const stepHtml = hotStep === "limites" ? hotLimitesHtml() : hotStep === "dados" ? hotDadosHtml() : hotQueroHtml();
+            body.innerHTML = hotStepperHtml() + hotHelpHtml() + stepHtml + hotStepNextHtml();
+            return;
+        }
+
+        body.innerHTML = hotHelpHtml() + inner;
     }
 
     /* 🤫 SUSSURROS */
@@ -28668,10 +29052,6 @@ Te amo muito.
             : `<div class="hot-empty small">A lista ainda tá vazia. Coloca a primeira ideia 👀</div>`;
 
         return `
-            <div class="hot-explain">
-                Cada um marca escondido o que quer. <b>Ninguém vê o que o outro marcou</b>,
-                só aparece aqui em cima o que <b>os dois</b> quiserem 💞
-            </div>
 
             <div class="hot-section-title">💞 Vocês dois querem</div>
             <div class="hot-matches">
@@ -29196,11 +29576,6 @@ Te amo muito.
             : `<div class="hot-empty small">Ainda não tem nada na lista de combinados.</div>`;
 
         return `
-            <div class="hot-explain">
-                Aqui vocês combinam os limites. Cada um marca o seu, e o app mostra
-                o que <b>os dois topam</b>, o que é bom <b>conversar antes</b> e o que fica
-                <b>fora</b>. No "fora" ninguém fica sabendo quem disse não 🤍
-            </div>
 
             ${group("✅ Os dois topam", yes, "")}
             ${group("🤔 Conversar antes", talk, "maybe")}
@@ -29395,10 +29770,6 @@ Te amo muito.
                 </div>
             </div>
 
-            <div class="hot-explain">
-                Só caem nos dados as faces que <b>os dois</b> marcaram "Entra ✅". Se um marcar "Fora", ela nunca sai, e ninguém fica sabendo quem tirou 🤍
-            </div>
-
             <div class="hot-section-title">Dado 1 · Ação</div>
             <div class="hot-ideas">${faceList(acoes)}</div>
             <div class="hot-compose">
@@ -29491,7 +29862,7 @@ Te amo muito.
             return;
         }
 
-        if (hotTab !== "dados") { hotTab = "dados"; }
+        if (!(hotTab === "lista" && hotStep === "dados")) { hotTab = "lista"; hotStep = "dados"; }
 
         animateDice(live.dados);
     }
