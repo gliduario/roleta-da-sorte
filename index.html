@@ -16,6 +16,15 @@
             theme = localStorage.getItem("siteTheme") ||
                 (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         } catch (e) {}
+        if (theme === "auto") {
+            var h = new Date().getHours();
+            theme = (h >= 6 && h < 17) ? "light" : (h >= 17 && h < 19) ? "peach" : "dark";
+        }
+        var skins = { galaxia: 1, halloween: 1 };
+        if (skins[theme]) {
+            document.documentElement.setAttribute("data-skin", theme);
+            theme = "dark";
+        }
         document.documentElement.setAttribute("data-theme", theme);
     })();
 </script>
@@ -249,6 +258,187 @@
         --wheel-2: #ffd6ec;
         --wheel-3: #d6e4ff;
         --wheel-4: #f0c8ff;
+    }
+
+
+    /* 🏖️ Praia */
+    :root[data-theme="praia"] {
+        --bg: #f3fbff;
+        --blob-1: #bfe9ff;
+        --blob-2: #ffe9c2;
+        --blob-3: #c9f2e6;
+        --surface-soft: #f7fcff;
+        --surface-tint: #e6f5fb;
+        --border: #d4eef7;
+        --border-strong: #8fd3ee;
+        --text: #2f4650;
+        --text-soft: #5d7783;
+        --text-muted: #8fa8b2;
+        --accent: #1f8fb8;
+        --accent-deep: #17708f;
+        --accent-2: #f2a65a;
+        --accent-3: #3cb8a8;
+        --btn-1: #2bb3d6;
+        --btn-2: #f6b26b;
+        --btn-shadow: rgba(43, 179, 214, 0.32);
+        --btn-soft: #e9f5fa;
+        --btn-soft-text: #3d6170;
+        --chip-bg: #dff4fb;
+        --chip-text: #1f7fa3;
+        --pink-glow: rgba(255, 214, 170, 0.5);
+        --blue-glow: rgba(150, 220, 250, 0.55);
+        --lilac-glow: rgba(180, 240, 225, 0.5);
+        --paper-line: #d8eef6;
+        --wheel-1: #bfe9ff;
+        --wheel-2: #ffe1a8;
+        --wheel-3: #c9f2e6;
+        --wheel-4: #ffd0b0;
+    }
+
+    /* 🍂 Outono */
+    :root[data-theme="outono"] {
+        --bg: #fff8f0;
+        --blob-1: #ffd8b0;
+        --blob-2: #f6c9a8;
+        --blob-3: #f3e0c0;
+        --surface-soft: #fffaf4;
+        --surface-tint: #fbede0;
+        --border: #f3dcc8;
+        --border-strong: #e8a47a;
+        --text: #4a352b;
+        --text-soft: #7d6253;
+        --text-muted: #a8907f;
+        --accent: #c4602a;
+        --accent-deep: #a34c1d;
+        --accent-2: #8a5a2b;
+        --accent-3: #d08a3a;
+        --btn-1: #e07a3a;
+        --btn-2: #c94f4f;
+        --btn-shadow: rgba(200, 100, 50, 0.32);
+        --btn-soft: #f7ece2;
+        --btn-soft-text: #6e5244;
+        --chip-bg: #fde4cf;
+        --chip-text: #b0552a;
+        --pink-glow: rgba(255, 200, 160, 0.55);
+        --blue-glow: rgba(245, 215, 170, 0.55);
+        --lilac-glow: rgba(240, 190, 160, 0.45);
+        --paper-line: #f3dfcd;
+        --wheel-1: #ffd8b0;
+        --wheel-2: #f3c18f;
+        --wheel-3: #f6e0c0;
+        --wheel-4: #e8a47a;
+    }
+
+    /* 🎄 Natal */
+    :root[data-theme="natal"] {
+        --bg: #fff8f3;
+        --blob-1: #ffd3d3;
+        --blob-2: #cfe8d2;
+        --blob-3: #ffeec2;
+        --surface-soft: #fffaf6;
+        --surface-tint: #fbefe9;
+        --border: #f3dcd6;
+        --border-strong: #e48a8a;
+        --text: #4a3434;
+        --text-soft: #7a5f5f;
+        --text-muted: #a68f8f;
+        --accent: #c8323c;
+        --accent-deep: #a3242d;
+        --accent-2: #2f8a4e;
+        --accent-3: #2f8a4e;
+        --btn-1: #e04848;
+        --btn-2: #2f9a5a;
+        --btn-shadow: rgba(200, 60, 60, 0.32);
+        --btn-soft: #f7eeea;
+        --btn-soft-text: #6a4c4c;
+        --chip-bg: #fde0e0;
+        --chip-text: #b02a33;
+        --pink-glow: rgba(255, 190, 190, 0.5);
+        --blue-glow: rgba(190, 230, 200, 0.55);
+        --lilac-glow: rgba(255, 230, 170, 0.5);
+        --paper-line: #f3dcd6;
+        --wheel-1: #ffd3d3;
+        --wheel-2: #cfe8d2;
+        --wheel-3: #ffeec2;
+        --wheel-4: #f6b4b4;
+    }
+
+    /* 🪐 Galáxia (tema escuro) */
+    :root[data-theme="dark"][data-skin="galaxia"] {
+        --bg: #0b0a1f;
+        --blob-1: #2a1b5e;
+        --blob-2: #0f3b6e;
+        --blob-3: #3b1450;
+        --surface: rgba(22, 18, 52, 0.86);
+        --surface-solid: #17143a;
+        --surface-soft: #1e1a48;
+        --surface-tint: #262058;
+        --border: #332c6e;
+        --border-strong: #8f7bff;
+        --text: #eeeaff;
+        --text-soft: #c2bbea;
+        --text-muted: #8a82bd;
+        --accent: #b69cff;
+        --accent-deep: #d0c0ff;
+        --accent-2: #6fd3ff;
+        --accent-3: #ff9ad5;
+        --btn-1: #7b5cff;
+        --btn-2: #3fb6ff;
+        --btn-shadow: rgba(110, 90, 255, 0.4);
+        --btn-soft: #252060;
+        --btn-soft-text: #dcd6ff;
+        --chip-bg: #2c2470;
+        --chip-text: #cbbcff;
+        --pink-glow: rgba(150, 110, 255, 0.18);
+        --blue-glow: rgba(60, 170, 255, 0.16);
+        --lilac-glow: rgba(255, 140, 210, 0.14);
+        --paper: #1f1a4a;
+        --paper-line: #2e2768;
+        --wheel-1: #b69cff;
+        --wheel-2: #6fd3ff;
+        --wheel-3: #ff9ad5;
+        --wheel-4: #ffd27d;
+        --wheel-text: #0b0a1f;
+        --wheel-border: #0b0a1f;
+    }
+
+    /* 🎃 Halloween (tema escuro) */
+    :root[data-theme="dark"][data-skin="halloween"] {
+        --bg: #160d1c;
+        --blob-1: #4a1f0f;
+        --blob-2: #2d1442;
+        --blob-3: #3a1a2a;
+        --surface: rgba(36, 24, 48, 0.88);
+        --surface-solid: #241830;
+        --surface-soft: #2c1d3a;
+        --surface-tint: #362446;
+        --border: #4a3058;
+        --border-strong: #ff9a3c;
+        --text: #fbeee2;
+        --text-soft: #dcc6b8;
+        --text-muted: #a68c9a;
+        --accent: #ff9a3c;
+        --accent-deep: #ffb46b;
+        --accent-2: #b48cff;
+        --accent-3: #9be37a;
+        --btn-1: #ff7a1a;
+        --btn-2: #8a4dff;
+        --btn-shadow: rgba(255, 122, 26, 0.35);
+        --btn-soft: #3a2648;
+        --btn-soft-text: #f3dccb;
+        --chip-bg: #3d2440;
+        --chip-text: #ffb46b;
+        --pink-glow: rgba(255, 140, 40, 0.16);
+        --blue-glow: rgba(140, 80, 255, 0.16);
+        --lilac-glow: rgba(155, 227, 122, 0.12);
+        --paper: #2c1d3a;
+        --paper-line: #3e2a50;
+        --wheel-1: #ff9a3c;
+        --wheel-2: #b48cff;
+        --wheel-3: #9be37a;
+        --wheel-4: #ffd27d;
+        --wheel-text: #160d1c;
+        --wheel-border: #160d1c;
     }
 
 
@@ -8449,6 +8639,236 @@
     }
 
 
+    /* 🎨 seletor de temas em 2 colunas */
+
+    .theme-picker {
+        width: min(360px, calc(100vw - 32px));
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+
+    .theme-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .theme-option {
+        gap: 8px;
+        padding: 9px 10px;
+        font-size: 13.5px;
+        border-width: 1px;
+    }
+
+    .theme-option .swatch { width: 28px; height: 28px; }
+
+    .theme-option .theme-name { line-height: 1.2; }
+
+    .theme-option .theme-name small { display: block; font-size: 11px; color: var(--text-muted); }
+
+    .theme-option.auto { grid-column: 1 / -1; }
+
+    .theme-option.active { border-width: 2px; }
+
+    /* capa da home em cada tema escuro especial */
+
+    :root[data-skin="galaxia"] #home .hero {
+        background:
+            radial-gradient(1.5px 1.5px at 15% 20%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 70% 30%, #fff 50%, transparent 51%),
+            radial-gradient(1.5px 1.5px at 40% 75%, #fff 50%, transparent 51%),
+            radial-gradient(1px 1px at 88% 65%, #fff 50%, transparent 51%),
+            radial-gradient(80% 60% at 80% 10%, rgba(255, 140, 210, 0.35), transparent 60%),
+            radial-gradient(80% 70% at 10% 90%, rgba(60, 170, 255, 0.35), transparent 60%),
+            linear-gradient(135deg, #2a1b5e 0%, #4b2a9a 55%, #1f3f8a 100%);
+    }
+
+    :root[data-skin="halloween"] #home .hero {
+        background:
+            radial-gradient(60% 50% at 85% 15%, rgba(255, 220, 120, 0.45), transparent 60%),
+            linear-gradient(135deg, #d9551a 0%, #7a2a8a 60%, #2d1442 100%);
+    }
+
+    :root[data-theme="natal"] #home .hero {
+        background:
+            radial-gradient(2px 2px at 20% 25%, #fff 50%, transparent 51%),
+            radial-gradient(2px 2px at 75% 15%, #fff 50%, transparent 51%),
+            radial-gradient(1.5px 1.5px at 60% 70%, #fff 50%, transparent 51%),
+            radial-gradient(2px 2px at 35% 85%, #fff 50%, transparent 51%),
+            linear-gradient(135deg, #d93a3a 0%, #b02a3a 50%, #2f8a4e 100%);
+    }
+
+    :root[data-theme="praia"] #home .hero {
+        background:
+            radial-gradient(70% 50% at 85% 10%, rgba(255, 240, 180, 0.45), transparent 60%),
+            linear-gradient(180deg, #1c93bf 0%, #2fa8d0 55%, #e3a052 100%);
+    }
+
+    :root[data-theme="outono"] #home .hero {
+        background:
+            radial-gradient(70% 50% at 20% 10%, rgba(255, 230, 170, 0.5), transparent 60%),
+            linear-gradient(135deg, #e8893f 0%, #c4602a 55%, #8a3a2a 100%);
+    }
+
+    :root[data-skin] body::before { opacity: 1; }
+
+    /* ⏰ agora, juntinhos + 💗 toque à distância */
+
+    #home .together-card {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 14px;
+        padding: 18px 18px 16px;
+        border-radius: 26px;
+        border: 1px solid var(--border);
+        background:
+            radial-gradient(60% 80% at 0% 50%, var(--blue-glow), transparent 70%),
+            radial-gradient(60% 80% at 100% 50%, var(--pink-glow), transparent 70%),
+            var(--surface-solid);
+        box-shadow: 0 1px 2px rgba(80, 40, 90, 0.05), 0 10px 28px -12px var(--shadow);
+        transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    #home .together-card.ping { animation: tgPing 0.9s ease 2; }
+
+    @keyframes tgPing {
+        0%, 100% { box-shadow: 0 10px 28px -12px var(--shadow); }
+        50% { box-shadow: 0 0 0 6px var(--pink-glow), 0 10px 28px -12px var(--shadow); }
+    }
+
+    #home .together-card.other-holding { border-color: var(--border-strong); }
+
+    #home .together-card.connected {
+        border-color: #ff8fb8;
+        box-shadow: 0 0 0 6px rgba(255, 143, 184, 0.25), 0 18px 40px -14px rgba(255, 90, 150, 0.5);
+    }
+
+    #home .together-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    #home .together-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--accent);
+    }
+
+    #home .together-line {
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    #home .together-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #home .tg-city {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    #home .tg-sky { font-size: 22px; }
+
+    #home .tg-city b {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.5px;
+        color: var(--text);
+        font-variant-numeric: tabular-nums;
+    }
+
+    #home .tg-city small {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-soft);
+    }
+
+    #home .touch-heart {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 96px;
+        height: 96px;
+        padding: 0;
+        border-radius: 50%;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        background: radial-gradient(circle at 35% 30%, #ffffff, #ffe0ee 60%, #ffc2d9);
+        box-shadow: 0 12px 26px -8px rgba(255, 90, 150, 0.45);
+        transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    :root[data-theme="dark"] #home .touch-heart { background: radial-gradient(circle at 35% 30%, #5a3a7a, #3b2a66 70%); }
+
+    #home .touch-heart:hover { transform: none; }
+
+    #home .touch-heart.holding { transform: scale(0.92); }
+
+    #home .touch-icon {
+        position: relative;
+        z-index: 1;
+        font-size: 42px;
+        transition: transform 0.3s ease;
+    }
+
+    #home .touch-heart.holding .touch-icon { animation: heartbeat 0.9s ease-in-out infinite; }
+
+    #home .touch-wave {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 120, 170, 0.55);
+        opacity: 0;
+    }
+
+    #home .touch-heart.holding .touch-wave,
+    #home .together-card.other-holding .touch-wave {
+        animation: touchWave 1.6s ease-out infinite;
+    }
+
+    #home .touch-wave.w2 { animation-delay: 0.8s !important; }
+
+    @keyframes touchWave {
+        from { opacity: 0.9; transform: scale(1); }
+        to { opacity: 0; transform: scale(1.7); }
+    }
+
+    #home .together-card.connected .touch-icon { transform: scale(1.25); }
+
+    #home .touch-status {
+        margin-top: 12px;
+        min-height: 20px;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+    }
+
+    #home .touch-status.waiting { color: var(--text-soft); }
+    #home .touch-status.other { color: var(--accent); font-weight: 600; }
+    #home .touch-status.connected { color: #e0457f; font-weight: 700; font-size: 14px; }
+
+    @media (max-width: 650px) {
+        #home .tg-city b { font-size: 25px; }
+        #home .touch-heart { width: 84px; height: 84px; }
+        #home .touch-icon { font-size: 36px; }
+    }
+
+
 </style>
 
 
@@ -9077,6 +9497,59 @@
                 <span class="eyebrow">Nós dois</span>
                 <h3>Londrina 💙 Rio Preto</h3>
             </div>
+
+            <div
+                id="togetherCard"
+                class="together-card"
+            >
+
+                <div class="together-head">
+                    <span class="together-title">Agora, juntinhos</span>
+                    <span
+                        id="tgLine"
+                        class="together-line"
+                    >Mesmo horário, mesmo céu</span>
+                </div>
+
+                <div class="together-row">
+
+                    <div class="tg-city">
+                        <span
+                            id="tgSkyL"
+                            class="tg-sky"
+                        >🌙</span>
+                        <b id="tgTimeL">--:--</b>
+                        <small>Londrina 💙</small>
+                    </div>
+
+                    <button
+                        id="touchBtn"
+                        class="touch-heart"
+                        aria-label="Segure o coração pra tocar à distância"
+                    >
+                        <span class="touch-wave"></span>
+                        <span class="touch-wave w2"></span>
+                        <span class="touch-icon">💗</span>
+                    </button>
+
+                    <div class="tg-city">
+                        <span
+                            id="tgSkyR"
+                            class="tg-sky"
+                        >🌙</span>
+                        <b id="tgTimeR">--:--</b>
+                        <small>Rio Preto 💗</small>
+                    </div>
+
+                </div>
+
+                <div
+                    id="touchStatus"
+                    class="touch-status"
+                >Segura o coração. Se os dois segurarem juntos, vocês se tocam 💗</div>
+
+            </div>
+
 
             <div class="duo-grid">
 
@@ -18936,7 +19409,7 @@ Te amo muito.
     document.addEventListener("click", event => {
 
         const target = event.target.closest(
-            "button:not(.love-back), .option, .mini-card, .comfort-card, .bday-card, .choice-card, .voucher, .night-banner"
+            "button:not(.love-back):not(.touch-heart), .option, .mini-card, .comfort-card, .bday-card, .choice-card, .voucher, .night-banner"
         );
 
         if (!target) return;
@@ -21411,6 +21884,9 @@ Te amo muito.
         cloudListeners.push(window.loveCloud.listenState("vales", onCloudVales, err));
         ["Diane", "Gabriel"].forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(connKey(n), d => onCloudConn(n, d), err)));
+
+        ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(touchKey(n), d => onCloudTouch(n, d), err)));
 
         Object.keys(SYNC_STATES).forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(n, d => onCloudState(n, d), err)));
@@ -24528,6 +25004,229 @@ Te amo muito.
     })();
 
     /* ==================================================
+       ⏰ AGORA, JUNTINHOS: relógio das duas cidades
+       💗 TOQUE À DISTÂNCIA: os dois seguram o coração juntos
+    ================================================== */
+
+    function cityTime(tz) {
+
+        try {
+            return new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: tz });
+        } catch (e) {
+            return new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+        }
+    }
+
+    function skyFor(hour) {
+
+        if (hour >= 5 && hour < 7) return "🌅";
+        if (hour >= 7 && hour < 17) return "☀️";
+        if (hour >= 17 && hour < 19) return "🌇";
+        return "🌙";
+    }
+
+    function updateTogetherClock() {
+
+        const l = document.getElementById("tgTimeL");
+
+        if (!l) return;
+
+        // ✏️ fuso das duas cidades (as duas usam o horário de Brasília)
+        const tL = cityTime("America/Sao_Paulo");
+        const tR = cityTime("America/Sao_Paulo");
+        const hour = Number(tL.slice(0, 2));
+        const sky = skyFor(hour);
+
+        l.textContent = tL;
+        document.getElementById("tgTimeR").textContent = tR;
+        document.getElementById("tgSkyL").textContent = sky;
+        document.getElementById("tgSkyR").textContent = sky;
+
+        const lines = {
+            "🌅": "O mesmo nascer do sol pros dois 🌅",
+            "☀️": "Mesmo horário, mesmo sol ☀️",
+            "🌇": "O mesmo pôr do sol, em cidades diferentes 🌇",
+            "🌙": "A mesma lua olhando por vocês dois 🌙"
+        };
+
+        document.getElementById("tgLine").textContent = lines[sky];
+    }
+
+    updateTogetherClock();
+
+    setInterval(updateTogetherClock, 15000);
+
+    /* 💗 toque à distância */
+
+    const TOUCH_STALE = 4500;
+
+    let touchHolding = false;
+    let touchBeat = null;
+    let touchCheck = null;
+    let touchCelebrated = false;
+    let otherTouch = { holding: false, at: 0 };
+
+    function touchKey(name) {
+
+        return "toque_" + name.toLowerCase();
+    }
+
+    function otherIsHolding() {
+
+        return otherTouch.holding && Date.now() - (otherTouch.at || 0) < TOUCH_STALE;
+    }
+
+    function sendTouch(holding) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.setState(touchKey(myName()), { holding, at: Date.now() }).catch(() => {});
+    }
+
+    function setTouchStatus(text, cls) {
+
+        const el = document.getElementById("touchStatus");
+
+        if (!el) return;
+
+        el.textContent = text;
+        el.className = "touch-status" + (cls ? " " + cls : "");
+    }
+
+    function renderTouchState() {
+
+        const btn = document.getElementById("touchBtn");
+        const card = document.getElementById("togetherCard");
+
+        if (!btn) return;
+
+        const other = otherIsHolding();
+        const who = otherName() === "Gabriel" ? "O Gabriel" : "A Diane";
+
+        btn.classList.toggle("holding", touchHolding);
+        card.classList.toggle("other-holding", other && !touchHolding);
+        card.classList.toggle("connected", touchHolding && other);
+
+        if (touchHolding && other) {
+
+            if (!touchCelebrated) {
+
+                touchCelebrated = true;
+
+                sfx("yay");
+
+                try { if (navigator.vibrate) navigator.vibrate([80, 60, 160]); } catch (e) {}
+
+                connBurst(btn, "💗");
+                setTimeout(() => connBurst(btn, "✨"), 250);
+
+                const n = (Number(readStore("toquesJuntos", 0)) || 0) + 1;
+
+                writeStore("toquesJuntos", n);
+            }
+
+            const n = Number(readStore("toquesJuntos", 0)) || 1;
+
+            setTouchStatus(`Vocês se tocaram!!! 💗 333 km não são nada · ${n === 1 ? "1º toque" : n + " toques"}`, "connected");
+            return;
+        }
+
+        if (touchHolding) {
+
+            setTouchStatus(cloudReady()
+                ? `Segurando... esperando ${otherName() === "Gabriel" ? "o Gabriel" : "a Diane"} segurar também 🥺`
+                : "Pra tocar à distância, entra na nuvem lá em cima ☁️", "waiting");
+            return;
+        }
+
+        if (other) {
+
+            setTouchStatus(`${who} tá segurando o coração agora! Segura também 🥺💗`, "other");
+            return;
+        }
+
+        setTouchStatus("Segura o coração. Se os dois segurarem juntos, vocês se tocam 💗");
+    }
+
+    function startTouch(e) {
+
+        if (e) e.preventDefault();
+
+        if (touchHolding) return;
+
+        touchHolding = true;
+        touchCelebrated = false;
+
+        sfx("kiu");
+
+        sendTouch(true);
+
+        clearInterval(touchBeat);
+        touchBeat = setInterval(() => sendTouch(true), 1500);
+
+        clearInterval(touchCheck);
+        touchCheck = setInterval(renderTouchState, 500);
+
+        renderTouchState();
+    }
+
+    function stopTouch() {
+
+        if (!touchHolding) return;
+
+        touchHolding = false;
+        touchCelebrated = false;
+
+        clearInterval(touchBeat);
+        clearInterval(touchCheck);
+
+        sendTouch(false);
+
+        renderTouchState();
+    }
+
+    function onCloudTouch(name, data) {
+
+        if (name === myName() || !data) return;
+
+        const wasHolding = otherIsHolding();
+
+        otherTouch = { holding: !!data.holding, at: data.at || 0 };
+
+        // aviso quando o outro começa a segurar
+        if (!wasHolding && otherIsHolding() && !touchHolding) {
+            const card = document.getElementById("togetherCard");
+            if (card) {
+                card.classList.remove("ping");
+                void card.offsetWidth;
+                card.classList.add("ping");
+            }
+        }
+
+        renderTouchState();
+
+        // o outro parou de mandar sinal: atualiza quando ficar velho
+        clearTimeout(onCloudTouch.timer);
+        onCloudTouch.timer = setTimeout(renderTouchState, TOUCH_STALE + 100);
+    }
+
+    (function setupTouchButton() {
+
+        const btn = document.getElementById("touchBtn");
+
+        if (!btn) return;
+
+        btn.addEventListener("pointerdown", startTouch);
+        btn.addEventListener("pointerup", stopTouch);
+        btn.addEventListener("pointercancel", stopTouch);
+        btn.addEventListener("pointerleave", stopTouch);
+        btn.addEventListener("contextmenu", e => e.preventDefault());
+
+        window.addEventListener("blur", stopTouch);
+        document.addEventListener("visibilitychange", () => { if (document.hidden) stopTouch(); });
+    })();
+
+    /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
     ================================================== */
 
@@ -24539,21 +25238,56 @@ Te amo muito.
        🌙 MODO DIA / MODO NOITE + 🎨 ESCOLHER O TEMA
     ================================================== */
 
-    // ✏️ Temas disponíveis
+    // ✏️ Temas disponíveis (base "dark" = tema escuro; skin = variação de cores)
     const THEMES = [
+        { id: "auto", name: "Automático", icon: "🌗", desc: "muda com a hora do dia", swatch: "conic-gradient(#ffc8dd 0 33%, #ffb38a 0 50%, #1e1b3a 0 100%)" },
         { id: "light", name: "Algodão doce", icon: "☁️", swatch: "linear-gradient(135deg, #ffc8dd, #bde0fe)" },
         { id: "peach", name: "Pêssego", icon: "🍑", swatch: "linear-gradient(135deg, #ffd6bf, #ffb38a)" },
         { id: "matcha", name: "Matcha com morango", icon: "🍵", swatch: "linear-gradient(135deg, #b8d8ba, #f7a1b5)" },
         { id: "lavender", name: "Lavanda", icon: "💜", swatch: "linear-gradient(135deg, #e3d7ff, #b9a3f0)" },
-        { id: "dark", name: "Céu de cinema", icon: "🌌", swatch: "linear-gradient(135deg, #1e1b3a, #ff7eb6)" }
+        { id: "praia", name: "Praia", icon: "🏖️", swatch: "linear-gradient(135deg, #8fd8f0, #ffe1a8)" },
+        { id: "outono", name: "Outono", icon: "🍂", swatch: "linear-gradient(135deg, #f6b27a, #c4602a)" },
+        { id: "natal", name: "Natal", icon: "🎄", swatch: "linear-gradient(135deg, #e04848 50%, #2f9a5a 50%)" },
+        { id: "dark", name: "Céu de cinema", icon: "🌌", base: "dark", swatch: "linear-gradient(135deg, #1e1b3a, #ff7eb6)" },
+        { id: "galaxia", name: "Galáxia", icon: "🪐", base: "dark", skin: "galaxia", swatch: "radial-gradient(circle at 30% 30%, #b69cff, #2a1b5e 55%, #0b0a1f)" },
+        { id: "halloween", name: "Halloween", icon: "🎃", base: "dark", skin: "halloween", swatch: "linear-gradient(135deg, #ff7a1a, #3a1a4a)" }
     ];
+
+    // ✏️ Automático: qual tema em cada hora
+    function autoThemeId(date) {
+
+        const h = (date || new Date()).getHours();
+
+        if (h >= 6 && h < 17) return "light";      // dia
+        if (h >= 17 && h < 19) return "peach";     // pôr do sol
+        return "dark";                             // noite
+    }
 
     const themeToggleBtn =
         document.getElementById("themeToggle");
 
+    // o tema que ela escolheu (pode ser "auto")
+    function chosenTheme() {
+
+        try { return localStorage.getItem("siteTheme") || "light"; } catch (e) { return "light"; }
+    }
+
+    // o "modo" atual da página: "dark" ou o nome do tema claro
     function currentTheme() {
 
         return document.documentElement.getAttribute("data-theme") || "light";
+    }
+
+    function applyThemeId(id) {
+
+        const real = id === "auto" ? autoThemeId() : id;
+        const t = THEMES.find(x => x.id === real) || THEMES[1];
+        const root = document.documentElement;
+
+        root.setAttribute("data-theme", t.base === "dark" ? "dark" : t.id);
+
+        if (t.skin) root.setAttribute("data-skin", t.skin);
+        else root.removeAttribute("data-skin");
     }
 
     function updateThemeIcon() {
@@ -24564,18 +25298,19 @@ Te amo muito.
 
     function setTheme(next) {
 
-        const prev = currentTheme();
+        const prevChosen = chosenTheme();
+        const t = THEMES.find(x => x.id === next);
 
-        if (next === "dark" && prev !== "dark") {
-            try { localStorage.setItem("siteLightTheme", prev); } catch (e) {}
+        // guarda o último tema claro pra voltar no botão sol/lua
+        if (t && t.base === "dark" && currentTheme() !== "dark" && prevChosen !== "auto") {
+            try { localStorage.setItem("siteLightTheme", prevChosen); } catch (e) {}
         }
-
-        document.documentElement
-            .setAttribute("data-theme", next);
 
         try {
             localStorage.setItem("siteTheme", next);
         } catch (e) {}
+
+        applyThemeId(next);
 
         updateThemeIcon();
         renderThemeOptions();
@@ -24605,20 +25340,35 @@ Te amo muito.
 
     function renderThemeOptions() {
 
-        const now = currentTheme();
+        const now = chosenTheme();
 
         document.getElementById("themeOptions").innerHTML =
             THEMES.map(t => `
                 <button
-                    class="theme-option ${t.id === now ? "active" : ""}"
+                    class="theme-option ${t.id === now ? "active" : ""} ${t.id === "auto" ? "auto" : ""}"
                     onclick="setTheme('${t.id}')"
                 >
                     <span class="swatch" style="background: ${t.swatch}"></span>
-                    ${t.icon} ${t.name}
+                    <span class="theme-name">${t.icon} ${t.name}${t.desc ? `<small>${t.desc}</small>` : ""}</span>
                     ${t.id === now ? '<span class="check">✓</span>' : ""}
                 </button>
             `).join("");
     }
+
+    // no automático, confere a hora a cada minuto
+    setInterval(() => {
+
+        if (chosenTheme() !== "auto") return;
+
+        const before = currentTheme() + (document.documentElement.getAttribute("data-skin") || "");
+
+        applyThemeId("auto");
+
+        if (before !== currentTheme() + (document.documentElement.getAttribute("data-skin") || "")) {
+            updateThemeIcon();
+            if (!draw.classList.contains("hidden")) { drawWheel(); renderScoreboard(); }
+        }
+    }, 60000);
 
     function toggleThemePicker(event) {
 
@@ -24662,9 +25412,20 @@ Te amo muito.
             document.documentElement
                 .getAttribute("data-theme") === "dark";
 
-        const icons = isDark
+        const SKIN_ICONS = {
+            galaxia: ["✨", "⭐", "🪐", "💫", "🌟"],
+            halloween: ["🎃", "👻", "🦇", "🍬", "🕸️"],
+            natal: ["❄️", "🎄", "⭐", "🎁", "❄️"],
+            praia: ["🐚", "🌊", "☀️", "🫧", "🐠"],
+            outono: ["🍂", "🍁", "🍂", "🌰", "🍄"]
+        };
+
+        const skin = document.documentElement.getAttribute("data-skin") ||
+            document.documentElement.getAttribute("data-theme");
+
+        const icons = SKIN_ICONS[skin] || (isDark
             ? ["✨", "⭐", "💫", "💗", "🌙"]
-            : ["💗", "💕", "🤍", "🩷", "✨", "🫧"];
+            : ["💗", "💕", "🤍", "🩷", "✨", "🫧"]);
 
         const el = document.createElement("span");
 
