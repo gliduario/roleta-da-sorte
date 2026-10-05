@@ -10249,6 +10249,101 @@
         border: 1px solid rgba(255, 106, 154, 0.4);
     }
 
+
+    /* 📱 barra de navegação embaixo */
+
+    #home .nav-panel { display: none; }
+    #home .nav-panel.on { display: block; animation: navIn 0.35s ease; }
+    #home .nav-panel > .home-section:first-child { margin-top: 6px; }
+
+    @keyframes navIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    #home .feature-grid.single { grid-template-columns: 1fr; }
+
+    /* na aba Família os cartões ficam em grade (sem rolar pro lado) */
+    #home .nav-panel[data-panel="familia"] .family-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    #home .nav-panel[data-panel="familia"] .family-row .mini-card { flex: none; min-width: 0; }
+    #home .nav-panel[data-panel="familia"] .family-row .mini-card:nth-child(3) { grid-column: 1 / -1; }
+
+    body.has-bottom-nav { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+
+    .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        z-index: 900;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        width: min(520px, calc(100% - 20px));
+        padding: 6px;
+        transform: translateX(-50%);
+        border-radius: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 34px -10px rgba(120, 60, 110, 0.35);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .bottom-nav.off,
+    body.layer-open .bottom-nav { opacity: 0; pointer-events: none; transform: translate(-50%, 130%); }
+
+    .bottom-nav button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 7px 2px 6px;
+        border-radius: 18px;
+        background: transparent;
+        box-shadow: none;
+        color: var(--text-muted);
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .bottom-nav button:hover { transform: none; }
+
+    .bn-icon {
+        position: relative;
+        font-size: 21px;
+        line-height: 1;
+        filter: grayscale(0.6);
+        opacity: 0.75;
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), filter 0.2s;
+    }
+
+    .bn-label { font-size: 11px; font-weight: 600; white-space: nowrap; }
+
+    .bottom-nav button.on { color: var(--accent); background: var(--chip-bg); }
+    .bottom-nav button.on .bn-icon { filter: none; opacity: 1; transform: translateY(-2px) scale(1.12); }
+
+    .bn-icon i {
+        position: absolute;
+        top: -6px;
+        right: -12px;
+        min-width: 17px;
+        padding: 2px 5px;
+        border-radius: 999px;
+        font-style: normal;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #fff;
+        background: #ff4f8b;
+        filter: none;
+    }
+
+    .bn-icon i:empty { display: none; }
+
     /* 🔥 cantinho: início com cartões + seções */
 
     .hot-top { gap: 8px; }
@@ -14767,7 +14862,7 @@
             <small>Ele fica lacrado e só abre do dia 28 até o fim do mês, junto com os do outro 💫</small>
             <div class="sky-wish-actions">
                 <button class="ghost" onclick="closeWishBox()">Agora não</button>
-                <button onclick="saveWish()">Guardar desejo ✨</button>
+                <button onclick="saveSkyWish()">Guardar desejo ✨</button>
             </div>
         </div>
 
@@ -15397,6 +15492,148 @@
 </div>
 
 <script>
+
+    /* ==================================================
+       📱 BARRA DE NAVEGAÇÃO EMBAIXO (abas da tela inicial)
+       Só reorganiza os cartões que já existem em 5 abas.
+    ================================================== */
+
+    // ✏️ as abas (ícone, nome e o título que aparece em cima de cada uma)
+    const NAV_TABS = [
+        { key: "inicio", icon: "🏠", label: "Início" },
+        { key: "nos", icon: "💞", label: "Nós dois" },
+        { key: "carinhos", icon: "💌", label: "Carinhos" },
+        { key: "familia", icon: "🐾", label: "Família" },
+        { key: "cantinho", icon: "🔥", label: "Só nós" }
+    ];
+
+    let navTab = "inicio";
+
+    (function setupBottomNav() {
+
+        const home = document.getElementById("home");
+
+        if (!home) return;
+
+        const $ = sel => home.querySelector(sel);
+        const sectionOf = el => el && el.closest(".home-section");
+
+        const hero = $(":scope > .hero");
+        const today = document.getElementById("todayCard");
+        const nightBanner = document.getElementById("nightBanner");
+        const devo = document.getElementById("devoCard");
+        const roleta = sectionOf($(".night-card"));
+        const familia = sectionOf($(".family-row"));
+        const nos = sectionOf(document.getElementById("togetherCard"));
+        const cantinhos = sectionOf(devo);
+        const comfort = $(".comfort-card");
+        const letterGrid = sectionOf(document.getElementById("letterCard")) && document.getElementById("letterCard").closest(".feature-grid");
+        const connGrid = $(".conn-grid");
+        const bdayGrid = document.getElementById("bdayCard") && document.getElementById("bdayCard").closest(".feature-grid");
+        const loveCard = bdayGrid && bdayGrid.querySelector(".love-card");
+        const hotCard = document.getElementById("hotCard");
+        const footer = $(":scope > .footer");
+
+        const panel = key => {
+            const d = document.createElement("div");
+            d.className = "nav-panel";
+            d.dataset.panel = key;
+            return d;
+        };
+
+        const head = (eyebrow, title) => {
+            const d = document.createElement("div");
+            d.className = "section-head";
+            d.innerHTML = `<span class="eyebrow">${eyebrow}</span><h3>${title}</h3>`;
+            return d;
+        };
+
+        const section = (eyebrow, title, nodes) => {
+            const d = document.createElement("div");
+            d.className = "home-section reveal";
+            d.appendChild(head(eyebrow, title));
+            nodes.filter(Boolean).forEach(n => d.appendChild(n));
+            return d;
+        };
+
+        const P = {};
+        NAV_TABS.forEach(t => P[t.key] = panel(t.key));
+
+        // 🏠 início: o dia de hoje
+        [hero, today, nightBanner].forEach(n => n && P.inicio.appendChild(n));
+        if (devo) P.inicio.appendChild(section("Pra começar o dia", "Um tempinho com Deus 🙏", [devo]));
+        if (roleta) P.inicio.appendChild(roleta);
+
+        // 💞 nós dois: a distância, a saudade e as coisas ao vivo
+        if (nos) {
+            const together = document.getElementById("togetherCard");
+            if (connGrid && together) together.after(connGrid);
+            P.nos.appendChild(nos);
+        }
+
+        // 💌 carinhos: cartas e surpresas guardadas
+        if (bdayGrid && loveCard) loveCard.remove();
+        P.carinhos.appendChild(section("Carinhos guardados", "Feitos só pra você 💗", [letterGrid, comfort, bdayGrid]));
+        if (bdayGrid) bdayGrid.classList.add("single");
+
+        // 🐾 família capivara
+        if (familia) P.familia.appendChild(familia);
+
+        // 🔥 só nós dois
+        const hotGrid = document.createElement("div");
+        hotGrid.className = "feature-grid single";
+        if (loveCard) hotGrid.appendChild(loveCard);
+        P.cantinho.appendChild(section("Só nós dois", "O cantinho de vocês 🔥", [hotCard, loveCard ? hotGrid : null]));
+
+        // o que sobrou da seção antiga sai
+        if (cantinhos && !cantinhos.querySelector(".devo-card, .feature-grid, .hot-card, .comfort-card")) cantinhos.remove();
+
+        NAV_TABS.forEach(t => home.insertBefore(P[t.key], footer || null));
+
+        // a barra
+        const nav = document.createElement("nav");
+        nav.id = "bottomNav";
+        nav.className = "bottom-nav";
+        nav.setAttribute("aria-label", "Navegação");
+        nav.innerHTML = NAV_TABS.map(t => `
+            <button data-nav="${t.key}" onclick="setNavTab('${t.key}')" aria-label="${t.label}">
+                <span class="bn-icon">${t.icon}<i id="bnBadge_${t.key}"></i></span>
+                <span class="bn-label">${t.label}</span>
+            </button>`).join("");
+        document.body.appendChild(nav);
+        document.body.classList.add("has-bottom-nav");
+
+        // some quando a roleta (ou outra tela) toma o lugar da inicial
+        const syncNav = () => nav.classList.toggle("off", home.classList.contains("hidden"));
+        new MutationObserver(syncNav).observe(home, { attributes: true, attributeFilter: ["class"] });
+        syncNav();
+
+        setNavTab("inicio", true);
+    })();
+
+    function setNavTab(key, silent) {
+
+        navTab = key;
+
+        document.querySelectorAll("#home .nav-panel").forEach(p =>
+            p.classList.toggle("on", p.dataset.panel === key));
+
+        document.querySelectorAll("#bottomNav button").forEach(b =>
+            b.classList.toggle("on", b.dataset.nav === key));
+
+        if (!silent) {
+            window.scrollTo({ top: 0, behavior: "instant" in document.documentElement.style ? "instant" : "auto" });
+            try { sfx("pop"); } catch (e) {}
+        }
+    }
+
+    // bolinha de novidade na aba (ex.: sussurro novo no "Só nós")
+    function setNavBadge(key, n) {
+
+        const el = document.getElementById("bnBadge_" + key);
+
+        if (el) el.textContent = n ? (n > 9 ? "9+" : n) : "";
+    }
 
     /* ==================================================
        ROLETA NORMAL
@@ -28434,12 +28671,15 @@ Te amo muito.
         if (!cloudReady()) {
             badge.textContent = "🔒";
             badge.classList.remove("new");
+            try { setNavBadge("cantinho", 0); } catch (e) {}
             return;
         }
 
         const n = hotPendingCount().total;
 
         badge.textContent = n ? `${n} novo${n > 1 ? "s" : ""}` : "🔥";
+
+        try { setNavBadge("cantinho", n); } catch (e) {}
         badge.classList.toggle("new", n > 0);
     }
 
@@ -30901,7 +31141,7 @@ Te amo muito.
         document.getElementById("skyWishBox").classList.add("hidden");
     }
 
-    function saveWish() {
+    function saveSkyWish() {
 
         const input = document.getElementById("skyWishInput");
         const texto = input.value.trim().slice(0, 300);
