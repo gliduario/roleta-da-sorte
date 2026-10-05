@@ -7483,6 +7483,549 @@
     }
 
 
+    /* ==========================================
+       🌹 NOITE DE LOVE — visual novo
+    ========================================== */
+
+    #loveSecret.love-v2 {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+    }
+
+    #loveSecret .love-hero {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 22px 24px 24px;
+        border-radius: 34px;
+        text-align: center;
+        color: #ffffff;
+        background:
+            radial-gradient(120% 80% at 50% -10%, rgba(255, 170, 200, 0.45), transparent 60%),
+            radial-gradient(80% 60% at 100% 100%, rgba(255, 120, 90, 0.25), transparent 60%),
+            linear-gradient(160deg, #4a0f2c 0%, #8a1d4c 45%, #c4386e 100%);
+        box-shadow:
+            0 2px 0 rgba(255, 255, 255, 0.18) inset,
+            0 30px 60px -22px rgba(140, 20, 70, 0.6);
+    }
+
+    #loveSecret .love-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.18;
+        background:
+            repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0 14px, rgba(255, 255, 255, 0.08) 22px, rgba(0, 0, 0, 0.3) 34px);
+        mask-image: linear-gradient(180deg, #000, transparent 70%);
+        -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%);
+    }
+
+    #loveSecret .love-petals i {
+        position: absolute;
+        z-index: -1;
+        top: -20px;
+        font-style: normal;
+        color: rgba(255, 190, 210, 0.7);
+        animation: petalFall linear infinite;
+    }
+
+    #loveSecret .love-petals i:nth-child(1) { left: 8%; font-size: 14px; animation-duration: 9s; }
+    #loveSecret .love-petals i:nth-child(2) { left: 28%; font-size: 10px; animation-duration: 12s; animation-delay: -4s; }
+    #loveSecret .love-petals i:nth-child(3) { left: 52%; font-size: 16px; animation-duration: 10s; animation-delay: -7s; }
+    #loveSecret .love-petals i:nth-child(4) { left: 74%; font-size: 12px; animation-duration: 13s; animation-delay: -2s; }
+    #loveSecret .love-petals i:nth-child(5) { left: 90%; font-size: 15px; animation-duration: 11s; animation-delay: -9s; }
+
+    @keyframes petalFall {
+        from { transform: translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        to { transform: translateY(520px) translateX(-30px) rotate(320deg); opacity: 0; }
+    }
+
+    #loveSecret .love-hero-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    #loveSecret .love-back,
+    #loveSecret .memories-btn {
+        position: static;
+        margin: 0;
+        padding: 8px 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        border-radius: 999px;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: none;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    #loveSecret .love-back.confirm {
+        background: #ffffff;
+        color: #b0306a;
+    }
+
+    #loveSecret .secret-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 92px;
+        height: 92px;
+        margin: 10px 0 8px;
+        font-size: 50px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.08));
+        box-shadow:
+            0 0 0 8px rgba(255, 255, 255, 0.08),
+            0 0 50px rgba(255, 120, 170, 0.55);
+    }
+
+    #loveSecret .love-hero h1 {
+        color: #ffffff;
+        font-size: clamp(30px, 6.5vw, 44px);
+        margin: 4px 0 8px;
+        text-shadow: 0 4px 20px rgba(60, 0, 30, 0.45);
+    }
+
+    #loveSecret .secret-subtitle {
+        color: rgba(255, 235, 242, 0.92);
+        font-size: 15px;
+        max-width: 460px;
+        margin: 0 auto;
+    }
+
+    /* passos da noite */
+
+    #loveSecret .love-steps {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        max-width: 460px;
+        margin: 24px auto 0;
+    }
+
+    #loveSecret .love-steps::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 50%;
+        height: 2px;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.22);
+    }
+
+    #loveSecret .love-step {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+        border-radius: 50%;
+        background: rgba(60, 0, 30, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        filter: grayscale(0.7);
+        opacity: 0.7;
+        transition: all 0.4s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #loveSecret .love-step.done {
+        filter: none;
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.22);
+    }
+
+    #loveSecret .love-step.now {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.25);
+        background: linear-gradient(135deg, #ffe6a8, #ffc46b);
+        border-color: #ffffff;
+        box-shadow: 0 0 0 5px rgba(255, 214, 120, 0.25), 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    #loveSecret .progress-area { margin: 16px 0 0; }
+
+    #loveSecret .progress-text {
+        color: rgba(255, 235, 242, 0.95);
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    #loveSecret .progress-bar {
+        height: 6px;
+        max-width: 460px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.18);
+    }
+
+    #loveSecret .progress-fill {
+        background: linear-gradient(90deg, #ffd27d, #ffffff);
+        box-shadow: 0 0 12px rgba(255, 220, 140, 0.8);
+        transition: width 0.6s cubic-bezier(.34, 1.3, .64, 1);
+    }
+
+    /* cartão de cada etapa */
+
+    #loveSecret #loveContent { margin-top: 18px; }
+
+    #loveSecret .love-stage {
+        position: relative;
+        padding: 30px 26px 26px;
+        border-radius: 30px;
+        text-align: center;
+        background:
+            radial-gradient(90% 50% at 50% 0%, rgba(255, 190, 215, 0.35), transparent 70%),
+            var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow:
+            0 1px 2px rgba(80, 20, 50, 0.05),
+            0 20px 44px -18px rgba(140, 30, 80, 0.35);
+        animation: loveStageIn 0.55s cubic-bezier(.2, .9, .3, 1);
+    }
+
+    @keyframes loveStageIn {
+        from { opacity: 0; transform: translateY(22px) scale(0.98); }
+        to { opacity: 1; transform: none; }
+    }
+
+    #loveSecret .stage-icon,
+    #loveSecret .final-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 78px;
+        height: 78px;
+        margin-bottom: 14px;
+        font-size: 38px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #fff0f5, #ffd9e7);
+        box-shadow:
+            0 0 0 6px rgba(255, 170, 200, 0.18),
+            0 10px 24px -8px rgba(200, 60, 120, 0.45);
+    }
+
+    #loveSecret .final-icon { width: 96px; height: 96px; font-size: 42px; letter-spacing: -4px; }
+
+    :root[data-theme="dark"] #loveSecret .stage-icon,
+    :root[data-theme="dark"] #loveSecret .final-icon { background: linear-gradient(145deg, #4a2a5a, #3a2250); }
+
+    #loveSecret .stage-title {
+        font-size: clamp(22px, 5vw, 28px);
+        line-height: 1.25;
+        color: var(--accent);
+        margin-bottom: 10px;
+        letter-spacing: -0.3px;
+    }
+
+    #loveSecret .stage-description {
+        max-width: 460px;
+        margin: 0 auto 18px;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--text-soft);
+    }
+
+    #loveSecret .stage-box {
+        margin: 6px 0 20px;
+        padding: 22px 20px;
+        border-radius: 22px;
+        text-align: center;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        box-shadow: none;
+    }
+
+    #loveSecret .stage-box p { font-size: 15.5px; }
+
+    #loveSecret .question {
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 27px;
+        line-height: 1.3;
+        color: var(--accent-deep);
+        margin-bottom: 16px;
+    }
+
+    #loveSecret textarea,
+    #loveSecret input:not([type="checkbox"]):not([type="radio"]) {
+        width: 100%;
+        padding: 14px 16px;
+        font-family: inherit;
+        font-size: 15.5px;
+        border-radius: 16px;
+        border: 2px solid var(--border);
+        background: var(--surface-solid);
+        color: var(--text);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #loveSecret textarea {
+        min-height: 130px;
+        resize: vertical;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 22px;
+        line-height: 1.4;
+        background:
+            repeating-linear-gradient(180deg, transparent 0 30px, var(--paper-line) 30px 31px),
+            var(--paper);
+    }
+
+    #loveSecret textarea:focus,
+    #loveSecret input:focus {
+        outline: none;
+        border-color: var(--border-strong);
+        box-shadow: 0 0 0 4px var(--pink-glow);
+    }
+
+    #loveSecret .primary-btn {
+        min-width: 220px;
+        padding: 15px 26px;
+        font-size: 16px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #e0457f, #a8246a);
+        box-shadow:
+            0 12px 26px -8px rgba(180, 30, 100, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    #loveSecret .secondary-btn {
+        border-radius: 999px;
+        padding: 14px 24px;
+    }
+
+    #loveSecret .author-row { margin-bottom: 14px; }
+
+    #loveSecret .saved-answer,
+    #loveSecret .capsule-message {
+        margin-top: 4px;
+        padding: 22px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #fff3f8, #fbefff);
+        border: 1px solid #f6d3e3;
+        color: var(--text-soft);
+        line-height: 1.6;
+        animation: loveStageIn 0.5s ease;
+    }
+
+    :root[data-theme="dark"] #loveSecret .saved-answer,
+    :root[data-theme="dark"] #loveSecret .capsule-message { background: rgba(255, 140, 190, 0.08); border-color: rgba(255, 140, 190, 0.25); }
+
+    /* cartas da etapa 3 */
+
+    #loveSecret .choice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        max-width: 480px;
+        margin: 6px auto 0;
+        perspective: 900px;
+    }
+
+    #loveSecret .choice-card {
+        position: relative;
+        aspect-ratio: 3 / 4.2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 18px;
+        border: 3px solid #ffffff;
+        color: #ffffff;
+        background:
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 0 22%, transparent 23%),
+            repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.07) 0 8px, transparent 8px 16px),
+            linear-gradient(160deg, #c4386e, #6e1240);
+        box-shadow:
+            0 0 0 1px rgba(160, 30, 80, 0.4),
+            0 14px 28px -10px rgba(120, 20, 70, 0.6);
+        transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.3s ease;
+    }
+
+    #loveSecret .choice-card:nth-child(1) { transform: rotate(-5deg); }
+    #loveSecret .choice-card:nth-child(3) { transform: rotate(5deg); }
+
+    #loveSecret .choice-card:hover {
+        transform: translateY(-10px) rotate(0deg) scale(1.04);
+        box-shadow: 0 0 0 1px rgba(160, 30, 80, 0.4), 0 24px 40px -12px rgba(120, 20, 70, 0.7);
+    }
+
+    #loveSecret .choice-card .choice-icon {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    #loveSecret .choice-card strong {
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    /* regras do modo casal */
+
+    #loveSecret .rules {
+        display: grid;
+        gap: 8px;
+        text-align: left;
+    }
+
+    #loveSecret .rule {
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 15px;
+        line-height: 1.45;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        color: var(--text);
+    }
+
+    /* comida */
+
+    #loveSecret .food-result {
+        display: grid;
+        place-items: center;
+        min-height: 110px;
+        margin: 0 auto 18px;
+        max-width: 380px;
+        border-radius: 22px;
+        background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0.06), transparent 30%, transparent 70%, rgba(0, 0, 0, 0.06)),
+            var(--surface-solid);
+        border: 2px dashed var(--border-strong);
+        box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #loveSecret .food-result span {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    /* playlist */
+
+    #loveSecret .playlist-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+        text-align: left;
+    }
+
+    #loveSecret .song {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+    }
+
+    #loveSecret .song > span:first-child {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ffd9e7, #e9dcff);
+    }
+
+    #loveSecret .song-name { flex: 1; font-weight: 600; color: var(--text); }
+
+    #loveSecret .song-link {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        background: var(--chip-bg);
+        color: var(--chip-text);
+    }
+
+    #loveSecret .song .remove {
+        padding: 6px 9px;
+        border-radius: 10px;
+        background: transparent;
+    }
+
+    /* final */
+
+    #loveSecret .final-message {
+        max-width: 460px;
+        margin: 0 auto 22px;
+        padding: 24px 22px;
+        border-radius: 22px;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 23px;
+        line-height: 1.4;
+        color: var(--text);
+        background:
+            repeating-linear-gradient(180deg, transparent 0 31px, var(--paper-line) 31px 32px),
+            var(--paper);
+        box-shadow: 0 14px 30px -16px rgba(140, 30, 80, 0.4);
+    }
+
+    #loveSecret .mem-inline-link {
+        border-radius: 999px;
+        background: var(--chip-bg);
+        color: var(--chip-text);
+        padding: 8px 16px;
+    }
+
+    @media (max-width: 650px) {
+
+        #loveSecret .love-hero { padding: 18px 16px 20px; border-radius: 28px; }
+
+        #loveSecret .love-step { width: 30px; height: 30px; font-size: 13px; }
+
+        #loveSecret .love-stage { padding: 24px 16px 20px; border-radius: 26px; }
+
+        #loveSecret .stage-box { padding: 18px 14px; }
+
+        #loveSecret .choice-grid { gap: 10px; }
+
+        #loveSecret .choice-card .choice-icon { width: 44px; height: 44px; font-size: 22px; }
+
+        #loveSecret .choice-card strong { font-size: 12px; }
+
+        #loveSecret .primary-btn { min-width: 0; width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #loveSecret .love-petals i { animation: none; display: none; }
+    }
+
+
+    /* 🎮 noite de jogos na home */
+
+    #home .opt-games .icon { background: linear-gradient(135deg, #dcf5e6, #b9e8cc); }
+    :root[data-theme="dark"] #home .opt-games .icon { background: linear-gradient(135deg, #234a3a, #2e6a50); }
+
+    @media (min-width: 651px) {
+        #home .options { grid-template-columns: repeat(4, 1fr); }
+        #home .option { padding: 18px; }
+        #home .option strong { font-size: 16px; }
+    }
+
+
 </style>
 
 
@@ -7694,6 +8237,18 @@
                     <div class="option-text">
                         <strong>Noite da Série</strong>
                         <small>Maratona de casal 🛋️</small>
+                    </div>
+                    <span class="option-go">›</span>
+                </div>
+
+                <div
+                    class="option opt-games"
+                    onclick="chooseType('games')"
+                >
+                    <span class="icon">🎮</span>
+                    <div class="option-text">
+                        <strong>Noite de Jogos</strong>
+                        <small>Quem perder paga um mimo 😏</small>
                     </div>
                     <span class="option-go">›</span>
                 </div>
@@ -8326,7 +8881,10 @@
                 —
             </div>
 
-            <p class="love-message">
+            <p
+                id="winnerLine"
+                class="love-message"
+            >
                 Esse foi o escolhido pelo destino! ✨<br>
                 Agora é só preparar a pipoca, ficar juntinho
                 e aproveitar a nossa noite. 🍿💕
@@ -8349,57 +8907,74 @@
 
     <section
         id="loveSecret"
-        class="card hidden"
+        class="card hidden love-v2"
     >
 
         <div class="secret-screen">
 
-            <button
-                id="loveBackBtn"
-                class="love-back"
-                onclick="loveBack()"
-            >← Voltar ao menu</button>
+            <div class="love-hero">
 
-            <div class="secret-icon">
-                🌹
-            </div>
+                <div class="love-petals" aria-hidden="true">
+                    <i>❤</i><i>❀</i><i>❤</i><i>❀</i><i>❤</i>
+                </div>
 
-            <h1>
-                Nossa Noite de Love 💗
-            </h1>
+                <div class="love-hero-top">
 
-            <p class="secret-subtitle">
-                Acesso autorizado... 👀<br>
-                Sabia que você conseguiria.
-                Agora começa uma parte especial da nossa noite. ✨
-            </p>
+                    <button
+                        id="loveBackBtn"
+                        class="love-back"
+                        onclick="loveBack()"
+                    >← Voltar ao menu</button>
 
-            <div class="progress-area">
+                    <button
+                        class="memories-btn"
+                        onclick="openMemories()"
+                    >
+                        📖 Memórias <span id="memCount"></span>
+                    </button>
+
+                </div>
+
+                <div class="secret-icon">
+                    🌹
+                </div>
+
+                <h1>
+                    Nossa Noite de Love
+                </h1>
+
+                <p class="secret-subtitle">
+                    Acesso autorizado... 👀<br>
+                    Sabia que você conseguiria.
+                    Agora começa uma parte especial da nossa noite. ✨
+                </p>
 
                 <div
-                    id="progressText"
-                    class="progress-text"
-                >
-                    Etapa 1 de 8
-                </div>
+                    id="loveSteps"
+                    class="love-steps"
+                ></div>
 
-                <div class="progress-bar">
+                <div class="progress-area">
 
                     <div
-                        id="progressFill"
-                        class="progress-fill"
-                    ></div>
+                        id="progressText"
+                        class="progress-text"
+                    >
+                        Etapa 1 de 8
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="progressFill"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
 
                 </div>
 
             </div>
-
-            <button
-                class="memories-btn"
-                onclick="openMemories()"
-            >
-                📖 Nossas memórias <span id="memCount"></span>
-            </button>
 
             <div id="loveContent"></div>
 
@@ -11582,6 +12157,12 @@
             title: "Noite da Série",
             icon: "📺",
             placeholder: "Digite o nome de uma série..."
+        },
+
+        games: {
+            title: "Noite de Jogos",
+            icon: "🎮",
+            placeholder: "Digite o nome de um jogo..."
         }
 
     };
@@ -12109,6 +12690,10 @@
         draw.classList.add("hidden");
 
         winner.classList.remove("hidden");
+
+        document.getElementById("winnerLine").innerHTML = selectedType === "games"
+            ? "Esse foi o escolhido pelo destino! ✨<br>Agora é só abrir o jogo, chamar na chamada e que vença o melhor... (que sou eu kkkk) 🎮💕"
+            : "Esse foi o escolhido pelo destino! ✨<br>Agora é só preparar a pipoca, ficar juntinho e aproveitar a nossa noite. 🍿💕";
 
         createConfetti();
     }
@@ -14520,8 +15105,24 @@ Te amo muito.
         progressFill.style.width =
             percentage + "%";
 
+        // ✏️ nome e ícone de cada etapa
+        const LOVE_STEPS = [
+            ["💗", "Boas-vindas"], ["💭", "Uma perguntinha"], ["🎁", "As cartas"], ["🫶", "Modo casal"],
+            ["🍿", "A comida"], ["🎧", "Nossa trilha"], ["💌", "A cápsula"], ["🌙", "Final"]
+        ];
+
+        const step = LOVE_STEPS[loveStage - 1] || ["💗", ""];
+
         progressText.textContent =
-            `Etapa ${loveStage} de ${totalStages}`;
+            `Etapa ${loveStage} de ${totalStages} · ${step[1]}`;
+
+        const steps = document.getElementById("loveSteps");
+
+        if (steps) {
+            steps.innerHTML = LOVE_STEPS.slice(0, totalStages).map((st, i) =>
+                `<span class="love-step ${i + 1 < loveStage ? "done" : i + 1 === loveStage ? "now" : ""}" title="${st[1]}">${st[0]}</span>`
+            ).join("");
+        }
     }
 
     function nextLoveStage() {
@@ -17893,7 +18494,7 @@ Te amo muito.
     document.addEventListener("click", event => {
 
         const target = event.target.closest(
-            "button, .option, .mini-card, .comfort-card, .bday-card, .love-card, .choice-card, .voucher, .night-banner"
+            "button:not(.love-back), .option, .mini-card, .comfort-card, .bday-card, .choice-card, .voucher, .night-banner"
         );
 
         if (!target) return;
@@ -22639,7 +23240,8 @@ Te amo muito.
         void c.offsetWidth;
         c.classList.add("closing");
 
-        sfx("whoosh");
+        // sem barulhinho aqui (a Noite de Love abre em silêncio 🤫)
+        lastSfxAt = performance.now();
 
         setTimeout(() => {
             c.classList.remove("closing");
