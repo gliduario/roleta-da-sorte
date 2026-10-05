@@ -30013,14 +30013,35 @@ Te amo muito.
         const namesD = starNames("Diane");
         const namesG = starNames("Gabriel");
 
+        // quebra nomes compridos em até 2 linhas
+        const wrap = t => {
+            if (t.length <= 20) return [t];
+            const words = t.split(" ");
+            let a = "";
+            while (words.length && (a + " " + words[0]).trim().length <= 20) a = (a + " " + words.shift()).trim();
+            if (!a) a = words.shift();
+            let b = words.join(" ");
+            if (b.length > 22) b = b.slice(0, 21) + "…";
+            return b ? [a, b] : [a];
+        };
+
         const label = (s, p, r) => {
             const d = namesD[s.day], g = namesG[s.day];
             if (!d && !g) return "";
             const esc = t => escapeHtml(t);
-            const lines = [];
-            if (d) lines.push(`<tspan class="nm-d" x="0" dy="0">${esc(d)}</tspan>`);
-            if (g) lines.push(`<tspan class="nm-g" x="0" dy="${d ? 44 : 0}">${esc(g)}</tspan>`);
-            return `<text class="sky-name" y="${r + 44}" text-anchor="middle">${lines.join("")}</text>`;
+            // perto das bordas, o texto cresce pro lado de dentro
+            const anchor = p.x > 700 ? "end" : p.x < 300 ? "start" : "middle";
+            const x = anchor === "end" ? 20 : anchor === "start" ? -20 : 0;
+            const parts = [];
+            let first = true;
+            [[d, "nm-d"], [g, "nm-g"]].forEach(([t, cls]) => {
+                if (!t) return;
+                wrap(t).forEach(line => {
+                    parts.push(`<tspan class="${cls}" x="${x}" dy="${first ? 0 : 42}">${esc(line)}</tspan>`);
+                    first = false;
+                });
+            });
+            return `<text class="sky-name" y="${r + 44}" text-anchor="${anchor}">${parts.join("")}</text>`;
         };
 
         const starsSvg = stars.map((s, i) => {
@@ -30306,10 +30327,17 @@ Te amo muito.
         return todayKey(date || new Date()).slice(0, 7);
     }
 
+    // ✏️ teste: abre o link com ?desejos=teste pra ver como fica no dia 28
+    const WISH_TEST = (() => {
+        try { return new URLSearchParams(window.location.search).get("desejos") === "teste"; } catch (e) { return false; }
+    })();
+
     function wishesOpen(mk) {
 
         const now = new Date();
         const cur = monthKey(now);
+
+        if (WISH_TEST && mk === cur) return true;
 
         if (mk < cur) return true;              // meses que já passaram ficam abertos
         if (mk > cur) return false;
@@ -30435,6 +30463,11 @@ Te amo muito.
     function maybeWishOpenToast() {
 
         const cur = monthKey();
+
+        if (WISH_TEST) {
+            setTimeout(() => loveToast("🧪 Modo teste: os desejos deste mês estão abertos como se fosse dia 28"), 800);
+            return;
+        }
 
         if (!wishesOpen(cur) || readStore("desejosAvisados", "") === cur) return;
 
