@@ -9690,6 +9690,405 @@
     .hot-match.out { font-weight: 500; opacity: 0.75; background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); text-decoration: line-through; text-decoration-color: rgba(255, 120, 150, 0.6); }
 
 
+    /* ==========================================
+       🎲 ROLETA DA NOITE — visual novo
+    ========================================== */
+
+    /* cores de cada tipo de noite */
+    [data-rt="movie"]  { --rt-1: #ff8fb8; --rt-2: #f06aa0; --rt-3: #b07cf0; --rt-soft: #ffe3ef; }
+    [data-rt="anime"]  { --rt-1: #8fc9ff; --rt-2: #6c8fd6; --rt-3: #a68af0; --rt-soft: #e3eeff; }
+    [data-rt="series"] { --rt-1: #c9a8ff; --rt-2: #9f7cc9; --rt-3: #f08ab6; --rt-soft: #efe5ff; }
+    [data-rt="games"]  { --rt-1: #7fd6a8; --rt-2: #3fb6a0; --rt-3: #6c8fd6; --rt-soft: #dcf5e6; }
+
+    :root[data-theme="dark"] [data-rt] { --rt-soft: rgba(255, 255, 255, 0.07); }
+
+    /* card da home */
+
+    #home .night-card {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 22px;
+        cursor: pointer;
+        color: #ffffff;
+        border-radius: 26px;
+        background:
+            radial-gradient(70% 90% at 100% 0%, rgba(255, 255, 255, 0.25), transparent 60%),
+            linear-gradient(135deg, #f06aa0 0%, #b07cf0 55%, #6c8fd6 100%);
+        box-shadow: 0 18px 36px -16px rgba(176, 124, 240, 0.6);
+        transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #home .night-card:hover { transform: translateY(-4px); }
+    #home .night-card:active { transform: scale(0.97); }
+
+    #home .night-card-text { flex: 1; min-width: 0; }
+
+    #home .night-card-title { font-size: 21px; font-weight: 700; }
+
+    #home .night-card-desc { margin: 4px 0 12px; font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, 0.92); }
+
+    #home .night-card-go {
+        display: inline-block;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #9a3f8a;
+        background: #ffffff;
+    }
+
+    #home .night-card-icons {
+        flex: 0 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    #home .night-card-icons span {
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        font-size: 24px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        animation: nightIconBob 3s ease-in-out infinite;
+    }
+
+    #home .night-card-icons span:nth-child(2) { animation-delay: -0.75s; }
+    #home .night-card-icons span:nth-child(3) { animation-delay: -1.5s; }
+    #home .night-card-icons span:nth-child(4) { animation-delay: -2.25s; }
+
+    @keyframes nightIconBob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+
+    /* escolher a noite */
+
+    .night-pick-modal { max-width: 520px; }
+
+    .night-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .night-opt {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 16px;
+        text-align: left;
+        border-radius: 22px;
+        color: var(--text);
+        background:
+            radial-gradient(90% 70% at 100% 0%, var(--rt-soft), transparent 70%),
+            var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 22px -14px var(--shadow);
+    }
+
+    .night-opt:hover { border-color: var(--rt-2); }
+
+    .night-opt-icon {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        margin-bottom: 8px;
+        font-size: 27px;
+        border-radius: 17px;
+        background: linear-gradient(135deg, var(--rt-1), var(--rt-2));
+        box-shadow: 0 8px 16px -8px var(--rt-2);
+    }
+
+    .night-opt b { font-size: 15.5px; }
+
+    .night-opt small { font-size: 12px; line-height: 1.35; color: var(--text-muted); }
+
+    /* telas da roleta */
+
+    .rt-screen.card {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+    }
+
+    .rt-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 18px 22px 24px;
+        border-radius: 30px;
+        text-align: center;
+        color: #ffffff;
+        background:
+            radial-gradient(90% 70% at 100% 0%, rgba(255, 255, 255, 0.28), transparent 60%),
+            linear-gradient(135deg, var(--rt-1) 0%, var(--rt-2) 55%, var(--rt-3) 100%);
+        box-shadow: 0 22px 44px -22px var(--rt-2);
+    }
+
+    .rt-hero.small { padding-bottom: 20px; }
+
+    .rt-hero-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .rt-back {
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #ffffff;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .rt-back:disabled { opacity: 0.4; }
+
+    .rt-steps { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+
+    .rt-steps span {
+        padding: 4px 9px;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .rt-steps span.done { background: rgba(255, 255, 255, 0.28); color: #ffffff; }
+    .rt-steps span.on { background: #ffffff; color: var(--rt-2); }
+
+    .rt-screen .chosen { margin: 0; padding: 0; background: none; border-radius: 0; }
+
+    .rt-screen .input-area.rt-input { flex-direction: row; }
+
+    .rt-screen .input-area.rt-input .add-btn { flex: 0 0 auto; }
+
+    .rt-screen .current-draw { display: table; margin-left: auto; margin-right: auto; }
+
+    .rt-screen .draw-button { display: block; margin: 0 auto; }
+
+    .rt-icon {
+        display: inline-grid !important;
+        place-items: center;
+        width: 76px;
+        height: 76px;
+        font-size: 40px !important;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2), 0 12px 24px -8px rgba(0, 0, 0, 0.25);
+    }
+
+    .rt-screen .chosen h2,
+    .rt-title {
+        margin-top: 10px;
+        font-size: clamp(24px, 6vw, 32px);
+        color: #ffffff;
+        text-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .rt-sub {
+        margin-top: 6px;
+        font-size: 14.5px;
+        color: rgba(255, 255, 255, 0.92) !important;
+    }
+
+    .rt-sub strong { color: #ffffff; }
+
+    .rt-panel {
+        margin-top: 16px;
+        padding: 20px;
+        border-radius: 28px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 16px 36px -20px var(--shadow);
+    }
+
+    .rt-input { margin-bottom: 12px; }
+
+    .rt-input input { border-radius: 999px; padding: 14px 18px; }
+
+    .rt-input .add-btn {
+        border-radius: 999px;
+        padding: 0 18px;
+        background: linear-gradient(135deg, var(--rt-2), var(--rt-3));
+        box-shadow: 0 10px 20px -10px var(--rt-2);
+    }
+
+    .rt-last {
+        width: 100%;
+        margin-bottom: 14px;
+        padding: 10px 14px;
+        font-size: 13.5px;
+        border-radius: 14px;
+        color: var(--text-soft);
+        background: var(--rt-soft);
+        border: 1px dashed var(--rt-2);
+    }
+
+    .rt-list-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6px 2px 10px;
+    }
+
+    .rt-list-head .list-title { margin: 0; font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
+
+    .rt-count {
+        padding: 4px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 999px;
+        color: var(--rt-2);
+        background: var(--rt-soft);
+    }
+
+    .rt-screen .items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .rt-screen .item {
+        gap: 6px;
+        padding: 8px 8px 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--rt-soft);
+    }
+
+    .rt-screen .item-name { font-size: 14.5px; }
+
+    .rt-screen .item .remove {
+        width: 26px;
+        height: 26px;
+        padding: 0;
+        font-size: 13px;
+        border-radius: 50%;
+        background: var(--surface-solid);
+    }
+
+    .rt-screen .empty { width: 100%; border-width: 1px; }
+
+    .rt-hint {
+        margin-bottom: 14px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .rt-hint.ready { color: #2f9a5a; font-weight: 600; }
+
+    .rt-go {
+        width: 100%;
+        padding: 16px;
+        font-size: 17px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--rt-2), var(--rt-3)) !important;
+        box-shadow: 0 14px 26px -12px var(--rt-2) !important;
+    }
+
+    .rt-screen .draw-screen { text-align: center; }
+
+    .rt-screen .wheel-wrap { margin-top: 18px; }
+
+    .rt-screen .current-draw {
+        display: inline-block;
+        min-height: 0;
+        margin: 4px 0 16px;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: clamp(18px, 5vw, 26px);
+        color: var(--rt-2);
+        background: var(--rt-soft);
+    }
+
+    .rt-screen .draw-button {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--rt-2), var(--rt-3));
+        box-shadow: 0 14px 26px -12px var(--rt-2);
+    }
+
+    .rt-screen .scoreboard { margin-top: 0; gap: 8px; }
+
+    .rt-screen .score { padding: 10px 14px; border-width: 1px; border-radius: 16px; }
+
+    .rt-screen .rt-list-head { margin-top: 20px; }
+
+    .winner-hero { padding-bottom: 30px; }
+
+    .rt-screen .winner-emoji {
+        display: inline-grid;
+        place-items: center;
+        width: 96px;
+        height: 96px;
+        font-size: 52px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 230, 150, 0.8);
+    }
+
+    .rt-screen .winner-name {
+        display: inline-block;
+        margin: 14px 0 0;
+        padding: 10px 24px;
+        border-radius: 22px;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: reasonPop 0.6s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .rt-screen .love-message { margin: 0 0 18px; text-align: center; line-height: 1.6; color: var(--text-soft); }
+
+    .rt-final-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .rt-final-actions button { border-radius: 999px; padding: 14px 10px; }
+
+    .rt-final-actions .restart {
+        background: linear-gradient(135deg, var(--rt-2), var(--rt-3));
+        box-shadow: 0 12px 24px -12px var(--rt-2);
+    }
+
+    @media (max-width: 650px) {
+
+        #home .night-card { padding: 18px; }
+        #home .night-card-icons span { width: 40px; height: 40px; font-size: 21px; border-radius: 13px; }
+
+        .night-options { gap: 10px; }
+        .night-opt { padding: 14px; }
+
+        .rt-hero { padding: 14px 16px 20px; border-radius: 26px; }
+        .rt-steps span { font-size: 10px; padding: 3px 7px; }
+        .rt-panel { padding: 16px; border-radius: 24px; }
+        .rt-input .add-btn { padding: 0 14px; font-size: 14px; }
+        .rt-final-actions { grid-template-columns: 1fr; }
+    }
+
+
 </style>
 
 
@@ -9916,62 +10315,25 @@
 
             <div class="section-head">
                 <span class="eyebrow">Hoje é noite de quê?</span>
-                <h3>Escolhe e deixa a sorte decidir 🎲</h3>
+                <h3>Deixa a sorte decidir 🎲</h3>
             </div>
 
-            <div class="options">
-
-                <div
-                    class="option opt-movie"
-                    onclick="chooseType('movie')"
-                >
-                    <span class="icon">🎬</span>
-                    <div class="option-text">
-                        <strong>Noite do Filme</strong>
-                        <small>Pipoca, coberta e um filminho 🍿</small>
-                    </div>
-                    <span class="option-go">›</span>
+            <div
+                class="night-card"
+                onclick="openNightPicker()"
+            >
+                <div class="night-card-text">
+                    <div class="night-card-title">Roleta da noite</div>
+                    <div class="night-card-desc">Filme, anime, série ou jogo. Vocês colocam as opções e a roleta escolhe 💕</div>
+                    <span class="night-card-go">Escolher a noite →</span>
                 </div>
-
-                <div
-                    class="option opt-anime"
-                    onclick="chooseType('anime')"
-                >
-                    <span class="icon">🍥</span>
-                    <div class="option-text">
-                        <strong>Noite de Anime</strong>
-                        <small>Só mais um episódio... 👀</small>
-                    </div>
-                    <span class="option-go">›</span>
+                <div class="night-card-icons" aria-hidden="true">
+                    <span>🎬</span><span>🍥</span><span>📺</span><span>🎮</span>
                 </div>
-
-                <div
-                    class="option opt-series"
-                    onclick="chooseType('series')"
-                >
-                    <span class="icon">📺</span>
-                    <div class="option-text">
-                        <strong>Noite da Série</strong>
-                        <small>Maratona de casal 🛋️</small>
-                    </div>
-                    <span class="option-go">›</span>
-                </div>
-
-                <div
-                    class="option opt-games"
-                    onclick="chooseType('games')"
-                >
-                    <span class="icon">🎮</span>
-                    <div class="option-text">
-                        <strong>Noite de Jogos</strong>
-                        <small>Quem perder paga um mimo 😏</small>
-                    </div>
-                    <span class="option-go">›</span>
-                </div>
-
             </div>
 
         </div>
+
 
         <!-- ==========================================
              🐾 FAMÍLIA CAPIVARA
@@ -10521,79 +10883,62 @@
          CADASTRO DA ROLETA
     ================================================== -->
 
-    <section id="register" class="card hidden">
+    <section id="register" class="card hidden rt-screen" data-rt="movie">
 
-        <div class="chosen">
+        <div class="rt-hero">
 
-            <span id="chosenIcon">🎬</span>
-
-            <h2 id="chosenTitle">
-                Noite do Filme
-            </h2>
-
-        </div>
-
-        <div class="header">
-
-            <h1 style="font-size: 28px;">
-                Vamos colocar as opções! 💕
-            </h1>
-
-            <p class="subtitle">
-                Cada uma pode adicionar quantos títulos quiser.
-            </p>
-
-        </div>
-
-        <div class="input-area">
-
-            <input
-                type="text"
-                id="itemInput"
-                placeholder="Digite o nome de um filme..."
-                maxlength="100"
-                autocomplete="off"
-            >
-
-            <button
-                class="add-btn"
-                onclick="addItem()"
-            >
-                + Adicionar
-            </button>
-
-        </div>
-
-        <p class="list-title">
-            Opções cadastradas:
-        </p>
-
-        <div
-            id="itemsList"
-            class="items"
-        >
-            <div class="empty">
-                Ainda não temos opções 🥺💕
+            <div class="rt-hero-top">
+                <button class="rt-back" onclick="goHome()">← Início</button>
+                <div class="rt-steps">
+                    <span class="on">1 · Opções</span><span>2 · Sorteio</span><span>3 · Vencedor</span>
+                </div>
             </div>
+
+            <div class="chosen">
+                <span id="chosenIcon" class="rt-icon">🎬</span>
+                <h2 id="chosenTitle">Noite do Filme</h2>
+            </div>
+
+            <p class="rt-sub">Cada um coloca o que quer ver. Depois a roleta decide 💕</p>
+
         </div>
 
-        <div class="actions">
+        <div class="rt-panel">
+
+            <div class="input-area rt-input">
+                <input
+                    type="text"
+                    id="itemInput"
+                    placeholder="Digite o nome de um filme..."
+                    maxlength="100"
+                    autocomplete="off"
+                >
+                <button class="add-btn" onclick="addItem()">+ Adicionar</button>
+            </div>
 
             <button
-                class="back"
-                onclick="goHome()"
-            >
-                ← Voltar
-            </button>
+                id="rtLastBtn"
+                class="rt-last hidden"
+                onclick="useLastList()"
+            ></button>
+
+            <div class="rt-list-head">
+                <span class="list-title">Opções da noite</span>
+                <span id="rtCount" class="rt-count">0</span>
+            </div>
+
+            <div id="itemsList" class="items">
+                <div class="empty">Ainda não temos opções 🥺💕</div>
+            </div>
+
+            <div id="rtHint" class="rt-hint">Coloquem pelo menos 2 opções pra sortear</div>
 
             <button
                 id="finishButton"
-                class="finish"
+                class="finish rt-go"
                 onclick="startDraw()"
                 disabled
-            >
-                🎲 Finalizar e Sortear
-            </button>
+            >🎲 Ir pro sorteio</button>
 
         </div>
 
@@ -10603,62 +10948,47 @@
          SORTEIO
     ================================================== -->
 
-    <section id="draw" class="card hidden">
+    <section id="draw" class="card hidden rt-screen" data-rt="movie">
 
-        <div class="draw-screen">
+        <div class="rt-hero small">
 
-            <div class="header">
-
-                <div class="emoji">🎲</div>
-
-                <h2>
-                    É HORA DO SORTEIO!
-                </h2>
-
-                <p class="draw-info">
-                    O primeiro título a chegar em
-                    <strong>3 sorteios</strong>
-                    será o escolhido! 👀💕
-                </p>
-
+            <div class="rt-hero-top">
+                <button id="rtDrawBack" class="rt-back" onclick="backToList()">← Lista</button>
+                <div class="rt-steps">
+                    <span class="done">1 · Opções</span><span class="on">2 · Sorteio</span><span>3 · Vencedor</span>
+                </div>
             </div>
+
+            <h2 class="rt-title">É hora do sorteio! 🎲</h2>
+
+            <p class="draw-info rt-sub">
+                O primeiro a chegar em <strong>3 ❤️</strong> é o escolhido da noite
+            </p>
+
+        </div>
+
+        <div class="rt-panel draw-screen">
 
             <div class="wheel-wrap">
 
-                <div
-                    id="wheelPointer"
-                    class="wheel-pointer"
-                >🔻</div>
+                <div id="wheelPointer" class="wheel-pointer">🔻</div>
 
-                <canvas
-                    id="wheelCanvas"
-                    width="680"
-                    height="680"
-                ></canvas>
+                <canvas id="wheelCanvas" width="680" height="680"></canvas>
 
                 <div class="wheel-center">💗</div>
 
             </div>
 
-            <div
-                id="currentDraw"
-                class="current-draw"
-            >
-                Preparados? 👀
+            <div id="currentDraw" class="current-draw">Preparados? 👀</div>
+
+            <button id="drawButton" class="draw-button" onclick="drawItem()">🎲 Girar a roleta</button>
+
+            <div class="rt-list-head">
+                <span class="list-title">Placar</span>
+                <span id="rtRound" class="rt-count">rodada 0</span>
             </div>
 
-            <button
-                id="drawButton"
-                class="draw-button"
-                onclick="drawItem()"
-            >
-                🎲 SORTEAR!
-            </button>
-
-            <div
-                id="scoreboard"
-                class="scoreboard"
-            ></div>
+            <div id="scoreboard" class="scoreboard"></div>
 
         </div>
 
@@ -10668,48 +10998,46 @@
          VENCEDOR
     ================================================== -->
 
-    <section id="winner" class="card hidden">
+    <section id="winner" class="card hidden rt-screen" data-rt="movie">
 
-        <div class="winner">
+        <div class="rt-hero winner-hero">
 
-            <div class="winner-emoji">
-                🥳💕
+            <div class="rt-hero-top">
+                <span></span>
+                <div class="rt-steps">
+                    <span class="done">1 · Opções</span><span class="done">2 · Sorteio</span><span class="on">3 · Vencedor</span>
+                </div>
             </div>
 
-            <h2>
-                TEMOS UM VENCEDOR!
-            </h2>
+            <div class="winner">
 
-            <p>
-                Depois de muita tensão...
-            </p>
+                <div class="winner-emoji">🏆</div>
 
-            <div
-                id="winnerName"
-                class="winner-name"
-            >
-                —
+                <p class="rt-sub">Depois de muita tensão... o escolhido da noite é</p>
+
+                <div id="winnerName" class="winner-name">—</div>
+
             </div>
 
-            <p
-                id="winnerLine"
-                class="love-message"
-            >
+        </div>
+
+        <div class="rt-panel">
+
+            <p id="winnerLine" class="love-message">
                 Esse foi o escolhido pelo destino! ✨<br>
                 Agora é só preparar a pipoca, ficar juntinho
                 e aproveitar a nossa noite. 🍿💕
             </p>
 
-            <button
-                class="restart"
-                onclick="restart()"
-            >
-                💗 Jogar novamente
-            </button>
+            <div class="rt-final-actions">
+                <button class="secondary-btn" onclick="drawAgainSameList()">🔁 Sortear de novo</button>
+                <button class="restart" onclick="restart()">💗 Voltar pro início</button>
+            </div>
 
         </div>
 
     </section>
+
 
     <!-- ==================================================
          ÁREA DE LOVE
@@ -13509,6 +13837,59 @@
 
 </div>
 
+<!-- ==================================================
+     🎲 MODAL — ESCOLHER A NOITE
+================================================== -->
+
+<div
+    id="nightOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal night-pick-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('nightOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">Hoje é noite de quê? 🎲</h2>
+
+        <p class="fun-text">Escolhe o tipo de noite e bora montar a roleta 💕</p>
+
+        <div class="night-options">
+
+            <button class="night-opt" data-rt="movie" onclick="pickNight('movie')">
+                <span class="night-opt-icon">🎬</span>
+                <b>Noite do Filme</b>
+                <small>Pipoca, coberta e um filminho 🍿</small>
+            </button>
+
+            <button class="night-opt" data-rt="anime" onclick="pickNight('anime')">
+                <span class="night-opt-icon">🍥</span>
+                <b>Noite de Anime</b>
+                <small>Só mais um episódio... 👀</small>
+            </button>
+
+            <button class="night-opt" data-rt="series" onclick="pickNight('series')">
+                <span class="night-opt-icon">📺</span>
+                <b>Noite da Série</b>
+                <small>Maratona de casal 🛋️</small>
+            </button>
+
+            <button class="night-opt" data-rt="games" onclick="pickNight('games')">
+                <span class="night-opt-icon">🎮</span>
+                <b>Noite de Jogos</b>
+                <small>Quem perder paga um mimo 😏</small>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <template id="babyTemplate">
 <svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
     <ellipse cx="60" cy="95" rx="40" ry="4" fill="rgba(90,60,100,0.15)"/>
@@ -14210,7 +14591,11 @@
 
         items = [];
 
+        setRtTheme(type);
+
         renderItems();
+
+        renderLastListBtn();
 
         home.classList.add("hidden");
         register.classList.remove("hidden");
@@ -14239,9 +14624,7 @@
 
         if (alreadyExists) {
 
-            alert(
-                "Esse título já está na lista! 💕"
-            );
+            loveToast("Esse já está na lista! 💕");
 
             itemInput.select();
 
@@ -14273,6 +14656,18 @@
 
     function renderItems() {
 
+        const countEl = document.getElementById("rtCount");
+        const hintEl = document.getElementById("rtHint");
+
+        if (countEl) countEl.textContent = items.length === 1 ? "1 opção" : items.length + " opções";
+
+        if (hintEl) {
+            hintEl.textContent = items.length < 2
+                ? `Coloquem pelo menos 2 opções pra sortear${items.length === 1 ? " (falta 1!)" : ""}`
+                : "Tudo pronto! Bora pro sorteio 🎲";
+            hintEl.classList.toggle("ready", items.length >= 2);
+        }
+
         if (items.length === 0) {
 
             itemsList.innerHTML = `
@@ -14286,7 +14681,7 @@
             return;
         }
 
-        finishButton.disabled = false;
+        finishButton.disabled = items.length < 2;
 
         itemsList.innerHTML =
             items.map((item, index) => `
@@ -14329,9 +14724,7 @@
 
         if (items.length < 2) {
 
-            alert(
-                "Adicionem pelo menos 2 opções para o sorteio! 💕"
-            );
+            loveToast("Coloquem pelo menos 2 opções pro sorteio 💕");
 
             return;
         }
@@ -14343,6 +14736,16 @@
             scores[item] = 0;
 
         });
+
+        writeStore(lastListKey(), items.slice(0, 40));
+
+        rtRoundN = 0;
+
+        const roundEl = document.getElementById("rtRound");
+
+        if (roundEl) roundEl.textContent = "rodada 0";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
         register.classList.add("hidden");
 
@@ -14509,6 +14912,8 @@
 
         drawButton.disabled = true;
 
+        document.getElementById("rtDrawBack").disabled = true;
+
         currentDraw.textContent =
             "Girandoooo... 🌀";
 
@@ -14563,6 +14968,12 @@
 
             scores[selectedItem]++;
 
+            rtRoundN++;
+
+            const roundEl = document.getElementById("rtRound");
+
+            if (roundEl) roundEl.textContent = "rodada " + rtRoundN;
+
             currentDraw.textContent =
                 selectedItem;
 
@@ -14592,6 +15003,8 @@
 
                     drawButton.disabled =
                         false;
+
+                    document.getElementById("rtDrawBack").disabled = false;
 
                 }, 500);
 
@@ -14659,6 +15072,11 @@
         sfx("tcham");
 
         drawing = false;
+
+        drawButton.disabled = false;
+        document.getElementById("rtDrawBack").disabled = false;
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
         winnerName.textContent =
             item;
@@ -18317,7 +18735,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay", "hotOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay", "hotOverlay", "nightOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -27983,6 +28401,86 @@ Te amo muito.
         } catch (e) {
             loveToast("Não deu pra salvar agora 😕");
         }
+    }
+
+    /* ==================================================
+       🎲 ROLETA DA NOITE: escolher a noite + ajustes
+    ================================================== */
+
+    let rtRoundN = 0;
+
+    function openNightPicker() {
+
+        openFunModal("nightOverlay");
+    }
+
+    function pickNight(type) {
+
+        closeFunModal("nightOverlay");
+
+        chooseType(type);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function setRtTheme(type) {
+
+        ["register", "draw", "winner"].forEach(id =>
+            document.getElementById(id).setAttribute("data-rt", type || "movie"));
+    }
+
+    function lastListKey() {
+
+        return "roletaUltima_" + (selectedType || "movie");
+    }
+
+    function renderLastListBtn() {
+
+        const btn = document.getElementById("rtLastBtn");
+        const last = readStore(lastListKey(), []);
+
+        if (!Array.isArray(last) || !last.length) {
+            btn.classList.add("hidden");
+            return;
+        }
+
+        btn.classList.remove("hidden");
+        btn.textContent = `↺ Usar a lista da última vez (${last.length})`;
+    }
+
+    function useLastList() {
+
+        const last = readStore(lastListKey(), []);
+
+        last.forEach(name => {
+            if (!items.some(i => i.toLowerCase() === String(name).toLowerCase())) items.push(name);
+        });
+
+        renderItems();
+
+        document.getElementById("rtLastBtn").classList.add("hidden");
+    }
+
+    function backToList() {
+
+        if (drawing) return;
+
+        draw.classList.add("hidden");
+        register.classList.remove("hidden");
+
+        renderItems();
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function drawAgainSameList() {
+
+        winner.classList.add("hidden");
+        register.classList.remove("hidden");
+
+        startDraw();
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     /* ==================================================
