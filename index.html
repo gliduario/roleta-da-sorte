@@ -10635,6 +10635,10 @@
     .sky-live-text { margin-top: 4px; font-size: 13.5px; font-weight: 700; color: #ffe8a3; }
 
 
+
+    .wish-today { display: grid; gap: 4px; margin-bottom: 10px; padding: 10px 12px; border-radius: 16px; font-size: 13px; color: #dcd6ff; background: rgba(255, 255, 255, 0.05); }
+    .wish-today .ok { color: #ffd27d; }
+
 </style>
 
 
@@ -30215,6 +30219,8 @@ Te amo muito.
             // 🌠 dá pra fazer um desejo enquanto ela passa
             if (!document.getElementById("skyWishBox").classList.contains("hidden")) return;
 
+            if (wishedToday()) return;
+
             modal.querySelectorAll(".wish-btn").forEach(b => b.remove());
 
             const btn = document.createElement("button");
@@ -30345,7 +30351,20 @@ Te amo muito.
         return now.getDate() >= WISH_OPEN_DAY;
     }
 
+    // um desejo por dia pra cada um
+    function wishedToday(name) {
+
+        const today = todayKey();
+
+        return wishesOf(name || myName()).some(w => todayKey(new Date(w.at)) === today);
+    }
+
     function openWishBox() {
+
+        if (wishedToday()) {
+            loveToast("🌠 Você já fez seu desejo de hoje. Amanhã tem outro ✨");
+            return;
+        }
 
         const box = document.getElementById("skyWishBox");
 
@@ -30371,6 +30390,12 @@ Te amo muito.
         const texto = input.value.trim().slice(0, 300);
 
         if (!texto) { input.focus(); return; }
+
+        if (wishedToday()) {
+            closeWishBox();
+            loveToast("🌠 Você já fez seu desejo de hoje. Amanhã tem outro ✨");
+            return;
+        }
 
         const me = myName();
         const lista = wishesOf(me).concat({ id: newId(), texto, at: Date.now(), mes: monthKey() });
@@ -30423,7 +30448,17 @@ Te amo muito.
         const now = new Date();
         const daysLeft = WISH_OPEN_DAY - now.getDate();
 
-        return Object.keys(byMonth).sort().reverse().map(mk => {
+        const meDone = wishedToday(myName());
+        const otherDone = wishedToday(otherName());
+        const ow = otherName() === "Gabriel" ? "o Gabriel" : "a Diane";
+
+        const todayLine = `
+            <div class="wish-today">
+                <span class="${meDone ? "ok" : ""}">${meDone ? "✓" : "🌠"} Você ${meDone ? "já fez o desejo de hoje" : "ainda pode fazer 1 desejo hoje"}</span>
+                <span class="${otherDone ? "ok" : ""}">${otherDone ? "✓" : "⏳"} ${otherDone ? `${ow[0].toUpperCase() + ow.slice(1)} já fez o dele${otherName() === "Diane" ? "a" : ""}` : `${ow[0].toUpperCase() + ow.slice(1)} ainda pode fazer o dele${otherName() === "Diane" ? "a" : ""}`}</span>
+            </div>`;
+
+        return todayLine + Object.keys(byMonth).sort().reverse().map(mk => {
 
             const list = byMonth[mk].sort((a, b) => a.at - b.at);
             const [y, m] = mk.split("-").map(Number);
