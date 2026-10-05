@@ -10328,6 +10328,161 @@
     .pedido-tag.nao { color: rgba(255, 220, 232, 0.6); }
 
 
+    /* 🌌 nosso céu */
+
+    #home .duo-sky::before { background: linear-gradient(180deg, #d9d4ff, transparent); }
+
+    #skyOverlay { background: rgba(5, 4, 20, 0.8); backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+    .sky-modal {
+        position: relative;
+        overflow-x: hidden;
+        max-width: 560px;
+        color: #eef0ff;
+        border: 1px solid rgba(160, 150, 255, 0.25);
+        background:
+            radial-gradient(80% 40% at 80% 0%, rgba(140, 100, 255, 0.35), transparent 70%),
+            radial-gradient(70% 40% at 0% 100%, rgba(60, 120, 255, 0.25), transparent 70%),
+            linear-gradient(180deg, #0b0a24 0%, #141038 60%, #1d1450 100%);
+    }
+
+    .sky-modal .bday-close-x { color: #dcd6ff; background: rgba(255, 255, 255, 0.08); }
+
+    .sky-head { text-align: center; }
+
+    .sky-moon { font-size: 42px; filter: drop-shadow(0 0 18px rgba(255, 230, 150, 0.7)); }
+
+    .sky-head h2 { margin: 2px 0 8px; font-size: 26px; color: #ffffff; }
+
+    .sky-total b { display: block; font-size: 44px; line-height: 1; color: #ffe8a3; text-shadow: 0 0 18px rgba(255, 220, 120, 0.6); }
+    .sky-total span { font-size: 13px; color: #c9c3f0; }
+
+    .sky-golden { margin-top: 4px; font-size: 13px; color: #ffd27d; min-height: 0; }
+
+    .sky-today {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .sky-legend {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 16px 0 6px;
+        font-size: 12px;
+        color: #b9b3e6;
+    }
+
+    .sky-legend .lg {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 4px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 8px #ffffff;
+        vertical-align: -1px;
+    }
+
+    .sky-legend .lg.gold { background: #ffd27d; box-shadow: 0 0 8px #ffd27d; }
+    .sky-legend .lg.pink { background: #ff8fc0; box-shadow: 0 0 8px #ff8fc0; }
+
+    .sky-month {
+        margin-top: 14px;
+        padding: 12px 10px 6px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .sky-month-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 0 6px; }
+    .sky-month-head b { font-family: "Caveat", "Fredoka", cursive; font-size: 22px; color: #ffffff; }
+    .sky-month-head small { font-size: 12px; color: #a9a3d6; }
+
+    .sky-svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+    .sky-dust circle { fill: #ffffff; opacity: 0.35; animation: skyTwinkle 4s ease-in-out infinite; }
+
+    .sky-lines line { stroke: rgba(200, 190, 255, 0.35); stroke-width: 2; stroke-dasharray: 6 8; }
+
+    .sky-star { cursor: pointer; animation: skyStarPulse 3s ease-in-out infinite; transform-box: fill-box; }
+
+    .sky-star path { fill: #ffffff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)); }
+    .sky-star .glow { fill: rgba(255, 255, 255, 0.12); }
+    .sky-star .hit { fill: transparent; }
+
+    .sky-star.gold path { fill: #ffd27d; filter: drop-shadow(0 0 8px rgba(255, 210, 125, 0.95)); }
+    .sky-star.gold .glow { fill: rgba(255, 210, 125, 0.18); }
+
+    .sky-star.pink path { fill: #ff9ccb; filter: drop-shadow(0 0 8px rgba(255, 140, 190, 0.95)); }
+    .sky-star.pink .glow { fill: rgba(255, 140, 190, 0.18); }
+
+    .sky-star.super path { fill: #ffe8a3; filter: drop-shadow(0 0 10px rgba(255, 150, 200, 1)); }
+    .sky-star.super .glow { fill: rgba(255, 170, 210, 0.25); }
+
+    .sky-star.new path { animation: skyNew 1.6s ease-in-out infinite; }
+
+    @keyframes skyTwinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.6; } }
+
+    @keyframes skyStarPulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+
+    @keyframes skyNew {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.35); }
+    }
+
+    .sky-star.new path { transform-box: fill-box; transform-origin: center; }
+
+    .sky-empty { margin: 26px 0 10px; text-align: center; font-size: 15px; line-height: 1.6; color: #dcd6ff; }
+    .sky-empty small { color: #a9a3d6; }
+
+    .sky-info {
+        position: sticky;
+        bottom: 0;
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 20px;
+        text-align: center;
+        background: rgba(30, 24, 80, 0.95);
+        border: 1px solid rgba(255, 220, 140, 0.35);
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+        animation: reasonPop 0.4s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .sky-info-date { font-weight: 700; color: #ffe8a3; }
+
+    .sky-info-date::first-letter { text-transform: uppercase; }
+
+    .sky-info-bits { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0; }
+
+    .sky-info-bits span { padding: 5px 10px; border-radius: 999px; font-size: 12.5px; background: rgba(255, 255, 255, 0.08); }
+
+    .sky-info button { padding: 6px 14px; font-size: 12.5px; border-radius: 999px; color: #dcd6ff; background: rgba(255, 255, 255, 0.08); }
+
+    .shooting-star {
+        position: absolute;
+        z-index: 0;
+        width: 120px;
+        height: 2px;
+        border-radius: 2px;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+        transform: rotate(-25deg);
+        animation: shoot 1.5s ease-out forwards;
+    }
+
+    @keyframes shoot {
+        from { opacity: 1; transform: rotate(-25deg) translateX(0); }
+        to { opacity: 0; transform: rotate(-25deg) translateX(-260px); }
+    }
+
+
 </style>
 
 
@@ -11076,20 +11231,22 @@
                 </div>
 
                 <div
-                    class="mini-card duo-id"
-                    onclick="openIdCard()"
+                    class="mini-card duo-sky"
+                    onclick="openSky()"
                 >
-                    <span class="mini-badge">OFICIAL</span>
+                    <span
+                        id="skyCardCount"
+                        class="mini-badge"
+                    >0 estrelas</span>
 
-                    <span class="mini-icon">🪪</span>
+                    <span class="mini-icon">🌌</span>
 
                     <div class="mini-title">
-                        Carteirinha
+                        Nosso céu
                     </div>
 
                     <div class="mini-desc">
-                        Futura esposa oficial,
-                        com validade eterna
+                        Cada dia que os dois vêm vira uma estrela
                     </div>
                 </div>
 
@@ -14151,6 +14308,48 @@
     id="rtLiveBanner"
     class="rt-live-banner hidden"
 ></div>
+
+<!-- ==================================================
+     🌌 MODAL — NOSSO CÉU
+================================================== -->
+
+<div
+    id="skyOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal sky-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('skyOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <div class="sky-head">
+            <div class="sky-moon">🌙</div>
+            <h2>Nosso céu</h2>
+            <div class="sky-total">
+                <b id="skyCount">0</b>
+                <span id="skyCountLabel">estrelas no nosso céu</span>
+            </div>
+            <div id="skyGolden" class="sky-golden"></div>
+            <div id="skyToday" class="sky-today"></div>
+        </div>
+
+        <div class="sky-legend">
+            <span><i class="lg"></i> os dois vieram</span>
+            <span><i class="lg gold"></i> missões completas</span>
+            <span><i class="lg pink"></i> se tocaram</span>
+        </div>
+
+        <div id="skyMonths" class="sky-months"></div>
+
+        <div id="skyInfo" class="sky-info hidden"></div>
+
+    </div>
+
+</div>
 
 <template id="babyTemplate">
 <svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
@@ -19014,7 +19213,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay", "hotOverlay", "nightOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay", "hotOverlay", "nightOverlay", "skyOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -23693,6 +23892,8 @@ Te amo muito.
 
         cloudListeners.push(window.loveCloud.listenState("roleta_live", onCloudRoleta, err));
 
+        cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
+
         try {
             const mineQ = myAnswer(myName());
             if (mineQ) window.loveCloud.setState(questionKey(myName()), mineQ).catch(() => {});
@@ -26966,7 +27167,7 @@ Te amo muito.
 
                 writeStore("toquesJuntos", n);
 
-                try { markMission("toque"); } catch (e) {}
+                try { markMission("toque"); skyMark("t"); } catch (e) {}
             }
 
             const n = Number(readStore("toquesJuntos", 0)) || 1;
@@ -28313,7 +28514,7 @@ Te amo muito.
 
         days.add(today);
 
-        const dias = [...days].sort().slice(-90);
+        const dias = [...days].sort().slice(-800);
 
         writeStore(visitKey(me), { dias });
 
@@ -28327,7 +28528,7 @@ Te amo muito.
         if (name === myName()) {
 
             // junta com o deste celular (caso tenha entrado em outro aparelho)
-            const merged = [...new Set([...visitDays(name), ...data.dias])].sort().slice(-90);
+            const merged = [...new Set([...visitDays(name), ...data.dias])].sort().slice(-800);
 
             writeStore(visitKey(name), { dias: merged });
 
@@ -28426,6 +28627,8 @@ Te amo muito.
 
     function renderToday() {
 
+        try { renderSkyCard(); } catch (e) {}
+
         const card = document.getElementById("todayCard");
 
         if (!card) return;
@@ -28507,6 +28710,8 @@ Te amo muito.
             if (readStore("missoesComemoradas", "") !== today) {
 
                 writeStore("missoesComemoradas", today);
+
+                try { skyMark("m"); } catch (e) {}
                 writeStore("missoesTotal", count + 1);
 
                 reward.querySelector("small").textContent = `${count + 1} ${count + 1 === 1 ? "dia" : "dias"} de missões completas`;
@@ -28529,7 +28734,7 @@ Te amo muito.
         registerVisit();
 
         // garante que a nuvem tenha os dias deste celular
-        const mine = [...visitDays(myName())].sort().slice(-90);
+        const mine = [...visitDays(myName())].sort().slice(-800);
 
         if (mine.length && cloudReady()) {
             window.loveCloud.setState(visitKey(myName()), { dias: mine, at: Date.now() }).catch(() => {});
@@ -29282,6 +29487,7 @@ Te amo muito.
         renderDailyQ(false);
 
         if (myAnswer(otherName())) {
+            try { skyMark("q"); } catch (e) {}
             setTimeout(() => loveToast("💬 Respostas reveladas! Olha o que o outro respondeu 🥹"), 200);
         }
     }
@@ -29293,6 +29499,8 @@ Te amo muito.
         const before = myAnswer(name);
 
         writeStore(questionKey(name), data);
+
+        if (myAnswer("Diane") && myAnswer("Gabriel")) { try { skyMark("q"); } catch (e) {} }
 
         if (name !== myName() && !before && myAnswer(name)) {
             loveToast(`💬 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} respondeu a pergunta do dia 👀`);
@@ -29494,6 +29702,275 @@ Te amo muito.
 
         tag.classList.toggle("hidden", !(rtLive.joined && cloudReady()));
     }
+
+    /* ==================================================
+       🌌 NOSSO CÉU: cada dia que os dois entram vira uma estrela
+    ================================================== */
+
+    const MONTHS_PT = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    // ✏️ nome carinhoso de cada constelação (uma por mês)
+    const CONSTELLATION_NAMES = [
+        "do Abraço", "da Saudade", "da Capivara", "do Café da Manhã", "do Sorriso", "da Chamada de Vídeo",
+        "da Laranjinha", "do Cafuné", "da Pipoca", "do Pôr do Sol", "do Boné Azul", "da Oração", "do Reencontro"
+    ];
+
+    function skyExtras() {
+
+        return readStore("ceuExtras", {}) || {};
+    }
+
+    function skyMark(flag, day) {
+
+        const d = day || todayKey();
+        const ex = skyExtras();
+        const cur = ex[d] || {};
+
+        if (cur[flag]) return;
+
+        ex[d] = { ...cur, [flag]: 1 };
+
+        writeStore("ceuExtras", ex);
+
+        if (cloudReady()) window.loveCloud.setState("ceu", { dias: ex, at: Date.now() }).catch(() => {});
+
+        renderSkyCard();
+    }
+
+    function onCloudSky(data) {
+
+        if (!data || !data.dias) return;
+
+        const ex = skyExtras();
+        let changedLocal = false;
+        let changedCloud = false;
+
+        Object.entries(data.dias).forEach(([d, f]) => {
+            const cur = ex[d] || {};
+            Object.keys(f).forEach(k => { if (!cur[k]) { cur[k] = 1; changedLocal = true; } });
+            ex[d] = cur;
+        });
+
+        Object.keys(ex).forEach(d => {
+            if (!data.dias[d]) changedCloud = true;
+            else Object.keys(ex[d]).forEach(k => { if (!data.dias[d][k]) changedCloud = true; });
+        });
+
+        if (changedLocal) writeStore("ceuExtras", ex);
+
+        if (changedCloud && cloudReady()) window.loveCloud.setState("ceu", { dias: ex, at: Date.now() }).catch(() => {});
+
+        renderSkyCard();
+
+        if (!document.getElementById("skyOverlay").classList.contains("hidden")) renderSky();
+    }
+
+    // dias em que os dois entraram = estrelas
+    function skyStars() {
+
+        const a = visitDays("Diane");
+        const b = visitDays("Gabriel");
+        const ex = skyExtras();
+
+        return [...a].filter(d => b.has(d)).sort().map(d => ({ day: d, ...(ex[d] || {}) }));
+    }
+
+    function skyRand(seed) {
+
+        let h = dayHash(seed) || 1;
+
+        return () => {
+            h ^= h << 13; h >>>= 0;
+            h ^= h >> 17;
+            h ^= h << 5; h >>>= 0;
+            return (h % 10000) / 10000;
+        };
+    }
+
+    function starKind(s) {
+
+        if (s.m && s.t) return "super";
+        if (s.m) return "gold";
+        if (s.t) return "pink";
+        return "";
+    }
+
+    function skyMonthSvg(key, stars) {
+
+        const W = 1000, H = 520;
+        const rnd = skyRand(key + "ceu");
+        const pts = [];
+
+        // posições espalhadas mas sem ficarem grudadas
+        stars.forEach(() => {
+
+            let best = null;
+
+            for (let t = 0; t < 14; t++) {
+
+                const c = { x: 90 + rnd() * (W - 180), y: 70 + rnd() * (H - 140) };
+                const dmin = pts.reduce((m, p) => Math.min(m, Math.hypot(p.x - c.x, p.y - c.y)), 9999);
+
+                if (!best || dmin > best.d) best = { ...c, d: dmin };
+                if (dmin > 120) break;
+            }
+
+            pts.push(best);
+        });
+
+        const lines = pts.slice(1).map((p, i) =>
+            `<line x1="${pts[i].x}" y1="${pts[i].y}" x2="${p.x}" y2="${p.y}"/>`).join("");
+
+        const dust = Array.from({ length: 40 }, () =>
+            `<circle cx="${(rnd() * W) | 0}" cy="${(rnd() * H) | 0}" r="${(1 + rnd() * 1.8).toFixed(1)}" style="animation-delay:${(-rnd() * 4).toFixed(2)}s"/>`).join("");
+
+        const today = todayKey();
+
+        const starsSvg = stars.map((s, i) => {
+
+            const p = pts[i];
+            const k = starKind(s);
+            const r = k === "super" ? 17 : k ? 14 : 11;
+            const isNew = s.day === today;
+
+            return `
+                <g class="sky-star ${k} ${isNew ? "new" : ""}" transform="translate(${p.x.toFixed(0)} ${p.y.toFixed(0)})" onclick="showSkyStar('${s.day}')" style="animation-delay:${(-(i * 0.37) % 3).toFixed(2)}s">
+                    <circle class="glow" r="${r * 2.6}"/>
+                    <path d="M0 ${-r} L${r * 0.28} ${-r * 0.28} L${r} 0 L${r * 0.28} ${r * 0.28} L0 ${r} L${-r * 0.28} ${r * 0.28} L${-r} 0 L${-r * 0.28} ${-r * 0.28} Z"/>
+                    <circle class="hit" r="34"/>
+                </g>`;
+        }).join("");
+
+        return `<svg viewBox="0 0 ${W} ${H}" class="sky-svg" preserveAspectRatio="xMidYMid meet">
+            <g class="sky-dust">${dust}</g>
+            <g class="sky-lines">${lines}</g>
+            ${starsSvg}
+        </svg>`;
+    }
+
+    function renderSky() {
+
+        const box = document.getElementById("skyMonths");
+        const stars = skyStars();
+        const total = stars.length;
+        const golden = stars.filter(s => s.m).length;
+
+        document.getElementById("skyCount").textContent = total;
+        document.getElementById("skyCountLabel").textContent = total === 1 ? "estrela no nosso céu" : "estrelas no nosso céu";
+        document.getElementById("skyGolden").textContent = golden
+            ? `${golden} ${golden === 1 ? "estrela dourada" : "estrelas douradas"} ✨`
+            : "";
+
+        const info = document.getElementById("skyInfo");
+
+        info.classList.add("hidden");
+
+        // hoje
+        const today = todayKey();
+        const a = visitDays("Diane").has(today);
+        const b = visitDays("Gabriel").has(today);
+        const todayEl = document.getElementById("skyToday");
+
+        todayEl.textContent = !cloudReady()
+            ? "Entra na nuvem pra ver o céu de vocês dois ☁️"
+            : a && b
+                ? "✨ Nasceu uma estrela hoje! Vocês dois vieram"
+                : `A estrela de hoje nasce quando ${!b ? (myName() === "Gabriel" ? "você e a Diane" : "o Gabriel") : (myName() === "Diane" ? "a Diane" : "o Gabriel")} entrar${!a && !b ? "em" : ""} também 🌙`;
+
+        if (!total) {
+            box.innerHTML = `<div class="sky-empty">Ainda não tem estrelas 🌙<br><small>Cada dia em que vocês <b>dois</b> entrarem no app nasce uma estrela aqui. Com o tempo, viram constelações 💫</small></div>`;
+            return;
+        }
+
+        // agrupa por mês (o mais recente em cima)
+        const groups = {};
+
+        stars.forEach(s => { (groups[s.day.slice(0, 7)] = groups[s.day.slice(0, 7)] || []).push(s); });
+
+        box.innerHTML = Object.keys(groups).sort().reverse().map(k => {
+
+            const [y, m] = k.split("-").map(Number);
+            const list = groups[k];
+            const name = CONSTELLATION_NAMES[(y * 12 + m) % CONSTELLATION_NAMES.length];
+
+            return `
+                <div class="sky-month">
+                    <div class="sky-month-head">
+                        <b>Constelação ${name}</b>
+                        <small>${MONTHS_PT[m - 1]} ${y} · ${list.length} ${list.length === 1 ? "estrela" : "estrelas"}</small>
+                    </div>
+                    ${skyMonthSvg(k, list)}
+                </div>`;
+        }).join("");
+    }
+
+    function showSkyStar(day) {
+
+        const s = skyStars().find(x => x.day === day);
+
+        if (!s) return;
+
+        const [y, m, d] = day.split("-").map(Number);
+        const date = new Date(y, m - 1, d).toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" });
+        const bits = ["✨ Vocês dois vieram"];
+
+        if (s.m) bits.push("🎯 Missões completas");
+        if (s.t) bits.push("💗 Se tocaram à distância");
+        if (s.q) bits.push("💬 Responderam a pergunta do dia");
+
+        const info = document.getElementById("skyInfo");
+
+        info.innerHTML = `
+            <div class="sky-info-date">${date}</div>
+            <div class="sky-info-bits">${bits.map(b => `<span>${b}</span>`).join("")}</div>
+            <button onclick="document.getElementById('skyInfo').classList.add('hidden')">fechar</button>`;
+
+        info.classList.remove("hidden");
+
+        sfx("plim");
+    }
+
+    function renderSkyCard() {
+
+        const el = document.getElementById("skyCardCount");
+
+        if (!el) return;
+
+        const n = skyStars().length;
+
+        el.textContent = n === 1 ? "1 estrela" : `${n} estrelas`;
+    }
+
+    function openSky() {
+
+        renderSky();
+
+        openFunModal("skyOverlay");
+
+        // estrela cadente de vez em quando
+        clearInterval(openSky.timer);
+
+        openSky.timer = setInterval(() => {
+
+            if (document.getElementById("skyOverlay").classList.contains("hidden")) {
+                clearInterval(openSky.timer);
+                return;
+            }
+
+            const sh = document.createElement("span");
+
+            sh.className = "shooting-star";
+            sh.style.top = (10 + Math.random() * 40) + "%";
+            sh.style.left = (Math.random() * 60) + "%";
+
+            document.querySelector("#skyOverlay .sky-modal").appendChild(sh);
+
+            setTimeout(() => sh.remove(), 1600);
+
+        }, 4500);
+    }
+
+    try { renderSkyCard(); } catch (e) {}
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
