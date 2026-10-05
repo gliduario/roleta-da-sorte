@@ -10483,6 +10483,158 @@
     }
 
 
+    /* 🌟 nomes, 🌠 desejos e 💫 céu ao vivo */
+
+    .sky-name { font-family: "Caveat", "Fredoka", cursive; font-size: 42px; font-weight: 700; pointer-events: none; paint-order: stroke; stroke: rgba(11, 10, 36, 0.85); stroke-width: 8px; }
+    .sky-name .nm-d { fill: #ffb3d4; }
+    .sky-name .nm-g { fill: #a9c8ff; }
+
+    .sky-names { display: grid; gap: 6px; margin-bottom: 10px; }
+
+    .sky-names .nm {
+        padding: 8px 12px;
+        border-radius: 14px;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .sky-names .nm b { font-family: "Caveat", "Fredoka", cursive; font-size: 20px; font-weight: 700; }
+    .sky-names .nm.d b { color: #ffb3d4; }
+    .sky-names .nm.g b { color: #a9c8ff; }
+    .sky-names .nm small { display: block; font-size: 11px; color: #a9a3d6; }
+
+    .sky-name-form { display: flex; gap: 8px; margin-bottom: 10px; }
+
+    .sky-name-form input {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 14px;
+        font-size: 14px;
+        color: #fff;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .sky-name-form input::placeholder { color: rgba(220, 214, 255, 0.55); }
+
+    .sky-name-form button,
+    .sky-wish-actions button {
+        padding: 10px 14px;
+        font-size: 13.5px;
+        border-radius: 999px;
+        color: #2a1b5e;
+        background: linear-gradient(135deg, #fff1c2, #ffd27d);
+        white-space: nowrap;
+    }
+
+    .sky-info-close { padding: 6px 14px; font-size: 12.5px; border-radius: 999px; color: #dcd6ff; background: rgba(255, 255, 255, 0.08); }
+
+    .wish-btn {
+        position: absolute;
+        right: 18px;
+        z-index: 4;
+        padding: 9px 14px;
+        font-size: 13px;
+        border-radius: 999px;
+        color: #2a1b5e;
+        background: linear-gradient(135deg, #fff1c2, #ffd27d);
+        box-shadow: 0 0 22px rgba(255, 220, 120, 0.7);
+        animation: wishIn 4.2s ease forwards;
+    }
+
+    @keyframes wishIn {
+        0% { opacity: 0; transform: translateY(8px) scale(0.9); }
+        10%, 80% { opacity: 1; transform: none; }
+        100% { opacity: 0; transform: translateY(-6px); }
+    }
+
+    .sky-wish-box {
+        position: sticky;
+        top: 8px;
+        z-index: 5;
+        margin-top: 14px;
+        padding: 16px;
+        border-radius: 22px;
+        background: rgba(30, 24, 80, 0.97);
+        border: 1px solid rgba(255, 220, 140, 0.45);
+        box-shadow: 0 0 40px rgba(255, 210, 125, 0.25);
+        animation: reasonPop 0.45s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .sky-wish-title { margin-bottom: 8px; font-weight: 700; color: #ffe8a3; }
+
+    .sky-wish-box textarea {
+        width: 100%;
+        min-height: 80px;
+        padding: 12px 14px;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 21px;
+        color: #fff;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .sky-wish-box small { display: block; margin: 6px 2px 10px; font-size: 12px; color: #a9a3d6; }
+
+    .sky-wish-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+    .sky-wish-actions button.ghost { color: #dcd6ff; background: rgba(255, 255, 255, 0.08); }
+
+    .sky-wishes-title {
+        margin: 22px 4px 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: #b9b3e6;
+    }
+
+    .wish-month {
+        margin-bottom: 10px;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .wish-month.open { border-color: rgba(255, 220, 140, 0.35); }
+
+    .wish-month-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .wish-month-head b { color: #ffffff; font-size: 14.5px; }
+    .wish-month-head small { font-size: 12px; color: #ffd27d; }
+
+    .wish-sealed { font-size: 13.5px; color: #dcd6ff; line-height: 1.5; }
+    .wish-sealed small { display: block; color: #a9a3d6; font-size: 12px; }
+
+    .wish {
+        margin-top: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border-left: 3px solid #ffb3d4;
+        animation: reasonPop 0.5s ease;
+    }
+
+    .wish.gg { border-left-color: #a9c8ff; }
+
+    .wish p { font-family: "Caveat", "Fredoka", cursive; font-size: 21px; line-height: 1.3; color: #fff; white-space: pre-wrap; }
+    .wish small { font-size: 11.5px; color: #a9a3d6; }
+
+    .sky-live { display: none; margin-top: 14px; text-align: center; }
+
+    .sky-live.on { display: block; animation: reasonPop 0.6s cubic-bezier(.2, 1.4, .4, 1); }
+
+    .sky-live-arc { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 6px; }
+
+    .sky-live-arc .city { font-size: 12px; color: #dcd6ff; padding-bottom: 2px; }
+
+    .sky-live-arc svg { width: 100%; height: auto; filter: drop-shadow(0 0 8px rgba(255, 220, 140, 0.7)); }
+
+    .sky-live-text { margin-top: 4px; font-size: 13.5px; font-weight: 700; color: #ffe8a3; }
+
+
 </style>
 
 
@@ -14343,7 +14495,34 @@
             <span><i class="lg pink"></i> se tocaram</span>
         </div>
 
+        <div id="skyLive" class="sky-live">
+            <div class="sky-live-arc">
+                <span class="city">Londrina 💙</span>
+                <svg viewBox="0 0 300 70" aria-hidden="true">
+                    <path d="M20 60 Q150 -20 280 60" fill="none" stroke="rgba(255,230,160,0.7)" stroke-width="2.5" stroke-dasharray="5 7"/>
+                    <circle r="7" fill="#ffe8a3">
+                        <animateMotion dur="3s" repeatCount="indefinite" path="M20 60 Q150 -20 280 60"/>
+                    </circle>
+                </svg>
+                <span class="city">Rio Preto 💗</span>
+            </div>
+            <div id="skyLiveText" class="sky-live-text"></div>
+        </div>
+
+        <div id="skyWishBox" class="sky-wish-box hidden">
+            <div class="sky-wish-title">🌠 Faz um desejo</div>
+            <textarea id="skyWishInput" maxlength="300" placeholder="Eu desejo que..."></textarea>
+            <small>Ele fica lacrado e só abre do dia 28 até o fim do mês, junto com os do outro 💫</small>
+            <div class="sky-wish-actions">
+                <button class="ghost" onclick="closeWishBox()">Agora não</button>
+                <button onclick="saveWish()">Guardar desejo ✨</button>
+            </div>
+        </div>
+
         <div id="skyMonths" class="sky-months"></div>
+
+        <div class="sky-wishes-title">Desejos nas estrelas cadentes</div>
+        <div id="skyWishes" class="sky-wishes"></div>
 
         <div id="skyInfo" class="sky-info hidden"></div>
 
@@ -23894,6 +24073,12 @@ Te amo muito.
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
 
+        ["Diane", "Gabriel"].forEach(n => {
+            cloudListeners.push(window.loveCloud.listenState(starNamesKey(n), d => onCloudStarNames(n, d), err));
+            cloudListeners.push(window.loveCloud.listenState(wishesKey(n), d => onCloudWishes(n, d), err));
+            cloudListeners.push(window.loveCloud.listenState(skyLiveKey(n), d => onCloudSkyLive(n, d), err));
+        });
+
         try {
             const mineQ = myAnswer(myName());
             if (mineQ) window.loveCloud.setState(questionKey(myName()), mineQ).catch(() => {});
@@ -29825,6 +30010,18 @@ Te amo muito.
             `<circle cx="${(rnd() * W) | 0}" cy="${(rnd() * H) | 0}" r="${(1 + rnd() * 1.8).toFixed(1)}" style="animation-delay:${(-rnd() * 4).toFixed(2)}s"/>`).join("");
 
         const today = todayKey();
+        const namesD = starNames("Diane");
+        const namesG = starNames("Gabriel");
+
+        const label = (s, p, r) => {
+            const d = namesD[s.day], g = namesG[s.day];
+            if (!d && !g) return "";
+            const esc = t => escapeHtml(t);
+            const lines = [];
+            if (d) lines.push(`<tspan class="nm-d" x="0" dy="0">${esc(d)}</tspan>`);
+            if (g) lines.push(`<tspan class="nm-g" x="0" dy="${d ? 44 : 0}">${esc(g)}</tspan>`);
+            return `<text class="sky-name" y="${r + 44}" text-anchor="middle">${lines.join("")}</text>`;
+        };
 
         const starsSvg = stars.map((s, i) => {
 
@@ -29838,6 +30035,7 @@ Te amo muito.
                     <circle class="glow" r="${r * 2.6}"/>
                     <path d="M0 ${-r} L${r * 0.28} ${-r * 0.28} L${r} 0 L${r * 0.28} ${r * 0.28} L0 ${r} L${-r * 0.28} ${r * 0.28} L${-r} 0 L${-r * 0.28} ${-r * 0.28} Z"/>
                     <circle class="hit" r="34"/>
+                    ${label(s, p, r)}
                 </g>`;
         }).join("");
 
@@ -29863,7 +30061,12 @@ Te amo muito.
 
         const info = document.getElementById("skyInfo");
 
-        info.classList.add("hidden");
+
+        const wishBox = document.getElementById("skyWishes");
+
+        if (wishBox) wishBox.innerHTML = wishesHtml();
+
+        renderSkyLive();
 
         // hoje
         const today = todayKey();
@@ -29917,13 +30120,29 @@ Te amo muito.
         if (s.m) bits.push("🎯 Missões completas");
         if (s.t) bits.push("💗 Se tocaram à distância");
         if (s.q) bits.push("💬 Responderam a pergunta do dia");
+        if (s.c) bits.push("💫 Olharam o céu juntos");
+
+        const nD = starNames("Diane")[day];
+        const nG = starNames("Gabriel")[day];
+        const mine = starNames(myName())[day] || "";
+
+        const namesHtml = `
+            <div class="sky-names">
+                ${nD ? `<div class="nm d">💗 <b>${escapeHtml(nD)}</b> <small>nome da Diane</small></div>` : ""}
+                ${nG ? `<div class="nm g">💙 <b>${escapeHtml(nG)}</b> <small>nome do Gabriel</small></div>` : ""}
+            </div>
+            <div class="sky-name-form">
+                <input id="skyNameInput" maxlength="40" placeholder="${mine ? "Trocar o seu nome pra essa estrela" : "Dar um nome pra essa estrela ✨"}" value="${escapeHtml(mine)}" onkeydown="if (event.key === 'Enter') saveStarName('${day}')">
+                <button onclick="saveStarName('${day}')">${mine ? "Salvar" : "Batizar 🌟"}</button>
+            </div>`;
 
         const info = document.getElementById("skyInfo");
 
         info.innerHTML = `
             <div class="sky-info-date">${date}</div>
             <div class="sky-info-bits">${bits.map(b => `<span>${b}</span>`).join("")}</div>
-            <button onclick="document.getElementById('skyInfo').classList.add('hidden')">fechar</button>`;
+            ${namesHtml}
+            <button class="sky-info-close" onclick="document.getElementById('skyInfo').classList.add('hidden')">fechar</button>`;
 
         info.classList.remove("hidden");
 
@@ -29943,6 +30162,9 @@ Te amo muito.
 
     function openSky() {
 
+        document.getElementById("skyInfo").classList.add("hidden");
+        document.getElementById("skyWishBox").classList.add("hidden");
+
         renderSky();
 
         openFunModal("skyOverlay");
@@ -29957,20 +30179,355 @@ Te amo muito.
                 return;
             }
 
+            const modal = document.querySelector("#skyOverlay .sky-modal");
             const sh = document.createElement("span");
+            const top = modal.scrollTop + 40 + Math.random() * Math.min(260, modal.clientHeight * 0.4);
 
             sh.className = "shooting-star";
-            sh.style.top = (10 + Math.random() * 40) + "%";
-            sh.style.left = (Math.random() * 60) + "%";
+            sh.style.top = top + "px";
+            sh.style.left = (30 + Math.random() * 50) + "%";
 
-            document.querySelector("#skyOverlay .sky-modal").appendChild(sh);
+            modal.appendChild(sh);
 
             setTimeout(() => sh.remove(), 1600);
 
-        }, 4500);
+            // 🌠 dá pra fazer um desejo enquanto ela passa
+            if (!document.getElementById("skyWishBox").classList.contains("hidden")) return;
+
+            modal.querySelectorAll(".wish-btn").forEach(b => b.remove());
+
+            const btn = document.createElement("button");
+
+            btn.className = "wish-btn";
+            btn.textContent = "🌠 Fazer um desejo";
+            btn.style.top = (top + 18) + "px";
+            btn.onclick = () => { btn.remove(); openWishBox(); };
+
+            modal.appendChild(btn);
+
+            setTimeout(() => btn.remove(), 4200);
+
+        }, 6000);
+
+        skyStartLive();
+
+        maybeWishOpenToast();
     }
 
     try { renderSkyCard(); } catch (e) {}
+
+    /* 🌟 NOMES DAS ESTRELAS (cada um dá o seu nome, e os dois veem) */
+
+    function starNamesKey(name) {
+
+        return "estrelas_" + name.toLowerCase();
+    }
+
+    function starNames(name) {
+
+        const d = readStore(starNamesKey(name), null);
+
+        return (d && d.nomes) || {};
+    }
+
+    function saveStarName(day) {
+
+        const input = document.getElementById("skyNameInput");
+
+        if (!input) return;
+
+        const texto = input.value.trim().slice(0, 40);
+        const me = myName();
+        const nomes = { ...starNames(me) };
+
+        if (texto) nomes[day] = texto;
+        else delete nomes[day];
+
+        const data = { nomes, at: Date.now() };
+
+        writeStore(starNamesKey(me), data);
+
+        if (cloudReady()) window.loveCloud.setState(starNamesKey(me), data).catch(() => {});
+
+        sfx("plim");
+
+        renderSky();
+        showSkyStar(day);
+
+        if (texto) loveToast(`🌟 Estrela batizada: "${texto}"`);
+    }
+
+    function onCloudStarNames(name, data) {
+
+        if (!data || !data.nomes) return;
+
+        if (name === myName()) {
+
+            // junta com o deste celular (o mais novo vale)
+            const local = readStore(starNamesKey(name), null);
+
+            if (local && (local.at || 0) > (data.at || 0)) {
+                if (cloudReady()) window.loveCloud.setState(starNamesKey(name), local).catch(() => {});
+                return;
+            }
+        }
+
+        const before = starNames(name);
+
+        writeStore(starNamesKey(name), data);
+
+        if (name !== myName()) {
+            const fresh = Object.entries(data.nomes).find(([d, t]) => before[d] !== t);
+            if (fresh) loveToast(`🌟 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} deu nome a uma estrela: "${fresh[1]}"`);
+        }
+
+        if (!document.getElementById("skyOverlay").classList.contains("hidden")) renderSky();
+    }
+
+    /* 🌠 DESEJOS NAS ESTRELAS CADENTES (abrem do dia 28 até o fim do mês) */
+
+    // ✏️ dia em que os desejos do mês se abrem
+    const WISH_OPEN_DAY = 28;
+
+    function wishesKey(name) {
+
+        return "desejos_" + name.toLowerCase();
+    }
+
+    function wishesOf(name) {
+
+        const d = readStore(wishesKey(name), null);
+
+        return (d && Array.isArray(d.lista)) ? d.lista : [];
+    }
+
+    function monthKey(date) {
+
+        return todayKey(date || new Date()).slice(0, 7);
+    }
+
+    function wishesOpen(mk) {
+
+        const now = new Date();
+        const cur = monthKey(now);
+
+        if (mk < cur) return true;              // meses que já passaram ficam abertos
+        if (mk > cur) return false;
+
+        return now.getDate() >= WISH_OPEN_DAY;
+    }
+
+    function openWishBox() {
+
+        const box = document.getElementById("skyWishBox");
+
+        box.classList.remove("hidden");
+
+        const input = document.getElementById("skyWishInput");
+
+        input.value = "";
+
+        setTimeout(() => input.focus(), 50);
+
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function closeWishBox() {
+
+        document.getElementById("skyWishBox").classList.add("hidden");
+    }
+
+    function saveWish() {
+
+        const input = document.getElementById("skyWishInput");
+        const texto = input.value.trim().slice(0, 300);
+
+        if (!texto) { input.focus(); return; }
+
+        const me = myName();
+        const lista = wishesOf(me).concat({ id: newId(), texto, at: Date.now(), mes: monthKey() });
+        const data = { lista: lista.slice(-300), at: Date.now() };
+
+        writeStore(wishesKey(me), data);
+
+        if (cloudReady()) window.loveCloud.setState(wishesKey(me), data).catch(() => {});
+
+        closeWishBox();
+
+        sfx("yay");
+
+        loveToast(wishesOpen(monthKey())
+            ? "🌠 Desejo guardado! Já dá pra ver lá embaixo 💫"
+            : `🌠 Desejo guardado e lacrado até o dia ${WISH_OPEN_DAY} ✨`);
+
+        renderSky();
+    }
+
+    function onCloudWishes(name, data) {
+
+        if (!data || !Array.isArray(data.lista)) return;
+
+        const local = wishesOf(name);
+        const ids = new Set(local.map(w => w.id));
+        const merged = local.concat(data.lista.filter(w => !ids.has(w.id))).sort((a, b) => a.at - b.at);
+
+        writeStore(wishesKey(name), { lista: merged, at: Date.now() });
+
+        if (name === myName() && merged.length > data.lista.length && cloudReady()) {
+            window.loveCloud.setState(wishesKey(name), { lista: merged, at: Date.now() }).catch(() => {});
+        }
+
+        if (!document.getElementById("skyOverlay").classList.contains("hidden")) renderSky();
+    }
+
+    function wishesHtml() {
+
+        const all = wishesOf("Diane").map(w => ({ ...w, de: "Diane" }))
+            .concat(wishesOf("Gabriel").map(w => ({ ...w, de: "Gabriel" })));
+
+        const cur = monthKey();
+        const byMonth = {};
+
+        all.forEach(w => { (byMonth[w.mes] = byMonth[w.mes] || []).push(w); });
+
+        if (!byMonth[cur]) byMonth[cur] = [];
+
+        const now = new Date();
+        const daysLeft = WISH_OPEN_DAY - now.getDate();
+
+        return Object.keys(byMonth).sort().reverse().map(mk => {
+
+            const list = byMonth[mk].sort((a, b) => a.at - b.at);
+            const [y, m] = mk.split("-").map(Number);
+            const title = `${MONTHS_PT[m - 1]} ${y}`;
+
+            if (!wishesOpen(mk)) {
+
+                const mine = list.filter(w => w.de === myName()).length;
+                const theirs = list.length - mine;
+
+                return `
+                    <div class="wish-month sealed">
+                        <div class="wish-month-head"><b>🌠 Desejos de ${title}</b><small>🔒 lacrados</small></div>
+                        <div class="wish-sealed">
+                            ${list.length
+                                ? `${list.length} ${list.length === 1 ? "desejo guardado" : "desejos guardados"} (você: ${mine} · ${otherName()}: ${theirs})`
+                                : "Nenhum desejo ainda. Espera uma estrela cadente passar 🌠"}
+                            <small>Abrem no dia ${WISH_OPEN_DAY}${daysLeft > 0 ? ` · faltam ${daysLeft} ${daysLeft === 1 ? "dia" : "dias"}` : ""} ✨</small>
+                        </div>
+                    </div>`;
+            }
+
+            if (!list.length) return "";
+
+            return `
+                <div class="wish-month open">
+                    <div class="wish-month-head"><b>🌠 Desejos de ${title}</b><small>${mk === cur ? "✨ abertos!" : "guardados"}</small></div>
+                    ${list.map(w => `
+                        <div class="wish ${w.de === "Gabriel" ? "gg" : "mm"}">
+                            <p>${escapeHtml(w.texto)}</p>
+                            <small>${w.de === "Gabriel" ? "💙 Gabriel" : "💗 Diane"} · ${new Date(w.at).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}</small>
+                        </div>`).join("")}
+                </div>`;
+        }).join("");
+    }
+
+    function maybeWishOpenToast() {
+
+        const cur = monthKey();
+
+        if (!wishesOpen(cur) || readStore("desejosAvisados", "") === cur) return;
+
+        const n = wishesOf("Diane").concat(wishesOf("Gabriel")).filter(w => w.mes === cur).length;
+
+        if (!n) return;
+
+        writeStore("desejosAvisados", cur);
+
+        setTimeout(() => loveToast(`🌠 Os ${n} desejos de ${MONTHS_PT[new Date().getMonth()].toLowerCase()} abriram no Nosso céu ✨`), 1500);
+    }
+
+    /* 💫 CÉU AO VIVO (os dois olhando o céu ao mesmo tempo) */
+
+    const SKY_LIVE_MS = 45000;
+
+    let skyLiveBeat = null;
+    let skyLiveOther = 0;
+    let skyLiveWas = false;
+
+    function skyLiveKey(name) {
+
+        return "ceu_aberto_" + name.toLowerCase();
+    }
+
+    function skySendLive(on) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.setState(skyLiveKey(myName()), { at: on ? Date.now() : 0 }).catch(() => {});
+    }
+
+    function skyStartLive() {
+
+        clearInterval(skyLiveBeat);
+
+        skySendLive(true);
+
+        skyLiveBeat = setInterval(() => {
+
+            if (document.getElementById("skyOverlay").classList.contains("hidden")) {
+                clearInterval(skyLiveBeat);
+                skySendLive(false);
+                renderSkyLive();
+                return;
+            }
+
+            skySendLive(true);
+            renderSkyLive();
+
+        }, 15000);
+    }
+
+    function onCloudSkyLive(name, data) {
+
+        if (name === myName() || !data) return;
+
+        skyLiveOther = data.at || 0;
+
+        renderSkyLive();
+    }
+
+    function skyTogether() {
+
+        return !document.getElementById("skyOverlay").classList.contains("hidden") &&
+            Date.now() - skyLiveOther < SKY_LIVE_MS;
+    }
+
+    function renderSkyLive() {
+
+        const el = document.getElementById("skyLive");
+
+        if (!el) return;
+
+        const on = skyTogether();
+
+        el.classList.toggle("on", on);
+
+        if (on && !skyLiveWas) {
+
+            sfx("yay");
+
+            try { skyMark("c"); } catch (e) {}
+
+            loveToast(`💫 ${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} tá olhando o céu com você agora`);
+        }
+
+        skyLiveWas = on;
+
+        document.getElementById("skyLiveText").textContent = on
+            ? `Vocês dois estão olhando o mesmo céu agora 💫`
+            : "";
+    }
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
