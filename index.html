@@ -9139,6 +9139,367 @@
     .board-actions button { padding: 11px 6px; font-size: 13.5px; border-radius: 999px; }
 
 
+    /* 🔥 só nós dois */
+
+    #home .hot-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+        padding: 18px;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 24px;
+        background:
+            radial-gradient(80% 120% at 100% 0%, rgba(255, 90, 120, 0.45), transparent 60%),
+            linear-gradient(135deg, #2a0a1c 0%, #5a0f33 55%, #8a1d4c 100%);
+        box-shadow: 0 16px 34px -16px rgba(120, 10, 50, 0.7);
+        transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #home .hot-card:hover { transform: translateY(-4px); }
+    #home .hot-card:active { transform: scale(0.97); }
+
+    #home .hot-card-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #home .hot-card-title { font-size: 18px; font-weight: 700; }
+    #home .hot-card-desc { margin-top: 2px; font-size: 13px; line-height: 1.4; color: rgba(255, 225, 235, 0.85); }
+
+    #home .hot-badge {
+        margin-left: auto;
+        flex: 0 0 auto;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.14);
+    }
+
+    #home .hot-badge.new { background: #ff4f8b; animation: heartbeat 1.4s ease-in-out infinite; }
+
+    #hotOverlay { background: rgba(10, 2, 8, 0.75); backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+    .hot-modal {
+        max-width: 540px;
+        padding: 0 22px 26px;
+        text-align: left;
+        color: #fbe9f0;
+        border: 1px solid rgba(255, 120, 160, 0.25);
+        background:
+            radial-gradient(80% 40% at 50% 0%, rgba(255, 70, 120, 0.25), transparent 70%),
+            #1a0812;
+    }
+
+    .hot-top {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 -22px;
+        padding: 16px 18px 10px;
+        background: linear-gradient(180deg, #1a0812 70%, transparent);
+    }
+
+    .hot-title { font-size: 22px; font-weight: 700; color: #ffd0e0; }
+
+    .hot-modal .hot-exit {
+        position: static;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffd0e0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hot-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        padding: 4px;
+        margin-bottom: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hot-tab {
+        position: relative;
+        padding: 10px 4px;
+        font-size: 13px;
+        border-radius: 12px;
+        background: transparent;
+        color: rgba(255, 220, 232, 0.7);
+    }
+
+    .hot-tab.on { background: linear-gradient(135deg, #c4386e, #8a1d4c); color: #fff; }
+
+    .hot-tab i {
+        font-style: normal;
+        font-size: 11px;
+        margin-left: 2px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        background: #ff4f8b;
+        color: #fff;
+    }
+
+    .hot-tab i:empty { display: none; }
+
+    .hot-section-title {
+        margin: 18px 2px 8px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: rgba(255, 180, 205, 0.8);
+    }
+
+    .hot-empty { padding: 18px; text-align: center; color: rgba(255, 220, 232, 0.7); line-height: 1.5; }
+    .hot-empty.small { padding: 10px; font-size: 13.5px; }
+    .hot-empty small { display: block; margin-top: 6px; font-size: 12px; opacity: 0.8; }
+
+    .hot-list { display: grid; gap: 8px; }
+
+    .hot-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 12px 14px;
+        text-align: left;
+        color: #fbe9f0;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-item.unread { border-color: #ff6a9a; background: rgba(255, 80, 130, 0.14); }
+
+    .hot-item-icon { font-size: 24px; }
+    .hot-item-text { flex: 1; }
+    .hot-item-text b { display: block; font-size: 14.5px; }
+    .hot-item-text small { font-size: 12px; opacity: 0.7; }
+    .hot-item-go { color: #ff8fb8; }
+
+    .hot-compose { display: grid; gap: 10px; }
+
+    .hot-compose textarea,
+    .hot-compose input,
+    .hot-frase textarea {
+        width: 100%;
+        padding: 13px 14px;
+        font-family: inherit;
+        font-size: 15px;
+        color: #fff;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hot-compose textarea, .hot-frase textarea { min-height: 96px; resize: vertical; }
+
+    .hot-compose textarea::placeholder,
+    .hot-compose input::placeholder,
+    .hot-frase textarea::placeholder { color: rgba(255, 220, 232, 0.45); }
+
+    .hot-compose textarea:focus,
+    .hot-compose input:focus,
+    .hot-frase textarea:focus { outline: none; border-color: #ff6a9a; box-shadow: 0 0 0 3px rgba(255, 106, 154, 0.2); }
+
+    .hot-check { display: flex; align-items: center; justify-content: flex-start; gap: 8px; font-size: 13px; color: rgba(255, 220, 232, 0.8); }
+
+    .hot-compose .hot-check input { width: 18px; height: 18px; padding: 0; margin: 0; accent-color: #ff4f8b; flex: 0 0 auto; }
+
+    .hot-btn {
+        padding: 13px 18px;
+        font-size: 15px;
+        color: #fff;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ff4f8b, #b0306a);
+        box-shadow: 0 10px 22px -10px rgba(255, 79, 139, 0.7);
+    }
+
+    .hot-btn.ghost { background: rgba(255, 255, 255, 0.1); box-shadow: none; }
+
+    .hot-mini {
+        padding: 5px 9px;
+        font-size: 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 220, 232, 0.8);
+    }
+
+    .hot-sent-list { display: grid; gap: 6px; }
+
+    .hot-sent {
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 13.5px;
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hot-sent small { display: block; margin-top: 3px; font-size: 11.5px; opacity: 0.65; }
+
+    /* player do sussurro */
+
+    .hot-player {
+        margin-bottom: 8px;
+        padding: 26px 20px;
+        border-radius: 22px;
+        text-align: center;
+        background:
+            radial-gradient(70% 60% at 50% 40%, rgba(255, 80, 130, 0.22), transparent 70%),
+            #0d0308;
+        border: 1px solid rgba(255, 106, 154, 0.3);
+    }
+
+    .hot-player-from { font-size: 12.5px; letter-spacing: 1px; color: rgba(255, 180, 205, 0.8); margin-bottom: 14px; }
+
+    .hot-whisper-out {
+        min-height: 60px;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 27px;
+        line-height: 1.35;
+        color: #ffe3ee;
+        white-space: pre-wrap;
+    }
+
+    .hot-letter {
+        display: inline;
+        animation: hotLetter 0.6s ease forwards;
+        text-shadow: 0 0 14px rgba(255, 120, 170, 0.8);
+    }
+
+    @keyframes hotLetter {
+        from { opacity: 0; filter: blur(4px); }
+        to { opacity: 1; filter: blur(0); text-shadow: 0 0 6px rgba(255, 120, 170, 0.35); }
+    }
+
+    .hot-player-actions {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+        font-size: 13px;
+        color: rgba(255, 220, 232, 0.7);
+    }
+
+    /* completa a frase */
+
+    .hot-starters { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .hot-starters button {
+        padding: 6px 11px;
+        font-size: 12.5px;
+        border-radius: 999px;
+        color: #ffd0e0;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-frase {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-frase.pending { border-color: #ff6a9a; }
+    .hot-frase small { font-size: 12px; opacity: 0.7; }
+
+    .hot-frase-start { font-family: "Caveat", "Fredoka", cursive; font-size: 23px; color: #ffe3ee; }
+
+    .hot-frase-full {
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    .hot-frase-full .a { color: #ffb3cf; }
+    .hot-frase-full .b { color: #fff; margin-left: 4px; }
+
+    .hot-frase-foot { display: flex; justify-content: space-between; align-items: center; }
+
+    /* eu quero */
+
+    .hot-explain {
+        padding: 12px 14px;
+        border-radius: 16px;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: rgba(255, 225, 235, 0.85);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hot-matches { display: grid; gap: 6px; }
+
+    .hot-match {
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-weight: 600;
+        background: linear-gradient(135deg, rgba(255, 79, 139, 0.35), rgba(176, 48, 106, 0.35));
+        border: 1px solid rgba(255, 106, 154, 0.5);
+    }
+
+    .hot-match.maybe { font-weight: 500; background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
+
+    .hot-ideas { display: grid; gap: 8px; margin-bottom: 12px; }
+
+    .hot-idea {
+        padding: 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-idea-text { font-size: 14.5px; margin-bottom: 8px; }
+
+    .hot-idea-marks { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .hot-idea-marks button {
+        padding: 7px 11px;
+        font-size: 12.5px;
+        border-radius: 999px;
+        color: rgba(255, 220, 232, 0.85);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid transparent;
+    }
+
+    .hot-idea-marks button.on.sim { background: #ff4f8b; color: #fff; }
+    .hot-idea-marks button.on.talvez { background: #8a63d2; color: #fff; }
+    .hot-idea-marks button.on.nao { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+    .hot-idea-marks .hot-mini { margin-left: auto; }
+
+    @media (max-width: 650px) {
+
+        #hotOverlay { padding: 0; align-items: stretch; }
+
+        .hot-modal {
+            width: 100%;
+            max-height: none;
+            height: 100dvh;
+            border-radius: 0;
+            border: none;
+            padding: 0 16px calc(24px + env(safe-area-inset-bottom));
+        }
+
+        .hot-top { margin: 0 -16px; padding: calc(14px + env(safe-area-inset-top)) 14px 10px; }
+    }
+
+
 </style>
 
 
@@ -9759,6 +10120,23 @@
                 </div>
 
             </div>
+
+            <div
+                id="hotCard"
+                class="hot-card"
+                onclick="openHot()"
+            >
+                <span class="hot-card-icon">🔥</span>
+                <div class="hot-card-text">
+                    <div class="hot-card-title">Só nós dois</div>
+                    <div class="hot-card-desc">Sussurros, frases e vontades. Só abre com o login de vocês 🔒</div>
+                </div>
+                <span
+                    id="hotBadge"
+                    class="hot-badge"
+                >🔒</span>
+            </div>
+
 
         </div>
 
@@ -12840,6 +13218,47 @@
                 onclick="saveBoard()"
             >⬇️ Salvar</button>
         </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🔥 MODAL — SÓ NÓS DOIS (conteúdo vem só do banco, com login)
+================================================== -->
+
+<div
+    id="hotOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal hot-modal">
+
+        <div class="hot-top">
+            <div class="hot-title">Só nós dois <span>🔥</span></div>
+            <button
+                class="bday-close-x hot-exit"
+                onclick="closeHot()"
+                aria-label="Sair rápido"
+            >✕</button>
+        </div>
+
+        <div class="hot-tabs">
+            <button class="hot-tab on" data-tab="sussurro" onclick="setHotTab('sussurro')">
+                🤫 Sussurros <i id="hotTabWhisperCount"></i>
+            </button>
+            <button class="hot-tab" data-tab="frase" onclick="setHotTab('frase')">
+                ✍️ Frases <i id="hotTabFraseCount"></i>
+            </button>
+            <button class="hot-tab" data-tab="quero" onclick="setHotTab('quero')">
+                💞 Eu quero…
+            </button>
+        </div>
+
+        <div
+            id="hotBody"
+            class="hot-body"
+        ></div>
 
     </div>
 
@@ -17653,7 +18072,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay", "hotOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -19844,6 +20263,9 @@ Te amo muito.
         );
 
         if (!target) return;
+
+        // no cantinho "Só nós dois" tudo é silencioso
+        if (target.closest("#hotOverlay, #hotCard")) return;
 
         if (performance.now() - lastSfxAt < 120) return;
 
@@ -22303,7 +22725,17 @@ Te amo muito.
 
         renderCloudBox();
 
-        if (!user) return;
+        if (!user) {
+            try {
+                stopHotSync();
+                if (!document.getElementById("hotOverlay").classList.contains("hidden")) closeHot();
+            } catch (e) {}
+            return;
+        }
+
+        try { startHotSync(); } catch (e) {}
+
+
 
         const err = () => onCloudError("offline");
 
@@ -26211,6 +26643,597 @@ Te amo muito.
     })();
 
     /* ==================================================
+       🔥 SÓ NÓS DOIS (cantinho quente)
+       - só abre com login na nuvem
+       - nada fica guardado no celular nem no código:
+         tudo vem do banco, protegido pelo login de vocês
+    ================================================== */
+
+    let hotRows = [];
+    let hotStop = null;
+    let hotTab = "sussurro";
+    let hotError = null;
+    let hotPlaying = null;
+    let hotDeleteArm = null;
+
+    function hotWho(name) {
+
+        return name === "Gabriel" ? "o Gabriel" : "a Diane";
+    }
+
+    function hotWhoCap(name) {
+
+        return name === "Gabriel" ? "O Gabriel" : "A Diane";
+    }
+
+    function hotEsc(t) {
+
+        return escapeHtml(String(t || ""));
+    }
+
+    function hotTime(at) {
+
+        const d = new Date(at);
+        const today = new Date();
+        const sameDay = d.toDateString() === today.toDateString();
+
+        return sameDay
+            ? d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+            : d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }) + " " +
+              d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    // liga e desliga a escuta do banco junto com o login
+    function startHotSync() {
+
+        stopHotSync();
+
+        if (!cloudReady() || !window.loveCloud.hotListen) return;
+
+        hotStop = window.loveCloud.hotListen(rows => {
+
+            hotError = null;
+            hotRows = rows;
+
+            hotCheckHeard();
+
+            updateHotBadge();
+
+            if (!document.getElementById("hotOverlay").classList.contains("hidden")) renderHot();
+
+        }, err => {
+
+            hotError = err;
+
+            if (!document.getElementById("hotOverlay").classList.contains("hidden")) renderHot();
+        });
+    }
+
+    function stopHotSync() {
+
+        if (hotStop) { try { hotStop(); } catch (e) {} }
+
+        hotStop = null;
+        hotRows = [];
+
+        updateHotBadge();
+    }
+
+    function hotOfType(t) {
+
+        return hotRows.filter(r => r.tipo === t);
+    }
+
+    function hotPendingCount() {
+
+        const me = myName();
+
+        const whispers = hotOfType("sussurro").filter(r => r.dados.para === me && !r.dados.lido).length;
+        const frases = hotOfType("frase").filter(r => r.dados.de !== me && !r.dados.fim).length;
+
+        return { whispers, frases, total: whispers + frases };
+    }
+
+    function updateHotBadge() {
+
+        const badge = document.getElementById("hotBadge");
+
+        if (!badge) return;
+
+        if (!cloudReady()) {
+            badge.textContent = "🔒";
+            badge.classList.remove("new");
+            return;
+        }
+
+        const n = hotPendingCount().total;
+
+        badge.textContent = n ? `${n} novo${n > 1 ? "s" : ""}` : "🔥";
+        badge.classList.toggle("new", n > 0);
+    }
+
+    /* abrir e fechar */
+
+    function openHot() {
+
+        if (!cloudReady()) {
+
+            openCloudModal();
+
+            setTimeout(() => {
+                loveToast("🔒 Esse cantinho só abre com o login de vocês. Entra aqui primeiro 💗");
+            }, 200);
+
+            return;
+        }
+
+        if (!hotStop) startHotSync();
+
+        hotPlaying = null;
+
+        renderHot();
+
+        openFunModal("hotOverlay");
+    }
+
+    function closeHot() {
+
+        hotPlaying = null;
+
+        const player = document.getElementById("hotPlayer");
+
+        if (player) player.innerHTML = "";
+
+        closeFunModal("hotOverlay");
+    }
+
+    // trocou de app ou bloqueou o celular: fecha na hora
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden && !document.getElementById("hotOverlay").classList.contains("hidden")) closeHot();
+    });
+
+    function setHotTab(t) {
+
+        hotTab = t;
+        hotPlaying = null;
+
+        renderHot();
+    }
+
+    function renderHot() {
+
+        const body = document.getElementById("hotBody");
+
+        document.querySelectorAll(".hot-tab").forEach(b =>
+            b.classList.toggle("on", b.dataset.tab === hotTab));
+
+        const p = hotPendingCount();
+
+        document.getElementById("hotTabWhisperCount").textContent = p.whispers ? p.whispers : "";
+        document.getElementById("hotTabFraseCount").textContent = p.frases ? p.frases : "";
+
+        if (hotError) {
+
+            body.innerHTML = `
+                <div class="hot-empty">
+                    🔒 O banco ainda não liberou esse cantinho.<br>
+                    <small>Falta rodar o "SQL do cantinho" no Supabase (o Gabriel tem ele). Erro: ${hotEsc(hotError.code || hotError.message)}</small>
+                </div>`;
+            return;
+        }
+
+        if (hotTab === "sussurro") body.innerHTML = hotWhisperHtml();
+        if (hotTab === "frase") body.innerHTML = hotFraseHtml();
+        if (hotTab === "quero") body.innerHTML = hotQueroHtml();
+    }
+
+    /* 🤫 SUSSURROS */
+
+    function hotWhisperHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const all = hotOfType("sussurro");
+        const inbox = all.filter(r => r.dados.para === me);
+        const sent = all.filter(r => r.dados.de === me);
+
+        const inboxHtml = inbox.length
+            ? inbox.map(r => `
+                <button class="hot-item ${r.dados.lido ? "" : "unread"}" onclick="playWhisper('${r.id}')">
+                    <span class="hot-item-icon">🤫</span>
+                    <span class="hot-item-text">
+                        <b>${r.dados.lido ? "Sussurro" : "Sussurro novo"} d${other === "Gabriel" ? "o Gabriel" : "a Diane"}</b>
+                        <small>${hotTime(r.at)}${r.dados.sumir ? " · some depois de ouvir" : ""}</small>
+                    </span>
+                    <span class="hot-item-go">▶</span>
+                </button>`).join("")
+            : `<div class="hot-empty small">Nenhum sussurro pra você ainda 👀</div>`;
+
+        const sentHtml = sent.length
+            ? sent.slice(0, 6).map(r => `
+                <div class="hot-sent">
+                    <span>${hotEsc(r.dados.texto).slice(0, 60)}${r.dados.texto.length > 60 ? "…" : ""}</span>
+                    <small>${r.dados.lido ? "✓ ouvido" : "ainda não ouviu"} · ${hotTime(r.at)}</small>
+                </div>`).join("")
+            : "";
+
+        return `
+            <div id="hotPlayer" class="hot-player hidden"></div>
+
+            <div class="hot-section-title">Pra você</div>
+            <div class="hot-list">${inboxHtml}</div>
+
+            <div class="hot-section-title">Sussurrar pr${other === "Gabriel" ? "o Gabriel" : "a Diane"}</div>
+            <div class="hot-compose">
+                <textarea id="hotWhisperText" maxlength="600" placeholder="Escreve devagarinho, ele vai aparecer letra por letra no ouvido d${other === "Gabriel" ? "ele" : "ela"}..."></textarea>
+                <label class="hot-check">
+                    <input id="hotWhisperVanish" type="checkbox" checked>
+                    <span>Sumir depois de ouvir</span>
+                </label>
+                <button class="hot-btn" onclick="sendWhisper()">Sussurrar 🤫</button>
+            </div>
+
+            ${sentHtml ? `<div class="hot-section-title">Você sussurrou</div><div class="hot-sent-list">${sentHtml}</div>` : ""}
+        `;
+    }
+
+    async function sendWhisper() {
+
+        const input = document.getElementById("hotWhisperText");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        const dados = {
+            de: myName(),
+            para: otherName(),
+            texto,
+            sumir: document.getElementById("hotWhisperVanish").checked,
+            lido: false,
+            at: Date.now()
+        };
+
+        try {
+
+            await window.loveCloud.hotSave("s_" + newId(), "sussurro", dados);
+
+            input.value = "";
+
+            loveToast(`🤫 Sussurro enviado. ${hotWhoCap(otherName())} vai ouvir quando abrir o cantinho`);
+
+        } catch (e) {
+
+            loveToast("Não deu pra enviar agora 😕 Confere a internet");
+        }
+    }
+
+    function playWhisper(id) {
+
+        const row = hotRows.find(r => r.id === id);
+
+        if (!row) return;
+
+        const player = document.getElementById("hotPlayer");
+
+        player.classList.remove("hidden");
+        player.innerHTML = `
+            <div class="hot-player-from">${hotWhoCap(row.dados.de)} sussurrou…</div>
+            <div id="hotWhisperOut" class="hot-whisper-out"></div>
+            <div id="hotPlayerActions" class="hot-player-actions hidden"></div>
+        `;
+
+        player.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        const out = document.getElementById("hotWhisperOut");
+        const text = row.dados.texto;
+        const token = {};
+
+        hotPlaying = token;
+
+        let i = 0;
+
+        (function step() {
+
+            if (hotPlaying !== token) return;
+
+            if (i >= text.length) {
+                finishWhisper(row);
+                return;
+            }
+
+            const ch = text[i++];
+            const span = document.createElement("span");
+
+            span.className = "hot-letter";
+            span.textContent = ch;
+            out.appendChild(span);
+
+            // pausa maior nas vírgulas e pontos, como quem fala baixinho
+            const delay = /[.,!?…]/.test(ch) ? 420 : ch === " " ? 90 : 70;
+
+            setTimeout(step, delay);
+        })();
+    }
+
+    async function finishWhisper(row) {
+
+        const actions = document.getElementById("hotPlayerActions");
+
+        if (!actions) return;
+
+        actions.classList.remove("hidden");
+
+        if (row.dados.sumir) {
+
+            actions.innerHTML = `<small>Esse sussurro some agora 🤫</small>`;
+
+            setTimeout(async () => {
+                try { await window.loveCloud.hotRemove(row.id); } catch (e) {}
+                const player = document.getElementById("hotPlayer");
+                if (player) { player.classList.add("hidden"); player.innerHTML = ""; }
+            }, 4000);
+
+        } else {
+
+            actions.innerHTML = `
+                <button class="hot-btn ghost" onclick="playWhisper('${row.id}')">Ouvir de novo</button>
+                <button class="hot-btn ghost" onclick="deleteHot('${row.id}', this)">🗑️ Apagar</button>`;
+
+            if (!row.dados.lido) {
+                try { await window.loveCloud.hotSave(row.id, "sussurro", { ...row.dados, lido: true }); } catch (e) {}
+            }
+        }
+
+        // quem mandou fica sabendo que foi ouvido (mesmo os que somem)
+        if (row.dados.sumir && !row.dados.lido) {
+            try {
+                await window.loveCloud.hotSave("o_" + row.id, "ouvido", { de: row.dados.de, at: Date.now() });
+            } catch (e) {}
+        }
+    }
+
+    /* ✍️ COMPLETA A FRASE */
+
+    // ✏️ começos pra inspirar (pode escrever o seu também)
+    const HOT_STARTERS = [
+        "Hoje eu queria…",
+        "Quando a gente se ver de novo…",
+        "Eu não paro de pensar em…",
+        "Se você estivesse aqui agora…",
+        "O que eu mais sinto falta é…"
+    ];
+
+    function hotFraseHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const all = hotOfType("frase");
+        const toMe = all.filter(r => r.dados.de !== me && !r.dados.fim);
+        const waiting = all.filter(r => r.dados.de === me && !r.dados.fim);
+        const done = all.filter(r => r.dados.fim);
+
+        const toMeHtml = toMe.map(r => `
+            <div class="hot-frase pending">
+                <div class="hot-frase-start">“${hotEsc(r.dados.comeco)}”</div>
+                <small>${hotWhoCap(r.dados.de)} começou. Completa 👀</small>
+                <textarea id="fim_${r.id}" maxlength="400" placeholder="Termina essa frase..."></textarea>
+                <button class="hot-btn" onclick="finishFrase('${r.id}')">Completar 🔥</button>
+            </div>`).join("");
+
+        const waitingHtml = waiting.map(r => `
+            <div class="hot-frase waiting">
+                <div class="hot-frase-start">“${hotEsc(r.dados.comeco)}”</div>
+                <small>Esperando ${hotWho(other)} completar 👀</small>
+            </div>`).join("");
+
+        const doneHtml = done.map(r => `
+            <div class="hot-frase done">
+                <div class="hot-frase-full">
+                    <span class="a">${hotEsc(r.dados.comeco)}</span>
+                    <span class="b">${hotEsc(r.dados.fim)}</span>
+                </div>
+                <div class="hot-frase-foot">
+                    <small>${r.dados.de === "Gabriel" ? "💙" : "💗"} + ${r.dados.de === "Gabriel" ? "💗" : "💙"} · ${hotTime(r.dados.fimAt || r.at)}</small>
+                    <button class="hot-mini" onclick="deleteHot('${r.id}', this)">🗑️</button>
+                </div>
+            </div>`).join("");
+
+        return `
+            ${toMeHtml ? `<div class="hot-section-title">Pra você completar</div>${toMeHtml}` : ""}
+
+            <div class="hot-section-title">Começar uma frase</div>
+            <div class="hot-compose">
+                <div class="hot-starters">
+                    ${HOT_STARTERS.map(s => `<button onclick="document.getElementById('hotFraseText').value='${s.replace(/'/g, "\\'")} '; document.getElementById('hotFraseText').focus()">${hotEsc(s)}</button>`).join("")}
+                </div>
+                <textarea id="hotFraseText" maxlength="300" placeholder="Começa uma frase e deixa ${hotWho(other)} terminar..."></textarea>
+                <button class="hot-btn" onclick="startFrase()">Mandar pr${other === "Gabriel" ? "o Gabriel" : "a Diane"} completar ✍️</button>
+            </div>
+
+            ${waitingHtml ? `<div class="hot-section-title">Esperando</div>${waitingHtml}` : ""}
+
+            ${doneHtml ? `<div class="hot-section-title">Frases de vocês dois 🔥</div>${doneHtml}` : ""}
+        `;
+    }
+
+    async function startFrase() {
+
+        const input = document.getElementById("hotFraseText");
+        const comeco = input.value.trim();
+
+        if (!comeco) { input.focus(); return; }
+
+        try {
+
+            await window.loveCloud.hotSave("f_" + newId(), "frase", { de: myName(), comeco, fim: "", at: Date.now() });
+
+            input.value = "";
+
+            loveToast(`✍️ Mandado! Agora é ${hotWho(otherName())} que completa 👀`);
+
+        } catch (e) {
+
+            loveToast("Não deu pra enviar agora 😕");
+        }
+    }
+
+    async function finishFrase(id) {
+
+        const row = hotRows.find(r => r.id === id);
+        const input = document.getElementById("fim_" + id);
+
+        if (!row || !input) return;
+
+        const fim = input.value.trim();
+
+        if (!fim) { input.focus(); return; }
+
+        try {
+
+            await window.loveCloud.hotSave(id, "frase", { ...row.dados, fim, fimDe: myName(), fimAt: Date.now() });
+
+            loveToast("🔥 Frase completa!");
+
+        } catch (e) {
+
+            loveToast("Não deu pra salvar agora 😕");
+        }
+    }
+
+    /* 💞 EU QUERO… (só aparece o que os dois querem) */
+
+    function hotMarks(name) {
+
+        const row = hotRows.find(r => r.id === "marcas_" + name.toLowerCase());
+
+        return (row && row.dados.marcas) || {};
+    }
+
+    function hotQueroHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const ideas = hotOfType("ideia").slice().sort((a, b) => a.at - b.at);
+        const mine = hotMarks(me);
+        const theirs = hotMarks(other);
+
+        const both = ideas.filter(i => mine[i.id] === "sim" && theirs[i.id] === "sim");
+        const maybe = ideas.filter(i =>
+            !both.includes(i) &&
+            ["sim", "talvez"].includes(mine[i.id]) &&
+            ["sim", "talvez"].includes(theirs[i.id]));
+
+        const otherDone = ideas.filter(i => theirs[i.id]).length;
+
+        const listHtml = ideas.length
+            ? ideas.map(i => {
+
+                const m = mine[i.id] || "";
+
+                return `
+                    <div class="hot-idea">
+                        <div class="hot-idea-text">${hotEsc(i.dados.texto)}</div>
+                        <div class="hot-idea-marks">
+                            <button class="${m === "sim" ? "on sim" : ""}" onclick="markIdea('${i.id}','sim')">Quero 🔥</button>
+                            <button class="${m === "talvez" ? "on talvez" : ""}" onclick="markIdea('${i.id}','talvez')">Talvez 🤔</button>
+                            <button class="${m === "nao" ? "on nao" : ""}" onclick="markIdea('${i.id}','nao')">Não</button>
+                            <button class="hot-mini" onclick="deleteHot('${i.id}', this)">🗑️</button>
+                        </div>
+                    </div>`;
+            }).join("")
+            : `<div class="hot-empty small">A lista ainda tá vazia. Coloca a primeira ideia 👀</div>`;
+
+        return `
+            <div class="hot-explain">
+                Cada um marca escondido o que quer. <b>Ninguém vê o que o outro marcou</b>,
+                só aparece aqui em cima o que <b>os dois</b> quiserem 💞
+            </div>
+
+            <div class="hot-section-title">💞 Vocês dois querem</div>
+            <div class="hot-matches">
+                ${both.length
+                    ? both.map(i => `<div class="hot-match">🔥 ${hotEsc(i.dados.texto)}</div>`).join("")
+                    : `<div class="hot-empty small">Nada em comum ainda… ${otherDone ? "" : `(${hotWho(other)} ainda não marcou nada)`}</div>`}
+            </div>
+
+            ${maybe.length ? `
+                <div class="hot-section-title">🤔 Quem sabe…</div>
+                <div class="hot-matches">${maybe.map(i => `<div class="hot-match maybe">${hotEsc(i.dados.texto)}</div>`).join("")}</div>` : ""}
+
+            <div class="hot-section-title">A lista de vocês</div>
+            <div class="hot-ideas">${listHtml}</div>
+
+            <div class="hot-compose">
+                <input id="hotIdeaText" maxlength="140" placeholder="Coloca uma ideia na lista..." onkeydown="if (event.key === 'Enter') addIdea()">
+                <button class="hot-btn" onclick="addIdea()">Adicionar ➕</button>
+            </div>
+        `;
+    }
+
+    async function addIdea() {
+
+        const input = document.getElementById("hotIdeaText");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        try {
+            await window.loveCloud.hotSave("i_" + newId(), "ideia", { texto, at: Date.now() });
+            input.value = "";
+        } catch (e) {
+            loveToast("Não deu pra adicionar agora 😕");
+        }
+    }
+
+    async function markIdea(id, value) {
+
+        const me = myName();
+        const marcas = { ...hotMarks(me) };
+
+        marcas[id] = marcas[id] === value ? "" : value;
+
+        try {
+            await window.loveCloud.hotSave("marcas_" + me.toLowerCase(), "marcas", { marcas, at: Date.now() });
+        } catch (e) {
+            loveToast("Não deu pra salvar agora 😕");
+        }
+    }
+
+    async function deleteHot(id, btn) {
+
+        if (hotDeleteArm !== id) {
+
+            hotDeleteArm = id;
+
+            if (btn) btn.textContent = "Apagar?";
+
+            setTimeout(() => { if (hotDeleteArm === id) { hotDeleteArm = null; renderHot(); } }, 3000);
+
+            return;
+        }
+
+        hotDeleteArm = null;
+
+        try { await window.loveCloud.hotRemove(id); } catch (e) {}
+
+        const player = document.getElementById("hotPlayer");
+
+        if (player) { player.classList.add("hidden"); player.innerHTML = ""; }
+    }
+
+    // aviso de "ouvido" pra quem mandou sussurro que some
+    function hotCheckHeard() {
+
+        const me = myName();
+
+        hotOfType("ouvido").filter(r => r.dados.de === me).forEach(r => {
+            loveToast(`🤫 ${hotWhoCap(otherName())} ouviu seu sussurro 🔥`);
+            window.loveCloud.hotRemove(r.id).catch(() => {});
+        });
+    }
+
+    /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
     ================================================== */
 
@@ -26536,6 +27559,55 @@ Te amo muito.
                                 const c = (p.new && p.new.colecao) || (p.old && p.old.colecao);
                                 if (!c || c === col) load();
                             })
+                        .subscribe();
+
+                    return () => {
+                        alive = false;
+                        sb.removeChannel(channel);
+                    };
+                },
+
+                // 🔥 cantinho "Só nós dois": tabela própria, trancada no banco
+                hotLoad: async () => {
+                    const { data, error } = await sb.from("cantinho")
+                        .select("id, tipo, dados, at")
+                        .order("at", { ascending: false });
+                    if (error) throw fail(error);
+                    return data || [];
+                },
+
+                hotSave: async (id, tipo, dados) => {
+                    const { error } = await sb.from("cantinho").upsert({
+                        id,
+                        tipo,
+                        dados,
+                        at: dados.at || Date.now()
+                    });
+                    if (error) throw fail(error);
+                },
+
+                hotRemove: async id => {
+                    const { error } = await sb.from("cantinho").delete().eq("id", id);
+                    if (error) throw fail(error);
+                },
+
+                hotListen: (cb, onErr) => {
+
+                    let alive = true;
+
+                    const load = async () => {
+                        const { data, error } = await sb.from("cantinho")
+                            .select("id, tipo, dados, at")
+                            .order("at", { ascending: false });
+                        if (!alive) return;
+                        if (error) { if (onErr) onErr(fail(error)); return; }
+                        cb(data || []);
+                    };
+
+                    load();
+
+                    const channel = sb.channel("cantinho-" + uniq())
+                        .on("postgres_changes", { event: "*", schema: "public", table: "cantinho" }, () => load())
                         .subscribe();
 
                     return () => {
