@@ -8906,6 +8906,9 @@
 
     #passwordModal .error-message { color: #ffd27d; margin-top: 10px; }
 
+    #passwordModal.love-auto .password-input,
+    #passwordModal.love-auto .password-actions { display: none; }
+
     #passwordModal .cancel-btn {
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.14);
@@ -10250,6 +10253,69 @@
     }
 
 
+
+    /* 🔐 portão de login */
+
+    html.gate-on, html.gate-on body { overflow: hidden; }
+    html.gate-on .bottom-nav, html.gate-on .theme-toggle { visibility: hidden; }
+
+    .gate-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 5000;
+        display: grid;
+        place-items: center;
+        overflow-y: auto;
+        padding: 24px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+        background:
+            radial-gradient(60% 40% at 15% 10%, var(--blob-1, #ffc8dd), transparent 70%),
+            radial-gradient(60% 40% at 90% 85%, var(--blob-2, #bde0fe), transparent 70%),
+            var(--bg, #fff6fb);
+    }
+
+    .gate-screen.hidden { display: none; }
+    .gate-screen.leaving { animation: gateOut 0.6s ease forwards; }
+
+    @keyframes gateOut { to { opacity: 0; transform: scale(1.04); } }
+
+    .gate-inner {
+        width: min(420px, 100%);
+        text-align: center;
+        animation: navIn 0.5s ease;
+    }
+
+    .gate-couple { display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 40px; }
+    .gate-couple b { font-size: 30px; animation: heartbeat 1.4s ease-in-out infinite; }
+
+    .gate-title {
+        margin-top: 8px;
+        font-family: "Pacifico", cursive;
+        font-weight: 400;
+        font-size: 34px;
+        line-height: 1.15;
+        color: var(--accent);
+    }
+
+    .gate-title span { display: block; font-size: 26px; color: var(--accent-2); }
+
+    .gate-sub { margin: 10px 0 18px; font-size: 15px; color: var(--text-soft); }
+
+    .gate-form .cloud-login {
+        margin: 0;
+        padding: 18px;
+        text-align: left;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-style: solid;
+        box-shadow: 0 18px 40px -18px rgba(150, 60, 120, 0.35);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .gate-form .cloud-msg { text-align: center; }
+    .gate-loading { padding: 30px; color: var(--text-muted); }
+    .gate-foot { margin-top: 14px; font-size: 12.5px; color: var(--text-muted); }
+
     /* 📱 barra de navegação embaixo */
 
     #home .nav-panel { display: none; }
@@ -10996,6 +11062,33 @@
 
 </head>
 <body>
+
+<!-- ==================================================
+     🔐 PORTÃO: tela de login antes de tudo
+     (depois que entra uma vez, o celular lembra e abre direto)
+================================================== -->
+
+<div id="gateScreen" class="gate-screen">
+    <div class="gate-inner">
+        <div class="gate-couple" aria-hidden="true"><span>🐾</span><b>💗</b><span>🐾</span></div>
+        <h1 class="gate-title">Nosso Multiverso <span>Capivara</span></h1>
+        <p class="gate-sub">Um cantinho só nosso. Entra com o login de vocês 💗</p>
+        <div id="gateForm" class="gate-form">
+            <div class="gate-loading">Abrindo… ☁️</div>
+        </div>
+        <div class="gate-foot">Só precisa entrar uma vez em cada celular 🔒</div>
+    </div>
+</div>
+
+<script>
+    // decide na hora (antes de desenhar o resto) se o portão aparece
+    (function () {
+        var ok = false;
+        try { ok = localStorage.getItem("loveGateOk") === "1" || !!localStorage.getItem("nossoCantinhoLogin"); } catch (e) {}
+        if (ok) document.getElementById("gateScreen").classList.add("hidden");
+        else document.documentElement.classList.add("gate-on");
+    })();
+</script>
 
 <!-- DECORAÇÃO -->
 <div id="floaties" class="floaties"></div>
@@ -12083,7 +12176,7 @@
             Essa parte é especial demais para
             qualquer pessoa entrar...
             <br>
-            Digite a palavrinha mágica. 💗
+            Só vocês dois têm a chave... 💗
         </p>
 
         <input
@@ -18548,23 +18641,26 @@ Te amo muito.
 
     function openLovePassword() {
 
+        // 🔐 a Noite de Love abre com o login de vocês (não tem mais palavrinha no código)
+        if (!cloudReady()) {
+            loveToast(loveCloudState === "offline"
+                ? "📴 A Noite de Love precisa de internet pra abrir"
+                : "🔒 A Noite de Love só abre com o login de vocês");
+            if (loveCloudState !== "offline") openCloudModal();
+            return;
+        }
+
         const lock = document.getElementById("loveLock");
 
         if (lock) lock.className = "love-lock";
 
         passwordInput.value = "";
-
         passwordError.textContent = "";
 
-        passwordModal.classList.remove(
-            "hidden"
-        );
+        passwordModal.classList.add("love-auto");
+        passwordModal.classList.remove("hidden");
 
-        setTimeout(() => {
-
-            passwordInput.focus();
-
-        }, 150);
+        setTimeout(unlockLoveNight, 450);
     }
 
     function closeLovePassword() {
@@ -18582,57 +18678,36 @@ Te amo muito.
 
     function checkLovePassword() {
 
-        const password =
-            passwordInput.value.trim();
+        if (cloudReady()) unlockLoveNight();
+    }
 
-        if (
-            password.toLowerCase() ===
-            "nezuko"
-        ) {
+    function unlockLoveNight() {
 
-            if (loveUnlocking) return;
+        if (loveUnlocking) return;
 
-            loveUnlocking = true;
+        loveUnlocking = true;
 
-            const lock = document.getElementById("loveLock");
+        const lock = document.getElementById("loveLock");
 
-            lock.classList.remove("wrong");
-            lock.classList.add("open");
+        lock.classList.remove("wrong");
+        lock.classList.add("open");
 
-            passwordError.textContent = "Acesso liberado... 💗";
+        passwordError.textContent = `Acesso liberado, ${myName()}... 💗`;
 
-            setTimeout(() => {
+        setTimeout(() => {
 
-                loveUnlocking = false;
+            loveUnlocking = false;
 
-                passwordModal.classList.add(
-                    "hidden"
-                );
+            passwordModal.classList.add("hidden");
+            passwordModal.classList.remove("love-auto");
 
-                home.classList.add(
-                    "hidden"
-                );
+            home.classList.add("hidden");
 
-                loveSecret.classList.remove(
-                    "hidden"
-                );
+            loveSecret.classList.remove("hidden");
 
-                startLoveNight();
+            startLoveNight();
 
-            }, 1150);
-
-        } else {
-
-            const lock = document.getElementById("loveLock");
-
-            lock.classList.remove("wrong");
-            void lock.offsetWidth;
-            lock.classList.add("wrong");
-
-            passwordError.textContent =
-                "Hmmmm... tentou, mas essa não é a palavrinha mágica 👀💕 (pergunte à Dianemin que ela vai saber kkkkk)";
-
-        }
+        }, 1150);
     }
 
     passwordInput.addEventListener(
@@ -24552,6 +24627,8 @@ Te amo muito.
 
         try { updateHero(); maybeAskWho(); } catch (e) {}
 
+        if (user) { try { passGate(); } catch (e) {} }
+
         if (!user) {
             try {
                 clearInterval(onlineBeat);
@@ -24781,7 +24858,79 @@ Te amo muito.
     function cloudLogout() {
 
         if (window.loveCloud) window.loveCloud.logout();
+
+        // saiu de propósito: o portão volta
+        try { closeFunModal("cloudOverlay"); } catch (e) {}
+
+        openGate();
     }
+
+    /* ==================================================
+       🔐 PORTÃO DE LOGIN
+    ================================================== */
+
+    const GATE_KEY = "loveGateOk";
+
+    function gateIsOpen() {
+
+        return !document.getElementById("gateScreen").classList.contains("hidden");
+    }
+
+    function renderGate() {
+
+        const form = document.getElementById("gateForm");
+
+        if (!form) return;
+
+        form.innerHTML = `
+            <div class="cloud-login">
+                <div class="cloud-who-title">Quem tá entrando?</div>
+                ${whoButtonsHtml(whoChosen() ? myName() : "", "pickLoginWho")}
+                <input class="cloud-email" type="email" placeholder="E-mail" autocomplete="username"
+                    autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email">
+                <input class="cloud-pass" type="password" placeholder="Senha" autocomplete="current-password"
+                    autocapitalize="off" autocorrect="off" spellcheck="false"
+                    onkeydown="if (event.key === 'Enter') cloudLogin(this)">
+                <button class="primary-btn care-wide" onclick="cloudLogin(this)">Entrar 💗</button>
+                <div class="cloud-msg"></div>
+            </div>`;
+    }
+
+    function openGate() {
+
+        try { localStorage.removeItem(GATE_KEY); } catch (e) {}
+
+        renderGate();
+
+        const g = document.getElementById("gateScreen");
+
+        g.classList.remove("hidden", "leaving");
+        document.documentElement.classList.add("gate-on");
+
+        try { setNavTab("inicio", true); } catch (e) {}
+    }
+
+    function passGate() {
+
+        try { localStorage.setItem(GATE_KEY, "1"); } catch (e) {}
+
+        if (!gateIsOpen()) return;
+
+        const g = document.getElementById("gateScreen");
+
+        g.classList.add("leaving");
+
+        setTimeout(() => {
+            g.classList.add("hidden");
+            g.classList.remove("leaving");
+            document.documentElement.classList.remove("gate-on");
+        }, 600);
+    }
+
+    // espera o resto do script carregar (os botões "quem é" vêm depois)
+    setTimeout(() => { if (gateIsOpen()) renderGate(); }, 0);
+
+
 
 
     updateMemCount();
