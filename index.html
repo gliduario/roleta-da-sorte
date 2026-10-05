@@ -8031,6 +8031,424 @@
     }
 
 
+    /* ==========================================
+       💗 SE O CORAÇÃO APERTAR — visual novo
+    ========================================== */
+
+    /* fundo sem desfoque (mais leve no celular) */
+    #comfortModal {
+        background: rgba(42, 28, 70, 0.55);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    :root[data-theme="dark"] #comfortModal { background: rgba(6, 4, 18, 0.7); }
+
+    #comfortModal .care-modal {
+        position: relative;
+        width: min(100%, 560px);
+        max-height: 90vh;
+        padding: 0 26px 30px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        contain: layout paint;
+        text-align: center;
+        border: 1px solid var(--border);
+        border-radius: 32px;
+        background:
+            radial-gradient(70% 30% at 50% 0%, rgba(205, 180, 255, 0.35), transparent 70%),
+            var(--surface-solid);
+        box-shadow: 0 30px 80px -20px rgba(40, 20, 80, 0.55);
+        animation: careSheetIn 0.45s cubic-bezier(.2, .9, .3, 1);
+    }
+
+    @keyframes careSheetIn {
+        from { opacity: 0; transform: translateY(26px) scale(0.98); }
+        to { opacity: 1; transform: none; }
+    }
+
+    /* barra de cima fixa: chuva + fechar */
+    #comfortModal .care-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        margin: 0 -26px;
+        padding: 14px 16px 6px;
+        background: linear-gradient(180deg, var(--surface-solid) 60%, transparent);
+    }
+
+    #comfortModal .care-topbar .care-rain-btn,
+    #comfortModal .care-topbar .bday-close-x {
+        position: static;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        font-size: 17px;
+        border-radius: 50%;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        color: var(--text-soft);
+        opacity: 1;
+        box-shadow: 0 4px 12px -6px var(--shadow);
+    }
+
+    #comfortModal .care-topbar .care-rain-btn.on {
+        background: linear-gradient(135deg, #e3d7ff, #d6e4ff);
+        border-color: #b9a3f0;
+        box-shadow: 0 0 0 4px var(--lilac-glow);
+    }
+
+    /* nuvenzinhas: só transform (não pesa) */
+    #comfortModal .care-clouds { z-index: 0; }
+
+    #comfortModal .care-clouds span {
+        left: 0;
+        opacity: 0.22;
+        will-change: transform;
+        animation-name: careCloudMove;
+    }
+
+    @keyframes careCloudMove {
+        from { transform: translateX(-90px); }
+        to { transform: translateX(640px); }
+    }
+
+    #comfortModal .care-view { animation: careViewIn 0.45s cubic-bezier(.2, .9, .3, 1); }
+
+    @keyframes careViewIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: none; }
+    }
+
+    /* capa do cantinho */
+    #comfortModal .care-hero {
+        position: relative;
+        margin: 0 0 18px;
+        padding: 22px 18px 18px;
+        border-radius: 28px;
+        background:
+            radial-gradient(60% 50% at 80% 10%, rgba(255, 230, 180, 0.55), transparent 70%),
+            linear-gradient(170deg, #efe6ff 0%, #ffe9f2 60%, #fff4ea 100%);
+        border: 1px solid #ecdcf6;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    :root[data-theme="dark"] #comfortModal .care-hero {
+        background:
+            radial-gradient(60% 50% at 80% 10%, rgba(255, 210, 125, 0.15), transparent 70%),
+            linear-gradient(170deg, #2f2860 0%, #3a2a5a 60%, #3d2d4f 100%);
+        border-color: #4a3f80;
+    }
+
+    #comfortModal .care-hero .care-speech {
+        margin: 0 auto 6px;
+        max-width: 380px;
+        font-size: 15.5px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 20px -10px var(--shadow);
+    }
+
+    #comfortModal .care-hero .care-speech::after {
+        background: var(--surface-solid);
+        border-color: var(--border);
+        border-width: 0 1px 1px 0;
+    }
+
+    #comfortModal .care-hero .care-home-mm { margin: 4px auto 2px; }
+
+    #comfortModal .care-hero .care-sub {
+        margin: 0;
+        font-size: 15px;
+        color: var(--text-soft);
+    }
+
+    /* humor */
+    #comfortModal .care-moods {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    #comfortModal .care-mood {
+        padding: 12px 4px 10px;
+        border-radius: 20px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-soft);
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), background 0.25s ease, border-color 0.25s ease;
+    }
+
+    #comfortModal .care-mood span { font-size: 26px; margin-bottom: 4px; transition: transform 0.3s ease; }
+
+    #comfortModal .care-mood:hover span { transform: scale(1.12); }
+
+    #comfortModal .care-mood.chosen { color: var(--text); transform: translateY(-3px); }
+
+    #comfortModal .care-mood.chosen[data-mood="bem"] { background: #fff4d6; border-color: #ffd27d; }
+    #comfortModal .care-mood.chosen[data-mood="meio"] { background: #e6f2ff; border-color: #a9d0ff; }
+    #comfortModal .care-mood.chosen[data-mood="triste"] { background: #e9e4ff; border-color: #b9a3f0; }
+    #comfortModal .care-mood.chosen[data-mood="dificil"] { background: #f3e1f5; border-color: #d59be0; }
+
+    :root[data-theme="dark"] #comfortModal .care-mood.chosen { background: rgba(195, 168, 255, 0.18); border-color: #c3a8ff; }
+
+    /* resposta do Gabriel */
+    #comfortModal .care-reply {
+        position: relative;
+        margin-top: 14px;
+        padding: 18px 18px 16px 22px;
+        border-radius: 22px;
+        text-align: left;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--text);
+        background: var(--paper);
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 26px -16px var(--shadow);
+    }
+
+    #comfortModal .care-reply::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 16px;
+        bottom: 16px;
+        width: 4px;
+        border-radius: 0 4px 4px 0;
+        background: linear-gradient(180deg, #ff8fb8, #b49cff);
+    }
+
+    #comfortModal .care-reply small { font-family: "Caveat", "Fredoka", cursive; font-size: 20px; }
+
+    /* grupos e ferramentas */
+    #comfortModal .care-group-title {
+        margin: 24px 2px 10px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    #comfortModal .care-tools {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    #comfortModal .care-tool {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 12px;
+        align-items: center;
+        text-align: left;
+        padding: 14px;
+        border-radius: 20px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 2px rgba(60, 30, 80, 0.04), 0 8px 20px -14px var(--shadow);
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+    }
+
+    #comfortModal .care-tool:hover {
+        transform: translateY(-3px);
+        border-color: var(--border-strong);
+        box-shadow: 0 1px 2px rgba(60, 30, 80, 0.04), 0 16px 28px -16px var(--shadow);
+    }
+
+    #comfortModal .care-tool:active { transform: scale(0.97); transition-duration: 0.08s; }
+
+    #comfortModal .care-tool span {
+        grid-row: span 2;
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        margin: 0;
+        font-size: 23px;
+        border-radius: 15px;
+        background: #f1ebff;
+    }
+
+    #comfortModal .care-tool:is([data-tool="breathe"], [data-tool="bubble"], [data-tool="quiet"]) span { background: #e9f1ff; }
+    #comfortModal .care-tool:is([data-tool="hug"], [data-tool="letters"], [data-tool="notes"], [data-tool="call"]) span { background: #ffeaf2; }
+    #comfortModal .care-tool:is([data-tool="check"], [data-tool="worry"], [data-tool="jar"]) span { background: #eaf7ec; }
+
+    :root[data-theme="dark"] #comfortModal .care-tool span { background: rgba(255, 255, 255, 0.07) !important; }
+
+    #comfortModal .care-tool b {
+        align-self: end;
+        font-size: 14.5px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text);
+    }
+
+    #comfortModal .care-tool small {
+        align-self: start;
+        margin-top: 2px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: var(--text-muted);
+    }
+
+    #comfortModal .care-tool[data-tool="call"] {
+        background: linear-gradient(135deg, #fff0f6, #f3edff);
+        border-color: #f2c8db;
+    }
+
+    :root[data-theme="dark"] #comfortModal .care-tool[data-tool="call"] { background: rgba(255, 140, 190, 0.1); border-color: rgba(255, 140, 190, 0.3); }
+
+    #comfortModal .care-tool.suggested {
+        border-color: #b49cff;
+        box-shadow: 0 0 0 4px var(--lilac-glow);
+        animation: careGlow 3s ease-in-out infinite;
+    }
+
+    /* telas de dentro */
+    #comfortModal .care-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0 0 12px;
+        padding: 8px 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        border-radius: 999px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        color: var(--text-soft);
+    }
+
+    #comfortModal .care-view > .care-back { display: none; }
+
+    #comfortModal .care-topbar .care-top-back { margin: 0 auto 0 0; }
+
+    #comfortModal .care-tool b,
+    #comfortModal .care-tool small {
+        justify-self: stretch;
+        text-align: left;
+        padding-left: 0;
+        flex: none;
+    }
+
+    #comfortModal .care-view h2 {
+        margin: 6px 0 6px;
+        font-size: 24px;
+        line-height: 1.25;
+        color: var(--accent);
+        letter-spacing: -0.2px;
+    }
+
+    #comfortModal .care-view > .care-sub {
+        max-width: 420px;
+        margin: 0 auto 18px;
+        font-size: 15px;
+    }
+
+    #comfortModal .comfort-message {
+        margin-top: 4px;
+        padding: 26px 22px;
+        border-radius: 24px;
+        font-size: 16px;
+        line-height: 1.75;
+        text-align: left;
+        color: var(--text);
+        background:
+            repeating-linear-gradient(180deg, transparent 0 31px, var(--paper-line) 31px 32px),
+            var(--paper);
+        border: 1px solid var(--border);
+        box-shadow: 0 16px 34px -18px var(--shadow);
+    }
+
+    #comfortModal .comfort-counter {
+        margin-top: 10px;
+        font-size: 12.5px;
+        color: var(--text-muted);
+    }
+
+    #comfortModal .primary-btn,
+    #comfortModal .comfort-more {
+        border-radius: 999px;
+        padding: 15px 22px;
+        background: linear-gradient(135deg, #f08ab6, #a68af0);
+        box-shadow: 0 12px 24px -10px rgba(150, 100, 220, 0.55);
+    }
+
+    #comfortModal .secondary-btn { border-radius: 999px; padding: 14px 20px; }
+
+    #comfortModal .care-toast {
+        border-radius: 18px;
+        background: linear-gradient(135deg, #fff0f6, #f3edff);
+        border: 1px solid #f2c8db;
+    }
+
+    :root[data-theme="dark"] #comfortModal .care-toast { background: rgba(255, 140, 190, 0.1); border-color: rgba(255, 140, 190, 0.3); }
+
+    /* celular: vira tela cheia, igual app */
+    @media (max-width: 650px) {
+
+        #comfortModal { padding: 0; align-items: stretch; }
+
+        #comfortModal .care-modal {
+            width: 100%;
+            max-height: none;
+            height: 100%;
+            height: 100dvh;
+            padding: 0 16px calc(28px + env(safe-area-inset-bottom));
+            border: none;
+            border-radius: 0;
+        }
+
+        #comfortModal .care-topbar {
+            margin: 0 -16px;
+            padding: calc(12px + env(safe-area-inset-top)) 12px 6px;
+        }
+
+        #comfortModal .care-hero { padding: 18px 14px 16px; border-radius: 24px; }
+
+        #comfortModal .care-mood { font-size: 11.5px; padding: 10px 2px 8px; }
+
+        #comfortModal .care-mood span { font-size: 24px; }
+
+        #comfortModal .care-tool { padding: 12px 10px; column-gap: 10px; }
+
+        #comfortModal .care-tool span { width: 40px; height: 40px; font-size: 20px; border-radius: 13px; }
+
+        #comfortModal .care-tool b { font-size: 13.5px; }
+
+        #comfortModal .care-tool small { font-size: 11px; }
+    }
+
+    @media (max-width: 360px) {
+        #comfortModal .care-tools { grid-template-columns: 1fr; }
+    }
+
+    /* ⚡ enquanto uma janelinha está aberta, a home de trás para de animar */
+    body.layer-open #home *,
+    body.layer-open #home *::before,
+    body.layer-open #home *::after,
+    body.layer-open .floaties * {
+        animation-play-state: paused !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #comfortModal .care-clouds span { animation: none; }
+    }
+
+
 </style>
 
 
@@ -9070,19 +9488,29 @@
             <span>☁️</span><span>☁️</span><span>☁️</span>
         </div>
 
-        <button
-            id="careRainBtn"
-            class="care-rain-btn"
-            onclick="toggleCareRain()"
-            aria-label="Ligar ou desligar o barulhinho de chuva"
-            title="Barulhinho de chuva"
-        >🌧️</button>
+        <div class="care-topbar">
 
-        <button
-            class="bday-close-x"
-            onclick="closeComfortMessages()"
-            aria-label="Fechar"
-        >✕</button>
+            <button
+                id="careTopBack"
+                class="care-back care-top-back hidden"
+                onclick="careBack()"
+            >← Cantinho</button>
+
+            <button
+                id="careRainBtn"
+                class="care-rain-btn"
+                onclick="toggleCareRain()"
+                aria-label="Ligar ou desligar o barulhinho de chuva"
+                title="Barulhinho de chuva"
+            >🌧️</button>
+
+            <button
+                class="bday-close-x"
+                onclick="closeComfortMessages()"
+                aria-label="Fechar"
+            >✕</button>
+
+        </div>
 
         <!-- ===== ENTRADA ===== -->
 
@@ -9091,23 +9519,27 @@
             class="care-view"
         >
 
-            <div
-                id="careHomeSpeech"
-                class="cat-speech care-speech"
-            >Oi, meu bem... vem cá, senta aqui comigo 🥺</div>
+            <div class="care-hero">
 
-            <div
-                id="careHomeMM"
-                class="cat-stage worried care-home-mm"
-            ></div>
+                <div
+                    id="careHomeSpeech"
+                    class="cat-speech care-speech"
+                >Oi, meu bem... vem cá, senta aqui comigo 🥺</div>
 
-            <p
-                id="careQuestion"
-                class="care-sub"
-            >
-                Esse é o seu cantinho. Aqui não tem pressa nenhuma.<br>
-                Como você tá agora?
-            </p>
+                <div
+                    id="careHomeMM"
+                    class="cat-stage worried care-home-mm"
+                ></div>
+
+                <p
+                    id="careQuestion"
+                    class="care-sub"
+                >
+                    Esse é o seu cantinho. Aqui não tem pressa nenhuma.<br>
+                    Como você tá agora?
+                </p>
+
+            </div>
 
             <div class="care-moods">
 
@@ -12862,6 +13294,11 @@
 
         CARE_VIEWS.forEach(v =>
             document.getElementById(v).classList.toggle("hidden", v !== id));
+
+        document.getElementById("careModal").dataset.view = id;
+
+        document.getElementById("careTopBack")
+            .classList.toggle("hidden", id === "careHome" || id === "careBye");
 
         document.getElementById("careModal").scrollTop = 0;
     }
@@ -24014,6 +24451,8 @@ Te amo muito.
                 if (!isOpen(el) && i !== -1) stack.splice(i, 1);
             });
 
+            document.body.classList.toggle("layer-open", stack.length > 0);
+
             if (stack.length && !handlingBack) ensureGuard();
         }
 
@@ -24035,6 +24474,12 @@ Te amo muito.
             if (id === "loveSecret") { closeLoveSecret(); return; }
 
             if (id === "goodnightOverlay") { closeGoodnight(); return; }
+
+            // no cantinho do coração: de uma telinha de dentro, volta pro cantinho
+            if (id === "comfortModal") {
+                const view = document.getElementById("careModal").dataset.view;
+                if (view && view !== "careHome" && view !== "careBye") { careBack(); return; }
+            }
 
             const btn = [".bday-close-x", ".comfort-close", "[onclick*='close']", "[onclick*='Close']"]
                 .map(sel => el.querySelector(sel))
@@ -24209,6 +24654,9 @@ Te amo muito.
         document.getElementById("floaties");
 
     function spawnFloaty() {
+
+        // janelinha aberta ou aba escondida: economiza bateria
+        if (document.hidden || document.body.classList.contains("layer-open")) return;
 
         const isDark =
             document.documentElement
