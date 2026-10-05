@@ -8869,6 +8869,276 @@
     }
 
 
+    /* 🔐 cadeado de coração da Noite de Love */
+
+    #passwordModal .modal {
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background:
+            radial-gradient(120% 70% at 50% -10%, rgba(255, 170, 200, 0.4), transparent 60%),
+            linear-gradient(160deg, #4a0f2c 0%, #8a1d4c 55%, #c4386e 100%);
+        box-shadow: 0 30px 80px -20px rgba(120, 20, 60, 0.7);
+    }
+
+    #passwordModal .modal h2 { color: #ffffff; font-size: 26px; margin-bottom: 8px; }
+
+    #passwordModal .modal p { color: rgba(255, 235, 242, 0.9); }
+
+    #passwordModal .password-input {
+        width: 100%;
+        padding: 15px 16px;
+        font-family: inherit;
+        font-size: 17px;
+        letter-spacing: 4px;
+        color: #ffffff;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    #passwordModal .password-input::placeholder { color: rgba(255, 235, 242, 0.6); letter-spacing: 1px; }
+
+    #passwordModal .password-input:focus {
+        outline: none;
+        border-color: #ffd27d;
+        box-shadow: 0 0 0 4px rgba(255, 210, 125, 0.25);
+    }
+
+    #passwordModal .error-message { color: #ffd27d; margin-top: 10px; }
+
+    #passwordModal .cancel-btn {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        color: #ffffff;
+        box-shadow: none;
+    }
+
+    #passwordModal .enter-btn {
+        border-radius: 999px;
+        color: #7a1640;
+        background: linear-gradient(135deg, #fff1c2, #f6d27a);
+        box-shadow: 0 10px 24px -8px rgba(246, 210, 122, 0.7);
+    }
+
+    .love-lock {
+        position: relative;
+        width: 120px;
+        height: 140px;
+        margin: 0 auto 14px;
+        animation: lockSwing 3.2s ease-in-out infinite;
+        transform-origin: 50% 0;
+        filter: drop-shadow(0 12px 20px rgba(60, 0, 30, 0.45));
+    }
+
+    .love-lock svg { width: 100%; height: 100%; overflow: visible; }
+
+    @keyframes lockSwing {
+        0%, 100% { transform: rotate(-4deg); }
+        50% { transform: rotate(4deg); }
+    }
+
+    .love-lock .lock-shackle {
+        transform-origin: 84px 66px;
+        transition: transform 0.7s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .love-lock .lock-spark {
+        position: absolute;
+        opacity: 0;
+        font-size: 20px;
+        pointer-events: none;
+    }
+
+    .love-lock .s1 { left: -6px; top: 40px; }
+    .love-lock .s2 { left: 50%; top: -10px; transform: translateX(-50%); }
+    .love-lock .s3 { right: -6px; top: 50px; }
+
+    .love-lock.wrong { animation: lockShake 0.5s ease; }
+
+    .love-lock.wrong .lock-body { filter: brightness(0.75) saturate(0.7); }
+
+    @keyframes lockShake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-10px) rotate(-6deg); }
+        40% { transform: translateX(10px) rotate(6deg); }
+        60% { transform: translateX(-7px) rotate(-3deg); }
+        80% { transform: translateX(7px) rotate(3deg); }
+    }
+
+    .love-lock.open { animation: lockOpen 1.1s cubic-bezier(.34, 1.56, .64, 1) forwards; }
+
+    .love-lock.open .lock-shackle { transform: translateY(-14px) rotate(28deg); }
+
+    .love-lock.open .lock-hole { opacity: 0; transition: opacity 0.3s ease; }
+
+    .love-lock.open .lock-spark { animation: lockSpark 1s ease-out forwards; }
+    .love-lock.open .s2 { animation-delay: 0.15s; }
+    .love-lock.open .s3 { animation-delay: 0.3s; }
+
+    @keyframes lockOpen {
+        0% { transform: rotate(0) scale(1); }
+        40% { transform: rotate(-8deg) scale(1.12); }
+        70% { transform: rotate(6deg) scale(1.06); }
+        100% { transform: rotate(0) scale(1.1); filter: drop-shadow(0 0 30px rgba(255, 150, 190, 0.9)); }
+    }
+
+    @keyframes lockSpark {
+        from { opacity: 1; transform: translateY(0) scale(0.6); }
+        to { opacity: 0; transform: translateY(-40px) scale(1.4); }
+    }
+
+    /* 💗 toque que ficou esperando */
+
+    #home .touch-missed {
+        margin-top: 10px;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: center;
+        cursor: pointer;
+        color: var(--text);
+        background: linear-gradient(135deg, var(--pink-glow), var(--lilac-glow));
+        border: 1px solid var(--border-strong);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    /* 😴 dormir juntinhos */
+
+    #home .hero-avatar { position: relative; }
+
+    #home .hero-avatar.sleeping { filter: saturate(0.75) brightness(0.92); animation-duration: 6s; }
+
+    #home .hero-avatar.sleeping::after {
+        content: "💤";
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        font-size: 20px;
+        animation: zzzFloat 2.4s ease-in-out infinite;
+    }
+
+    @keyframes zzzFloat {
+        0%, 100% { transform: translateY(0); opacity: 0.85; }
+        50% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    #home .hero-sleep {
+        display: inline-block;
+        margin: 2px 0 6px;
+        padding: 5px 14px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        font-weight: 600;
+        background: rgba(20, 10, 50, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .gn-sleep { margin: 4px 0 16px; text-align: center; }
+
+    .gn-sleep-btn {
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-size: 15px;
+        color: #2b2155;
+        background: linear-gradient(135deg, #ffe6a8, #ffc46b);
+        box-shadow: 0 8px 20px -6px rgba(255, 196, 107, 0.6);
+    }
+
+    .gn-sleep-btn.on { background: linear-gradient(135deg, #cfe8ff, #ffe6a8); }
+
+    .gn-sleep-info { margin-top: 8px; font-size: 13px; color: #cbc3e8; }
+
+    /* 🎨 desenhar juntos */
+
+    #home .duo-board::before { background: linear-gradient(180deg, #ffe3ef, transparent); }
+
+    #home .duo-grid { grid-template-columns: repeat(3, 1fr); }
+
+    @media (max-width: 650px) {
+        #home .duo-grid { grid-template-columns: 1fr 1fr; }
+        #home .duo-grid .duo-board { grid-column: 1 / -1; }
+    }
+
+    .board-modal { max-width: 520px; }
+
+    .board-status {
+        min-height: 20px;
+        margin: -4px 0 10px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .board-status.live { color: var(--accent); font-weight: 700; animation: heartbeat 1.6s ease-in-out infinite; }
+
+    .board-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06), 0 14px 30px -18px var(--shadow);
+    }
+
+    .board-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+        cursor: crosshair;
+        background: #fffdf8;
+    }
+
+    .board-tools {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
+
+    .board-colors { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .board-color {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border-radius: 50%;
+        background: var(--c);
+        border: 2px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .board-color.on { box-shadow: 0 0 0 3px var(--surface-solid), 0 0 0 5px var(--accent); }
+
+    .board-sizes { display: flex; gap: 6px; }
+
+    .board-size {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 12px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+    }
+
+    .board-size i { display: block; border-radius: 50%; background: var(--text); }
+
+    .board-size.on { border-color: var(--accent); background: var(--chip-bg); }
+
+    .board-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .board-actions button { padding: 11px 6px; font-size: 13.5px; border-radius: 999px; }
+
+
 </style>
 
 
@@ -8976,6 +9246,11 @@
                     </svg>
                 </span>
             </div>
+
+            <div
+                id="heroSleepLine"
+                class="hero-sleep hidden"
+            ></div>
 
             <h1>
                 Nosso Multiverso
@@ -9548,6 +9823,12 @@
                     class="touch-status"
                 >Segura o coração. Se os dois segurarem juntos, vocês se tocam 💗</div>
 
+                <div
+                    id="touchMissed"
+                    class="touch-missed hidden"
+                    onclick="markMissedSeen()"
+                ></div>
+
             </div>
 
 
@@ -9590,6 +9871,24 @@
                         com validade eterna
                     </div>
                 </div>
+
+                <div
+                    class="mini-card duo-board"
+                    onclick="openBoard()"
+                >
+                    <span class="mini-badge">AO VIVO</span>
+
+                    <span class="mini-icon">🎨</span>
+
+                    <div class="mini-title">
+                        Desenhar juntos
+                    </div>
+
+                    <div class="mini-desc">
+                        Um quadro só nosso, cada um no seu celular
+                    </div>
+                </div>
+
 
             </div>
 
@@ -9891,8 +10190,35 @@
 
     <div class="modal">
 
-        <div class="modal-icon">
-            🌹🔐
+        <div
+            id="loveLock"
+            class="love-lock"
+            aria-hidden="true"
+        >
+            <svg viewBox="0 0 120 140">
+                <defs>
+                    <linearGradient id="loveLockGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#ff7aa8"/>
+                        <stop offset="0.55" stop-color="#d6336c"/>
+                        <stop offset="1" stop-color="#8a1d4c"/>
+                    </linearGradient>
+                    <linearGradient id="loveLockGold" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#f6d27a"/>
+                        <stop offset="0.5" stop-color="#fff1c2"/>
+                        <stop offset="1" stop-color="#d4a64a"/>
+                    </linearGradient>
+                </defs>
+                <path class="lock-shackle" d="M36 66 V44 a24 24 0 0 1 48 0 V66" fill="none" stroke="url(#loveLockGold)" stroke-width="10" stroke-linecap="round"/>
+                <path class="lock-body" d="M60 134 C 22 108, 6 88, 13 69 C 20 50, 47 49, 60 67 C 73 49, 100 50, 107 69 C 114 88, 98 108, 60 134 Z" fill="url(#loveLockGrad)" stroke="#7a1640" stroke-width="2.5"/>
+                <path d="M30 74 C 33 64, 42 61, 49 64" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/>
+                <g class="lock-hole">
+                    <circle cx="60" cy="92" r="7" fill="#4a0b25"/>
+                    <rect x="57" y="94" width="6" height="15" rx="3" fill="#4a0b25"/>
+                </g>
+            </svg>
+            <span class="lock-spark s1">✨</span>
+            <span class="lock-spark s2">💗</span>
+            <span class="lock-spark s3">✨</span>
         </div>
 
         <h2>
@@ -10646,6 +10972,18 @@
                 class="gn-babies"
             ></div>
 
+        </div>
+
+        <div class="gn-sleep">
+            <button
+                id="gnSleepBtn"
+                class="gn-sleep-btn"
+                onclick="toggleMySleep()"
+            >😴 Fui dormir</button>
+            <div
+                id="gnSleepInfo"
+                class="gn-sleep-info"
+            ></div>
         </div>
 
         <div class="gn-letter">
@@ -12437,6 +12775,70 @@
                 class="devo-chips-list"
             ></div>
 
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     🎨 MODAL — DESENHAR JUNTOS
+================================================== -->
+
+<div
+    id="boardOverlay"
+    class="fun-overlay hidden"
+>
+
+    <div class="fun-modal board-modal">
+
+        <button
+            class="bday-close-x"
+            onclick="closeFunModal('boardOverlay')"
+            aria-label="Fechar"
+        >✕</button>
+
+        <h2 class="fun-title">
+            Desenhar juntos 🎨
+        </h2>
+
+        <div
+            id="boardStatus"
+            class="board-status"
+        ></div>
+
+        <div class="board-wrap">
+            <canvas
+                id="boardCanvas"
+                class="board-canvas"
+            ></canvas>
+        </div>
+
+        <div class="board-tools">
+            <div
+                id="boardColors"
+                class="board-colors"
+            ></div>
+            <div
+                id="boardSizes"
+                class="board-sizes"
+            ></div>
+        </div>
+
+        <div class="board-actions">
+            <button
+                class="secondary-btn"
+                onclick="undoBoard()"
+            >↩️ Desfazer</button>
+            <button
+                id="boardClearBtn"
+                class="secondary-btn"
+                onclick="clearBoard()"
+            >🧽 Limpar</button>
+            <button
+                class="secondary-btn"
+                onclick="saveBoard()"
+            >⬇️ Salvar</button>
         </div>
 
     </div>
@@ -15904,6 +16306,10 @@ Te amo muito.
 
     function openLovePassword() {
 
+        const lock = document.getElementById("loveLock");
+
+        if (lock) lock.className = "love-lock";
+
         passwordInput.value = "";
 
         passwordError.textContent = "";
@@ -15930,6 +16336,8 @@ Te amo muito.
         passwordError.textContent = "";
     }
 
+    let loveUnlocking = false;
+
     function checkLovePassword() {
 
         const password =
@@ -15940,21 +16348,44 @@ Te amo muito.
             "nezuko"
         ) {
 
-            passwordModal.classList.add(
-                "hidden"
-            );
+            if (loveUnlocking) return;
 
-            home.classList.add(
-                "hidden"
-            );
+            loveUnlocking = true;
 
-            loveSecret.classList.remove(
-                "hidden"
-            );
+            const lock = document.getElementById("loveLock");
 
-            startLoveNight();
+            lock.classList.remove("wrong");
+            lock.classList.add("open");
+
+            passwordError.textContent = "Acesso liberado... 💗";
+
+            setTimeout(() => {
+
+                loveUnlocking = false;
+
+                passwordModal.classList.add(
+                    "hidden"
+                );
+
+                home.classList.add(
+                    "hidden"
+                );
+
+                loveSecret.classList.remove(
+                    "hidden"
+                );
+
+                startLoveNight();
+
+            }, 1150);
 
         } else {
+
+            const lock = document.getElementById("loveLock");
+
+            lock.classList.remove("wrong");
+            void lock.offsetWidth;
+            lock.classList.add("wrong");
 
             passwordError.textContent =
                 "Hmmmm... tentou, mas essa não é a palavrinha mágica 👀💕 (pergunte à Dianemin que ela vai saber kkkkk)";
@@ -17222,7 +17653,7 @@ Te amo muito.
                 closeGoodnight();
             }
 
-            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay"].forEach(id => {
+            ["catOverlay", "mapOverlay", "idOverlay", "coupleOverlay", "houseOverlay", "backupOverlay", "atelierOverlay", "memoriesOverlay", "cloudOverlay", "ggOverlay", "babyOverlay", "photoOverlay", "letterOverlay", "abraOverlay", "letterWriterOverlay", "devoOverlay", "boardOverlay"].forEach(id => {
 
                 if (!document.getElementById(id).classList.contains("hidden")) {
                     closeFunModal(id);
@@ -18735,7 +19166,7 @@ Te amo muito.
 
         applyOutfit(stage);
 
-        try { renderGoodnightFamily(); } catch (e) {}
+        try { renderGoodnightFamily(); renderSleep(); } catch (e) {}
 
         const dayIndex =
             Math.floor(Date.now() / 86400000) % goodnightMessages.length;
@@ -21516,6 +21947,16 @@ Te amo muito.
             }
         },
 
+        quadro: {
+            get: () => getStrokes(),
+            set: l => writeStore("quadroStrokes", l.slice(-BOARD_MAX)),
+            fields: x => ({ pts: x.pts, color: x.color, size: x.size, who: x.who, at: x.at }),
+            order: "asc",
+            changed: () => {
+                if (!document.getElementById("boardOverlay").classList.contains("hidden")) drawBoard();
+            }
+        },
+
         desenhos: {
             get: () => getDrawings().list,
             set: l => {
@@ -21887,6 +22328,12 @@ Te amo muito.
 
         ["Diane", "Gabriel"].forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(touchKey(n), d => onCloudTouch(n, d), err)));
+
+        ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(sleepKey(n), d => onCloudSleep(n, d), err)));
+
+        ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState("quadro_live_" + n.toLowerCase(), d => onBoardLive(n, d), err)));
 
         Object.keys(SYNC_STATES).forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(n, d => onCloudState(n, d), err)));
@@ -25156,6 +25603,9 @@ Te amo muito.
 
         touchHolding = true;
         touchCelebrated = false;
+        touchStartedAt = Date.now();
+
+        markMissedSeen();
 
         sfx("kiu");
 
@@ -25174,13 +25624,24 @@ Te amo muito.
 
         if (!touchHolding) return;
 
+        const held = Date.now() - touchStartedAt;
+        const connected = touchCelebrated;
+
         touchHolding = false;
         touchCelebrated = false;
 
         clearInterval(touchBeat);
         clearInterval(touchCheck);
 
-        sendTouch(false);
+        // segurou um tempinho e o outro não estava: deixa o toque guardado pra ele ver
+        if (!connected && held >= 1500 && cloudReady()) {
+            sendMissedTouch();
+            setTouchStatus(`Seu toque ficou guardado 💗 ${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} vai ver quando abrir`, "waiting");
+            setTimeout(renderTouchState, 4000);
+            return;
+        } else {
+            sendTouch(false);
+        }
 
         renderTouchState();
     }
@@ -25188,6 +25649,8 @@ Te amo muito.
     function onCloudTouch(name, data) {
 
         if (name === myName() || !data) return;
+
+        onMissedTouch(name, data);
 
         const wasHolding = otherIsHolding();
 
@@ -25224,6 +25687,527 @@ Te amo muito.
 
         window.addEventListener("blur", stopTouch);
         document.addEventListener("visibilitychange", () => { if (document.hidden) stopTouch(); });
+    })();
+
+    /* ==================================================
+       💗 TOQUE QUE FICOU ESPERANDO (quando o outro não estava)
+    ================================================== */
+
+    let touchStartedAt = 0;
+
+    function touchTimeLabel(at) {
+
+        return new Date(at).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function renderMissedTouch() {
+
+        const box = document.getElementById("touchMissed");
+
+        if (!box) return;
+
+        const m = readStore("toqueRecebido", null);
+
+        if (!m || m.seen) {
+            box.classList.add("hidden");
+            return;
+        }
+
+        const who = m.from === "Gabriel" ? "O Gabriel" : "A Diane";
+        const vezes = m.count > 1 ? ` (${m.count}x hoje)` : "";
+
+        box.innerHTML = `💗 <b>${who} tentou te tocar</b> às ${touchTimeLabel(m.at)}${vezes}. Segura o coração pra devolver 🥹`;
+        box.classList.remove("hidden");
+    }
+
+    function markMissedSeen() {
+
+        const m = readStore("toqueRecebido", null);
+
+        if (m && !m.seen) {
+            m.seen = true;
+            writeStore("toqueRecebido", m);
+            renderMissedTouch();
+        }
+    }
+
+    // chamado quando chega o sinal do outro com um toque "perdido"
+    function onMissedTouch(name, data) {
+
+        if (!data || !data.missedAt) return;
+
+        const last = readStore("toqueRecebido", null);
+
+        if (last && last.at >= data.missedAt) return;
+
+        writeStore("toqueRecebido", {
+            from: name,
+            at: data.missedAt,
+            count: data.missedCount || 1,
+            seen: false
+        });
+
+        renderMissedTouch();
+
+        // só avisa na hora se o toque for recente
+        if (Date.now() - data.missedAt < 60000) {
+            loveToast(`💗 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} tentou te tocar agora! Segura o coração 🥹`);
+        }
+    }
+
+    function sendMissedTouch() {
+
+        if (!cloudReady()) return;
+
+        const today = todayKey();
+        const mine = readStore("toqueEnviado", { day: "", count: 0 });
+        const count = mine.day === today ? mine.count + 1 : 1;
+
+        writeStore("toqueEnviado", { day: today, count });
+
+        window.loveCloud.setState(touchKey(myName()), {
+            holding: false,
+            at: Date.now(),
+            missedAt: Date.now(),
+            missedCount: count
+        }).catch(() => {});
+    }
+
+    /* ==================================================
+       😴 DORMIR JUNTINHOS
+    ================================================== */
+
+    // ✏️ por quantas horas conta como "dormindo"
+    const SLEEP_HOURS = 9;
+
+    function sleepKey(name) {
+
+        return "sono_" + name.toLowerCase();
+    }
+
+    function isAsleep(name) {
+
+        const s = readStore(sleepKey(name), null);
+
+        return !!(s && s.asleep && Date.now() - (s.at || 0) < SLEEP_HOURS * 3600000);
+    }
+
+    function setMySleep(asleep) {
+
+        const data = { asleep, at: Date.now() };
+
+        writeStore(sleepKey(myName()), data);
+
+        if (cloudReady()) {
+            window.loveCloud.setState(sleepKey(myName()), data).catch(() => {});
+        }
+
+        renderSleep();
+    }
+
+    function toggleMySleep() {
+
+        const asleep = !isAsleep(myName());
+
+        setMySleep(asleep);
+
+        if (asleep) {
+
+            const other = isAsleep(otherName());
+
+            loveToast(other
+                ? "Agora vocês dois estão dormindo juntinhos 💤 Boa noite, meu amor 🌙"
+                : `Boa noite! 🌙 ${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} vai ver que você foi dormir 💤`);
+
+        } else {
+
+            loveToast("Bom dia! ☀️ Que bom que você acordou 💗");
+        }
+    }
+
+    function onCloudSleep(name, data) {
+
+        if (!data || name === myName()) return;
+
+        const before = isAsleep(name);
+
+        writeStore(sleepKey(name), data);
+
+        const after = isAsleep(name);
+
+        if (!before && after) {
+            loveToast(`😴 ${name === "Gabriel" ? "O Gabriel foi dormir. Boa noite, meu amor 💙" : "A Diane foi dormir. Boa noite 💗"}`);
+        }
+
+        renderSleep();
+    }
+
+    function renderSleep() {
+
+        const mmAsleep = isAsleep("Diane");
+        const ggAsleep = isAsleep("Gabriel");
+        const both = mmAsleep && ggAsleep;
+
+        document.querySelectorAll("#home .hero-avatar.mm").forEach(el => el.classList.toggle("sleeping", mmAsleep));
+        document.querySelectorAll("#home .hero-avatar.gg").forEach(el => el.classList.toggle("sleeping", ggAsleep));
+
+        const hero = document.querySelector("#home .hero");
+
+        if (hero) hero.classList.toggle("both-sleeping", both);
+
+        const heart = document.querySelector("#home .hero-heart");
+
+        if (heart) heart.textContent = both ? "🌙" : "💗";
+
+        const line = document.getElementById("heroSleepLine");
+
+        if (line) {
+
+            let text = "";
+
+            if (both) text = "💤 Vocês dois estão dormindo juntinhos";
+            else if (isAsleep(otherName())) text = `💤 ${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} já foi dormir`;
+            else if (isAsleep(myName())) text = "💤 Você marcou que foi dormir";
+
+            line.textContent = text;
+            line.classList.toggle("hidden", !text);
+        }
+
+        const btn = document.getElementById("gnSleepBtn");
+
+        if (btn) {
+            const me = isAsleep(myName());
+            btn.textContent = me ? "☀️ Acordei" : "😴 Fui dormir";
+            btn.classList.toggle("on", me);
+        }
+
+        const gnInfo = document.getElementById("gnSleepInfo");
+
+        if (gnInfo) {
+            gnInfo.textContent = both
+                ? "Vocês dois estão dormindo juntinhos 💤"
+                : isAsleep(otherName())
+                    ? `${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} já foi dormir 💤`
+                    : `${otherName() === "Gabriel" ? "O Gabriel" : "A Diane"} ainda tá acordad${otherName() === "Gabriel" ? "o" : "a"} 🌙`;
+        }
+    }
+
+    try { renderSleep(); renderMissedTouch(); } catch (e) {}
+
+    setInterval(() => { try { renderSleep(); } catch (e) {} }, 60000);
+
+    /* ==================================================
+       🎨 DESENHAR JUNTOS (ao vivo, cada um no seu celular)
+    ================================================== */
+
+    // ✏️ cores do quadro
+    const BOARD_COLORS = ["#4a3a52", "#e0457f", "#ff9a3c", "#ffd23f", "#4cb86a", "#3f8fe0", "#8a63d2", "#ffffff"];
+    const BOARD_SIZES = [4, 9, 18];
+    const BOARD_MAX = 400;
+
+    let boardColor = BOARD_COLORS[1];
+    let boardSize = BOARD_SIZES[1];
+    let boardDrawing = null;
+    let boardLiveTimer = null;
+    let boardLiveOther = null;
+    let boardClearArm = false;
+
+    function getStrokes() {
+
+        const l = readStore("quadroStrokes", []);
+
+        return Array.isArray(l) ? l : [];
+    }
+
+    function boardCanvas() {
+
+        return document.getElementById("boardCanvas");
+    }
+
+    function sizeBoard() {
+
+        const c = boardCanvas();
+
+        if (!c) return;
+
+        const r = c.getBoundingClientRect();
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+
+        c.width = Math.round(r.width * dpr);
+        c.height = Math.round(r.height * dpr);
+
+        drawBoard();
+    }
+
+    function drawStroke(ctx, s, W) {
+
+        const pts = s.pts || [];
+
+        if (!pts.length) return;
+
+        ctx.strokeStyle = s.color;
+        ctx.fillStyle = s.color;
+        ctx.lineWidth = (s.size || 9) * W / 1000;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        if (pts.length < 4) {
+            ctx.beginPath();
+            ctx.arc(pts[0] * W / 1000, pts[1] * W / 1000, ctx.lineWidth / 2, 0, Math.PI * 2);
+            ctx.fill();
+            return;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(pts[0] * W / 1000, pts[1] * W / 1000);
+
+        for (let i = 2; i < pts.length - 2; i += 2) {
+            const mx = (pts[i] + pts[i + 2]) / 2;
+            const my = (pts[i + 1] + pts[i + 3]) / 2;
+            ctx.quadraticCurveTo(pts[i] * W / 1000, pts[i + 1] * W / 1000, mx * W / 1000, my * W / 1000);
+        }
+
+        ctx.lineTo(pts[pts.length - 2] * W / 1000, pts[pts.length - 1] * W / 1000);
+        ctx.stroke();
+    }
+
+    function drawBoard() {
+
+        const c = boardCanvas();
+
+        if (!c) return;
+
+        const ctx = c.getContext("2d");
+        const W = c.width;
+
+        ctx.fillStyle = "#fffdf8";
+        ctx.fillRect(0, 0, W, c.height);
+
+        getStrokes().forEach(s => drawStroke(ctx, s, W));
+
+        if (boardLiveOther && boardLiveOther.pts && boardLiveOther.pts.length &&
+            Date.now() - (boardLiveOther.at || 0) < 4000) {
+            drawStroke(ctx, boardLiveOther, W);
+        }
+
+        if (boardDrawing) drawStroke(ctx, boardDrawing, W);
+
+        renderBoardStatus();
+    }
+
+    function boardPoint(e) {
+
+        const r = boardCanvas().getBoundingClientRect();
+
+        return [
+            Math.round(Math.max(0, Math.min(1000, (e.clientX - r.left) / r.width * 1000))),
+            Math.round(Math.max(0, Math.min(1000, (e.clientY - r.top) / r.height * 1000)))
+        ];
+    }
+
+    function boardDown(e) {
+
+        e.preventDefault();
+
+        boardCanvas().setPointerCapture(e.pointerId);
+
+        boardDrawing = { pts: boardPoint(e), color: boardColor, size: boardSize, who: myName() };
+
+        clearInterval(boardLiveTimer);
+        boardLiveTimer = setInterval(sendBoardLive, 160);
+
+        drawBoard();
+    }
+
+    function boardMove(e) {
+
+        if (!boardDrawing) return;
+
+        e.preventDefault();
+
+        const p = boardPoint(e);
+        const pts = boardDrawing.pts;
+
+        // ignora pontinhos muito próximos (deixa o traço leve)
+        if (Math.abs(pts[pts.length - 2] - p[0]) + Math.abs(pts[pts.length - 1] - p[1]) < 4) return;
+
+        pts.push(p[0], p[1]);
+
+        drawBoard();
+    }
+
+    function boardUp() {
+
+        if (!boardDrawing) return;
+
+        const stroke = { id: newId(), ...boardDrawing, at: Date.now() };
+
+        boardDrawing = null;
+
+        clearInterval(boardLiveTimer);
+
+        const list = getStrokes();
+
+        list.push(stroke);
+
+        writeStore("quadroStrokes", list.slice(-BOARD_MAX));
+
+        cloudPush("quadro", stroke);
+
+        sendBoardLive(true);
+
+        drawBoard();
+    }
+
+    function sendBoardLive(done) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.setState("quadro_live_" + myName().toLowerCase(), done || !boardDrawing
+            ? { pts: [], at: Date.now() }
+            : { pts: boardDrawing.pts.slice(-600), color: boardDrawing.color, size: boardDrawing.size, at: Date.now() }
+        ).catch(() => {});
+    }
+
+    function onBoardLive(name, data) {
+
+        if (name === myName() || !data) return;
+
+        boardLiveOther = data;
+
+        if (!document.getElementById("boardOverlay").classList.contains("hidden")) drawBoard();
+    }
+
+    function renderBoardStatus() {
+
+        const el = document.getElementById("boardStatus");
+
+        if (!el) return;
+
+        const who = otherName() === "Gabriel" ? "O Gabriel" : "A Diane";
+        const liveOther = boardLiveOther && boardLiveOther.pts && boardLiveOther.pts.length &&
+            Date.now() - (boardLiveOther.at || 0) < 4000;
+
+        el.textContent = !cloudReady()
+            ? "Entra na nuvem (☁️ lá na capa) pra desenhar junto ao vivo"
+            : liveOther
+                ? `✏️ ${who} tá desenhando agora...`
+                : `Tudo que vocês desenharem aparece no celular d${otherName() === "Gabriel" ? "o Gabriel" : "a Diane"} 💗`;
+
+        el.classList.toggle("live", !!liveOther);
+    }
+
+    function renderBoardTools() {
+
+        document.getElementById("boardColors").innerHTML = BOARD_COLORS.map(c =>
+            `<button class="board-color ${c === boardColor ? "on" : ""}" style="--c:${c}" onclick="pickBoardColor('${c}')" aria-label="Cor"></button>`
+        ).join("");
+
+        document.getElementById("boardSizes").innerHTML = BOARD_SIZES.map(s =>
+            `<button class="board-size ${s === boardSize ? "on" : ""}" onclick="pickBoardSize(${s})" aria-label="Espessura"><i style="width:${s + 4}px;height:${s + 4}px"></i></button>`
+        ).join("");
+    }
+
+    function pickBoardColor(c) { boardColor = c; renderBoardTools(); }
+
+    function pickBoardSize(s) { boardSize = s; renderBoardTools(); }
+
+    function undoBoard() {
+
+        const list = getStrokes();
+
+        for (let i = list.length - 1; i >= 0; i--) {
+
+            if (list[i].who === myName()) {
+
+                const [removed] = list.splice(i, 1);
+
+                writeStore("quadroStrokes", list);
+
+                if (removed.id) cloudDrop("quadro", removed.id);
+
+                drawBoard();
+                return;
+            }
+        }
+
+        loveToast("Não tem traço seu pra desfazer 🙈");
+    }
+
+    function clearBoard() {
+
+        const btn = document.getElementById("boardClearBtn");
+
+        if (!boardClearArm) {
+
+            boardClearArm = true;
+            btn.textContent = "Apagar tudo mesmo?";
+
+            setTimeout(() => {
+                boardClearArm = false;
+                btn.textContent = "🧽 Limpar";
+            }, 3000);
+
+            return;
+        }
+
+        boardClearArm = false;
+        btn.textContent = "🧽 Limpar";
+
+        getStrokes().forEach(s => { if (s.id) cloudDrop("quadro", s.id); });
+
+        writeStore("quadroStrokes", []);
+
+        drawBoard();
+    }
+
+    function saveBoard() {
+
+        const c = boardCanvas();
+
+        c.toBlob(blob => {
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+
+            a.href = url;
+            a.download = "nosso-desenho.png";
+
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+        }, "image/png");
+    }
+
+    function openBoard() {
+
+        renderBoardTools();
+
+        openFunModal("boardOverlay");
+
+        requestAnimationFrame(sizeBoard);
+    }
+
+    (function setupBoard() {
+
+        const c = boardCanvas();
+
+        if (!c) return;
+
+        c.addEventListener("pointerdown", boardDown);
+        c.addEventListener("pointermove", boardMove);
+        c.addEventListener("pointerup", boardUp);
+        c.addEventListener("pointercancel", boardUp);
+
+        window.addEventListener("resize", () => {
+            if (!document.getElementById("boardOverlay").classList.contains("hidden")) sizeBoard();
+        });
+
+        setInterval(() => {
+            if (!document.getElementById("boardOverlay").classList.contains("hidden")) renderBoardStatus();
+        }, 2000);
     })();
 
     /* ==================================================
