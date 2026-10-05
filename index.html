@@ -10639,6 +10639,79 @@
     .wish-today { display: grid; gap: 4px; margin-bottom: 10px; padding: 10px 12px; border-radius: 16px; font-size: 13px; color: #dcd6ff; background: rgba(255, 255, 255, 0.05); }
     .wish-today .ok { color: #ffd27d; }
 
+    /* 💗💙 quem é quem */
+
+    .who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 4px 0 12px; }
+
+    .who-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 14px 8px;
+        border-radius: 20px;
+        color: var(--text);
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .who-btn span { font-size: 28px; }
+    .who-btn b { font-size: 14.5px; }
+
+    .who-btn.d.on { border-color: #ff6aa8; background: linear-gradient(135deg, #ffe3ef, #fff2f7); transform: translateY(-2px); }
+    .who-btn.g.on { border-color: #6c8fd6; background: linear-gradient(135deg, #e3eeff, #f2f7ff); transform: translateY(-2px); }
+
+    :root[data-theme="dark"] .who-btn.d.on { background: rgba(255, 106, 168, 0.18); }
+    :root[data-theme="dark"] .who-btn.g.on { background: rgba(108, 143, 214, 0.22); }
+
+    .who-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 8000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(40, 20, 60, 0.6);
+    }
+
+    .who-modal {
+        width: min(100%, 400px);
+        padding: 28px 22px 18px;
+        border-radius: 30px;
+        text-align: center;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 30px 80px -20px rgba(40, 20, 80, 0.55);
+        animation: modalIn 0.45s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .who-icons { font-size: 40px; letter-spacing: 4px; }
+
+    .who-modal h2 { margin: 8px 0 6px; font-size: 22px; color: var(--accent); }
+
+    .who-modal p { margin-bottom: 16px; font-size: 14px; line-height: 1.5; color: var(--text-soft); }
+
+    .cloud-who { display: block; margin-top: 4px; font-size: 13px; }
+
+    .cloud-who button {
+        margin-left: 4px;
+        padding: 2px 8px;
+        font-size: 12px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text-muted);
+        text-decoration: underline;
+    }
+
+    #home .conn-iam { display: none; }
+
+
+    .cloud-who-title { margin: 6px 0 6px; font-size: 13px; font-weight: 600; color: var(--text-soft); }
+
+    .who-pick.shake { animation: lockShake 0.5s ease; }
+
 </style>
 
 
@@ -14532,6 +14605,20 @@
 
     </div>
 
+</div>
+
+<!-- 💗💙 quem está usando este celular -->
+
+<div
+    id="whoOverlay"
+    class="who-overlay hidden"
+>
+    <div class="who-modal">
+        <div class="who-icons">💗💙</div>
+        <h2>Quem tá usando esse celular?</h2>
+        <p>Assim o app sabe de quem é cada carinho, toque, desejo e sussurro. Só precisa escolher uma vez 🥹</p>
+        <div id="whoPickBox"></div>
+    </div>
 </div>
 
 <template id="babyTemplate">
@@ -24051,6 +24138,8 @@ Te amo muito.
 
         renderCloudBox();
 
+        try { updateHero(); maybeAskWho(); } catch (e) {}
+
         if (!user) {
             try {
                 clearInterval(onlineBeat);
@@ -24193,6 +24282,10 @@ Te amo muito.
                     <div class="cloud-status ok">
                         ☁️ Sincronizado: tudo aparece nos dois celulares 💗
                         <button class="cloud-logout" onclick="cloudLogout()">sair</button>
+                        <span class="cloud-who">
+                            Conectado como <b>${myName() === "Gabriel" ? "Gabriel 💙" : "Diane 💗"}</b>
+                            <button onclick="openWhoAsk()">não é você? trocar</button>
+                        </span>
                     </div>
                 `;
                 return;
@@ -24201,6 +24294,8 @@ Te amo muito.
             box.innerHTML = `
                 <div class="cloud-login">
                     <div class="cloud-login-title">☁️ Entra pra sincronizar tudo nos dois celulares</div>
+                    <div class="cloud-who-title">Quem tá entrando?</div>
+                    ${whoButtonsHtml(whoChosen() ? myName() : "", "pickLoginWho")}
                     <input class="cloud-email" type="email" placeholder="E-mail" autocomplete="username"
                         autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email">
                     <input class="cloud-pass" type="password" placeholder="Senha" autocomplete="current-password"
@@ -24220,6 +24315,16 @@ Te amo muito.
         const pass = box.querySelector(".cloud-pass").value;
         const msg = box.querySelector(".cloud-msg");
 
+        const who = box.dataset.who || (whoChosen() ? myName() : "");
+
+        if (!who) {
+            msg.textContent = "Primeiro escolhe quem tá entrando: Diane ou Gabriel 💗💙";
+            box.querySelector(".who-pick").classList.remove("shake");
+            void box.offsetWidth;
+            box.querySelector(".who-pick").classList.add("shake");
+            return;
+        }
+
         if (!email || !pass) {
             msg.textContent = "Preenche o e-mail e a senha 💗";
             return;
@@ -24234,9 +24339,17 @@ Te amo muito.
 
         try {
 
+            const changed = whoChosen() && who !== myName();
+
+            setWho(who);
+
             await window.loveCloud.login(email, pass);
 
             sfx("yay");
+
+            loveToast(who === "Gabriel" ? "Bem-vindo, Gabriel 💙" : "Bem-vinda, Diane 💗");
+
+            if (changed) setTimeout(() => location.reload(), 1200);
 
         } catch (e) {
 
@@ -25648,11 +25761,13 @@ Te amo muito.
         const now = new Date();
         const h = now.getHours();
 
+        const nm = myName();
+
         const hello =
-            h < 5 ? "Boa madrugada, Diane 🌙" :
-            h < 12 ? "Bom dia, Diane ☀️" :
-            h < 18 ? "Boa tarde, Diane 🌤️" :
-            "Boa noite, Diane 🌙";
+            h < 5 ? `Boa madrugada, ${nm} 🌙` :
+            h < 12 ? `Bom dia, ${nm} ☀️` :
+            h < 18 ? `Boa tarde, ${nm} 🌤️` :
+            `Boa noite, ${nm} 🌙`;
 
         const day = now.toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" });
 
@@ -30595,6 +30710,105 @@ Te amo muito.
         document.getElementById("skyLiveText").textContent = on
             ? `Vocês dois estão olhando o mesmo céu agora 💫`
             : "";
+    }
+
+    /* ==================================================
+       💗💙 QUEM ESTÁ USANDO ESTE CELULAR
+       (escolhido no login; fica salvo em cada aparelho)
+    ================================================== */
+
+    const WHO_CHOSEN_KEY = "loveAuthorChosen";
+
+    function whoChosen() {
+
+        try { return localStorage.getItem(WHO_CHOSEN_KEY) === "1"; } catch (e) { return false; }
+    }
+
+    function setWho(name) {
+
+        setLoveAuthor(name);
+
+        try { localStorage.setItem(WHO_CHOSEN_KEY, "1"); } catch (e) {}
+    }
+
+    function whoButtonsHtml(selected, onclickFn) {
+
+        return `
+            <div class="who-pick">
+                <button class="who-btn d ${selected === "Diane" ? "on" : ""}" onclick="${onclickFn}(this, 'Diane')">
+                    <span>💗</span><b>Sou a Diane</b>
+                </button>
+                <button class="who-btn g ${selected === "Gabriel" ? "on" : ""}" onclick="${onclickFn}(this, 'Gabriel')">
+                    <span>💙</span><b>Sou o Gabriel</b>
+                </button>
+            </div>`;
+    }
+
+    // no formulário de login
+    function pickLoginWho(btn, name) {
+
+        const box = btn.closest(".cloud-login");
+
+        box.dataset.who = name;
+
+        box.querySelectorAll(".who-btn").forEach(b => b.classList.toggle("on", b === btn));
+
+        const msg = box.querySelector(".cloud-msg");
+
+        if (msg) msg.textContent = name === "Gabriel" ? "Oi, Gabriel 💙 agora é só entrar" : "Oi, Diane 💗 agora é só entrar";
+
+        const email = box.querySelector(".cloud-email");
+
+        if (email && !email.value) email.focus();
+    }
+
+    // janelinha "quem tá usando esse celular?" (aparece uma vez só)
+    function openWhoAsk() {
+
+        const overlay = document.getElementById("whoOverlay");
+
+        document.getElementById("whoPickBox").innerHTML = whoButtonsHtml(whoChosen() ? myName() : "", "pickWhoAsk");
+
+        overlay.classList.remove("hidden");
+    }
+
+    function pickWhoAsk(btn, name) {
+
+        const changed = whoChosen() && name !== myName();
+
+        setWho(name);
+
+        document.getElementById("whoOverlay").classList.add("hidden");
+
+        loveToast(name === "Gabriel" ? "Bem-vindo, Gabriel 💙" : "Bem-vinda, Diane 💗");
+
+        if (changed) {
+            // trocou de pessoa: recarrega pra tudo ficar no nome certo
+            setTimeout(() => location.reload(), 900);
+            return;
+        }
+
+        refreshWho();
+    }
+
+    function refreshWho() {
+
+        try { updateHero(); } catch (e) {}
+        try { updateConnCards(); } catch (e) {}
+        try { renderToday(); } catch (e) {}
+        try { renderSignalOnHome(); } catch (e) {}
+        try { updateHotBadge(); } catch (e) {}
+        try { renderCloudBox(); } catch (e) {}
+        try { startTogetherSync(); } catch (e) {}
+    }
+
+    function maybeAskWho() {
+
+        if (!loveCloudUser || whoChosen()) return;
+
+        setTimeout(() => {
+            if (loveCloudUser && !whoChosen()) openWhoAsk();
+        }, 700);
     }
 
     /* ==================================================
