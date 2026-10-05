@@ -9500,6 +9500,196 @@
     }
 
 
+    /* 🔥 hoje, juntos */
+
+    #home .today-card {
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 26px;
+        border: 1px solid var(--border);
+        background:
+            radial-gradient(70% 90% at 0% 0%, rgba(255, 170, 90, 0.18), transparent 60%),
+            var(--surface-solid);
+        box-shadow: 0 1px 2px rgba(80, 40, 90, 0.05), 0 12px 30px -14px var(--shadow);
+    }
+
+    #home .today-top { display: flex; align-items: center; gap: 14px; }
+
+    #home .today-streak {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 14px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        filter: grayscale(0.7);
+        opacity: 0.85;
+        transition: filter 0.4s ease, opacity 0.4s ease;
+    }
+
+    #home .today-card.streak-on .today-streak {
+        filter: none;
+        opacity: 1;
+        background: linear-gradient(135deg, #fff1d6, #ffd9c2);
+        border-color: #ffc28a;
+    }
+
+    :root[data-theme="dark"] #home .today-card.streak-on .today-streak { background: rgba(255, 160, 80, 0.16); border-color: rgba(255, 160, 80, 0.4); }
+
+    #home .today-fire { font-size: 30px; }
+
+    #home .today-card.streak-on .today-fire { animation: fireFlicker 1.4s ease-in-out infinite; }
+
+    @keyframes fireFlicker {
+        0%, 100% { transform: scale(1) rotate(-3deg); }
+        50% { transform: scale(1.12) rotate(3deg); }
+    }
+
+    #home .today-streak b { display: block; font-size: 24px; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; }
+    #home .today-streak small { font-size: 11px; color: var(--text-muted); }
+
+    #home .today-title { font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); }
+    #home .today-hint { margin-top: 3px; font-size: 13.5px; line-height: 1.35; color: var(--text-soft); }
+
+    #home .today-online { margin-top: 4px; font-size: 12.5px; color: var(--text-muted); }
+    #home .today-online.on { color: #2f9a5a; font-weight: 700; }
+
+    #home .today-missions-title {
+        margin: 16px 2px 8px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-soft);
+    }
+
+    #home .today-missions { display: grid; gap: 8px; }
+
+    #home .mission {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    #home .mission.done { background: linear-gradient(135deg, #e6f7ea, #f0fbf2); border-color: #a8dfb5; }
+
+    :root[data-theme="dark"] #home .mission.done { background: rgba(120, 200, 140, 0.12); border-color: rgba(120, 200, 140, 0.35); }
+
+    #home .mission-icon { font-size: 20px; }
+
+    #home .mission-label { flex: 1; font-size: 14px; color: var(--text); }
+
+    #home .mission.done .mission-label { text-decoration: line-through; text-decoration-color: rgba(60, 140, 80, 0.6); }
+
+    #home .mission-who { display: flex; gap: 4px; }
+
+    #home .mission-who i {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        font-style: normal;
+        font-size: 13px;
+        border-radius: 50%;
+        background: var(--surface-solid);
+        border: 1px dashed var(--border-strong);
+        filter: grayscale(1);
+        opacity: 0.45;
+    }
+
+    #home .mission-who i.ok { filter: none; opacity: 1; border-style: solid; box-shadow: 0 0 0 3px var(--pink-glow); }
+
+    #home .today-reward {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        font-size: 14px;
+        line-height: 1.45;
+        color: var(--text);
+        background: linear-gradient(135deg, var(--pink-glow), var(--lilac-glow));
+        border: 1px solid var(--border-strong);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    #home .today-reward small { display: block; margin-top: 4px; font-size: 12px; color: var(--text-muted); }
+
+    /* bolinha verde de online no avatar da capa */
+    #home .hero-avatar.is-online::before {
+        content: "";
+        position: absolute;
+        right: 2px;
+        bottom: 4px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #34c759;
+        border: 3px solid #ffffff;
+        box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.3);
+        z-index: 2;
+    }
+
+
+    /* 🌡️ termômetro do clima + 🛡️ combinados */
+
+    .hot-clima {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 12px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hot-clima:empty { display: none; }
+
+    .clima-row { display: grid; grid-template-columns: 84px auto 1fr; align-items: center; gap: 6px; }
+
+    .clima-who { font-size: 12.5px; color: rgba(255, 210, 225, 0.8); }
+
+    .clima-flames { display: flex; gap: 2px; }
+
+    .clima-flames span,
+    .clima-flames button {
+        padding: 0;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+        line-height: 26px;
+        text-align: center;
+        background: transparent;
+        filter: grayscale(1);
+        opacity: 0.3;
+        transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    .clima-flames .on { filter: none; opacity: 1; }
+
+    .clima-flames button:hover { transform: scale(1.2); }
+
+    .clima-label { font-size: 12px; color: #ffd0e0; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .clima-match {
+        margin-top: 4px;
+        text-align: center;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #ff8fb8;
+        animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    .hot-tabs { grid-template-columns: repeat(4, 1fr); }
+
+    .hot-tab { font-size: 12px; padding: 10px 2px; }
+
+    .hot-match.out { font-weight: 500; opacity: 0.75; background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); text-decoration: line-through; text-decoration-color: rgba(255, 120, 150, 0.6); }
+
+
 </style>
 
 
@@ -9647,6 +9837,53 @@
                 class="cloud-pill hidden"
                 onclick="openCloudModal()"
             ></button>
+
+        </div>
+
+        <!-- ==========================================
+             🔥 HOJE, JUNTOS
+        ========================================== -->
+
+        <div
+            id="todayCard"
+            class="today-card reveal"
+        >
+
+            <div class="today-top">
+
+                <div class="today-streak">
+                    <span class="today-fire">🔥</span>
+                    <div>
+                        <b id="todayStreak">0</b>
+                        <small id="todayStreakLabel">dias seguidos</small>
+                    </div>
+                </div>
+
+                <div class="today-top-text">
+                    <div class="today-title">Hoje, juntos</div>
+                    <div
+                        id="todayStreakHint"
+                        class="today-hint"
+                    ></div>
+                    <div
+                        id="todayOnline"
+                        class="today-online"
+                    ></div>
+                </div>
+
+            </div>
+
+            <div class="today-missions-title">🎯 Missões de hoje (os dois precisam fazer)</div>
+
+            <div
+                id="todayMissions"
+                class="today-missions"
+            ></div>
+
+            <div
+                id="todayReward"
+                class="today-reward hidden"
+            ></div>
 
         </div>
 
@@ -13243,6 +13480,11 @@
             >✕</button>
         </div>
 
+        <div
+            id="hotClima"
+            class="hot-clima"
+        ></div>
+
         <div class="hot-tabs">
             <button class="hot-tab on" data-tab="sussurro" onclick="setHotTab('sussurro')">
                 🤫 Sussurros <i id="hotTabWhisperCount"></i>
@@ -13251,7 +13493,10 @@
                 ✍️ Frases <i id="hotTabFraseCount"></i>
             </button>
             <button class="hot-tab" data-tab="quero" onclick="setHotTab('quero')">
-                💞 Eu quero…
+                💞 Quero
+            </button>
+            <button class="hot-tab" data-tab="limites" onclick="setHotTab('limites')">
+                🛡️ Combinados
             </button>
         </div>
 
@@ -18420,6 +18665,8 @@ Te amo muito.
 
             logDay("pets");
 
+            try { markMission("mm"); } catch (e) {}
+
             sfx("kiu");
 
             checkUnlocks(petsBefore);
@@ -22727,6 +22974,8 @@ Te amo muito.
 
         if (!user) {
             try {
+                clearInterval(onlineBeat);
+                renderToday();
                 stopHotSync();
                 if (!document.getElementById("hotOverlay").classList.contains("hidden")) closeHot();
             } catch (e) {}
@@ -22738,6 +22987,13 @@ Te amo muito.
 
 
         const err = () => onCloudError("offline");
+
+        ["Diane", "Gabriel"].forEach(n => {
+            cloudListeners.push(window.loveCloud.listenState(visitKey(n), d => onCloudVisit(n, d), err));
+            cloudListeners.push(window.loveCloud.listenState(onlineKey(n), d => onCloudOnline(n, d), err));
+        });
+
+        try { startTogetherSync(); } catch (e) {}
 
         Object.keys(SYNC_LISTS).forEach(name => {
 
@@ -24846,6 +25102,8 @@ Te amo muito.
 
         document.querySelectorAll(".conn-iam .author-chip").forEach(b =>
             b.classList.toggle("active", b.dataset.author === myName()));
+
+        try { renderToday(); } catch (e) {}
     }
 
     function missYou() {
@@ -26002,6 +26260,8 @@ Te amo muito.
                 const n = (Number(readStore("toquesJuntos", 0)) || 0) + 1;
 
                 writeStore("toquesJuntos", n);
+
+                try { markMission("toque"); } catch (e) {}
             }
 
             const n = Number(readStore("toquesJuntos", 0)) || 1;
@@ -26486,6 +26746,8 @@ Te amo muito.
 
         cloudPush("quadro", stroke);
 
+        try { markMission("quadro"); } catch (e) {}
+
         sendBoardLive(true);
 
         drawBoard();
@@ -26696,6 +26958,7 @@ Te amo muito.
             hotRows = rows;
 
             hotCheckHeard();
+            hotCheckClima();
 
             updateHotBadge();
 
@@ -26813,6 +27076,10 @@ Te amo muito.
         document.getElementById("hotTabWhisperCount").textContent = p.whispers ? p.whispers : "";
         document.getElementById("hotTabFraseCount").textContent = p.frases ? p.frases : "";
 
+        const clima = document.getElementById("hotClima");
+
+        if (clima) clima.innerHTML = hotError ? "" : hotClimaHtml();
+
         if (hotError) {
 
             body.innerHTML = `
@@ -26826,6 +27093,7 @@ Te amo muito.
         if (hotTab === "sussurro") body.innerHTML = hotWhisperHtml();
         if (hotTab === "frase") body.innerHTML = hotFraseHtml();
         if (hotTab === "quero") body.innerHTML = hotQueroHtml();
+        if (hotTab === "limites") body.innerHTML = hotLimitesHtml();
     }
 
     /* 🤫 SUSSURROS */
@@ -26998,6 +27266,7 @@ Te amo muito.
     // ✏️ começos pra inspirar (pode escrever o seu também)
     const HOT_STARTERS = [
         "Hoje eu queria…",
+        "Quando a gente se ver de novo…",
         "Eu não paro de pensar em…",
         "Se você estivesse aqui agora…",
         "O que eu mais sinto falta é…"
@@ -27230,6 +27499,490 @@ Te amo muito.
             loveToast(`🤫 ${hotWhoCap(otherName())} ouviu seu sussurro 🔥`);
             window.loveCloud.hotRemove(r.id).catch(() => {});
         });
+    }
+
+    /* ==================================================
+       🔥 HOJE, JUNTOS: sequência do casal, missões do dia
+       e "online agora"
+    ================================================== */
+
+    // ✏️ missões possíveis (o app sorteia 3 por dia, iguais pros dois)
+    const MISSIONS = [
+        { key: "amem", icon: "📖", label: "Dizer amém no devocional" },
+        { key: "pensei", icon: "💭", label: "Mandar um \"pensei em você\"" },
+        { key: "saudade", icon: "🌡️", label: "Apertar \"tô com saudade\"" },
+        { key: "orei", icon: "🙏", label: "Orar um pelo outro (botão \"orei\")" },
+        { key: "mm", icon: "🍊", label: "Dar um carinho na MM" },
+        { key: "quadro", icon: "🎨", label: "Desenhar algo no quadro" },
+        { key: "toque", icon: "💗", label: "Se tocarem à distância" }
+    ];
+
+    // ✏️ recompensas quando os dois completam as 3 missões
+    const MISSION_REWARDS = [
+        "Vocês são o melhor time do mundo 💗",
+        "Missão cumprida! A MM e o GG estão orgulhosos de vocês 🍊💙",
+        "Mais um dia escolhendo um ao outro. Isso é amor 🥹",
+        "333 km e mesmo assim vocês fizeram tudo juntos 💗",
+        "Hoje vocês ganharam: um abraço bem apertado no próximo encontro 🫂",
+        "Deus abençoe esse casal lindo 🙏💗"
+    ];
+
+    function dayHash(key) {
+
+        let h = 0;
+
+        for (const c of key) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+
+        return h;
+    }
+
+    function todaysMissions() {
+
+        const h = dayHash(todayKey());
+        const pool = MISSIONS.slice();
+        const pick3 = [];
+
+        for (let i = 0; i < 3; i++) {
+            pick3.push(pool.splice((h >> (i * 5)) % pool.length, 1)[0]);
+        }
+
+        return pick3;
+    }
+
+    function missionDone(conn, key) {
+
+        if (key === "pensei" || key === "saudade" || key === "orei") return (conn[key] || 0) > 0;
+
+        return !!conn[key];
+    }
+
+    function markMission(key) {
+
+        const me = getConn(myName());
+
+        if (me[key]) return;
+
+        me[key] = true;
+
+        saveMyConn(me);
+
+        try { renderToday(); } catch (e) {}
+    }
+
+    /* sequência: dias em que OS DOIS abriram o app */
+
+    function visitKey(name) {
+
+        return "visita_" + name.toLowerCase();
+    }
+
+    function visitDays(name) {
+
+        const v = readStore(visitKey(name), null);
+
+        return new Set((v && v.dias) || []);
+    }
+
+    function registerVisit() {
+
+        const me = myName();
+        const days = visitDays(me);
+        const today = todayKey();
+
+        if (days.has(today)) return;
+
+        days.add(today);
+
+        const dias = [...days].sort().slice(-90);
+
+        writeStore(visitKey(me), { dias });
+
+        if (cloudReady()) window.loveCloud.setState(visitKey(me), { dias, at: Date.now() }).catch(() => {});
+    }
+
+    function onCloudVisit(name, data) {
+
+        if (!data || !Array.isArray(data.dias)) return;
+
+        if (name === myName()) {
+
+            // junta com o deste celular (caso tenha entrado em outro aparelho)
+            const merged = [...new Set([...visitDays(name), ...data.dias])].sort().slice(-90);
+
+            writeStore(visitKey(name), { dias: merged });
+
+            if (merged.length !== data.dias.length && cloudReady()) {
+                window.loveCloud.setState(visitKey(name), { dias: merged, at: Date.now() }).catch(() => {});
+            }
+
+        } else {
+
+            writeStore(visitKey(name), { dias: data.dias });
+        }
+
+        renderToday();
+    }
+
+    function coupleStreak() {
+
+        const a = visitDays("Diane");
+        const b = visitDays("Gabriel");
+        const d = new Date();
+
+        // se hoje ainda falta alguém, a sequência conta até ontem (e ainda dá tempo)
+        if (!(a.has(todayKey(d)) && b.has(todayKey(d)))) d.setDate(d.getDate() - 1);
+
+        let n = 0;
+
+        while (a.has(todayKey(d)) && b.has(todayKey(d))) {
+            n++;
+            d.setDate(d.getDate() - 1);
+        }
+
+        return n;
+    }
+
+    /* online agora */
+
+    const ONLINE_MS = 75000;
+
+    let onlineBeat = null;
+    let onlineOther = 0;
+
+    function onlineKey(name) {
+
+        return "online_" + name.toLowerCase();
+    }
+
+    function sendOnline(on) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.setState(onlineKey(myName()), { at: on ? Date.now() : 0 }).catch(() => {});
+    }
+
+    function startOnline() {
+
+        clearInterval(onlineBeat);
+
+        if (!cloudReady()) return;
+
+        sendOnline(true);
+
+        onlineBeat = setInterval(() => { if (!document.hidden) sendOnline(true); }, 30000);
+    }
+
+    function otherOnline() {
+
+        return Date.now() - onlineOther < ONLINE_MS;
+    }
+
+    function onCloudOnline(name, data) {
+
+        if (name === myName() || !data) return;
+
+        const was = otherOnline();
+
+        onlineOther = data.at || 0;
+
+        if (!was && otherOnline()) {
+            loveToast(`🟢 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} acabou de entrar no app 💗`);
+        }
+
+        renderToday();
+    }
+
+    document.addEventListener("visibilitychange", () => {
+
+        if (!cloudReady()) return;
+
+        if (document.hidden) sendOnline(false);
+        else { sendOnline(true); registerVisit(); renderToday(); }
+    });
+
+    window.addEventListener("pagehide", () => sendOnline(false));
+
+    /* o cartão "Hoje, juntos" */
+
+    function renderToday() {
+
+        const card = document.getElementById("todayCard");
+
+        if (!card) return;
+
+        const me = myName();
+        const other = otherName();
+        const who = other === "Gabriel" ? "O Gabriel" : "A Diane";
+        const meC = getConn(me);
+        const otC = getConn(other);
+
+        // 🔥 sequência
+        const streak = coupleStreak();
+        const today = todayKey();
+        const iCame = visitDays(me).has(today);
+        const theyCame = visitDays(other).has(today);
+
+        document.getElementById("todayStreak").textContent = streak;
+        document.getElementById("todayStreakLabel").textContent = streak === 1 ? "dia seguido" : "dias seguidos";
+
+        card.classList.toggle("streak-on", iCame && theyCame);
+
+        document.getElementById("todayStreakHint").textContent = !cloudReady()
+            ? "Entra na nuvem pra contar a sequência de vocês ☁️"
+            : iCame && theyCame
+                ? "Os dois já vieram hoje. Foguinho aceso! 🔥"
+                : `Falta ${who.toLowerCase()} entrar hoje pra manter o foguinho 🥺`;
+
+        // 🟢 online
+        const online = otherOnline();
+        const dot = document.getElementById("todayOnline");
+
+        dot.classList.toggle("on", online);
+        dot.textContent = online ? `🟢 ${who} tá no app agora` : `⚪ ${who} não tá no app agora`;
+
+        document.querySelectorAll("#home .hero-avatar").forEach(el => el.classList.remove("is-online"));
+        if (online) {
+            const sel = other === "Gabriel" ? "#home .hero-avatar.gg" : "#home .hero-avatar.mm";
+            const av = document.querySelector(sel);
+            if (av) av.classList.add("is-online");
+        }
+
+        // 🎯 missões
+        const missions = todaysMissions();
+        let doneAll = true;
+
+        document.getElementById("todayMissions").innerHTML = missions.map(m => {
+
+            const a = missionDone(meC, m.key);
+            const b = missionDone(otC, m.key);
+            const both = a && b;
+
+            if (!both) doneAll = false;
+
+            return `
+                <div class="mission ${both ? "done" : ""}">
+                    <span class="mission-icon">${m.icon}</span>
+                    <span class="mission-label">${m.label}</span>
+                    <span class="mission-who">
+                        <i class="${a ? "ok" : ""}" title="Você">${me === "Diane" ? "💗" : "💙"}</i>
+                        <i class="${b ? "ok" : ""}" title="${other}">${other === "Diane" ? "💗" : "💙"}</i>
+                    </span>
+                </div>`;
+        }).join("");
+
+        const reward = document.getElementById("todayReward");
+
+        card.classList.toggle("missions-done", doneAll);
+
+        if (doneAll) {
+
+            const msg = MISSION_REWARDS[dayHash(today) % MISSION_REWARDS.length];
+            const count = Number(readStore("missoesTotal", 0)) || 0;
+
+            reward.innerHTML = `🎉 <b>Missões completas!</b> ${msg}<small>${count} ${count === 1 ? "dia" : "dias"} de missões completas</small>`;
+            reward.classList.remove("hidden");
+
+            if (readStore("missoesComemoradas", "") !== today) {
+
+                writeStore("missoesComemoradas", today);
+                writeStore("missoesTotal", count + 1);
+
+                reward.querySelector("small").textContent = `${count + 1} ${count + 1 === 1 ? "dia" : "dias"} de missões completas`;
+
+                setTimeout(() => {
+                    createConfetti();
+                    sfx("yay");
+                    loveToast("🎉 Vocês completaram as missões de hoje! 💗");
+                }, 400);
+            }
+
+        } else {
+
+            reward.classList.add("hidden");
+        }
+    }
+
+    function startTogetherSync() {
+
+        registerVisit();
+
+        // garante que a nuvem tenha os dias deste celular
+        const mine = [...visitDays(myName())].sort().slice(-90);
+
+        if (mine.length && cloudReady()) {
+            window.loveCloud.setState(visitKey(myName()), { dias: mine, at: Date.now() }).catch(() => {});
+        }
+        startOnline();
+        renderToday();
+    }
+
+    try { registerVisit(); renderToday(); } catch (e) {}
+
+    setInterval(() => { try { registerVisit(); renderToday(); } catch (e) {} }, 60000);
+
+    /* 🌡️ TERMÔMETRO DO CLIMA (só dentro do "Só nós dois") */
+
+    const CLIMA_HOURS = 12;
+
+    // ✏️ o que cada nível quer dizer
+    const CLIMA_LABELS = ["", "tranquilo 😌", "carinhoso 🥰", "com saudade 😏", "com vontade 🔥", "pegando fogo 🥵"];
+
+    function hotClima(name) {
+
+        const row = hotRows.find(r => r.id === "clima_" + name.toLowerCase());
+
+        if (!row || Date.now() - (row.dados.at || 0) > CLIMA_HOURS * 3600000) return 0;
+
+        return row.dados.nivel || 0;
+    }
+
+    function hotClimaHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const mine = hotClima(me);
+        const theirs = hotClima(other);
+
+        const flames = n => [1, 2, 3, 4, 5].map(i => `<span class="${i <= n ? "on" : ""}">🔥</span>`).join("");
+
+        return `
+            <div class="clima-row">
+                <div class="clima-who">${hotWhoCap(other)} tá…</div>
+                <div class="clima-flames readonly">${flames(theirs)}</div>
+                <div class="clima-label">${theirs ? CLIMA_LABELS[theirs] : "ainda não marcou"}</div>
+            </div>
+            <div class="clima-row mine">
+                <div class="clima-who">Você tá…</div>
+                <div class="clima-flames">
+                    ${[1, 2, 3, 4, 5].map(i => `<button class="${i <= mine ? "on" : ""}" onclick="setClima(${i})" aria-label="Nível ${i}">🔥</button>`).join("")}
+                </div>
+                <div class="clima-label">${mine ? CLIMA_LABELS[mine] : "toca nas chamas"}</div>
+            </div>
+            ${mine >= 4 && theirs >= 4 ? `<div class="clima-match">🔥 Os dois no mesmo clima… 😏</div>` : ""}
+        `;
+    }
+
+    async function setClima(n) {
+
+        const me = myName();
+        const nivel = hotClima(me) === n ? 0 : n;
+
+        try {
+            await window.loveCloud.hotSave("clima_" + me.toLowerCase(), "clima", { nivel, at: Date.now() });
+        } catch (e) {
+            loveToast("Não deu pra salvar agora 😕");
+        }
+    }
+
+    // avisa (de um jeito discreto) quando o outro sobe o termômetro
+    let hotLastOtherClima = null;
+
+    function hotCheckClima() {
+
+        const lvl = hotClima(otherName());
+
+        if (hotLastOtherClima !== null && lvl >= 4 && lvl > hotLastOtherClima) {
+            loveToast("🔥 Tem novidade no Só nós dois 👀");
+        }
+
+        hotLastOtherClima = lvl;
+    }
+
+    /* 🛡️ COMBINADOS (lista de limites) */
+
+    function hotLimitMarks(name) {
+
+        const row = hotRows.find(r => r.id === "limites_" + name.toLowerCase());
+
+        return (row && row.dados.marcas) || {};
+    }
+
+    function hotLimitesHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const items = hotOfType("limite").slice().sort((a, b) => a.at - b.at);
+        const mine = hotLimitMarks(me);
+        const theirs = hotLimitMarks(other);
+
+        const yes = items.filter(i => mine[i.id] === "topo" && theirs[i.id] === "topo");
+        const talk = items.filter(i => !yes.includes(i) && mine[i.id] && theirs[i.id] && mine[i.id] !== "nao" && theirs[i.id] !== "nao");
+        const out = items.filter(i => mine[i.id] === "nao" || theirs[i.id] === "nao");
+        const pendingOther = items.filter(i => !theirs[i.id]).length;
+
+        const group = (title, list, cls) => list.length
+            ? `<div class="hot-section-title">${title}</div>
+               <div class="hot-matches">${list.map(i => `<div class="hot-match ${cls}">${hotEsc(i.dados.texto)}</div>`).join("")}</div>`
+            : "";
+
+        const listHtml = items.length
+            ? items.map(i => {
+
+                const m = mine[i.id] || "";
+
+                return `
+                    <div class="hot-idea">
+                        <div class="hot-idea-text">${hotEsc(i.dados.texto)}</div>
+                        <div class="hot-idea-marks">
+                            <button class="${m === "topo" ? "on sim" : ""}" onclick="markLimit('${i.id}','topo')">Topo ✅</button>
+                            <button class="${m === "talvez" ? "on talvez" : ""}" onclick="markLimit('${i.id}','talvez')">Conversar 🤔</button>
+                            <button class="${m === "nao" ? "on nao" : ""}" onclick="markLimit('${i.id}','nao')">Não topo 🚫</button>
+                            <button class="hot-mini" onclick="deleteHot('${i.id}', this)">🗑️</button>
+                        </div>
+                    </div>`;
+            }).join("")
+            : `<div class="hot-empty small">Ainda não tem nada na lista de combinados.</div>`;
+
+        return `
+            <div class="hot-explain">
+                Aqui vocês combinam os limites. Cada um marca o seu, e o app mostra
+                o que <b>os dois topam</b>, o que é bom <b>conversar antes</b> e o que fica
+                <b>fora</b>. No "fora" ninguém fica sabendo quem disse não 🤍
+            </div>
+
+            ${group("✅ Os dois topam", yes, "")}
+            ${group("🤔 Conversar antes", talk, "maybe")}
+            ${group("🚫 Fora do combinado", out, "out")}
+
+            ${pendingOther && items.length ? `<div class="hot-empty small">${hotWhoCap(other)} ainda não marcou ${pendingOther === 1 ? "1 item" : pendingOther + " itens"}</div>` : ""}
+
+            <div class="hot-section-title">A lista</div>
+            <div class="hot-ideas">${listHtml}</div>
+
+            <div class="hot-compose">
+                <input id="hotLimitText" maxlength="140" placeholder="Coloca um item nos combinados..." onkeydown="if (event.key === 'Enter') addLimit()">
+                <button class="hot-btn" onclick="addLimit()">Adicionar ➕</button>
+            </div>
+        `;
+    }
+
+    async function addLimit() {
+
+        const input = document.getElementById("hotLimitText");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        try {
+            await window.loveCloud.hotSave("l_" + newId(), "limite", { texto, at: Date.now() });
+            input.value = "";
+        } catch (e) {
+            loveToast("Não deu pra adicionar agora 😕");
+        }
+    }
+
+    async function markLimit(id, value) {
+
+        const me = myName();
+        const marcas = { ...hotLimitMarks(me) };
+
+        marcas[id] = marcas[id] === value ? "" : value;
+
+        try {
+            await window.loveCloud.hotSave("limites_" + me.toLowerCase(), "limites", { marcas, at: Date.now() });
+        } catch (e) {
+            loveToast("Não deu pra salvar agora 😕");
+        }
     }
 
     /* ==================================================
