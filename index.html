@@ -20,7 +20,9 @@
     })();
 </script>
 
-<title>Roleta da Sorte da Nossa Noitinha (de muitas kkk) 💗</title>
+<title>Nosso Multiverso Capivara 💗</title>
+<meta name="apple-mobile-web-app-title" content="Multiverso Capivara">
+<meta name="theme-color" content="#f06aa0">
 
 <style>
     /* ==========================================
@@ -7451,6 +7453,36 @@
     }
 
 
+    /* 🌹 voltar da Noite de Love */
+
+    .love-back {
+        position: sticky;
+        top: 12px;
+        z-index: 5;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 8px;
+        padding: 9px 16px;
+        font-size: 14px;
+        border-radius: 999px;
+        background: var(--surface-solid);
+        color: var(--text-soft);
+        border: 1px solid var(--border);
+        box-shadow: 0 6px 16px -6px var(--shadow);
+    }
+
+    .secret-screen { text-align: center; }
+
+    .secret-screen > .love-back { display: flex; width: max-content; margin: 0 auto 8px 0; }
+
+    .love-back.confirm {
+        background: linear-gradient(135deg, #ff8fb8, #ff6a8e);
+        color: #ffffff;
+        border-color: transparent;
+    }
+
+
 </style>
 
 
@@ -7560,13 +7592,13 @@
             </div>
 
             <h1>
-                Roleta da Sorte
-                <span>da Nossa Noiteeee &lt;3</span>
+                Nosso Multiverso
+                <span>Capivara 🐾</span>
             </h1>
 
             <p class="subtitle">
-                Porque escolher o que assistir é uma decisão séria...
-                Então vamos levar bem a sério o sorteio. 😂💕
+                Um universo inteirinho só nosso, onde a saudade vira carinho,
+                as capivaras formam família e 333 km não são nada 💗
             </p>
 
             <div class="hero-stats">
@@ -8114,8 +8146,8 @@
 
         <div class="footer reveal">
             <div class="footer-hearts">♡ ♡ ♡</div>
-            Feito com amor para duas pessoas indecisas
-            (Diane, Gabriel kkkkkk) 💗
+            Feito com muito amor pra duas pessoas indecisas
+            e muito apaixonadas (Diane, Gabriel kkkkkk) 💗
         </div>
 
     </section>
@@ -8321,6 +8353,12 @@
     >
 
         <div class="secret-screen">
+
+            <button
+                id="loveBackBtn"
+                class="love-back"
+                onclick="loveBack()"
+            >← Voltar ao menu</button>
 
             <div class="secret-icon">
                 🌹
@@ -23294,6 +23332,148 @@ Te amo muito.
     try { updateDevoCard(); } catch (e) {}
 
     setInterval(() => { try { updateDevoCard(); } catch (e) {} }, 60000);
+
+    /* 🌹 voltar da Noite de Love pro menu (no meio da noite pede confirmação) */
+
+    let loveBackTimer = null;
+
+    function loveBack() {
+
+        const btn = document.getElementById("loveBackBtn");
+        const midway = typeof loveStage !== "undefined" && loveStage > 1 && loveStage < totalStages;
+
+        if (midway && !btn.classList.contains("confirm")) {
+
+            btn.classList.add("confirm");
+            btn.textContent = "Toca de novo pra sair 🥺";
+
+            clearTimeout(loveBackTimer);
+
+            loveBackTimer = setTimeout(() => {
+                btn.classList.remove("confirm");
+                btn.textContent = "← Voltar ao menu";
+            }, 3000);
+
+            return;
+        }
+
+        clearTimeout(loveBackTimer);
+
+        btn.classList.remove("confirm");
+        btn.textContent = "← Voltar ao menu";
+
+        closeLoveSecret();
+    }
+
+    /* ==================================================
+       📱 BOTÃO "VOLTAR" DO CELULAR
+       Em vez de fechar o site, o voltar do celular fecha
+       a janelinha ou a tela que estiver aberta.
+    ================================================== */
+
+    (function setupBackButton() {
+
+        if (!window.history || !history.pushState) return;
+
+        const SECTIONS = ["register", "draw", "winner", "loveSecret"];
+
+        const layers = [
+            ...document.querySelectorAll(".fun-overlay, .modal-overlay, .comfort-modal-overlay, .bday-overlay")
+        ].concat(SECTIONS.map(id => document.getElementById(id)).filter(Boolean));
+
+        const stack = [];
+        let guardActive = false;
+        let handlingBack = false;
+
+        const isOpen = el => !el.classList.contains("hidden");
+
+        function ensureGuard() {
+
+            if (guardActive) return;
+
+            try {
+                history.pushState({ nossoCantinho: true }, "");
+                guardActive = true;
+            } catch (e) {}
+        }
+
+        function syncStack() {
+
+            layers.forEach(el => {
+
+                const i = stack.indexOf(el);
+
+                if (isOpen(el) && i === -1) stack.push(el);
+                if (!isOpen(el) && i !== -1) stack.splice(i, 1);
+            });
+
+            if (stack.length && !handlingBack) ensureGuard();
+        }
+
+        function closeLayer(el) {
+
+            const id = el.id;
+
+            if (id === "register") { goHome(); return; }
+
+            if (id === "draw") {
+                if (drawing) return;            // não interrompe a roleta girando
+                draw.classList.add("hidden");
+                register.classList.remove("hidden");
+                return;
+            }
+
+            if (id === "winner") { restart(); return; }
+
+            if (id === "loveSecret") { closeLoveSecret(); return; }
+
+            if (id === "goodnightOverlay") { closeGoodnight(); return; }
+
+            const btn = [".bday-close-x", ".comfort-close", "[onclick*='close']", "[onclick*='Close']"]
+                .map(sel => el.querySelector(sel))
+                .find(Boolean);
+
+            if (btn) {
+                btn.click();
+            } else if (el.classList.contains("fun-overlay")) {
+                closeFunModal(id);
+            } else {
+                el.classList.add("hidden");
+                document.body.style.overflow = "";
+            }
+        }
+
+        window.addEventListener("popstate", () => {
+
+            guardActive = false;
+            handlingBack = true;
+
+            syncStack();
+
+            const top = stack[stack.length - 1];
+
+            if (!top) {
+
+                // nada aberto: aí sim o voltar sai do site
+                handlingBack = false;
+                history.back();
+                return;
+            }
+
+            try { closeLayer(top); } catch (e) {}
+
+            setTimeout(() => {
+                handlingBack = false;
+                syncStack();
+            }, 60);
+        });
+
+        const observer = new MutationObserver(syncStack);
+
+        layers.forEach(el => observer.observe(el, { attributes: true, attributeFilter: ["class"] }));
+
+        syncStack();
+    })();
 
     /* ==================================================
        🍊 MM: humor no card da home + clima de Rio Preto
