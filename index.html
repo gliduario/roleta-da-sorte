@@ -26268,10 +26268,49 @@ Te amo muito.
         return { saudade: 0, pensei: 0, orei: 0, amem: false, ...c };
     }
 
+    // junta duas versões do MEU dia (este celular + nuvem/outro aparelho): nada se perde
+    const CONN_COUNTERS = ["saudade", "pensei", "orei"];
+    let myCloudConn = null;
+
+    function mergeConn(a, b) {
+
+        const t = todayKey();
+        const A = a && a.day === t ? a : null;
+        const B = b && b.day === t ? b : null;
+
+        if (!A) return B ? { ...B } : { day: t };
+        if (!B) return { ...A };
+
+        const out = { ...B, ...A };
+
+        Object.keys(out).forEach(k => {
+            if (CONN_COUNTERS.includes(k)) out[k] = Math.max(A[k] || 0, B[k] || 0);
+            else if (typeof A[k] === "boolean" || typeof B[k] === "boolean") out[k] = !!(A[k] || B[k]);
+        });
+
+        out.at = Math.max(A.at || 0, B.at || 0);
+        out.day = t;
+
+        return out;
+    }
+
+    function connHasMore(a, b) {
+
+        // a tem alguma coisa que b não tem?
+        return Object.keys(a).some(k => {
+            if (k === "at" || k === "day") return false;
+            if (CONN_COUNTERS.includes(k)) return (a[k] || 0) > ((b && b[k]) || 0);
+            if (a[k] === true) return !(b && b[k]);
+            return false;
+        });
+    }
+
     function saveMyConn(c) {
 
+        c = mergeConn(c, myCloudConn);
         c.day = todayKey();
         c.at = Date.now();
+        myCloudConn = { ...c };
 
         writeStore(connKey(myName()), c);
 
@@ -26412,34 +26451,26 @@ Te amo muito.
 
         if (!data || name === myName()) {
 
-            // o meu: se a nuvem não tiver o de hoje (ou tiver menos), sobe o deste celular
-            if (name === myName()) {
-                const mine = getConn(myName());
-                const cloudToday = data && data.day === todayKey();
-                if ((mine.saudade || mine.pensei) &&
-                    (!cloudToday || (data.saudade || 0) < mine.saudade || (data.pensei || 0) < mine.pensei)) {
-                    if (!cloudToday || ((data.saudade || 0) <= mine.saudade && (data.pensei || 0) <= mine.pensei)) {
-                        saveMyConn(mine);
-                        return;
-                    }
-                }
+            if (name !== myName()) return;
+
+            const t = todayKey();
+            const cloudToday = data && data.day === t ? data : null;
+
+            myCloudConn = cloudToday ? { ...cloudToday } : null;
+
+            const local = readStore(connKey(name), null);
+            const merged = mergeConn(local, cloudToday);
+
+            writeStore(connKey(name), merged);
+
+            // este celular tem coisa que a nuvem ainda não tem → sobe junto
+            if (connHasMore(merged, cloudToday) && cloudReady()) {
+                myCloudConn = { ...merged };
+                window.loveCloud.setState(connKey(name), merged).catch(() => {});
             }
 
-            // o meu: se a nuvem tiver mais (ex.: outro aparelho meu), fica o maior
-            if (data && name === myName() && data.day === todayKey()) {
-                const me = getConn(myName());
-                if ((data.saudade || 0) > me.saudade || (data.pensei || 0) > me.pensei) {
-                    writeStore(connKey(name), {
-                        ...me,
-                        saudade: Math.max(me.saudade, data.saudade || 0),
-                        pensei: Math.max(me.pensei, data.pensei || 0),
-                        orei: Math.max(me.orei || 0, data.orei || 0),
-                        amem: !!(me.amem || data.amem),
-                        day: todayKey()
-                    });
-                    updateConnCards();
-                }
-            }
+            updateConnCards();
+            try { updateDevoCard(); } catch (e) {}
 
             return;
         }
