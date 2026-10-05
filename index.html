@@ -10089,6 +10089,245 @@
     }
 
 
+    /* 💬 pergunta do dia */
+
+    #home .today-question {
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 18px;
+        background:
+            radial-gradient(80% 80% at 100% 0%, var(--lilac-glow), transparent 70%),
+            var(--surface-soft);
+        border: 1px solid var(--border);
+    }
+
+    #home .q-title { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); }
+
+    #home .q-text {
+        margin: 6px 0 12px;
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 24px;
+        line-height: 1.25;
+        color: var(--text);
+    }
+
+    #home .today-question textarea { min-height: 80px; font-size: 15px; border-radius: 16px; }
+
+    #home .q-btn {
+        width: 100%;
+        margin-top: 8px;
+        padding: 12px;
+        border-radius: 999px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        box-shadow: 0 10px 20px -10px var(--btn-shadow);
+    }
+
+    #home .q-status { margin-top: 8px; text-align: center; font-size: 12.5px; color: var(--text-muted); }
+
+    #home .q-answers { display: grid; gap: 8px; }
+
+    #home .q-ans {
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        animation: reasonPop 0.45s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    #home .q-ans b { font-size: 12px; color: var(--accent); }
+    #home .q-ans p { margin-top: 2px; font-size: 14.5px; line-height: 1.45; color: var(--text); white-space: pre-wrap; }
+    #home .q-ans.locked p { color: var(--text-muted); }
+
+    #home .q-edit { margin-top: 8px; padding: 6px 10px; font-size: 12.5px; border-radius: 999px; background: transparent; color: var(--text-muted); }
+
+    /* 🎡 roleta ao vivo */
+
+    .rt-live-tag {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.95);
+        color: #e0245e;
+        animation: heartbeat 1.8s ease-in-out infinite;
+    }
+
+    .rt-live-banner {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        z-index: 7600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: min(94vw, 460px);
+        padding: 10px 10px 10px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        color: #fff;
+        margin-left: calc(min(94vw, 460px) / -2);
+        background: linear-gradient(135deg, #f06aa0, #8e8cf0);
+        box-shadow: 0 16px 40px rgba(120, 60, 160, 0.4);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .rt-live-banner span { flex: 1; line-height: 1.3; }
+
+    .rt-live-banner button {
+        padding: 9px 14px;
+        font-size: 13px;
+        border-radius: 999px;
+        color: #9a3f8a;
+        background: #fff;
+        white-space: nowrap;
+    }
+
+    .rt-live-banner button.x { padding: 9px 11px; color: #fff; background: rgba(255, 255, 255, 0.2); }
+
+    /* 👀 sinal secreto */
+
+    #home .hero-signal {
+        position: absolute;
+        left: -8px;
+        top: -8px;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        font-size: 17px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        animation: zzzFloat 2.2s ease-in-out infinite;
+        cursor: pointer;
+    }
+
+    .hot-signal:empty { display: none; }
+
+    .signal-bar {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .signal-label { font-size: 12.5px; color: rgba(255, 210, 225, 0.85); }
+
+    .signal-emojis { display: flex; gap: 4px; }
+
+    .signal-emojis button {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        font-size: 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid transparent;
+    }
+
+    .signal-emojis button.on { background: rgba(255, 79, 139, 0.35); border-color: #ff6a9a; }
+
+    .signal-bar small { margin-left: auto; font-size: 11.5px; color: rgba(255, 220, 232, 0.6); }
+
+    .signal-got {
+        margin-bottom: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        text-align: center;
+        background: rgba(255, 79, 139, 0.18);
+        border: 1px solid rgba(255, 106, 154, 0.4);
+    }
+
+    /* 6 abas no cantinho */
+
+    .hot-tabs { grid-template-columns: repeat(3, 1fr); }
+
+    /* 🎲 dados */
+
+    .dice-stage {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding: 18px 14px;
+        border-radius: 22px;
+        text-align: center;
+        background:
+            radial-gradient(70% 60% at 50% 40%, rgba(255, 80, 130, 0.2), transparent 70%),
+            #0d0308;
+        border: 1px solid rgba(255, 106, 154, 0.25);
+    }
+
+    .dice-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .die {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 110px;
+        padding: 12px 8px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #3a0d24, #24081a);
+        border: 1px solid rgba(255, 140, 180, 0.35);
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08), 0 12px 24px -12px rgba(255, 60, 120, 0.5);
+    }
+
+    .die span {
+        font-family: "Caveat", "Fredoka", cursive;
+        font-size: 24px;
+        line-height: 1.15;
+        color: #ffe3ee;
+        word-break: break-word;
+    }
+
+    .die small { margin-top: 6px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255, 180, 205, 0.6); }
+
+    .die.rolling { animation: dieShake 0.18s linear infinite; }
+
+    @keyframes dieShake {
+        0%, 100% { transform: rotate(-4deg) translateY(0); }
+        50% { transform: rotate(4deg) translateY(-3px); }
+    }
+
+    .die.landed { animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1); border-color: #ff6a9a; box-shadow: 0 0 0 3px rgba(255, 106, 154, 0.25), 0 12px 30px -10px rgba(255, 60, 120, 0.7); }
+
+    .dice-last { min-height: 16px; font-size: 12px; color: rgba(255, 220, 232, 0.65); }
+
+    .dice-stage .hot-btn:disabled { opacity: 0.4; }
+
+    .dice-face.ok { border-color: rgba(255, 106, 154, 0.45); }
+
+    /* 🙏 me pede */
+
+    .pedido-resps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .pedido-resps button {
+        padding: 9px 4px;
+        font-size: 12.5px;
+        border-radius: 999px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .pedido-resps button:first-child { background: linear-gradient(135deg, #ff4f8b, #b0306a); }
+
+    .pedido-tag { font-weight: 700; }
+    .pedido-tag.feito { color: #ff8fb8; }
+    .pedido-tag.depois { color: #ffd27d; }
+    .pedido-tag.nao { color: rgba(255, 220, 232, 0.6); }
+
+
 </style>
 
 
@@ -10282,6 +10521,11 @@
             <div
                 id="todayReward"
                 class="today-reward hidden"
+            ></div>
+
+            <div
+                id="todayQuestion"
+                class="today-question"
             ></div>
 
         </div>
@@ -10960,6 +11204,8 @@
             </div>
 
             <h2 class="rt-title">É hora do sorteio! 🎲</h2>
+
+            <div id="rtLiveTag" class="rt-live-tag hidden">🔴 Ao vivo com vocês dois</div>
 
             <p class="draw-info rt-sub">
                 O primeiro a chegar em <strong>3 ❤️</strong> é o escolhido da noite
@@ -13809,6 +14055,11 @@
         </div>
 
         <div
+            id="hotSignal"
+            class="hot-signal"
+        ></div>
+
+        <div
             id="hotClima"
             class="hot-clima"
         ></div>
@@ -13825,6 +14076,12 @@
             </button>
             <button class="hot-tab" data-tab="limites" onclick="setHotTab('limites')">
                 🛡️ Combinados
+            </button>
+            <button class="hot-tab" data-tab="dados" onclick="setHotTab('dados')">
+                🎲 Dados
+            </button>
+            <button class="hot-tab" data-tab="pedidos" onclick="setHotTab('pedidos')">
+                🙏 Me pede <i id="hotTabPedidoCount"></i>
             </button>
         </div>
 
@@ -13889,6 +14146,11 @@
     </div>
 
 </div>
+
+<div
+    id="rtLiveBanner"
+    class="rt-live-banner hidden"
+></div>
 
 <template id="babyTemplate">
 <svg class="baby-svg" viewBox="0 0 120 100" aria-label="Capivarinha bebê">
@@ -14715,12 +14977,14 @@
 
         items = [];
 
+        try { rtLive = { sid: null, spinN: 0, joined: false }; renderRtLiveTag(); } catch (e) {}
+
         register.classList.add("hidden");
 
         home.classList.remove("hidden");
     }
 
-    function startDraw() {
+    function startDraw(joining) {
 
         if (items.length < 2) {
 
@@ -14738,6 +15002,8 @@
         });
 
         writeStore(lastListKey(), items.slice(0, 40));
+
+        if (!joining) rtLiveStart();
 
         rtRoundN = 0;
 
@@ -14904,9 +15170,11 @@
         }
     }
 
-    function drawItem() {
+    function drawItem(forced) {
 
         if (drawing) return;
+
+        if (forced && forced.finalIndex >= items.length) return;
 
         drawing = true;
 
@@ -14917,8 +15185,9 @@
         currentDraw.textContent =
             "Girandoooo... 🌀";
 
-        const finalIndex =
-            Math.floor(
+        const finalIndex = forced
+            ? forced.finalIndex
+            : Math.floor(
                 Math.random() *
                 items.length
             );
@@ -14928,7 +15197,13 @@
 
         // calcula quanto girar pra fatia sorteada parar embaixo da setinha
         const sliceDeg = 360 / items.length;
-        const jitter = (Math.random() - 0.5) * sliceDeg * 0.6;
+        const jitter = forced ? forced.jitter * sliceDeg : (Math.random() - 0.5) * sliceDeg * 0.6;
+
+        if (!forced) rtLiveSpin(finalIndex, jitter / sliceDeg);
+
+        if (forced) {
+            currentDraw.textContent = `${forced.by === "Gabriel" ? "O Gabriel" : "A Diane"} girou! 🌀`;
+        }
         const targetAngle = 360 - (finalIndex + 0.5) * sliceDeg + jitter;
         const current = ((wheelRotation % 360) + 360) % 360;
 
@@ -15094,12 +15369,16 @@
 
     function restart() {
 
+        try { rtLive = { sid: null, spinN: 0, joined: false }; renderRtLiveTag(); } catch (e) {}
+
         selectedType = null;
         items = [];
         scores = {};
         drawing = false;
 
         winner.classList.add("hidden");
+        draw.classList.add("hidden");
+        register.classList.add("hidden");
 
         home.classList.remove("hidden");
     }
@@ -23409,7 +23688,15 @@ Te amo muito.
         ["Diane", "Gabriel"].forEach(n => {
             cloudListeners.push(window.loveCloud.listenState(visitKey(n), d => onCloudVisit(n, d), err));
             cloudListeners.push(window.loveCloud.listenState(onlineKey(n), d => onCloudOnline(n, d), err));
+            cloudListeners.push(window.loveCloud.listenState(questionKey(n), d => onCloudQuestion(n, d), err));
         });
+
+        cloudListeners.push(window.loveCloud.listenState("roleta_live", onCloudRoleta, err));
+
+        try {
+            const mineQ = myAnswer(myName());
+            if (mineQ) window.loveCloud.setState(questionKey(myName()), mineQ).catch(() => {});
+        } catch (e) {}
 
         try { startTogetherSync(); } catch (e) {}
 
@@ -27377,10 +27664,14 @@ Te amo muito.
 
             hotCheckHeard();
             hotCheckClima();
+            hotCheckPedidos();
+            renderSignalOnHome();
 
             updateHotBadge();
 
             if (!document.getElementById("hotOverlay").classList.contains("hidden")) renderHot();
+
+            hotCheckDice();
 
         }, err => {
 
@@ -27398,6 +27689,8 @@ Te amo muito.
         hotRows = [];
 
         updateHotBadge();
+
+        try { renderSignalOnHome(); } catch (e) {}
     }
 
     function hotOfType(t) {
@@ -27411,8 +27704,9 @@ Te amo muito.
 
         const whispers = hotOfType("sussurro").filter(r => r.dados.para === me && !r.dados.lido).length;
         const frases = hotOfType("frase").filter(r => r.dados.de !== me && !r.dados.fim).length;
+        const pedidos = hotOfType("pedido").filter(r => r.dados.para === me && !r.dados.resp).length;
 
-        return { whispers, frases, total: whispers + frases };
+        return { whispers, frases, pedidos, total: whispers + frases + pedidos };
     }
 
     function updateHotBadge() {
@@ -27493,6 +27787,11 @@ Te amo muito.
 
         document.getElementById("hotTabWhisperCount").textContent = p.whispers ? p.whispers : "";
         document.getElementById("hotTabFraseCount").textContent = p.frases ? p.frases : "";
+        document.getElementById("hotTabPedidoCount").textContent = p.pedidos ? p.pedidos : "";
+
+        const sig = document.getElementById("hotSignal");
+
+        if (sig) sig.innerHTML = hotError ? "" : signalSeenNote() + signalBarHtml();
 
         const clima = document.getElementById("hotClima");
 
@@ -27512,6 +27811,8 @@ Te amo muito.
         if (hotTab === "frase") body.innerHTML = hotFraseHtml();
         if (hotTab === "quero") body.innerHTML = hotQueroHtml();
         if (hotTab === "limites") body.innerHTML = hotLimitesHtml();
+        if (hotTab === "dados") body.innerHTML = hotDadosHtml();
+        if (hotTab === "pedidos") body.innerHTML = hotPedidosHtml();
     }
 
     /* 🤫 SUSSURROS */
@@ -27932,7 +28233,8 @@ Te amo muito.
         { key: "orei", icon: "🙏", label: "Orar um pelo outro (botão \"orei\")" },
         { key: "mm", icon: "🍊", label: "Dar um carinho na MM" },
         { key: "quadro", icon: "🎨", label: "Desenhar algo no quadro" },
-        { key: "toque", icon: "💗", label: "Se tocarem à distância" }
+        { key: "toque", icon: "💗", label: "Se tocarem à distância" },
+        { key: "pergunta", icon: "💬", label: "Responder a pergunta do dia" }
     ];
 
     // ✏️ recompensas quando os dois completam as 3 missões
@@ -28128,6 +28430,8 @@ Te amo muito.
 
         if (!card) return;
 
+        try { renderDailyQ(); } catch (e) {}
+
         const me = myName();
         const other = otherName();
         const who = other === "Gabriel" ? "O Gabriel" : "A Diane";
@@ -28149,7 +28453,7 @@ Te amo muito.
             ? "Entra na nuvem pra contar a sequência de vocês ☁️"
             : iCame && theyCame
                 ? "Os dois já vieram hoje. Foguinho aceso! 🔥"
-                : `Falta ${who.toLowerCase()} entrar hoje pra manter o foguinho 🥺`;
+                : `Falta ${other === "Gabriel" ? "o Gabriel" : "a Diane"} entrar hoje pra manter o foguinho 🥺`;
 
         // 🟢 online
         const online = otherOnline();
@@ -28481,6 +28785,714 @@ Te amo muito.
         startDraw();
 
         window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* 🎲 DADOS DO CASAL (só entram as faces que os dois liberaram) */
+
+    function diceMarks(name) {
+
+        const row = hotRows.find(r => r.id === "dadomarcas_" + name.toLowerCase());
+
+        return (row && row.dados.marcas) || {};
+    }
+
+    function diceFaces(lado) {
+
+        return hotOfType("dado").filter(r => r.dados.lado === lado).sort((a, b) => a.at - b.at);
+    }
+
+    function diceAllowed(face) {
+
+        return diceMarks("Diane")[face.id] === "sim" && diceMarks("Gabriel")[face.id] === "sim";
+    }
+
+    let diceRollingToken = null;
+    let diceLastSeenRoll = 0;
+
+    function hotDadosHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const mine = diceMarks(me);
+        const live = hotRows.find(r => r.id === "dados_live");
+        const acoes = diceFaces("acao");
+        const comos = diceFaces("como");
+        const okA = acoes.filter(diceAllowed);
+        const okC = comos.filter(diceAllowed);
+
+        const faceList = (list) => list.length
+            ? list.map(f => {
+                const m = mine[f.id] || "";
+                const both = diceAllowed(f);
+                return `
+                    <div class="hot-idea dice-face ${both ? "ok" : ""}">
+                        <div class="hot-idea-text">${both ? "🎲 " : ""}${hotEsc(f.dados.texto)}</div>
+                        <div class="hot-idea-marks">
+                            <button class="${m === "sim" ? "on sim" : ""}" onclick="markFace('${f.id}','sim')">Entra ✅</button>
+                            <button class="${m === "nao" ? "on nao" : ""}" onclick="markFace('${f.id}','nao')">Fora 🚫</button>
+                            <button class="hot-mini" onclick="deleteHot('${f.id}', this)">🗑️</button>
+                        </div>
+                    </div>`;
+            }).join("")
+            : `<div class="hot-empty small">Nenhuma face ainda.</div>`;
+
+        const last = live && live.dados.a
+            ? `<small>${hotWhoCap(live.dados.por)} rolou ${hotTime(live.dados.at)}</small>`
+            : "";
+
+        return `
+            <div class="dice-stage">
+                <div class="dice-pair">
+                    <div class="die" id="dieA"><span>${live && live.dados.a ? hotEsc(live.dados.a) : "🎲"}</span><small>ação</small></div>
+                    <div class="die" id="dieB"><span>${live && live.dados.b ? hotEsc(live.dados.b) : "🎲"}</span><small>como</small></div>
+                </div>
+                <div class="dice-last" id="diceLast">${last}</div>
+                <button class="hot-btn" onclick="rollDice()" ${okA.length && okC.length ? "" : "disabled"}>Rolar os dados 🎲</button>
+                <div class="hot-empty small">
+                    ${okA.length && okC.length
+                        ? `${okA.length} ações e ${okC.length} "comos" liberados pelos dois · rola nos dois celulares ao mesmo tempo`
+                        : "Pra rolar, cada dado precisa de pelo menos 1 face que <b>os dois</b> marcaram ✅"}
+                </div>
+            </div>
+
+            <div class="hot-explain">
+                Só caem nos dados as faces que <b>os dois</b> marcaram "Entra ✅". Se um marcar "Fora", ela nunca sai, e ninguém fica sabendo quem tirou 🤍
+            </div>
+
+            <div class="hot-section-title">Dado 1 · Ação</div>
+            <div class="hot-ideas">${faceList(acoes)}</div>
+            <div class="hot-compose">
+                <input id="diceAcaoText" maxlength="60" placeholder="Ex.: beijo, massagem..." onkeydown="if (event.key === 'Enter') addFace('acao')">
+                <button class="hot-btn ghost" onclick="addFace('acao')">Adicionar ação ➕</button>
+            </div>
+
+            <div class="hot-section-title">Dado 2 · Como / onde</div>
+            <div class="hot-ideas">${faceList(comos)}</div>
+            <div class="hot-compose">
+                <input id="diceComoText" maxlength="60" placeholder="Ex.: bem devagar, no pescoço..." onkeydown="if (event.key === 'Enter') addFace('como')">
+                <button class="hot-btn ghost" onclick="addFace('como')">Adicionar "como" ➕</button>
+            </div>
+        `;
+    }
+
+    async function addFace(lado) {
+
+        const input = document.getElementById(lado === "acao" ? "diceAcaoText" : "diceComoText");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        try {
+            const id = "d_" + newId();
+            await window.loveCloud.hotSave(id, "dado", { lado, texto, at: Date.now() });
+            // quem cria já marca que entra
+            const marcas = { ...diceMarks(myName()), [id]: "sim" };
+            await window.loveCloud.hotSave("dadomarcas_" + myName().toLowerCase(), "dadomarcas", { marcas, at: Date.now() });
+            input.value = "";
+        } catch (e) {
+            loveToast("Não deu pra adicionar agora 😕");
+        }
+    }
+
+    async function markFace(id, value) {
+
+        const me = myName();
+        const marcas = { ...diceMarks(me) };
+
+        marcas[id] = marcas[id] === value ? "" : value;
+
+        try {
+            await window.loveCloud.hotSave("dadomarcas_" + me.toLowerCase(), "dadomarcas", { marcas, at: Date.now() });
+        } catch (e) {
+            loveToast("Não deu pra salvar agora 😕");
+        }
+    }
+
+    async function rollDice() {
+
+        const a = diceFaces("acao").filter(diceAllowed);
+        const b = diceFaces("como").filter(diceAllowed);
+
+        if (!a.length || !b.length) return;
+
+        const res = {
+            a: pick(a).dados.texto,
+            b: pick(b).dados.texto,
+            por: myName(),
+            at: Date.now()
+        };
+
+        try {
+            await window.loveCloud.hotSave("dados_live", "dadoslive", res);
+        } catch (e) {
+            loveToast("Não deu pra rolar agora 😕");
+        }
+    }
+
+    // anima os dados nos dois celulares quando sai uma rolagem nova
+    function hotCheckDice() {
+
+        const live = hotRows.find(r => r.id === "dados_live");
+
+        if (!live || !live.dados.at) return;
+
+        const at = live.dados.at;
+
+        if (!diceLastSeenRoll) { diceLastSeenRoll = at; return; }
+
+        if (at <= diceLastSeenRoll) return;
+
+        diceLastSeenRoll = at;
+
+        const open = !document.getElementById("hotOverlay").classList.contains("hidden");
+
+        if (!open) {
+            if (live.dados.por !== myName()) loveToast("🎲 Tem novidade no Só nós dois 👀");
+            return;
+        }
+
+        if (hotTab !== "dados") { hotTab = "dados"; }
+
+        animateDice(live.dados);
+    }
+
+    function animateDice(res) {
+
+        renderHot();
+
+        const A = document.getElementById("dieA");
+        const B = document.getElementById("dieB");
+
+        if (!A || !B) return;
+
+        const fa = diceFaces("acao").filter(diceAllowed).map(f => f.dados.texto);
+        const fb = diceFaces("como").filter(diceAllowed).map(f => f.dados.texto);
+        const token = {};
+
+        diceRollingToken = token;
+
+        A.classList.add("rolling");
+        B.classList.add("rolling");
+
+        let n = 0;
+
+        (function spin() {
+
+            if (diceRollingToken !== token) return;
+
+            if (n++ < 14) {
+                A.querySelector("span").textContent = pick(fa) || "🎲";
+                B.querySelector("span").textContent = pick(fb) || "🎲";
+                setTimeout(spin, 60 + n * 12);
+                return;
+            }
+
+            A.querySelector("span").textContent = res.a;
+            B.querySelector("span").textContent = res.b;
+            A.classList.remove("rolling");
+            B.classList.remove("rolling");
+            A.classList.add("landed");
+            B.classList.add("landed");
+
+            const last = document.getElementById("diceLast");
+
+            if (last) last.innerHTML = `<small>${hotWhoCap(res.por)} rolou agora 🔥</small>`;
+
+            try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) {}
+        })();
+    }
+
+    /* 🙏 ME PEDE */
+
+    function hotPedidosHtml() {
+
+        const me = myName();
+        const other = otherName();
+        const all = hotOfType("pedido").slice().sort((a, b) => b.at - a.at);
+        const toMe = all.filter(r => r.dados.para === me && !r.dados.resp);
+        const mineOpen = all.filter(r => r.dados.de === me && !r.dados.resp);
+        const answered = all.filter(r => r.dados.resp).slice(0, 15);
+
+        const RESP = { feito: "🔥 Feito", depois: "⏳ Mais tarde", nao: "🙈 Hoje não" };
+
+        return `
+            ${toMe.length ? `
+                <div class="hot-section-title">${hotWhoCap(other)} te pediu</div>
+                ${toMe.map(r => `
+                    <div class="hot-frase pending">
+                        <div class="hot-frase-start">“${hotEsc(r.dados.texto)}”</div>
+                        <small>${hotTime(r.at)}</small>
+                        <div class="pedido-resps">
+                            <button onclick="answerPedido('${r.id}','feito')">🔥 Feito</button>
+                            <button onclick="answerPedido('${r.id}','depois')">⏳ Mais tarde</button>
+                            <button onclick="answerPedido('${r.id}','nao')">🙈 Hoje não</button>
+                        </div>
+                    </div>`).join("")}` : ""}
+
+            <div class="hot-section-title">Pedir pr${other === "Gabriel" ? "o Gabriel" : "a Diane"}</div>
+            <div class="hot-compose">
+                <textarea id="hotPedidoText" maxlength="300" placeholder="O que você quer pedir hoje? 😏"></textarea>
+                <button class="hot-btn" onclick="sendPedido()">Pedir 🙏</button>
+            </div>
+
+            ${mineOpen.length ? `
+                <div class="hot-section-title">Esperando resposta</div>
+                ${mineOpen.map(r => `
+                    <div class="hot-frase waiting">
+                        <div class="hot-frase-start">“${hotEsc(r.dados.texto)}”</div>
+                        <small>${hotWhoCap(other)} ainda não respondeu 👀</small>
+                    </div>`).join("")}` : ""}
+
+            ${answered.length ? `
+                <div class="hot-section-title">Respondidos</div>
+                ${answered.map(r => `
+                    <div class="hot-frase done">
+                        <div class="hot-frase-full"><span class="a">${hotEsc(r.dados.texto)}</span></div>
+                        <div class="hot-frase-foot">
+                            <small>${r.dados.de === me ? "Você pediu" : hotWhoCap(r.dados.de) + " pediu"} · <b class="pedido-tag ${r.dados.resp}">${RESP[r.dados.resp] || ""}</b></small>
+                            <button class="hot-mini" onclick="deleteHot('${r.id}', this)">🗑️</button>
+                        </div>
+                    </div>`).join("")}` : ""}
+        `;
+    }
+
+    async function sendPedido() {
+
+        const input = document.getElementById("hotPedidoText");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        try {
+            await window.loveCloud.hotSave("p_" + newId(), "pedido", { de: myName(), para: otherName(), texto, resp: "", at: Date.now() });
+            input.value = "";
+            loveToast(`🙏 Pedido enviado pr${otherName() === "Gabriel" ? "o Gabriel" : "a Diane"} 😏`);
+        } catch (e) {
+            loveToast("Não deu pra enviar agora 😕");
+        }
+    }
+
+    async function answerPedido(id, resp) {
+
+        const row = hotRows.find(r => r.id === id);
+
+        if (!row) return;
+
+        try {
+            await window.loveCloud.hotSave(id, "pedido", { ...row.dados, resp, respAt: Date.now() });
+        } catch (e) {
+            loveToast("Não deu pra responder agora 😕");
+        }
+    }
+
+    // quem pediu fica sabendo da resposta
+    let pedidosSeen = null;
+
+    function hotCheckPedidos() {
+
+        const me = myName();
+        const mine = hotOfType("pedido").filter(r => r.dados.de === me && r.dados.resp);
+        const ids = new Set(mine.map(r => r.id));
+
+        if (pedidosSeen === null) { pedidosSeen = ids; return; }
+
+        mine.forEach(r => {
+            if (!pedidosSeen.has(r.id)) {
+                const t = { feito: "topou 🔥", depois: "disse mais tarde ⏳", nao: "disse hoje não 🙈" }[r.dados.resp];
+                loveToast(`🙏 ${hotWhoCap(otherName())} ${t}`);
+            }
+        });
+
+        pedidosSeen = ids;
+    }
+
+    /* 👀 SINAL SECRETO */
+
+    const SIGNAL_HOURS = 12;
+    const SIGNAL_EMOJIS = ["🍒", "🍓", "🌶️", "🍑", "🌙"];
+
+    function hotSignal(name) {
+
+        const row = hotRows.find(r => r.id === "sinal_" + name.toLowerCase());
+
+        if (!row || !row.dados.at || Date.now() - row.dados.at > SIGNAL_HOURS * 3600000) return null;
+
+        return row.dados;
+    }
+
+    function signalBarHtml() {
+
+        const mine = hotSignal(myName());
+
+        return `
+            <div class="signal-bar">
+                <span class="signal-label">👀 Sinal secreto</span>
+                <div class="signal-emojis">
+                    ${SIGNAL_EMOJIS.map(e => `<button class="${mine && mine.emoji === e ? "on" : ""}" onclick="sendSignal('${e}')">${e}</button>`).join("")}
+                </div>
+                <small>${mine ? (mine.visto ? "✓ visto" : "enviado") : "aparece discreto na capa do outro"}</small>
+            </div>`;
+    }
+
+    async function sendSignal(emoji) {
+
+        const me = myName();
+        const cur = hotSignal(me);
+        const off = cur && cur.emoji === emoji;
+
+        try {
+            await window.loveCloud.hotSave("sinal_" + me.toLowerCase(), "sinal",
+                off ? { emoji: "", at: 0 } : { emoji, at: Date.now(), visto: false });
+            if (!off) loveToast("👀 Sinal enviado");
+        } catch (e) {
+            loveToast("Não deu pra enviar agora 😕");
+        }
+    }
+
+    function renderSignalOnHome() {
+
+        const other = otherName();
+        const s = cloudReady() ? hotSignal(other) : null;
+        const sel = other === "Gabriel" ? "#home .hero-avatar.gg" : "#home .hero-avatar.mm";
+
+        document.querySelectorAll("#home .hero-signal").forEach(el => el.remove());
+
+        if (!s || !s.emoji || s.visto) return;
+
+        const av = document.querySelector(sel);
+
+        if (!av) return;
+
+        const el = document.createElement("span");
+
+        el.className = "hero-signal";
+        el.textContent = s.emoji;
+        el.title = "";
+        el.onclick = ev => { ev.stopPropagation(); seeSignal(); };
+
+        av.appendChild(el);
+    }
+
+    async function seeSignal() {
+
+        const other = otherName();
+        const row = hotRows.find(r => r.id === "sinal_" + other.toLowerCase());
+
+        openHot();
+
+        if (row && !row.dados.visto) {
+            try { await window.loveCloud.hotSave(row.id, "sinal", { ...row.dados, visto: true }); } catch (e) {}
+        }
+    }
+
+    function signalSeenNote() {
+
+        const s = hotSignal(otherName());
+
+        if (!s || !s.emoji) return "";
+
+        return `<div class="signal-got">${s.emoji} ${hotWhoCap(otherName())} te mandou o sinal às ${hotTime(s.at)} 👀</div>`;
+    }
+
+    /* ==================================================
+       💬 PERGUNTA DO DIA (só aparece a resposta do outro
+       depois que você responder)
+    ================================================== */
+
+    // ✏️ perguntas (uma por dia, a mesma pros dois)
+    const DAILY_QUESTIONS = [
+        "Qual foi a primeira coisa que você reparou em mim?",
+        "Se a gente pudesse se teletransportar agora, pra onde você iria comigo?",
+        "Qual música te faz lembrar de mim?",
+        "O que você mais gosta nas nossas ligações?",
+        "Qual foi o momento em que você percebeu que gostava de mim?",
+        "Qual comida a gente precisa comer juntos no próximo encontro?",
+        "O que te deixou feliz hoje?",
+        "Qual mania minha você acha mais fofa?",
+        "Como você imagina a nossa casa?",
+        "Qual lugar de Londrina ou de Rio Preto você quer me mostrar?",
+        "O que você queria que eu soubesse hoje?",
+        "Qual é o seu sonho mais bobo?",
+        "Que apelido você gostaria que eu te chamasse?",
+        "Qual filme você quer assistir comigo e ainda não assistimos?",
+        "Qual memória nossa você mais gosta de lembrar?",
+        "O que você faria se a gente tivesse um dia inteiro juntos amanhã?",
+        "Qual versículo tá no seu coração essa semana?",
+        "Pelo que você é grato(a) a Deus hoje?",
+        "Qual é a coisa mais fofa que eu já te disse?",
+        "Se a MM e o GG pudessem falar de verdade, o que você acha que diriam da gente?",
+        "Qual seria o nome do nosso primeiro filho (de verdade kkkk)?",
+        "O que te deixa mais calmo(a) quando o dia tá difícil?",
+        "Qual foi a nossa conversa mais engraçada?",
+        "O que você mais quer fazer no nosso próximo encontro?",
+        "Qual é o seu lanche de madrugada favorito?",
+        "Que viagem a gente precisa fazer juntos um dia?",
+        "O que eu faço que te faz se sentir amado(a)?",
+        "Qual música você dedicaria pra mim hoje?",
+        "Qual é o seu maior medo bobo?",
+        "Como você descreveria a gente em 3 palavras?",
+        "O que você ama no nosso jeito de namorar?",
+        "Qual foi o melhor presente que você já ganhou?",
+        "Se a gente fosse personagens de anime, quem seríamos?",
+        "Qual coisa simples do dia a dia você quer fazer comigo?",
+        "O que você quer que a gente nunca deixe de fazer?",
+        "Qual foi o dia mais especial do nosso namoro até agora?",
+        "Qual seria nosso date perfeito à distância?",
+        "O que você pediria a Deus pela gente hoje?",
+        "Qual detalhe meu você nunca esquece?",
+        "Qual foi a última vez que você riu muito?"
+    ];
+
+    function questionKey(name) {
+
+        return "pergunta_" + name.toLowerCase();
+    }
+
+    function todaysQuestionIndex() {
+
+        return dayHash(todayKey() + "q") % DAILY_QUESTIONS.length;
+    }
+
+    function myAnswer(name) {
+
+        const a = readStore(questionKey(name), null);
+
+        return a && a.day === todayKey() ? a : null;
+    }
+
+    async function answerQuestion() {
+
+        const input = document.getElementById("qAnswer");
+        const texto = input.value.trim();
+
+        if (!texto) { input.focus(); return; }
+
+        const data = { day: todayKey(), q: todaysQuestionIndex(), texto, at: Date.now() };
+
+        writeStore(questionKey(myName()), data);
+
+        if (cloudReady()) window.loveCloud.setState(questionKey(myName()), data).catch(() => {});
+
+        try { markMission("pergunta"); } catch (e) {}
+
+        sfx("plim");
+
+        input.value = "";
+
+        renderDailyQ(false);
+
+        if (myAnswer(otherName())) {
+            setTimeout(() => loveToast("💬 Respostas reveladas! Olha o que o outro respondeu 🥹"), 200);
+        }
+    }
+
+    function onCloudQuestion(name, data) {
+
+        if (!data) return;
+
+        const before = myAnswer(name);
+
+        writeStore(questionKey(name), data);
+
+        if (name !== myName() && !before && myAnswer(name)) {
+            loveToast(`💬 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} respondeu a pergunta do dia 👀`);
+        }
+
+        renderDailyQ();
+    }
+
+    function editQuestion() {
+
+        const me = myAnswer(myName());
+
+        renderDailyQ(true);
+
+        const input = document.getElementById("qAnswer");
+
+        if (input && me) input.value = me.texto;
+    }
+
+    let dailyQEditing = false;
+
+    function renderDailyQ(editing) {
+
+        const box = document.getElementById("todayQuestion");
+
+        if (!box) return;
+
+        if (editing === true) dailyQEditing = true;
+        if (editing === false) dailyQEditing = false;
+
+        editing = dailyQEditing;
+
+        // não apaga o que ela está digitando quando a tela atualiza
+        const typing = document.getElementById("qAnswer");
+        const typed = typing ? typing.value : "";
+        const hadFocus = typing && document.activeElement === typing;
+
+        const me = myName();
+        const other = otherName();
+        const who = other === "Gabriel" ? "O Gabriel" : "A Diane";
+        const mine = myAnswer(me);
+        const theirs = myAnswer(other);
+        const q = DAILY_QUESTIONS[todaysQuestionIndex()];
+
+        let body;
+
+        if (!mine || editing) {
+
+            body = `
+                <textarea id="qAnswer" maxlength="400" placeholder="Sua resposta... (${other === "Gabriel" ? "ele" : "ela"} só vê depois de responder também)"></textarea>
+                <button class="q-btn" onclick="answerQuestion()">Responder 💬</button>
+                <div class="q-status">${theirs ? `🔒 ${who} já respondeu. Responde pra ver!` : `${who} ainda não respondeu`}</div>`;
+
+        } else {
+
+            body = `
+                <div class="q-answers">
+                    <div class="q-ans me"><b>Você</b><p>${escapeHtml(mine.texto)}</p></div>
+                    ${theirs
+                        ? `<div class="q-ans other"><b>${other}</b><p>${escapeHtml(theirs.texto)}</p></div>`
+                        : `<div class="q-ans locked"><b>${other}</b><p>🔒 Esperando ${other === "Gabriel" ? "o Gabriel" : "a Diane"} responder…</p></div>`}
+                </div>
+                <button class="q-edit" onclick="editQuestion()">✏️ Editar minha resposta</button>`;
+        }
+
+        box.innerHTML = `
+            <div class="q-title">💬 Pergunta do dia</div>
+            <div class="q-text">${escapeHtml(q)}</div>
+            ${body}`;
+
+        const again = document.getElementById("qAnswer");
+
+        if (again && typed) again.value = typed;
+        if (again && hadFocus) again.focus();
+    }
+
+    try { renderDailyQ(); } catch (e) {}
+
+    /* ==================================================
+       🎡 ROLETA AO VIVO (os dois veem girar juntos)
+    ================================================== */
+
+    let rtLive = { sid: null, spinN: 0, joined: false };
+    let rtOffer = null;
+
+    function rtBroadcast(data) {
+
+        if (!cloudReady()) return;
+
+        window.loveCloud.setState("roleta_live", { ...data, by: myName(), at: Date.now() }).catch(() => {});
+    }
+
+    function rtLiveStart() {
+
+        rtLive = { sid: newId(), spinN: 0, joined: true };
+
+        rtBroadcast({ ev: "start", sid: rtLive.sid, type: selectedType || "movie", items: items.slice(0, 40) });
+
+        renderRtLiveTag();
+    }
+
+    function rtLiveSpin(finalIndex, jitter) {
+
+        if (!rtLive.sid) return;
+
+        rtLive.spinN++;
+
+        rtBroadcast({ ev: "spin", sid: rtLive.sid, spinN: rtLive.spinN, finalIndex, jitter, type: selectedType, items: items.slice(0, 40) });
+    }
+
+    function onCloudRoleta(data) {
+
+        if (!data || data.by === myName() || !data.sid) return;
+
+        if (Date.now() - (data.at || 0) > 5 * 60000) return;
+
+        const who = data.by === "Gabriel" ? "O Gabriel" : "A Diane";
+
+        if (data.ev === "start") {
+
+            if (rtLive.sid === data.sid) return;
+
+            const busy = !draw.classList.contains("hidden") || !register.classList.contains("hidden") || !winner.classList.contains("hidden");
+
+            rtOffer = data;
+
+            const banner = document.getElementById("rtLiveBanner");
+
+            banner.innerHTML = `
+                <span>🎡 <b>${who} abriu a roleta</b> ${busy ? "" : "agora"}</span>
+                <button onclick="joinRtLive()">Assistir junto</button>
+                <button class="x" onclick="dismissRtLive()">✕</button>`;
+
+            banner.classList.remove("hidden");
+
+            return;
+        }
+
+        if (data.ev === "spin" && rtLive.joined && rtLive.sid === data.sid && data.spinN > rtLive.spinN) {
+
+            if (drawing) return;
+
+            rtLive.spinN = data.spinN;
+
+            if (draw.classList.contains("hidden")) return;
+
+            drawItem({ finalIndex: data.finalIndex, jitter: data.jitter, by: data.by });
+        }
+    }
+
+    function joinRtLive() {
+
+        const d = rtOffer;
+
+        dismissRtLive();
+
+        if (!d) return;
+
+        ["nightOverlay"].forEach(id => {
+            if (!document.getElementById(id).classList.contains("hidden")) closeFunModal(id);
+        });
+
+        selectedType = d.type || "movie";
+
+        const config = types[selectedType];
+
+        document.getElementById("chosenIcon").textContent = config.icon;
+        document.getElementById("chosenTitle").textContent = config.title;
+
+        setRtTheme(selectedType);
+
+        items = (d.items || []).slice();
+
+        home.classList.add("hidden");
+        winner.classList.add("hidden");
+        register.classList.remove("hidden");
+
+        startDraw(true);
+
+        rtLive = { sid: d.sid, spinN: 0, joined: true };
+
+        renderRtLiveTag();
+
+        loveToast("🎡 Vocês estão na mesma roleta! Quem girar, gira pros dois 💗");
+    }
+
+    function dismissRtLive() {
+
+        rtOffer = null;
+
+        document.getElementById("rtLiveBanner").classList.add("hidden");
+    }
+
+    function renderRtLiveTag() {
+
+        const tag = document.getElementById("rtLiveTag");
+
+        if (!tag) return;
+
+        tag.classList.toggle("hidden", !(rtLive.joined && cloudReady()));
     }
 
     /* ==================================================
