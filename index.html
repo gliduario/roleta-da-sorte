@@ -10366,6 +10366,24 @@
 
     #home .feature-grid.single { grid-template-columns: 1fr; }
 
+    /* espaçamento igual entre todos os cartões das abas */
+    #home .nav-panel .home-section {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    #home .nav-panel .home-section > * {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #home .nav-panel .home-section > .section-head { margin-bottom: 0; }
+
+    #home .nav-panel .feature-grid,
+    #home .nav-panel .duo-grid,
+    #home .nav-panel[data-panel="familia"] .family-row { gap: 14px; }
+
     /* na aba Família os cartões ficam em grade (sem rolar pro lado) */
     #home .nav-panel[data-panel="familia"] .family-row {
         display: grid;
