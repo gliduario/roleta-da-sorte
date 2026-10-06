@@ -10254,6 +10254,417 @@
 
 
 
+
+    /* 🎮 jogar juntos */
+
+    #home .games-card {
+        position: relative;
+        padding: 18px 16px 16px;
+        cursor: pointer;
+        border-radius: 26px;
+        border: 1px solid var(--border);
+        background:
+            radial-gradient(90% 70% at 0% 0%, rgba(255, 143, 184, 0.28), transparent 60%),
+            radial-gradient(90% 70% at 100% 100%, rgba(142, 197, 255, 0.3), transparent 60%),
+            var(--surface);
+        box-shadow: 0 14px 32px -18px rgba(150, 60, 120, 0.45);
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #home .games-card:active { transform: scale(0.98); }
+
+    .gc-top { display: flex; align-items: center; gap: 12px; text-align: left; }
+    .gc-top b { display: block; font-size: 17px; color: var(--accent); }
+    .gc-top small { font-size: 13px; color: var(--text-soft); }
+    .gc-icon { font-size: 30px; }
+    .gc-lock { margin-top: 12px; padding: 10px; border-radius: 14px; font-size: 13px; text-align: center; color: var(--text-soft); background: var(--surface-soft); }
+
+    .gc-turn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        background: #ff4f8b;
+        animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    .gc-score, .gm-score {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .gc-side, .gm-score > div:not(.gm-x) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 74px;
+    }
+
+    .gc-side span, .gm-score span { font-size: 22px; }
+    .gc-side b, .gm-score b { font-size: 34px; line-height: 1.05; color: var(--text); font-family: "Fredoka", sans-serif; }
+    .gc-side small, .gm-score small { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+    .gc-side.lead b { color: var(--accent); }
+    .gc-side i { position: absolute; top: -18px; font-style: normal; font-size: 20px; animation: avatarBob 2.4s ease-in-out infinite; }
+    .gc-x, .gm-x { font-size: 18px; font-weight: 700; color: var(--text-muted); }
+
+    .gc-zoeira, .gm-zoeira {
+        margin: 10px auto 0;
+        max-width: 320px;
+        font-size: 13.5px;
+        line-height: 1.4;
+        text-align: center;
+        color: var(--text-soft);
+    }
+
+    .gc-games { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+
+    .gc-games button {
+        padding: 11px 6px;
+        font-size: 13.5px;
+        border-radius: 16px;
+        color: var(--btn-soft-text);
+        background: var(--btn-soft);
+        box-shadow: none;
+    }
+
+    .gc-games button.turn { color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); }
+
+    .hero-avatar { position: relative; }
+
+    .hero-crown {
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        font-size: 22px;
+        transform: translateX(-50%) rotate(-12deg);
+        filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.2));
+        animation: crownBob 2.6s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes crownBob { 50% { transform: translateX(-50%) translateY(-3px) rotate(8deg); } }
+
+    /* modal */
+
+    .games-modal { max-width: 520px; padding-top: 0; }
+
+    .games-top {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 -24px 10px;
+        padding: 16px 16px 10px;
+        background: linear-gradient(180deg, var(--surface-solid) 75%, transparent);
+    }
+
+    .games-top h2 { flex: 1; margin: 0; font-size: 21px; text-align: left; color: var(--accent); }
+    .games-top .bday-close-x { position: static; }
+
+    .games-back {
+        width: 38px;
+        height: 38px;
+        padding: 0 0 3px;
+        font-size: 26px;
+        line-height: 1;
+        border-radius: 50%;
+        color: var(--accent);
+        background: var(--btn-soft);
+        box-shadow: none;
+    }
+
+    .gm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+
+    .gm-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 18px 10px 14px;
+        border-radius: 22px;
+        color: var(--text);
+        background: var(--surface-soft);
+        border: 2px solid var(--border);
+        box-shadow: none;
+    }
+
+    .gm-card.turn { border-color: var(--accent); box-shadow: 0 0 0 4px var(--chip-bg); }
+    .gm-card-icon { font-size: 36px; }
+    .gm-card b { font-size: 15px; }
+    .gm-card small { font-size: 12px; color: var(--text-muted); }
+    .gm-card.turn small { color: var(--accent); font-weight: 700; }
+
+    .gm-section {
+        margin: 22px 2px 8px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        text-align: left;
+        color: var(--accent);
+    }
+
+    .gm-hist { display: grid; gap: 6px; }
+
+    .gm-hist-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border-radius: 14px;
+        font-size: 13.5px;
+        text-align: left;
+        background: var(--surface-soft);
+    }
+
+    .gm-hist-row b { flex: 1; font-weight: 600; color: var(--text); }
+    .gm-hist-row small { font-size: 11.5px; color: var(--text-muted); }
+    .gm-empty { padding: 12px; font-size: 13.5px; color: var(--text-muted); }
+
+    .game-intro { margin: 6px 0 4px; }
+    .gi-emoji { font-size: 38px; letter-spacing: 4px; }
+    .game-intro p { margin: 8px 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--text-soft); }
+
+    .game-status {
+        margin: 4px 0 14px;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 14px;
+        color: var(--text-soft);
+        background: var(--surface-soft);
+    }
+
+    .game-status.mine { font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); animation: heartbeat 1.8s ease-in-out infinite; }
+
+    .game-legend { display: flex; justify-content: center; gap: 16px; margin: 10px 0 16px; font-size: 13px; color: var(--text-muted); }
+    .game-hint { display: block; margin-top: 8px; font-size: 12.5px; color: var(--text-muted); }
+
+    .game-ghost {
+        margin-top: 4px;
+        padding: 9px 16px;
+        font-size: 13px;
+        border-radius: 999px;
+        color: var(--text-soft);
+        background: transparent;
+        border: 1px dashed var(--border-strong);
+        box-shadow: none;
+    }
+
+    /* resultado fofinho */
+
+    .game-result {
+        position: relative;
+        margin: 4px 0 16px;
+        padding: 18px 16px 16px;
+        border-radius: 24px;
+        border: 2px solid var(--border-strong);
+        background: linear-gradient(160deg, #fff0f6, #eef5ff);
+        animation: reasonPop 0.5s cubic-bezier(.2, 1.4, .4, 1);
+    }
+
+    .game-result.d { background: linear-gradient(160deg, #ffe3ef, #fff6fa); border-color: #ff9cc2; }
+    .game-result.g { background: linear-gradient(160deg, #e3eeff, #f5f9ff); border-color: #9cbcf0; }
+    .game-result.tie { background: linear-gradient(160deg, #fff6dd, #fff0f6); border-color: #ffd36e; }
+
+    .gr-emoji { font-size: 44px; animation: avatarBob 2.2s ease-in-out infinite; }
+    .gr-title { margin-top: 4px; font-size: 24px; font-weight: 700; color: #5a3a52; font-family: "Fredoka", sans-serif; }
+    .gr-sub { margin-top: 4px; font-size: 14px; color: #7d6b85; }
+    .gr-word { margin-top: 8px; font-size: 14px; color: #5a3a52; }
+    .gr-prenda { margin-top: 10px; padding: 9px 12px; border-radius: 14px; font-size: 13.5px; color: #5a3a52; background: rgba(255, 255, 255, 0.7); }
+
+    :root[data-theme="dark"] .game-result { background: rgba(255, 255, 255, 0.06); }
+    :root[data-theme="dark"] .gr-title, :root[data-theme="dark"] .gr-word, :root[data-theme="dark"] .gr-prenda { color: var(--text); }
+    :root[data-theme="dark"] .gr-sub { color: var(--text-soft); }
+    :root[data-theme="dark"] .gr-prenda { background: rgba(255, 255, 255, 0.08); }
+
+    /* ⭕ velha */
+
+    .velha-board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        width: min(300px, 100%);
+        margin: 0 auto;
+        padding: 8px;
+        border-radius: 24px;
+        background: var(--surface-tint);
+    }
+
+    .velha-cell {
+        aspect-ratio: 1;
+        padding: 0;
+        border-radius: 18px;
+        font-size: 40px;
+        background: var(--surface-solid);
+        border: 2px solid var(--border);
+        box-shadow: none;
+    }
+
+    .velha-cell:not(:disabled):active { transform: scale(0.94); }
+    .velha-cell span { display: inline-block; animation: cellPop 0.35s cubic-bezier(.2, 1.6, .4, 1); }
+
+    .velha-cell .vt {
+        display: grid;
+        place-items: center;
+        width: 70%;
+        aspect-ratio: 1;
+        margin: auto;
+        font-size: 30px;
+        border-radius: 50%;
+    }
+
+    .velha-cell .vt.d { background: radial-gradient(circle at 35% 30%, #ffd3e4, #ff8fb8); box-shadow: 0 6px 14px -6px rgba(255, 79, 139, 0.8); }
+    .velha-cell .vt.g { background: radial-gradient(circle at 35% 30%, #d6e6ff, #7fa8f0); box-shadow: 0 6px 14px -6px rgba(79, 134, 255, 0.8); }
+    .velha-cell { display: grid; place-items: center; }
+    .velha-cell.last { border-color: var(--border-strong); }
+    .velha-cell.win { border-color: var(--accent); background: var(--chip-bg); animation: heartbeat 1.2s ease-in-out infinite; }
+    .velha-cell:disabled { opacity: 1; cursor: default; }
+    .velha-board.over .velha-cell:not(.win) { opacity: 0.5; }
+    .fk:disabled { cursor: default; }
+
+    @keyframes cellPop { from { transform: scale(0.2) rotate(-20deg); } to { transform: none; } }
+
+    /* 🎈 forca */
+
+    .forca-sky {
+        position: relative;
+        height: 190px;
+        margin: 0 auto;
+        width: min(300px, 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #dff0ff 0%, #f6fbff 70%, #bfe3f5 100%);
+    }
+
+    :root[data-theme="dark"] .forca-sky { background: linear-gradient(180deg, #2a2f5a 0%, #3a3a6a 70%, #23506a 100%); }
+
+    .fb-balloons {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        width: 170px;
+        height: 80px;
+        transform: translateX(-50%);
+    }
+
+    .fb-balloon {
+        position: absolute;
+        left: calc(var(--i) * 26px + 4px);
+        top: calc(((var(--i) + 1) * 7px) % 22px);
+        width: 30px;
+        height: 38px;
+        border-radius: 50% 50% 46% 46%;
+        background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75), transparent 35%), var(--c);
+        animation: balloonSway 3s ease-in-out infinite;
+        animation-delay: calc(var(--i) * -0.5s);
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .fb-balloon i {
+        position: absolute;
+        top: 37px;
+        left: 50%;
+        width: 1px;
+        height: calc(70px - ((var(--i) + 1) * 7px) % 22px);
+        background: rgba(90, 70, 90, 0.4);
+        transform-origin: top;
+        transform: rotate(calc((2.5 - var(--i)) * 9deg));
+    }
+
+    .fb-balloon.popped { opacity: 0; transform: scale(1.6); animation: none; }
+
+    @keyframes balloonSway { 50% { transform: translateY(-5px) rotate(4deg); } }
+
+    .fb-pet {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        transform: translateX(-50%);
+        transition: top 0.9s cubic-bezier(.5, 0, .7, 1.4);
+        animation: balloonSway 3s ease-in-out infinite;
+    }
+
+    .fb-pet svg { width: 62px; height: auto; display: block; }
+
+    .forca-sky.fell .fb-pet { top: 150px; animation: none; }
+    .forca-sky.fell .fb-balloons { opacity: 0; }
+    .forca-sky.saved .fb-pet { top: 86px; }
+
+    .fb-lake {
+        position: absolute;
+        right: 12px;
+        bottom: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #3a7ca5;
+    }
+
+    .fb-lives { margin: 8px 0 4px; font-size: 13px; color: var(--text-muted); }
+
+    .forca-tip { margin: 8px 0 0; font-size: 14px; color: var(--text-soft); }
+
+    .forca-word {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin: 16px 0 6px;
+    }
+
+    .fw-l {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 36px;
+        font-size: 21px;
+        font-weight: 700;
+        color: var(--text);
+        border-bottom: 3px solid var(--border-strong);
+        font-family: "Fredoka", sans-serif;
+    }
+
+    .fw-l.on { color: var(--accent); animation: cellPop 0.35s cubic-bezier(.2, 1.6, .4, 1); }
+    .fw-l.ghost { color: var(--text-muted); opacity: 0.45; }
+    .fw-space { width: 14px; }
+    .fw-sym { display: grid; place-items: end center; height: 36px; font-size: 20px; color: var(--text-muted); }
+
+    .forca-wrong { font-size: 13px; letter-spacing: 2px; color: #d6567a; }
+
+    .forca-keys {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        margin: 14px 0 8px;
+    }
+
+    .fk {
+        padding: 10px 0;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: 12px;
+        color: var(--text);
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        box-shadow: none;
+    }
+
+    .fk.ok { color: #fff; background: #5fbf8f; border-color: transparent; }
+    .fk.no { color: var(--text-muted); background: transparent; text-decoration: line-through; opacity: 0.6; }
+
+    .forca-create { display: grid; gap: 10px; margin-top: 10px; text-align: left; }
+    .forca-create .gm-section { margin-top: 18px; margin-bottom: 0; }
+    .forca-create .game-hint { margin: 0; }
+    .forca-create input { padding: 12px 14px; font-size: 15px; }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -11401,13 +11812,33 @@
             >
                 <div class="night-card-text">
                     <div class="night-card-title">Roleta da noite</div>
-                    <div class="night-card-desc">Filme, anime, série ou jogo. Vocês colocam as opções e a roleta escolhe 💕</div>
+                    <div class="night-card-desc">Filme, anime ou série. Vocês colocam as opções e a roleta escolhe 💕</div>
                     <span class="night-card-go">Escolher a noite →</span>
                 </div>
                 <div class="night-card-icons" aria-hidden="true">
-                    <span>🎬</span><span>🍥</span><span>📺</span><span>🎮</span>
+                    <span>🎬</span><span>🍥</span><span>📺</span><span>🍿</span>
                 </div>
             </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             🎮 JOGAR JUNTOS (placar do casal)
+        ========================================== -->
+
+        <div class="home-section reveal">
+
+            <div class="section-head">
+                <span class="eyebrow">Jogar juntos</span>
+                <h3>Quem tá ganhando? 🏆</h3>
+            </div>
+
+            <div
+                id="gamesCard"
+                class="games-card"
+                onclick="openGames()"
+            ></div>
 
         </div>
 
@@ -14921,6 +15352,24 @@
 </div>
 
 <!-- ==================================================
+     🎮 MODAL — JOGAR JUNTOS (velha + forca ao vivo)
+================================================== -->
+
+<div
+    id="gamesOverlay"
+    class="fun-overlay hidden"
+>
+    <div class="fun-modal games-modal">
+        <div class="games-top">
+            <button id="gamesBack" class="games-back hidden" onclick="setGamesView('menu')" aria-label="Voltar">‹</button>
+            <h2 id="gamesTitle">Jogar juntos 🎮</h2>
+            <button class="bday-close-x" onclick="closeGames()" aria-label="Fechar">✕</button>
+        </div>
+        <div id="gamesBody"></div>
+    </div>
+</div>
+
+<!-- ==================================================
      🎲 MODAL — ESCOLHER A NOITE
 ================================================== -->
 
@@ -14961,10 +15410,10 @@
                 <small>Maratona de casal 🛋️</small>
             </button>
 
-            <button class="night-opt" data-rt="games" onclick="pickNight('games')">
+            <button class="night-opt night-opt-games" data-rt="games" onclick="closeFunModal('nightOverlay'); openGames()">
                 <span class="night-opt-icon">🎮</span>
-                <b>Noite de Jogos</b>
-                <small>Quem perder paga um mimo 😏</small>
+                <b>Jogar juntos</b>
+                <small>Velha e forca ao vivo 😏</small>
             </button>
 
         </div>
@@ -15736,6 +16185,8 @@
         // 🏠 início: o dia de hoje
         [hero, today, nightBanner].forEach(n => n && P.inicio.appendChild(n));
         if (devo) P.inicio.appendChild(section("Pra começar o dia", "Um tempinho com Deus 🙏", [devo]));
+        const jogos = sectionOf(document.getElementById("gamesCard"));
+        if (jogos) P.inicio.appendChild(jogos);
         if (roleta) P.inicio.appendChild(roleta);
 
         // 💞 nós dois: a distância, a saudade e as coisas ao vivo
@@ -24723,8 +25174,11 @@ Te amo muito.
 
         if (user) { try { passGate(); } catch (e) {} }
 
+        try { renderGamesHome(); } catch (e) {}
+
         if (!user) {
             try {
+                if (!document.getElementById("gamesOverlay").classList.contains("hidden")) closeGames();
                 clearInterval(onlineBeat);
                 renderToday();
                 stopHotSync();
@@ -24748,6 +25202,10 @@ Te amo muito.
         cloudListeners.push(window.loveCloud.listenState("roleta_live", onCloudRoleta, err));
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
+
+        [GAME_VELHA, GAME_FORCA].forEach(k =>
+            cloudListeners.push(window.loveCloud.listenState(k, d => onCloudGame(k, d), err)));
+        cloudListeners.push(window.loveCloud.listenState(GAME_PLACAR, onCloudPlacar, err));
 
         ["Diane", "Gabriel"].forEach(n => {
             cloudListeners.push(window.loveCloud.listenState(starNamesKey(n), d => onCloudStarNames(n, d), err));
@@ -24963,6 +25421,707 @@ Te amo muito.
 
         openGate();
     }
+
+
+    /* ==================================================
+       🎮 JOGAR JUNTOS: jogo da velha + forca (ao vivo)
+       e o placar do casal (pra tirar sarro kkkk)
+    ================================================== */
+
+    const GAME_VELHA = "jogo_velha";
+    const GAME_FORCA = "jogo_forca";
+    const GAME_PLACAR = "placar_jogos";
+    const FORCA_VIDAS = 6;
+
+    // ✏️ prendas fofas de quem perde
+    const GAME_PRENDAS = [
+        "manda um áudio de bom dia amanhã 🎙️",
+        "manda uma selfie fazendo careta agora 🤪",
+        "escolhe uma música e dedica pro outro 🎶",
+        "escreve 3 coisas que ama no outro 💌",
+        "deixa o outro escolher o filme da próxima noite 🎬",
+        "faz um desenho fofo no quadro 🎨",
+        "chama o outro de \"meu bem\" o resto do dia 🥰",
+        "manda um elogio bem criativo 🌟",
+        "deve um beijo demorado no próximo encontro 😘",
+        "dá um carinho na MM e no GG agora 🍊💙"
+    ];
+
+    // ✏️ zoeiras do placar na tela inicial
+    const GAME_ZOEIRA_LIDER = [
+        "{L} tá dominando! {P} precisa treinar mais kkkkk",
+        "{L} manda nos jogos. {P}, aceita que dói menos 😌",
+        "Coroa 👑 em {l}. {P} tá passando vergonha kkkk",
+        "{L} tá on fire 🔥 e {p} tá só olhando",
+        "Alguém avisa {p} que o objetivo é ganhar? kkkkk"
+    ];
+
+    const GAME_ZOEIRA_EMPATE = [
+        "Empatados! Ninguém pode tirar sarro... ainda 👀",
+        "Tá tudo igual. Próxima partida decide quem manda 😏",
+        "Empate técnico. O amor venceu (mas bora desempatar) 💗"
+    ];
+
+    let gamesView = "menu";
+    let gameSeenEnd = {};
+    let gameLastTurn = {};
+    let gameLoaded = {};
+
+    const gNick = n => n === "Gabriel" ? "o Gabriel" : "a Diane";
+    const gNickCap = n => n === "Gabriel" ? "O Gabriel" : "A Diane";
+    const gHeart = n => n === "Gabriel" ? "💙" : "💗";
+
+    function gameNewId() {
+
+        return "g" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    }
+
+    function gameNorm(ch) {
+
+        return String(ch).normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
+    }
+
+    function gameRead(key) {
+
+        return readStore(key, null);
+    }
+
+    function gameSave(key, doc) {
+
+        writeStore(key, doc);
+
+        if (cloudReady()) window.loveCloud.setState(key, doc).catch(() => loveToast("Não deu pra mandar a jogada 😕 Confere a internet"));
+
+        renderGames();
+        renderGamesHome();
+    }
+
+    /* 🏆 placar */
+
+    function gamePlacar() {
+
+        const p = gameRead(GAME_PLACAR) || {};
+
+        return {
+            velha: { Diane: 0, Gabriel: 0, empate: 0, ...(p.velha || {}) },
+            forca: { Diane: 0, Gabriel: 0, ...(p.forca || {}) },
+            ids: p.ids || [],
+            hist: p.hist || [],
+            at: p.at || 0
+        };
+    }
+
+    function gameTotals() {
+
+        const p = gamePlacar();
+
+        return {
+            Diane: p.velha.Diane + p.forca.Diane,
+            Gabriel: p.velha.Gabriel + p.forca.Gabriel,
+            empates: p.velha.empate,
+            jogos: p.velha.Diane + p.velha.Gabriel + p.velha.empate + p.forca.Diane + p.forca.Gabriel
+        };
+    }
+
+    function gameAddResult(jogo, vencedor, gameId) {
+
+        const p = gamePlacar();
+
+        if (p.ids.includes(gameId)) return;
+
+        if (vencedor === "empate") p.velha.empate++;
+        else p[jogo][vencedor]++;
+
+        p.ids = p.ids.concat(gameId).slice(-60);
+        p.hist = [{ jogo, vencedor, at: Date.now() }].concat(p.hist).slice(0, 12);
+        p.at = Date.now();
+
+        writeStore(GAME_PLACAR, p);
+
+        if (cloudReady()) window.loveCloud.setState(GAME_PLACAR, p).catch(() => {});
+    }
+
+    function gameZoeira() {
+
+        const t = gameTotals();
+
+        if (!t.jogos) return "Ninguém jogou ainda. Quem vai ser o primeiro a ganhar? 🎮";
+
+        const lider = t.Diane === t.Gabriel ? null : t.Diane > t.Gabriel ? "Diane" : "Gabriel";
+
+        if (!lider) return GAME_ZOEIRA_EMPATE[dayHash(todayKey() + "e") % GAME_ZOEIRA_EMPATE.length];
+
+        const perde = lider === "Diane" ? "Gabriel" : "Diane";
+        const frase = GAME_ZOEIRA_LIDER[dayHash(todayKey() + t.jogos) % GAME_ZOEIRA_LIDER.length];
+
+        return frase
+            .replace("{L}", gNickCap(lider)).replace("{l}", gNick(lider))
+            .replace("{P}", gNickCap(perde)).replace("{p}", gNick(perde));
+    }
+
+    /* de quem é a vez? (pro aviso "sua vez") */
+
+    function gameMyTurns() {
+
+        const me = myName();
+        const v = gameRead(GAME_VELHA);
+        const f = gameRead(GAME_FORCA);
+        const turns = [];
+
+        if (v && !v.vencedor && v.vez === me) turns.push("velha");
+        if (f && f.status === "jogando" && f.adivinha === me) turns.push("forca");
+
+        return turns;
+    }
+
+    /* 🏠 cartão na tela inicial + coroinha */
+
+    function renderGamesHome() {
+
+        const card = document.getElementById("gamesCard");
+
+        const t = gameTotals();
+        const lider = !t.jogos || t.Diane === t.Gabriel ? null : t.Diane > t.Gabriel ? "Diane" : "Gabriel";
+
+        // 👑 coroa em quem tá ganhando
+        [["Diane", ".hero-avatar.mm"], ["Gabriel", ".hero-avatar.gg"]].forEach(([n, sel]) => {
+            const av = document.querySelector(sel);
+            if (!av) return;
+            let c = av.querySelector(".hero-crown");
+            if (lider === n && !isVisitor()) {
+                if (!c) { c = document.createElement("span"); c.className = "hero-crown"; c.textContent = "👑"; av.appendChild(c); }
+            } else if (c) c.remove();
+        });
+
+        if (!card) return;
+
+        const turns = cloudReady() ? gameMyTurns() : [];
+
+        try { setNavBadge("inicio", turns.length); } catch (e) {}
+
+        if (!cloudReady()) {
+            card.innerHTML = `
+                <div class="gc-top"><span class="gc-icon">🎮</span><div><b>Jogar juntos</b><small>Jogo da velha e forca, cada um no seu celular</small></div></div>
+                <div class="gc-lock">🔒 Entra com o login de vocês pra jogar</div>`;
+            return;
+        }
+
+        card.innerHTML = `
+            ${turns.length ? `<span class="gc-turn">sua vez!</span>` : ""}
+            <div class="gc-score">
+                <div class="gc-side d ${lider === "Diane" ? "lead" : ""}">
+                    ${lider === "Diane" ? `<i>👑</i>` : ""}
+                    <span>💗</span><b>${t.Diane}</b><small>Diane</small>
+                </div>
+                <div class="gc-x">x</div>
+                <div class="gc-side g ${lider === "Gabriel" ? "lead" : ""}">
+                    ${lider === "Gabriel" ? `<i>👑</i>` : ""}
+                    <span>💙</span><b>${t.Gabriel}</b><small>Gabriel</small>
+                </div>
+            </div>
+            <div class="gc-zoeira">${gameZoeira()}</div>
+            <div class="gc-games">
+                <button onclick="event.stopPropagation(); openGames('velha')" class="${turns.includes("velha") ? "turn" : ""}">⭕ Jogo da velha</button>
+                <button onclick="event.stopPropagation(); openGames('forca')" class="${turns.includes("forca") ? "turn" : ""}">🎈 Forca</button>
+            </div>`;
+    }
+
+    /* abrir / navegar */
+
+    function openGames(view) {
+
+        if (!cloudReady()) {
+            openCloudModal();
+            if (!isVisitor()) setTimeout(() => loveToast("🎮 Os jogos são ao vivo entre os dois celulares. Entra primeiro 💗"), 200);
+            return;
+        }
+
+        gamesView = view || "menu";
+
+        renderGames();
+
+        openFunModal("gamesOverlay");
+    }
+
+    function closeGames() {
+
+        closeFunModal("gamesOverlay");
+    }
+
+    function setGamesView(v) {
+
+        gamesView = v;
+
+        renderGames();
+
+        const m = document.querySelector("#gamesOverlay .games-modal");
+
+        if (m) m.scrollTop = 0;
+    }
+
+    function renderGames() {
+
+        const body = document.getElementById("gamesBody");
+
+        if (!body) return;
+
+        const titles = { menu: "Jogar juntos 🎮", velha: "Jogo da velha ⭕", forca: "Forca dos balões 🎈" };
+
+        document.getElementById("gamesTitle").textContent = titles[gamesView] || titles.menu;
+        document.getElementById("gamesBack").classList.toggle("hidden", gamesView === "menu");
+
+        if (gamesView === "velha") body.innerHTML = velhaHtml();
+        else if (gamesView === "forca") body.innerHTML = forcaHtml();
+        else body.innerHTML = gamesMenuHtml();
+
+        gameMaybeCelebrate();
+    }
+
+    function gamesMenuHtml() {
+
+        const p = gamePlacar();
+        const t = gameTotals();
+        const turns = gameMyTurns();
+
+        const hist = p.hist.length
+            ? p.hist.slice(0, 8).map(h => `
+                <div class="gm-hist-row">
+                    <span>${h.jogo === "velha" ? "⭕" : "🎈"}</span>
+                    <b>${h.vencedor === "empate" ? "Deu velha 🤝" : `${h.vencedor} venceu ${gHeart(h.vencedor)}`}</b>
+                    <small>${hotTime ? hotTime(h.at) : ""}</small>
+                </div>`).join("")
+            : `<div class="gm-empty">Nenhuma partida ainda. Bora estrear? 👀</div>`;
+
+        return `
+            <div class="gm-score">
+                <div><span>💗</span><b>${t.Diane}</b><small>Diane</small></div>
+                <div class="gm-x">x</div>
+                <div><span>💙</span><b>${t.Gabriel}</b><small>Gabriel</small></div>
+            </div>
+            <div class="gm-zoeira">${gameZoeira()}</div>
+
+            <div class="gm-cards">
+                <button class="gm-card ${turns.includes("velha") ? "turn" : ""}" onclick="setGamesView('velha')">
+                    <span class="gm-card-icon">⭕</span>
+                    <b>Jogo da velha</b>
+                    <small>${turns.includes("velha") ? "Sua vez! 👀" : `Diane ${p.velha.Diane} x ${p.velha.Gabriel} Gabriel${p.velha.empate ? ` · ${p.velha.empate} empate${p.velha.empate > 1 ? "s" : ""}` : ""}`}</small>
+                </button>
+                <button class="gm-card ${turns.includes("forca") ? "turn" : ""}" onclick="setGamesView('forca')">
+                    <span class="gm-card-icon">🎈</span>
+                    <b>Forca dos balões</b>
+                    <small>${turns.includes("forca") ? "Sua vez de adivinhar! 👀" : `Diane ${p.forca.Diane} x ${p.forca.Gabriel} Gabriel`}</small>
+                </button>
+            </div>
+
+            <div class="gm-section">Últimas partidas</div>
+            <div class="gm-hist">${hist}</div>`;
+    }
+
+    /* 🎉 resultado fofinho (aparece uma vez com confete) */
+
+    function gameResultHtml(doc, jogo) {
+
+        if (!doc || !(jogo === "velha" ? doc.vencedor : doc.status === "fim")) return "";
+
+        const me = myName();
+        const w = doc.vencedor;
+
+        if (w === "empate") {
+            return `
+                <div class="game-result tie">
+                    <div class="gr-emoji">🤝</div>
+                    <div class="gr-title">Deu velha!</div>
+                    <div class="gr-sub">Ninguém ganhou... então os dois ganham um beijo 😘</div>
+                </div>`;
+        }
+
+        const l = w === "Diane" ? "Gabriel" : "Diane";
+        const iWon = w === me;
+
+        return `
+            <div class="game-result ${w === "Diane" ? "d" : "g"}">
+                <div class="gr-emoji">${iWon ? "🏆" : "🥹"}</div>
+                <div class="gr-title">${w} venceu! ${gHeart(w)}</div>
+                <div class="gr-sub">${iWon ? "Pode tirar sarro à vontade kkkkk 😎" : `Perdeu, mas continua ${me === "Diane" ? "linda" : "lindo"} 🥹`}</div>
+                ${jogo === "forca" ? `<div class="gr-word">A palavra era <b>${escapeHtml(doc.palavra)}</b></div>` : ""}
+                ${doc.prenda ? `<div class="gr-prenda">🎁 Prenda: <b>${l}</b> ${escapeHtml(doc.prenda)}</div>` : ""}
+            </div>`;
+    }
+
+    function gameMaybeCelebrate() {
+
+        const doc = gamesView === "velha" ? gameRead(GAME_VELHA) : gamesView === "forca" ? gameRead(GAME_FORCA) : null;
+
+        if (!doc || !doc.id) return;
+
+        const ended = gamesView === "velha" ? !!doc.vencedor : doc.status === "fim";
+
+        if (!ended || gameSeenEnd[doc.id]) return;
+
+        gameSeenEnd[doc.id] = true;
+
+        if (Date.now() - (doc.at || 0) > 5 * 60 * 1000) return; // partida velha: sem festa
+
+        if (doc.vencedor === myName()) { createConfetti(); sfx("yay"); }
+        else if (doc.vencedor === "empate") sfx("pop");
+        else sfx("splash");
+    }
+
+    /* ⭕ JOGO DA VELHA */
+
+    const VELHA_LINES = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
+    function velhaWinner(b) {
+
+        for (const ln of VELHA_LINES) {
+            const [a, c, d] = ln;
+            if (b[a] && b[a] === b[c] && b[a] === b[d]) return { quem: b[a], linha: ln };
+        }
+
+        return b.every(Boolean) ? { quem: "empate", linha: [] } : null;
+    }
+
+    function velhaNew() {
+
+        const old = gameRead(GAME_VELHA);
+        let inicia = myName();
+
+        if (old && old.vencedor) {
+            // quem perdeu começa; no empate, alterna
+            inicia = old.vencedor === "empate"
+                ? (old.inicia === "Diane" ? "Gabriel" : "Diane")
+                : (old.vencedor === "Diane" ? "Gabriel" : "Diane");
+        }
+
+        gameSave(GAME_VELHA, {
+            id: gameNewId(),
+            board: Array(9).fill(""),
+            inicia,
+            vez: inicia,
+            vencedor: null,
+            linha: [],
+            por: myName(),
+            at: Date.now()
+        });
+
+        sfx("pop");
+    }
+
+    function velhaPlay(i) {
+
+        const doc = gameRead(GAME_VELHA);
+        const me = myName();
+
+        if (!doc || doc.vencedor) return;
+
+        if (doc.vez !== me) {
+            loveToast(`Calma kkkk agora é a vez d${me === "Diane" ? "o Gabriel" : "a Diane"} 👀`);
+            return;
+        }
+
+        if (doc.board[i]) return;
+
+        const board = doc.board.slice();
+
+        board[i] = me;
+
+        const w = velhaWinner(board);
+        const next = {
+            ...doc,
+            board,
+            vez: me === "Diane" ? "Gabriel" : "Diane",
+            ultima: i,
+            at: Date.now()
+        };
+
+        if (w) {
+            next.vencedor = w.quem;
+            next.linha = w.linha;
+            next.vez = null;
+            if (w.quem !== "empate") next.prenda = pick(GAME_PRENDAS);
+            gameAddResult("velha", w.quem, doc.id);
+        }
+
+        sfx("tick");
+
+        gameSave(GAME_VELHA, next);
+    }
+
+    function velhaHtml() {
+
+        const doc = gameRead(GAME_VELHA);
+        const me = myName();
+        const other = otherName();
+
+        if (!doc || !doc.board) {
+            return `
+                <div class="game-intro">
+                    <div class="gi-emoji">⭕💗💙</div>
+                    <p>Cada um joga no seu celular, ao vivo. Você é o ${gHeart(me)} e ${gNick(other)} é o ${gHeart(other)}.</p>
+                    <button class="primary-btn care-wide" onclick="velhaNew()">Começar uma partida ✨</button>
+                </div>`;
+        }
+
+        const board = doc.board.map((c, i) => `
+            <button class="velha-cell ${c ? "on" : ""} ${doc.linha && doc.linha.includes(i) ? "win" : ""} ${doc.ultima === i ? "last" : ""}"
+                onclick="velhaPlay(${i})" ${c || doc.vencedor ? "disabled" : ""} aria-label="Casa ${i + 1}">
+                ${c ? `<span class="vt ${c === "Diane" ? "d" : "g"}">${c === "Diane" ? "💗" : "💙"}</span>` : ""}
+            </button>`).join("");
+
+        const status = doc.vencedor
+            ? ""
+            : doc.vez === me
+                ? `<div class="game-status mine">Sua vez! Você é o ${gHeart(me)}</div>`
+                : `<div class="game-status">Vez d${other === "Gabriel" ? "o Gabriel" : "a Diane"} ${gHeart(other)}… esperando a jogada 👀</div>`;
+
+        return `
+            ${gameResultHtml(doc, "velha")}
+            ${status}
+            <div class="velha-board ${doc.vencedor ? "over" : ""}">${board}</div>
+            <div class="game-legend"><span>💗 Diane</span><span>💙 Gabriel</span></div>
+            ${doc.vencedor
+                ? `<button class="primary-btn care-wide" onclick="velhaNew()">Jogar de novo 🔁</button>
+                   <small class="game-hint">Quem perdeu começa a próxima 😏</small>`
+                : `<button class="game-ghost" onclick="velhaNew()">Recomeçar partida</button>`}
+        `;
+    }
+
+    /* 🎈 FORCA DOS BALÕES */
+
+    function forcaStart() {
+
+        const input = document.getElementById("forcaWord");
+        const tip = document.getElementById("forcaTip");
+        const palavra = input.value.trim().replace(/\s+/g, " ").slice(0, 28);
+        const letras = gameNorm(palavra).replace(/[^A-Z]/g, "");
+
+        if (letras.length < 3) {
+            loveToast("Escolhe uma palavra com pelo menos 3 letras 💗");
+            input.focus();
+            return;
+        }
+
+        if (/[^A-Za-zÀ-ÿ \-]/.test(palavra)) {
+            loveToast("Só letras, espaço e hífen, tá? Nada de número kkkk");
+            input.focus();
+            return;
+        }
+
+        gameSave(GAME_FORCA, {
+            id: gameNewId(),
+            autor: myName(),
+            adivinha: otherName(),
+            palavra: palavra.toUpperCase(),
+            dica: (tip.value || "").trim().slice(0, 50),
+            letras: [],
+            erros: 0,
+            status: "jogando",
+            vencedor: null,
+            at: Date.now()
+        });
+
+        loveToast(`Palavra escondida! Agora ${gNick(otherName())} tenta adivinhar 🎈`);
+    }
+
+    function forcaSolved(doc) {
+
+        return [...doc.palavra].every(ch => !/[A-Z]/.test(gameNorm(ch)) || doc.letras.includes(gameNorm(ch)));
+    }
+
+    function forcaGuess(letter) {
+
+        const doc = gameRead(GAME_FORCA);
+        const me = myName();
+
+        if (!doc || doc.status !== "jogando" || doc.adivinha !== me) return;
+        if (doc.letras.includes(letter)) return;
+
+        const acertou = gameNorm(doc.palavra).includes(letter);
+        const next = { ...doc, letras: doc.letras.concat(letter), erros: doc.erros + (acertou ? 0 : 1), at: Date.now() };
+
+        sfx(acertou ? "plim" : "pop");
+
+        if (forcaSolved(next)) {
+            next.status = "fim";
+            next.vencedor = me;
+        } else if (next.erros >= FORCA_VIDAS) {
+            next.status = "fim";
+            next.vencedor = doc.autor;
+        }
+
+        if (next.status === "fim") {
+            next.prenda = pick(GAME_PRENDAS);
+            gameAddResult("forca", next.vencedor, doc.id);
+        }
+
+        gameSave(GAME_FORCA, next);
+    }
+
+    function forcaCancel() {
+
+        const doc = gameRead(GAME_FORCA);
+
+        if (!doc) return;
+
+        gameSave(GAME_FORCA, { ...doc, status: "cancelado", at: Date.now() });
+    }
+
+    function forcaWordHtml(doc, revealAll) {
+
+        return [...doc.palavra].map(ch => {
+            const n = gameNorm(ch);
+            if (!/[A-Z]/.test(n)) return ch === " " ? `<span class="fw-space"></span>` : `<span class="fw-sym">${escapeHtml(ch)}</span>`;
+            const shown = doc.letras.includes(n);
+            if (shown) return `<span class="fw-l on">${escapeHtml(ch)}</span>`;
+            return revealAll ? `<span class="fw-l ghost">${escapeHtml(ch)}</span>` : `<span class="fw-l"></span>`;
+        }).join("");
+    }
+
+    function forcaBalloonsHtml(doc) {
+
+        const vidas = FORCA_VIDAS - doc.erros;
+        const who = doc.adivinha;
+        const av = document.querySelector(who === "Gabriel" ? ".hero-avatar.gg svg" : ".hero-avatar.mm svg");
+        const pet = av ? av.outerHTML : (who === "Gabriel" ? "💙" : "💗");
+        const colors = ["#ff8fb8", "#8ec5ff", "#ffd36e", "#b9a6ff", "#8be0b8", "#ffab91"];
+
+        const balloons = colors.map((c, i) => `
+            <span class="fb-balloon ${i < vidas ? "" : "popped"}" style="--c:${c}; --i:${i}">
+                <i></i>
+            </span>`).join("");
+
+        return `
+            <div class="forca-sky ${vidas <= 0 ? "fell" : ""} ${doc.status === "fim" && doc.vencedor === who ? "saved" : ""}">
+                <div class="fb-balloons">${balloons}</div>
+                <div class="fb-strings"></div>
+                <div class="fb-pet">${pet}</div>
+                <div class="fb-lake">${vidas <= 0 ? "💦 splash!" : ""}</div>
+            </div>
+            <div class="fb-lives">${"🎈".repeat(Math.max(0, vidas))}${vidas <= 0 ? "Acabaram os balões!" : ` ${vidas} ${vidas === 1 ? "balão" : "balões"} restando`}</div>`;
+    }
+
+    function forcaHtml() {
+
+        const doc = gameRead(GAME_FORCA);
+        const me = myName();
+        const other = otherName();
+
+        const createForm = (title) => `
+            <div class="forca-create">
+                <div class="gm-section">${title}</div>
+                <p class="game-hint">Escolhe uma palavra (ou frase curtinha) pr${other === "Gabriel" ? "o Gabriel" : "a Diane"} adivinhar. Cada erro estoura um balão 🎈</p>
+                <input id="forcaWord" maxlength="28" placeholder="Palavra secreta (ex.: Rio Preto)" autocomplete="off" autocapitalize="characters">
+                <input id="forcaTip" maxlength="50" placeholder="Dica (opcional): ex.: lugar que a gente quer ir" autocomplete="off">
+                <button class="primary-btn care-wide" onclick="forcaStart()">Esconder a palavra 🤫</button>
+            </div>`;
+
+        if (!doc || doc.status === "cancelado") {
+            return `
+                <div class="game-intro">
+                    <div class="gi-emoji">🎈🎈🎈</div>
+                    <p>Um esconde a palavra, o outro adivinha letra por letra. Errou? Estoura um balão. Acabou os balões, a capivara cai na lagoa kkkk</p>
+                </div>
+                ${createForm("Começar")}`;
+        }
+
+        const keyboard = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => {
+            const used = doc.letras.includes(l);
+            const ok = used && gameNorm(doc.palavra).includes(l);
+            return `<button class="fk ${used ? (ok ? "ok" : "no") : ""}" onclick="forcaGuess('${l}')" ${used || doc.status !== "jogando" ? "disabled" : ""}>${l}</button>`;
+        }).join("");
+
+        const iGuess = doc.adivinha === me;
+        const ended = doc.status === "fim";
+
+        let top = "";
+
+        if (!ended) {
+            top = iGuess
+                ? `<div class="game-status mine">Sua vez! ${gNickCap(other)} escondeu uma palavra pra você 👀</div>`
+                : `<div class="game-status">${gNickCap(other)} tá tentando adivinhar a sua palavra… assiste ao vivo 🍿</div>`;
+        }
+
+        const wrong = doc.letras.filter(l => !gameNorm(doc.palavra).includes(l));
+
+        return `
+            ${gameResultHtml(doc, "forca")}
+            ${top}
+            ${forcaBalloonsHtml(doc)}
+            ${doc.dica ? `<div class="forca-tip">💡 Dica: ${escapeHtml(doc.dica)}</div>` : ""}
+            <div class="forca-word">${forcaWordHtml(doc, !iGuess || ended)}</div>
+            ${wrong.length ? `<div class="forca-wrong">Errou: ${wrong.join(" ")}</div>` : ""}
+            ${!ended && iGuess ? `<div class="forca-keys">${keyboard}</div>` : ""}
+            ${!ended && !iGuess ? `<button class="game-ghost" onclick="forcaCancel()">Cancelar essa partida</button>` : ""}
+            ${ended ? createForm(doc.autor === me ? `Agora é a vez d${other === "Gabriel" ? "ele" : "ela"} esconder? Ou esconde outra 😏` : "Sua vez de esconder uma palavra 😏") : ""}
+        `;
+    }
+
+    /* ☁️ chegou jogada do outro celular */
+
+    function onCloudGame(key, data) {
+
+        if (!data) {
+            gameLoaded[key] = true;
+            renderGamesHome();
+            return;
+        }
+
+        const before = gameRead(key);
+
+        if (before && before.at && data.at && data.at < before.at && before.id === data.id) return;
+
+        writeStore(key, data);
+
+        const open = !document.getElementById("gamesOverlay").classList.contains("hidden");
+        const me = myName();
+
+        // virou a minha vez e eu não tô olhando → avisa
+        const isNew = !before || before.id !== data.id;
+        const viewing = open && gamesView === (key === GAME_VELHA ? "velha" : "forca");
+        const firstLoad = !gameLoaded[key];
+
+        gameLoaded[key] = true;
+
+        if (!firstLoad && !viewing) {
+
+            if (key === GAME_VELHA && !data.vencedor && data.vez === me) {
+                const tk = key + data.id + ":" + data.board.filter(Boolean).length;
+                if (!gameLastTurn[tk]) {
+                    gameLastTurn[tk] = true;
+                    loveToast(isNew ? `⭕ ${gNickCap(otherName())} te chamou pro jogo da velha!` : "⭕ Sua vez no jogo da velha 👀");
+                    try { sfx("plim"); } catch (e) {}
+                }
+            }
+
+            if (key === GAME_VELHA && isNew && !data.vencedor && data.vez !== me) {
+                loveToast(`⭕ ${gNickCap(otherName())} começou um jogo da velha! ${otherName() === "Gabriel" ? "Ele" : "Ela"} joga primeiro 👀`);
+            }
+
+            if (key === GAME_FORCA && isNew && data.status === "jogando" && data.adivinha === me) {
+                loveToast(`🎈 ${gNickCap(otherName())} escondeu uma palavra pra você na forca!`);
+                try { sfx("plim"); } catch (e) {}
+            }
+
+            if (data.vencedor && data.vencedor !== (before && before.vencedor) && !isNew) {
+                loveToast(data.vencedor === "empate" ? "🤝 Deu velha no jogo!" : data.vencedor === me ? "🏆 Você ganhou! Pode tirar sarro kkkk" : `🥹 ${data.vencedor} ganhou essa...`);
+            }
+        }
+
+        if (open) renderGames();
+
+        renderGamesHome();
+    }
+
+    function onCloudPlacar(data) {
+
+        if (data) writeStore(GAME_PLACAR, data);
+
+        renderGamesHome();
+
+        if (!document.getElementById("gamesOverlay").classList.contains("hidden")) renderGames();
+    }
+
+    setTimeout(() => { try { renderGamesHome(); } catch (e) {} }, 0);
 
     /* ==================================================
        🔐 PORTÃO DE LOGIN
@@ -28024,6 +29183,8 @@ Te amo muito.
 
             // no "só nós dois": de dentro de uma seção, volta pro início do cantinho
             if (id === "hotOverlay" && hotTab !== "home") { hotGoHome(); return; }
+
+            if (id === "gamesOverlay" && gamesView !== "menu") { setGamesView("menu"); return; }
 
             // no cantinho do coração: de uma telinha de dentro, volta pro cantinho
             if (id === "comfortModal") {
