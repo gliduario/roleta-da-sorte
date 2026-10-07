@@ -25765,6 +25765,9 @@ Te amo muito.
             try { chatResetFor(key, doc.id); } catch (e) {}
         }
 
+        // contador de jogadas (não depende do relógio do celular, que pode estar adiantado)
+        if (doc && doc.id) doc.rev = (prev && prev.id === doc.id ? (prev.rev || 0) : 0) + 1;
+
         writeStore(key, doc);
 
         if (cloudReady()) window.loveCloud.setState(key, doc).catch(() => loveToast("Não deu pra mandar a jogada 😕 Confere a internet"));
@@ -27497,7 +27500,8 @@ Te amo muito.
 
         const before = gameRead(key);
 
-        if (before && before.at && data.at && data.at < before.at && before.id === data.id) return;
+        // ignora só versão mais VELHA da mesma partida (pelo contador, não pelo relógio)
+        if (before && before.id === data.id && (before.rev || 0) > (data.rev || 0)) return;
 
         writeStore(key, data);
 
