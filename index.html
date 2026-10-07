@@ -10826,6 +10826,112 @@
     .uno-colors > div { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
     .uno-colors > div button { padding: 12px 2px; font-size: 12.5px; font-weight: 700; color: #fff; border-radius: 14px; background: var(--uc); }
 
+
+    /* 💬 chat do jogo */
+
+    .games-chat { position: sticky; bottom: 0; z-index: 4; margin: 14px -24px -26px; padding: 0 12px 12px; pointer-events: none; }
+    .games-chat.hidden { display: none; }
+    .games-chat > * { pointer-events: auto; }
+
+    .games-chat:not(.open) { display: flex; justify-content: flex-end; align-items: center; gap: 8px; background: none; }
+
+    .chat-fab {
+        position: relative;
+        width: 54px;
+        height: 54px;
+        padding: 0;
+        font-size: 25px;
+        border-radius: 50%;
+        color: #fff;
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        box-shadow: 0 10px 22px -8px var(--btn-shadow);
+    }
+
+    .chat-fab i {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        min-width: 21px;
+        padding: 2px 6px;
+        font-size: 11.5px;
+        font-style: normal;
+        font-weight: 700;
+        border-radius: 999px;
+        color: #fff;
+        background: #ff4f8b;
+        border: 2px solid var(--surface-solid);
+        animation: heartbeat 1.3s ease-in-out infinite;
+    }
+
+    .chat-fab-typing { order: -1; padding: 6px 10px; font-size: 12px; border-radius: 999px; color: var(--text-soft); background: var(--surface-solid); box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.3); }
+
+    .games-chat.open {
+        padding: 10px 12px 12px;
+        border-top: 1px solid var(--border);
+        border-radius: 24px 24px 0 0;
+        background: var(--surface-solid);
+        box-shadow: 0 -14px 30px -18px rgba(120, 60, 110, 0.45);
+        animation: navIn 0.25s ease;
+    }
+
+    .chat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .chat-head b { font-size: 14px; color: var(--accent); }
+    .chat-head button { width: 34px; height: 34px; padding: 0; font-size: 18px; border-radius: 50%; color: var(--text-soft); background: var(--btn-soft); box-shadow: none; }
+
+    .chat-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-height: 28vh;
+        min-height: 70px;
+        overflow-y: auto;
+        padding: 4px 2px;
+        text-align: left;
+    }
+
+    .cm { max-width: 80%; display: flex; flex-direction: column; gap: 2px; }
+    .cm span { padding: 8px 12px; font-size: 14px; line-height: 1.35; border-radius: 16px; word-break: break-word; }
+    .cm small { font-size: 10.5px; color: var(--text-muted); padding: 0 6px; }
+    .cm.me { align-self: flex-end; align-items: flex-end; }
+    .cm.them { align-self: flex-start; }
+    .cm.d span { background: #ffe0ec; color: #8a2a52; }
+    .cm.g span { background: #dfeaff; color: #234a8a; }
+    .cm.me span { border-bottom-right-radius: 4px; }
+    .cm.them span { border-bottom-left-radius: 4px; }
+    .cm.emoji span { padding: 0 4px; font-size: 34px; background: none; }
+
+    :root[data-theme="dark"] .cm.d span { background: rgba(255, 106, 168, 0.22); color: #ffd3e4; }
+    :root[data-theme="dark"] .cm.g span { background: rgba(108, 143, 214, 0.25); color: #d6e6ff; }
+
+    .chat-empty { margin: auto; padding: 14px; font-size: 13px; text-align: center; color: var(--text-muted); }
+    .chat-typing { min-height: 16px; padding: 0 4px; font-size: 11.5px; font-style: italic; text-align: left; color: var(--text-muted); }
+
+    .chat-emojis { display: flex; justify-content: space-between; margin: 4px 0; }
+    .chat-emojis button { padding: 4px; font-size: 22px; background: transparent; box-shadow: none; }
+    .chat-emojis button:active { transform: scale(1.3); }
+
+    .chat-quick { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: none; }
+    .chat-quick::-webkit-scrollbar { display: none; }
+    .chat-quick button { flex: 0 0 auto; padding: 7px 12px; font-size: 12.5px; white-space: nowrap; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); box-shadow: none; }
+
+    .chat-send { display: flex; gap: 8px; }
+    .chat-send input { flex: 1; min-width: 0; padding: 11px 14px; font-size: 15px; border-radius: 999px; }
+    .chat-send button { width: 44px; height: 44px; padding: 0; font-size: 18px; border-radius: 50%; color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); }
+
+    .chat-float {
+        position: fixed;
+        bottom: 90px;
+        z-index: 3000;
+        pointer-events: none;
+        animation: chatFloatUp 2.6s ease-out forwards;
+    }
+
+    @keyframes chatFloatUp {
+        0% { transform: translateY(0) scale(0.6); opacity: 0; }
+        15% { opacity: 1; transform: translateY(-40px) scale(1.1); }
+        100% { transform: translateY(-62vh) scale(1) rotate(12deg); opacity: 0; }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -15527,6 +15633,7 @@
             <button class="bday-close-x" onclick="closeGames()" aria-label="Fechar">✕</button>
         </div>
         <div id="gamesBody"></div>
+        <div id="gamesChat" class="games-chat hidden"></div>
     </div>
 </div>
 
@@ -25364,6 +25471,9 @@ Te amo muito.
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
 
+        Object.keys(CHAT_GAMES).forEach(j => ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(chatKey(j, n), d => onCloudChat(j, n, d), err))));
+
         [GAME_VELHA, GAME_FORCA, GAME_DAMA, GAME_UNO].forEach(k =>
             cloudListeners.push(window.loveCloud.listenState(k, d => onCloudGame(k, d), err)));
         cloudListeners.push(window.loveCloud.listenState(GAME_PLACAR, onCloudPlacar, err));
@@ -25649,6 +25759,12 @@ Te amo muito.
 
     function gameSave(key, doc) {
 
+        const prev = gameRead(key);
+
+        if (doc && doc.id && (!prev || prev.id !== doc.id)) {
+            try { chatResetFor(key, doc.id); } catch (e) {}
+        }
+
         writeStore(key, doc);
 
         if (cloudReady()) window.loveCloud.setState(key, doc).catch(() => loveToast("Não deu pra mandar a jogada 😕 Confere a internet"));
@@ -25810,6 +25926,7 @@ Te amo muito.
         }
 
         gamesView = view || "menu";
+        chatOpen = false;
 
         renderGames();
 
@@ -25818,12 +25935,15 @@ Te amo muito.
 
     function closeGames() {
 
+        chatOpen = false;
+
         closeFunModal("gamesOverlay");
     }
 
     function setGamesView(v) {
 
         gamesView = v;
+        chatOpen = false;
 
         renderGames();
 
@@ -25850,6 +25970,8 @@ Te amo muito.
         else body.innerHTML = gamesMenuHtml();
 
         gameMaybeCelebrate();
+
+        try { renderGameChat(); } catch (e) {}
     }
 
     function gamesMenuHtml() {
@@ -27023,6 +27145,311 @@ Te amo muito.
                 <button class="primary-btn care-wide" onclick="unoNew()">Jogar de novo 🔁</button>
                 <small class="game-hint">Quem perdeu começa a próxima 😏</small>`}
         `;
+    }
+
+
+    /* 💬 CHAT DO JOGO (ao vivo, some quando começa outra partida) */
+
+    const CHAT_GAMES = { velha: "jogo_velha", forca: "jogo_forca", dama: "jogo_dama", uno: "jogo_uno" };
+    const CHAT_MAX = 30;
+
+    // ✏️ zoeiras de um toque
+    const CHAT_QUICK = ["kkkkkk", "roubou!! 😤", "sorte de principiante 🙄", "vou te amassar 😈", "ai que ódio 😂", "aceita que dói menos 😌", "joga logo 😴", "te amo mesmo assim 💗"];
+    const CHAT_EMOJIS = ["😂", "😡", "😘", "🤡", "🔥", "🥹", "😎", "💀"];
+
+    let chatOpen = false;
+    let chatSeen = {};
+    let chatTypingSent = 0;
+    let chatTypingTimer = null;
+
+    const chatKey = (jogo, name) => "chat_" + jogo + "_" + name.toLowerCase();
+
+    function chatJogoOfKey(gameKey) {
+
+        return Object.keys(CHAT_GAMES).find(j => CHAT_GAMES[j] === gameKey);
+    }
+
+    function chatGame(jogo) {
+
+        return jogo && CHAT_GAMES[jogo] ? gameRead(CHAT_GAMES[jogo]) : null;
+    }
+
+    function chatDoc(jogo, name) {
+
+        return readStore(chatKey(jogo, name), null) || { gid: null, msgs: [] };
+    }
+
+    function chatMsgs(jogo) {
+
+        const g = chatGame(jogo);
+
+        if (!g || !g.id) return [];
+
+        return ["Diane", "Gabriel"]
+            .flatMap(n => {
+                const d = chatDoc(jogo, n);
+                return d.gid === g.id ? (d.msgs || []).map(m => ({ ...m, de: n })) : [];
+            })
+            .sort((a, b) => a.at - b.at);
+    }
+
+    function chatUnread(jogo) {
+
+        const g = chatGame(jogo);
+
+        if (!g) return 0;
+
+        const seen = chatSeen[jogo + g.id] || 0;
+
+        return chatMsgs(jogo).filter(m => m.de !== myName() && m.at > seen).length;
+    }
+
+    // começou partida nova → apaga o chat da anterior (dos dois)
+    function chatResetFor(gameKey, newId) {
+
+        const jogo = chatJogoOfKey(gameKey);
+
+        if (!jogo) return;
+
+        ["Diane", "Gabriel"].forEach(n => {
+            const empty = { gid: newId, msgs: [], typing: 0, at: Date.now() };
+            writeStore(chatKey(jogo, n), empty);
+            if (cloudReady()) window.loveCloud.setState(chatKey(jogo, n), empty).catch(() => {});
+        });
+    }
+
+    function chatSend(text, tipo) {
+
+        const jogo = gamesView;
+        const g = chatGame(jogo);
+        const me = myName();
+
+        text = String(text || "").trim().slice(0, 200);
+
+        if (!g || !text) return;
+
+        const cur = chatDoc(jogo, me);
+        const msgs = cur.gid === g.id ? (cur.msgs || []).slice() : [];
+
+        msgs.push({ id: newId(), t: text, tipo: tipo || "txt", at: Date.now() });
+
+        const doc = { gid: g.id, msgs: msgs.slice(-CHAT_MAX), typing: 0, at: Date.now() };
+
+        writeStore(chatKey(jogo, me), doc);
+
+        if (cloudReady()) window.loveCloud.setState(chatKey(jogo, me), doc).catch(() => loveToast("A mensagem não foi 😕 Confere a internet"));
+
+        chatTypingSent = 0;
+
+        if (tipo === "emoji") chatFloat(text);
+
+        sfx("pop");
+
+        renderGameChat(true);
+    }
+
+    function chatSendInput() {
+
+        const input = document.getElementById("chatInput");
+
+        if (!input || !input.value.trim()) return;
+
+        const text = input.value;
+
+        input.value = "";
+
+        chatSend(text, /^\p{Extended_Pictographic}+$/u.test(text.trim()) ? "emoji" : "txt");
+
+        const fresh = document.getElementById("chatInput");
+
+        if (fresh) fresh.focus({ preventScroll: true });
+    }
+
+    function chatTyping() {
+
+        const jogo = gamesView;
+        const g = chatGame(jogo);
+        const me = myName();
+
+        if (!g || !cloudReady() || Date.now() - chatTypingSent < 2500) return;
+
+        chatTypingSent = Date.now();
+
+        const cur = chatDoc(jogo, me);
+        const doc = { ...(cur.gid === g.id ? cur : { gid: g.id, msgs: [] }), typing: Date.now() };
+
+        writeStore(chatKey(jogo, me), doc);
+        window.loveCloud.setState(chatKey(jogo, me), doc).catch(() => {});
+    }
+
+    function toggleGameChat() {
+
+        chatOpen = !chatOpen;
+
+        renderGameChat(true);
+
+        if (chatOpen) setTimeout(() => { const i = document.getElementById("chatInput"); if (i) i.focus({ preventScroll: true }); }, 50);
+    }
+
+    // emoji subindo na tela, tipo reação de live
+    function chatFloat(emoji) {
+
+        const modal = document.querySelector("#gamesOverlay .games-modal");
+
+        if (!modal) return;
+
+        for (let k = 0; k < 5; k++) {
+            const s = document.createElement("span");
+            s.className = "chat-float";
+            s.textContent = emoji;
+            s.style.left = (15 + Math.random() * 70) + "%";
+            s.style.animationDelay = (k * 0.12) + "s";
+            s.style.fontSize = (26 + Math.random() * 18) + "px";
+            document.getElementById("gamesOverlay").appendChild(s);
+            setTimeout(() => s.remove(), 2800);
+        }
+    }
+
+    function chatTime(at) {
+
+        const d = new Date(at);
+
+        return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+
+    function renderGameChat(scrollDown) {
+
+        const box = document.getElementById("gamesChat");
+
+        if (!box) return;
+
+        const jogo = gamesView;
+        const g = chatGame(jogo);
+        const open = !document.getElementById("gamesOverlay").classList.contains("hidden");
+
+        if (!open || !CHAT_GAMES[jogo] || !g || !g.id || !cloudReady()) {
+            box.innerHTML = "";
+            box.className = "games-chat hidden";
+            return;
+        }
+
+        const me = myName();
+        const other = otherName();
+        const msgs = chatMsgs(jogo);
+
+        if (chatOpen && msgs.length) chatSeen[jogo + g.id] = msgs[msgs.length - 1].at;
+
+        const unread = chatUnread(jogo);
+        const od = chatDoc(jogo, other);
+        const typing = od.gid === g.id && od.typing && Date.now() - od.typing < 4500;
+
+        box.className = "games-chat " + (chatOpen ? "open" : "");
+
+        if (!chatOpen) {
+            box.innerHTML = `
+                <button class="chat-fab" onclick="toggleGameChat()" aria-label="Abrir chat">
+                    💬${unread ? `<i>${unread}</i>` : ""}
+                </button>
+                ${typing ? `<span class="chat-fab-typing">${other} tá digitando…</span>` : ""}`;
+            return;
+        }
+
+        const list = msgs.length
+            ? msgs.map(m => `
+                <div class="cm ${m.de === me ? "me" : "them"} ${m.tipo === "emoji" ? "emoji" : ""} ${m.de === "Diane" ? "d" : "g"}">
+                    <span>${escapeHtml(m.t)}</span>
+                    <small>${m.de === me ? "você" : m.de} · ${chatTime(m.at)}</small>
+                </div>`).join("")
+            : `<div class="chat-empty">Começa a zoeira 😏 O chat some quando começar outra partida.</div>`;
+
+        // mantém o que eu tava digitando
+        const old = document.getElementById("chatInput");
+        const draft = old ? old.value : "";
+        const hadFocus = old && document.activeElement === old;
+
+        box.innerHTML = `
+            <div class="chat-head">
+                <b>💬 Chat da partida</b>
+                <button onclick="toggleGameChat()" aria-label="Fechar chat">▾</button>
+            </div>
+            <div class="chat-list" id="chatList">${list}</div>
+            <div class="chat-typing">${typing ? `${other} tá digitando…` : ""}</div>
+            <div class="chat-emojis">${CHAT_EMOJIS.map(e => `<button onclick="chatSend('${e}','emoji')">${e}</button>`).join("")}</div>
+            <div class="chat-quick">${CHAT_QUICK.map(q => `<button onclick="chatSend(this.textContent,'txt')">${escapeHtml(q)}</button>`).join("")}</div>
+            <div class="chat-send">
+                <input id="chatInput" maxlength="200" placeholder="Manda uma zoeira..." autocomplete="off"
+                    oninput="chatTyping()" onkeydown="if (event.key === 'Enter') chatSendInput()">
+                <button onclick="chatSendInput()" aria-label="Enviar">➤</button>
+            </div>`;
+
+        const input = document.getElementById("chatInput");
+
+        if (input) {
+            input.value = draft;
+            if (hadFocus) input.focus({ preventScroll: true });
+        }
+
+        const listEl = document.getElementById("chatList");
+
+        if (listEl) listEl.scrollTop = listEl.scrollHeight;
+    }
+
+    function onCloudChat(jogo, name, data) {
+
+        if (!data) return;
+
+        const before = chatDoc(jogo, name);
+        const lastBefore = (before.gid === data.gid && before.msgs && before.msgs.length) ? before.msgs[before.msgs.length - 1].at : 0;
+
+        writeStore(chatKey(jogo, name), data);
+
+        if (name === myName()) { renderGameChat(); return; }
+
+        const g = chatGame(jogo);
+        const fresh = g && data.gid === g.id ? (data.msgs || []).filter(m => m.at > lastBefore) : [];
+        const open = !document.getElementById("gamesOverlay").classList.contains("hidden");
+        const here = open && gamesView === jogo;
+
+        if (fresh.length && lastBefore !== undefined && Date.now() - fresh[fresh.length - 1].at < 60000) {
+
+            const m = fresh[fresh.length - 1];
+
+            if (here) {
+                if (m.tipo === "emoji") chatFloat(m.t);
+                if (!chatOpen) sfx("plim");
+            } else {
+                loveToast(`💬 ${name}: ${m.t.length > 60 ? m.t.slice(0, 60) + "…" : m.t}`);
+            }
+        }
+
+        renderGameChat(true);
+    }
+
+    // atualiza o "digitando…" enquanto o jogo tá aberto
+    setInterval(() => {
+        try {
+            if (!document.getElementById("gamesOverlay").classList.contains("hidden")) renderGameChatTypingOnly();
+        } catch (e) {}
+    }, 1500);
+
+    function renderGameChatTypingOnly() {
+
+        const jogo = gamesView;
+        const g = chatGame(jogo);
+
+        if (!g) return;
+
+        const other = otherName();
+        const od = chatDoc(jogo, other);
+        const typing = od.gid === g.id && od.typing && Date.now() - od.typing < 4500;
+        const el = chatOpen ? document.querySelector("#gamesChat .chat-typing") : null;
+
+        if (el) el.textContent = typing ? `${other} tá digitando…` : "";
+
+        if (!chatOpen) {
+            const t = document.querySelector("#gamesChat .chat-fab-typing");
+            if (!!t !== !!typing) renderGameChat();
+        }
     }
 
     /* ☁️ chegou jogada do outro celular */
