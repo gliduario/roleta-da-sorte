@@ -10932,6 +10932,97 @@
         100% { transform: translateY(-62vh) scale(1) rotate(12deg); opacity: 0; }
     }
 
+
+    /* 🎮 janela dos jogos maior */
+
+    #gamesOverlay { padding: 12px; }
+
+    .games-modal {
+        width: min(100%, 1040px);
+        max-width: none;
+        height: calc(100dvh - 24px);
+        max-height: none;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .games-modal::-webkit-scrollbar, .chat-list::-webkit-scrollbar { width: 8px; height: 8px; }
+    .games-modal::-webkit-scrollbar-thumb, .chat-list::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--border-strong); }
+    .games-modal::-webkit-scrollbar-track, .chat-list::-webkit-scrollbar-track { background: transparent; }
+    .chat-list { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+
+    /* tabuleiros e cartas maiores */
+    .velha-board { width: min(440px, 100%); gap: 10px; }
+    .velha-cell .vt { font-size: 42px; }
+    .dama-board { width: min(600px, 100%); }
+    .dp { font-size: 20px; }
+    .forca-sky { width: min(460px, 100%); height: 220px; }
+    .fb-pet { top: 120px; }
+    .forca-sky.fell .fb-pet { top: 175px; }
+    .forca-sky.saved .fb-pet { top: 100px; }
+    .forca-keys { max-width: 560px; margin-left: auto; margin-right: auto; }
+    .fk { padding: 12px 0; font-size: 17px; }
+    .fw-l { width: 34px; height: 42px; font-size: 25px; }
+    .uc { width: 62px; height: 92px; }
+    .uc span { font-size: 23px; }
+    .uc.big { width: 92px; height: 136px; }
+    .uc.big span { font-size: 34px; }
+    .ub.big { width: 80px; height: 118px; }
+    .uno-hand { gap: 8px; }
+
+    @media (max-width: 650px) {
+
+        #gamesOverlay { padding: 0; }
+
+        .games-modal {
+            width: 100vw;
+            height: 100dvh;
+            border-radius: 0;
+            border: 0;
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+
+        .games-top { margin-left: -14px; margin-right: -14px; }
+        .games-chat { margin-left: -14px; margin-right: -14px; }
+        .uc { width: 54px; height: 80px; }
+        .uc span { font-size: 20px; }
+        .uc.big { width: 80px; height: 118px; }
+        .fw-l { width: 28px; height: 38px; font-size: 22px; }
+    }
+
+    /* tela grande: jogo de um lado, chat fixo do outro */
+    @media (min-width: 900px) {
+
+        .games-modal.has-chat {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            grid-template-rows: auto minmax(0, 1fr);
+            column-gap: 20px;
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+
+        .games-modal.has-chat .games-top { grid-column: 1 / -1; margin-bottom: 0; }
+        .games-modal.has-chat #gamesBody { min-height: 0; overflow-y: auto; padding: 4px 6px 10px; scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+
+        .games-chat.docked {
+            position: static;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            margin: 0;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: none;
+            animation: none;
+        }
+
+        .games-chat.docked .chat-list { flex: 1; max-height: none; }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -27161,9 +27252,9 @@ Te amo muito.
 
     // ✏️ zoeiras de um toque
     const CHAT_QUICK = ["kkkkkk", "roubou!! 😤", "sorte de principiante 🙄", "vou te amassar 😈", "ai que ódio 😂", "aceita que dói menos 😌", "joga logo 😴", "te amo mesmo assim 💗"];
-    const CHAT_EMOJIS = ["😂", "😡", "😘", "🤡", "🔥", "🥹", "😎", "💀"];
+    const CHAT_EMOJIS = ["😂", "😡", "😘", "🤡", "🔥", "🥺", "😎", "💀"];
 
-    let chatOpen = false;
+    var chatOpen = false;
     let chatSeen = {};
     let chatLocalAt = {};      // quando ESTE celular viu cada mensagem (relógios dos celulares podem estar diferentes)
     let chatTypingLocal = {};  // quando ESTE celular viu o outro começar a digitar
@@ -27305,6 +27396,16 @@ Te amo muito.
         window.loveCloud.setState(chatKey(jogo, me), doc).catch(() => {});
     }
 
+    // telas grandes: chat fica fixo do lado do jogo
+    function chatDocked() {
+
+        try { return window.matchMedia("(min-width: 900px)").matches; } catch (e) { return false; }
+    }
+
+    window.addEventListener("resize", () => {
+        try { if (!document.getElementById("gamesOverlay").classList.contains("hidden")) renderGameChat(); } catch (e) {}
+    });
+
     function toggleGameChat() {
 
         chatOpen = !chatOpen;
@@ -27350,15 +27451,22 @@ Te amo muito.
         const g = chatGame(jogo);
         const open = !document.getElementById("gamesOverlay").classList.contains("hidden");
 
+        const modal = document.querySelector("#gamesOverlay .games-modal");
+
         if (!open || !CHAT_GAMES[jogo] || !g || !g.id || !cloudReady()) {
             box.innerHTML = "";
             box.className = "games-chat hidden";
+            if (modal) modal.classList.remove("has-chat");
             return;
         }
+
+        if (modal) modal.classList.add("has-chat");
 
         const me = myName();
         const other = otherName();
         const msgs = chatMsgs(jogo);
+        const docked = chatDocked();
+        const chatOpen = window.chatOpen || docked;
 
         if (chatOpen && msgs.length) chatSeen[jogo + g.id] = msgs[msgs.length - 1].seq || 0;
 
@@ -27366,7 +27474,7 @@ Te amo muito.
         const od = chatDoc(jogo, other);
         const typing = od.gid === g.id && od.typing && Date.now() - (chatTypingLocal[jogo + other] || 0) < 4500;
 
-        box.className = "games-chat " + (chatOpen ? "open" : "");
+        box.className = "games-chat " + (chatOpen ? "open" : "") + (docked ? " docked" : "");
 
         if (!chatOpen) {
             box.innerHTML = `
@@ -27393,7 +27501,7 @@ Te amo muito.
         box.innerHTML = `
             <div class="chat-head">
                 <b>💬 Chat da partida</b>
-                <button onclick="toggleGameChat()" aria-label="Fechar chat">▾</button>
+                ${docked ? "" : `<button onclick="toggleGameChat()" aria-label="Fechar chat">▾</button>`}
             </div>
             <div class="chat-list" id="chatList">${list}</div>
             <div class="chat-typing">${typing ? `${other} tá digitando…` : ""}</div>
@@ -27452,7 +27560,7 @@ Te amo muito.
 
             if (here) {
                 if (m.tipo === "emoji") chatFloat(m.t);
-                if (!chatOpen) sfx("plim");
+                if (!chatOpen && !chatDocked()) sfx("plim");
             } else {
                 loveToast(`💬 ${name}: ${m.t.length > 60 ? m.t.slice(0, 60) + "…" : m.t}`);
             }
@@ -27478,11 +27586,11 @@ Te amo muito.
         const other = otherName();
         const od = chatDoc(jogo, other);
         const typing = od.gid === g.id && od.typing && Date.now() - (chatTypingLocal[jogo + other] || 0) < 4500;
-        const el = chatOpen ? document.querySelector("#gamesChat .chat-typing") : null;
+        const el = (chatOpen || chatDocked()) ? document.querySelector("#gamesChat .chat-typing") : null;
 
         if (el) el.textContent = typing ? `${other} tá digitando…` : "";
 
-        if (!chatOpen) {
+        if (!chatOpen && !chatDocked()) {
             const t = document.querySelector("#gamesChat .chat-fab-typing");
             if (!!t !== !!typing) renderGameChat();
         }
