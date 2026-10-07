@@ -27162,6 +27162,9 @@ Te amo muito.
 
     let chatOpen = false;
     let chatSeen = {};
+    let chatLocalAt = {};      // quando ESTE celular viu cada mensagem (relógios dos celulares podem estar diferentes)
+    let chatTypingLocal = {};  // quando ESTE celular viu o outro começar a digitar
+    let chatLoaded = {};
     let chatTypingSent = 0;
     let chatTypingTimer = null;
 
@@ -27193,7 +27196,17 @@ Te amo muito.
                 const d = chatDoc(jogo, n);
                 return d.gid === g.id ? (d.msgs || []).map(m => ({ ...m, de: n })) : [];
             })
-            .sort((a, b) => a.at - b.at);
+            .sort((a, b) => (a.seq || 0) - (b.seq || 0) || chatShownAt(a) - chatShownAt(b));
+    }
+
+    function chatShownAt(m) {
+
+        return chatLocalAt[m.id] || m.at;
+    }
+
+    function chatNextSeq(jogo) {
+
+        return chatMsgs(jogo).reduce((mx, m) => Math.max(mx, m.seq || 0), 0) + 1;
     }
 
     function chatUnread(jogo) {
@@ -27204,7 +27217,7 @@ Te amo muito.
 
         const seen = chatSeen[jogo + g.id] || 0;
 
-        return chatMsgs(jogo).filter(m => m.de !== myName() && m.at > seen).length;
+        return chatMsgs(jogo).filter(m => m.de !== myName() && (m.seq || 0) > seen).length;
     }
 
     // começou partida nova → apaga o chat da anterior (dos dois)
@@ -27234,7 +27247,11 @@ Te amo muito.
         const cur = chatDoc(jogo, me);
         const msgs = cur.gid === g.id ? (cur.msgs || []).slice() : [];
 
-        msgs.push({ id: newId(), t: text, tipo: tipo || "txt", at: Date.now() });
+        const msg = { id: newId(), t: text, tipo: tipo || "txt", seq: chatNextSeq(jogo), at: Date.now() };
+
+        chatLocalAt[msg.id] = Date.now();
+
+        msgs.push(msg);
 
         const doc = { gid: g.id, msgs: msgs.slice(-CHAT_MAX), typing: 0, at: Date.now() };
 
@@ -27340,11 +27357,11 @@ Te amo muito.
         const other = otherName();
         const msgs = chatMsgs(jogo);
 
-        if (chatOpen && msgs.length) chatSeen[jogo + g.id] = msgs[msgs.length - 1].at;
+        if (chatOpen && msgs.length) chatSeen[jogo + g.id] = msgs[msgs.length - 1].seq || 0;
 
         const unread = chatUnread(jogo);
         const od = chatDoc(jogo, other);
-        const typing = od.gid === g.id && od.typing && Date.now() - od.typing < 4500;
+        const typing = od.gid === g.id && od.typing && Date.now() - (chatTypingLocal[jogo + other] || 0) < 4500;
 
         box.className = "games-chat " + (chatOpen ? "open" : "");
 
@@ -27361,7 +27378,7 @@ Te amo muito.
             ? msgs.map(m => `
                 <div class="cm ${m.de === me ? "me" : "them"} ${m.tipo === "emoji" ? "emoji" : ""} ${m.de === "Diane" ? "d" : "g"}">
                     <span>${escapeHtml(m.t)}</span>
-                    <small>${m.de === me ? "você" : m.de} · ${chatTime(m.at)}</small>
+                    <small>${m.de === me ? "você" : m.de} · ${chatTime(chatShownAt(m))}</small>
                 </div>`).join("")
             : `<div class="chat-empty">Começa a zoeira 😏 O chat some quando começar outra partida.</div>`;
 
@@ -27399,21 +27416,34 @@ Te amo muito.
 
     function onCloudChat(jogo, name, data) {
 
+        const k = jogo + name;
+        const firstLoad = !chatLoaded[k];
+
+        chatLoaded[k] = true;
+
         if (!data) return;
 
         const before = chatDoc(jogo, name);
-        const lastBefore = (before.gid === data.gid && before.msgs && before.msgs.length) ? before.msgs[before.msgs.length - 1].at : 0;
+        const knownIds = new Set(before.gid === data.gid ? (before.msgs || []).map(m => m.id) : []);
 
         writeStore(chatKey(jogo, name), data);
 
         if (name === myName()) { renderGameChat(); return; }
 
         const g = chatGame(jogo);
-        const fresh = g && data.gid === g.id ? (data.msgs || []).filter(m => m.at > lastBefore) : [];
+        const fresh = g && data.gid === g.id ? (data.msgs || []).filter(m => !knownIds.has(m.id)) : [];
+
+        // hora de chegada pelo relógio DESTE celular
+        fresh.forEach(m => { if (!chatLocalAt[m.id] && !firstLoad) chatLocalAt[m.id] = Date.now(); });
+
+        // começou a digitar agora? (também pelo relógio deste celular)
+        if (data.typing && data.typing !== before.typing) chatTypingLocal[jogo + name] = Date.now();
+        if (fresh.length) chatTypingLocal[jogo + name] = 0;
+
         const open = !document.getElementById("gamesOverlay").classList.contains("hidden");
         const here = open && gamesView === jogo;
 
-        if (fresh.length && lastBefore !== undefined && Date.now() - fresh[fresh.length - 1].at < 60000) {
+        if (fresh.length && !firstLoad) {
 
             const m = fresh[fresh.length - 1];
 
@@ -27444,7 +27474,7 @@ Te amo muito.
 
         const other = otherName();
         const od = chatDoc(jogo, other);
-        const typing = od.gid === g.id && od.typing && Date.now() - od.typing < 4500;
+        const typing = od.gid === g.id && od.typing && Date.now() - (chatTypingLocal[jogo + other] || 0) < 4500;
         const el = chatOpen ? document.querySelector("#gamesChat .chat-typing") : null;
 
         if (el) el.textContent = typing ? `${other} tá digitando…` : "";
