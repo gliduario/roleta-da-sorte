@@ -25931,6 +25931,9 @@ Te amo muito.
         renderGames();
 
         openFunModal("gamesOverlay");
+
+        // o chat só aparece com a janela aberta, então desenha de novo agora
+        try { renderGameChat(); } catch (e) {}
     }
 
     function closeGames() {
