@@ -32565,15 +32565,35 @@ Te amo muito.
         return Date.now() - onlineOther < ONLINE_MS;
     }
 
+    let onlineLoaded = false;
+    let onlineToastAt = 0;
+
     function onCloudOnline(name, data) {
 
-        if (name === myName() || !data) return;
+        if (name === myName() || !data) {
+            if (name !== myName()) onlineLoaded = true;
+            return;
+        }
 
         const was = otherOnline();
+        const first = !onlineLoaded;
 
-        onlineOther = data.at || 0;
+        onlineLoaded = true;
 
-        if (!was && otherOnline()) {
+        if (!data.at) {
+            onlineOther = 0;                       // saiu do app
+        } else if (first) {
+            // primeira leitura: o horário veio do relógio do OUTRO celular (pode estar adiantado/atrasado)
+            // até 3 min de diferença conta como "tá no app" (o próximo sinal confirma em 30s)
+            const age = Math.max(0, Date.now() - data.at);
+            onlineOther = age < 180000 ? Date.now() : 0;
+        } else {
+            onlineOther = Date.now();              // chegou um "tô aqui" agora: conta pelo MEU relógio
+        }
+
+        // avisa só quando entrou de verdade (não na abertura do app, e no máximo 1x a cada 5 min)
+        if (!first && !was && otherOnline() && Date.now() - onlineToastAt > 5 * 60 * 1000) {
+            onlineToastAt = Date.now();
             loveToast(`🟢 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} acabou de entrar no app 💗`);
         }
 
