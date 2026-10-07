@@ -10323,7 +10323,7 @@
         color: var(--text-soft);
     }
 
-    .gc-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+    .gc-games { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
 
     .gc-games button {
         padding: 11px 6px;
@@ -10711,6 +10711,120 @@
     .dama-board.over .dp { filter: saturate(0.7); }
 
     .dama-actions { display: grid; justify-items: center; gap: 6px; margin-top: 8px; }
+
+
+    /* 🃏 uno */
+
+    .uc {
+        position: relative;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 52px;
+        height: 78px;
+        padding: 0;
+        border-radius: 10px;
+        color: #fff;
+        background: var(--uc);
+        border: 3px solid #fff;
+        box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1), filter 0.2s;
+    }
+
+    .uc span {
+        display: grid;
+        place-items: center;
+        width: 80%;
+        height: 58%;
+        font-size: 20px;
+        font-weight: 800;
+        border-radius: 50%;
+        transform: rotate(-18deg);
+        color: var(--uc);
+        background: #fff;
+        font-family: "Fredoka", sans-serif;
+    }
+
+    .uc.wild { background: conic-gradient(#ff5c7a 0 25%, #ffc23c 0 50%, #3fbf85 0 75%, #4f8ff7 0); }
+    .uc.wild span { color: #2d2440; }
+
+    .uc small { position: absolute; top: 2px; left: 4px; font-size: 9px; font-weight: 700; line-height: 1; }
+    .uc small.b { top: auto; left: auto; right: 4px; bottom: 2px; transform: rotate(180deg); }
+
+    .uc:disabled { opacity: 1; cursor: default; }
+    .uc.big { width: 74px; height: 110px; }
+    .uc.big span { font-size: 28px; }
+    .uc.ok { transform: translateY(-10px); box-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.45), 0 0 0 3px rgba(255, 255, 255, 0.6); }
+    .uc.no { filter: saturate(0.55) brightness(0.92); }
+    .uc.new { animation: cellPop 0.4s cubic-bezier(.2, 1.6, .4, 1); }
+
+    .ub {
+        display: inline-block;
+        width: 26px;
+        height: 38px;
+        border-radius: 6px;
+        border: 2px solid #fff;
+        background:
+            radial-gradient(ellipse at center, #ffc23c 0 28%, transparent 30%),
+            linear-gradient(135deg, #2d2440, #4a3a6a);
+        box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    .ub.big { width: 64px; height: 94px; border-width: 3px; border-radius: 10px; }
+
+    .uno-other { display: grid; justify-items: center; gap: 6px; margin: 4px 0 12px; font-size: 13px; color: var(--text-soft); }
+    .uno-other b { color: var(--text); }
+    .uno-backs { display: flex; justify-content: center; min-height: 38px; }
+    .uno-backs .ub + .ub { margin-left: -12px; }
+
+    .uno-table { display: flex; justify-content: center; align-items: center; gap: 22px; margin: 6px 0 14px; }
+
+    .uno-deck { display: grid; justify-items: center; gap: 6px; padding: 0; background: transparent; box-shadow: none; color: var(--text-soft); }
+    .uno-deck:not(:disabled) .ub { animation: heartbeat 1.6s ease-in-out infinite; }
+    .uno-deck:disabled { opacity: 1; }
+    .uno-deck small { font-size: 12px; font-weight: 700; }
+
+    .uno-top { display: grid; justify-items: center; gap: 6px; }
+    .uno-cor { padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--uc); }
+
+    .uno-hand {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        padding: 14px 4px 6px;
+        border-radius: 20px;
+        background: var(--surface-soft);
+    }
+
+    .uno-actions { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+    .uno-actions:empty { display: none; }
+
+    .uno-shout {
+        padding: 12px 22px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #fff;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ff5c7a, #ffc23c);
+        animation: heartbeat 1.2s ease-in-out infinite;
+    }
+
+    .uno-catch {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 16px;
+        color: #fff;
+        background: linear-gradient(135deg, #ff5c7a, #b15cff);
+        animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    .uno-colors { display: grid; justify-items: center; gap: 10px; margin: 0 0 12px; padding: 14px; border-radius: 18px; background: var(--surface-soft); }
+    .uno-colors > div { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
+    .uno-colors > div button { padding: 12px 2px; font-size: 12.5px; font-weight: 700; color: #fff; border-radius: 14px; background: var(--uc); }
 
     /* 🔐 portão de login */
 
@@ -15460,7 +15574,7 @@
             <button class="night-opt night-opt-games" data-rt="games" onclick="closeFunModal('nightOverlay'); openGames()">
                 <span class="night-opt-icon">🎮</span>
                 <b>Jogar juntos</b>
-                <small>Velha, forca e dama ao vivo 😏</small>
+                <small>Velha, forca, dama e uno 😏</small>
             </button>
 
         </div>
@@ -25250,7 +25364,7 @@ Te amo muito.
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
 
-        [GAME_VELHA, GAME_FORCA, GAME_DAMA].forEach(k =>
+        [GAME_VELHA, GAME_FORCA, GAME_DAMA, GAME_UNO].forEach(k =>
             cloudListeners.push(window.loveCloud.listenState(k, d => onCloudGame(k, d), err)));
         cloudListeners.push(window.loveCloud.listenState(GAME_PLACAR, onCloudPlacar, err));
 
@@ -25553,6 +25667,7 @@ Te amo muito.
             velha: { Diane: 0, Gabriel: 0, empate: 0, ...(p.velha || {}) },
             forca: { Diane: 0, Gabriel: 0, ...(p.forca || {}) },
             dama: { Diane: 0, Gabriel: 0, ...(p.dama || {}) },
+            uno: { Diane: 0, Gabriel: 0, ...(p.uno || {}) },
             ids: p.ids || [],
             hist: p.hist || [],
             at: p.at || 0
@@ -25564,10 +25679,10 @@ Te amo muito.
         const p = gamePlacar();
 
         return {
-            Diane: p.velha.Diane + p.forca.Diane + p.dama.Diane,
-            Gabriel: p.velha.Gabriel + p.forca.Gabriel + p.dama.Gabriel,
+            Diane: p.velha.Diane + p.forca.Diane + p.dama.Diane + p.uno.Diane,
+            Gabriel: p.velha.Gabriel + p.forca.Gabriel + p.dama.Gabriel + p.uno.Gabriel,
             empates: p.velha.empate,
-            jogos: p.velha.Diane + p.velha.Gabriel + p.velha.empate + p.forca.Diane + p.forca.Gabriel + p.dama.Diane + p.dama.Gabriel
+            jogos: p.velha.Diane + p.velha.Gabriel + p.velha.empate + p.forca.Diane + p.forca.Gabriel + p.dama.Diane + p.dama.Gabriel + p.uno.Diane + p.uno.Gabriel
         };
     }
 
@@ -25623,6 +25738,10 @@ Te amo muito.
 
         if (dm && !dm.vencedor && dm.vez === me) turns.push("dama");
 
+        const un = gameRead(GAME_UNO);
+
+        if (un && !un.vencedor && un.vez === me) turns.push("uno");
+
         return turns;
     }
 
@@ -25653,7 +25772,7 @@ Te amo muito.
 
         if (!cloudReady()) {
             card.innerHTML = `
-                <div class="gc-top"><span class="gc-icon">🎮</span><div><b>Jogar juntos</b><small>Velha, forca e dama, cada um no seu celular</small></div></div>
+                <div class="gc-top"><span class="gc-icon">🎮</span><div><b>Jogar juntos</b><small>Velha, forca, dama e uno, cada um no seu celular</small></div></div>
                 <div class="gc-lock">🔒 Entra com o login de vocês pra jogar</div>`;
             return;
         }
@@ -25676,6 +25795,7 @@ Te amo muito.
                 <button onclick="event.stopPropagation(); openGames('velha')" class="${turns.includes("velha") ? "turn" : ""}">⭕ Jogo da velha</button>
                 <button onclick="event.stopPropagation(); openGames('forca')" class="${turns.includes("forca") ? "turn" : ""}">🎈 Forca</button>
                 <button onclick="event.stopPropagation(); openGames('dama')" class="${turns.includes("dama") ? "turn" : ""}">⚫ Dama</button>
+                <button onclick="event.stopPropagation(); openGames('uno')" class="${turns.includes("uno") ? "turn" : ""}">🃏 Uno</button>
             </div>`;
     }
 
@@ -25718,7 +25838,7 @@ Te amo muito.
 
         if (!body) return;
 
-        const titles = { menu: "Jogar juntos 🎮", velha: "Jogo da velha ⭕", forca: "Forca dos balões 🎈", dama: "Dama ⚫" };
+        const titles = { menu: "Jogar juntos 🎮", velha: "Jogo da velha ⭕", forca: "Forca dos balões 🎈", dama: "Dama ⚫", uno: "Uno do casal 🃏" };
 
         document.getElementById("gamesTitle").textContent = titles[gamesView] || titles.menu;
         document.getElementById("gamesBack").classList.toggle("hidden", gamesView === "menu");
@@ -25726,6 +25846,7 @@ Te amo muito.
         if (gamesView === "velha") body.innerHTML = velhaHtml();
         else if (gamesView === "forca") body.innerHTML = forcaHtml();
         else if (gamesView === "dama") body.innerHTML = damaHtml();
+        else if (gamesView === "uno") body.innerHTML = unoHtml();
         else body.innerHTML = gamesMenuHtml();
 
         gameMaybeCelebrate();
@@ -25740,7 +25861,7 @@ Te amo muito.
         const hist = p.hist.length
             ? p.hist.slice(0, 8).map(h => `
                 <div class="gm-hist-row">
-                    <span>${h.jogo === "velha" ? "⭕" : h.jogo === "dama" ? "⚫" : "🎈"}</span>
+                    <span>${h.jogo === "velha" ? "⭕" : h.jogo === "dama" ? "⚫" : h.jogo === "uno" ? "🃏" : "🎈"}</span>
                     <b>${h.vencedor === "empate" ? "Deu velha 🤝" : `${h.vencedor} venceu ${gHeart(h.vencedor)}`}</b>
                     <small>${hotTime ? hotTime(h.at) : ""}</small>
                 </div>`).join("")
@@ -25765,10 +25886,15 @@ Te amo muito.
                     <b>Forca dos balões</b>
                     <small>${turns.includes("forca") ? "Sua vez de adivinhar! 👀" : `Diane ${p.forca.Diane} x ${p.forca.Gabriel} Gabriel`}</small>
                 </button>
-                <button class="gm-card wide ${turns.includes("dama") ? "turn" : ""}" onclick="setGamesView('dama')">
+                <button class="gm-card ${turns.includes("dama") ? "turn" : ""}" onclick="setGamesView('dama')">
                     <span class="gm-card-icon">⚫</span>
                     <b>Dama</b>
                     <small>${turns.includes("dama") ? "Sua vez! 👀" : `Diane ${p.dama.Diane} x ${p.dama.Gabriel} Gabriel`}</small>
+                </button>
+                <button class="gm-card ${turns.includes("uno") ? "turn" : ""}" onclick="setGamesView('uno')">
+                    <span class="gm-card-icon">🃏</span>
+                    <b>Uno do casal</b>
+                    <small>${turns.includes("uno") ? "Sua vez! 👀" : `Diane ${p.uno.Diane} x ${p.uno.Gabriel} Gabriel`}</small>
                 </button>
             </div>
 
@@ -25809,7 +25935,7 @@ Te amo muito.
 
     function gameMaybeCelebrate() {
 
-        const doc = gamesView === "velha" ? gameRead(GAME_VELHA) : gamesView === "forca" ? gameRead(GAME_FORCA) : gamesView === "dama" ? gameRead(GAME_DAMA) : null;
+        const doc = gamesView === "velha" ? gameRead(GAME_VELHA) : gamesView === "forca" ? gameRead(GAME_FORCA) : gamesView === "dama" ? gameRead(GAME_DAMA) : gamesView === "uno" ? gameRead(GAME_UNO) : null;
 
         if (!doc || !doc.id) return;
 
@@ -26492,6 +26618,413 @@ Te amo muito.
         `;
     }
 
+
+    /* 🃏 UNO DO CASAL (2 jogadores: inverter = pular, +2/+4 = o outro compra e você joga de novo) */
+
+    const GAME_UNO = "jogo_uno";
+    const UNO_COLORS = { r: "#ff5c7a", y: "#ffc23c", g: "#3fbf85", b: "#4f8ff7" };
+    const UNO_COLOR_NAMES = { r: "vermelho", y: "amarelo", g: "verde", b: "azul" };
+
+    let unoWildIdx = null;     // carta coringa esperando escolher a cor
+    let unoGiveUpArm = 0;
+
+    function unoDeck() {
+
+        const d = [];
+
+        for (const c of "rygb") {
+            d.push(c + "0");
+            for (let n = 1; n <= 9; n++) d.push(c + n, c + n);
+            ["S", "R", "D"].forEach(t => d.push(c + t, c + t));
+        }
+
+        for (let i = 0; i < 4; i++) d.push("W", "W4");
+
+        for (let i = d.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [d[i], d[j]] = [d[j], d[i]];
+        }
+
+        return d;
+    }
+
+    const unoIsWild = c => c === "W" || c === "W4";
+    const unoColor = c => unoIsWild(c) ? null : c[0];
+    const unoValue = c => unoIsWild(c) ? c : c.slice(1);
+
+    function unoPlayable(card, doc) {
+
+        if (unoIsWild(card)) return true;
+
+        const top = doc.discard[doc.discard.length - 1];
+
+        return unoColor(card) === doc.cor || (!unoIsWild(top) && unoValue(card) === unoValue(top));
+    }
+
+    function unoDraw(doc, who, n) {
+
+        for (let k = 0; k < n; k++) {
+
+            if (!doc.deck.length) {
+                // embaralha o descarte (menos a de cima) e vira monte de novo
+                const top = doc.discard.pop();
+                doc.deck = doc.discard;
+                doc.discard = [top];
+                for (let i = doc.deck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [doc.deck[i], doc.deck[j]] = [doc.deck[j], doc.deck[i]];
+                }
+            }
+
+            if (!doc.deck.length) return;
+
+            doc.hands[who].push(doc.deck.pop());
+        }
+    }
+
+    function unoNew() {
+
+        const old = gameRead(GAME_UNO);
+        let inicia = myName();
+
+        if (old && old.vencedor) inicia = old.vencedor === "Diane" ? "Gabriel" : "Diane";
+
+        const deck = unoDeck();
+        const hands = { Diane: [], Gabriel: [] };
+
+        for (let i = 0; i < 7; i++) { hands.Diane.push(deck.pop()); hands.Gabriel.push(deck.pop()); }
+
+        // a primeira carta da mesa é sempre um número
+        let first = deck.pop();
+        while (!/^[rygb][0-9]$/.test(first)) { deck.unshift(first); first = deck.pop(); }
+
+        unoWildIdx = null;
+
+        gameSave(GAME_UNO, {
+            id: gameNewId(),
+            deck,
+            discard: [first],
+            cor: first[0],
+            hands,
+            inicia,
+            vez: inicia,
+            comprou: false,
+            uno: {},
+            esqueceu: null,
+            vencedor: null,
+            ultimo: null,
+            jogadas: 0,
+            por: myName(),
+            at: Date.now()
+        });
+
+        sfx("whoosh");
+    }
+
+    function unoClone(doc) {
+
+        return JSON.parse(JSON.stringify(doc));
+    }
+
+    function unoCommit(doc, acao) {
+
+        doc.jogadas = (doc.jogadas || 0) + 1;
+        doc.por = myName();
+        doc.at = Date.now();
+        doc.ultimo = { por: myName(), ...acao };
+
+        gameSave(GAME_UNO, doc);
+    }
+
+    function unoTapCard(idx) {
+
+        const cur = gameRead(GAME_UNO);
+        const me = myName();
+
+        if (!cur || cur.vencedor) return;
+
+        if (cur.vez !== me) {
+            loveToast(`Calma kkkk agora é a vez d${me === "Diane" ? "o Gabriel" : "a Diane"} 👀`);
+            return;
+        }
+
+        const card = cur.hands[me][idx];
+
+        if (!card) return;
+
+        if (!unoPlayable(card, cur)) {
+            sfx("pop");
+            loveToast(`Essa não combina 🙈 Precisa ser ${UNO_COLOR_NAMES[cur.cor]} ou o mesmo número/símbolo`);
+            return;
+        }
+
+        if (unoIsWild(card)) {
+            unoWildIdx = idx;
+            renderGames();
+            return;
+        }
+
+        unoPlay(idx, null);
+    }
+
+    function unoPickColor(cor) {
+
+        const idx = unoWildIdx;
+
+        unoWildIdx = null;
+
+        if (idx === null) return;
+
+        unoPlay(idx, cor);
+    }
+
+    function unoPlay(idx, corEscolhida) {
+
+        const doc = unoClone(gameRead(GAME_UNO));
+        const me = myName();
+        const other = me === "Diane" ? "Gabriel" : "Diane";
+        const card = doc.hands[me][idx];
+
+        doc.hands[me].splice(idx, 1);
+        doc.discard.push(card);
+        doc.cor = corEscolhida || unoColor(card);
+        doc.comprou = false;
+
+        // esqueceu de gritar UNO?
+        doc.uno = doc.uno || {};
+        doc.esqueceu = doc.hands[me].length === 1 && !doc.uno[me] ? me : null;
+        if (doc.hands[me].length !== 1) doc.uno[me] = false;
+
+        const v = unoValue(card);
+        let fica = false;
+
+        if (v === "S" || v === "R") fica = true;
+        if (v === "D") { unoDraw(doc, other, 2); fica = true; }
+        if (v === "W4") { unoDraw(doc, other, 4); fica = true; }
+
+        doc.vez = fica ? me : other;
+
+        if (!doc.hands[me].length) {
+            doc.vencedor = me;
+            doc.vez = null;
+            doc.esqueceu = null;
+            doc.prenda = pick(GAME_PRENDAS);
+            gameAddResult("uno", me, doc.id);
+        }
+
+        sfx(v === "D" || v === "W4" ? "nhac" : "tick");
+
+        unoCommit(doc, { acao: "jogou", carta: card, cor: doc.cor });
+    }
+
+    function unoBuy() {
+
+        const cur = gameRead(GAME_UNO);
+        const me = myName();
+
+        if (!cur || cur.vencedor || cur.vez !== me) return;
+
+        if (cur.comprou) {
+            loveToast("Já comprou nessa vez. Joga a carta nova ou passa a vez 😉");
+            return;
+        }
+
+        const doc = unoClone(cur);
+
+        unoDraw(doc, me, 1);
+
+        doc.comprou = true;
+        doc.uno = { ...(doc.uno || {}), [me]: false };
+
+        const nova = doc.hands[me][doc.hands[me].length - 1];
+
+        sfx("whoosh");
+
+        if (!unoPlayable(nova, doc)) loveToast("Não serviu 😅 Pode passar a vez");
+
+        unoCommit(doc, { acao: "comprou" });
+    }
+
+    function unoPass() {
+
+        const cur = gameRead(GAME_UNO);
+        const me = myName();
+
+        if (!cur || cur.vencedor || cur.vez !== me || !cur.comprou) return;
+
+        const doc = unoClone(cur);
+
+        doc.vez = me === "Diane" ? "Gabriel" : "Diane";
+        doc.comprou = false;
+
+        unoCommit(doc, { acao: "passou" });
+    }
+
+    function unoShout() {
+
+        const cur = gameRead(GAME_UNO);
+        const me = myName();
+
+        if (!cur || cur.vencedor) return;
+
+        const doc = unoClone(cur);
+
+        doc.uno = { ...(doc.uno || {}), [me]: true };
+
+        if (doc.esqueceu === me) doc.esqueceu = null;
+
+        sfx("yay");
+        loveToast("UNO!!! 🗣️🃏");
+
+        unoCommit(doc, { acao: "uno" });
+    }
+
+    function unoCatch() {
+
+        const cur = gameRead(GAME_UNO);
+        const me = myName();
+        const other = me === "Diane" ? "Gabriel" : "Diane";
+
+        if (!cur || cur.vencedor || cur.esqueceu !== other) return;
+
+        const doc = unoClone(cur);
+
+        unoDraw(doc, other, 2);
+
+        doc.esqueceu = null;
+
+        sfx("splash");
+        loveToast(`Pegou ${gNick(other)}! +2 pra ${other === "Gabriel" ? "ele" : "ela"} kkkkk`);
+
+        unoCommit(doc, { acao: "pegou" });
+    }
+
+    function unoGiveUp() {
+
+        const doc = gameRead(GAME_UNO);
+        const me = myName();
+
+        if (!doc || doc.vencedor) return;
+
+        if (Date.now() - unoGiveUpArm > 3000) {
+            unoGiveUpArm = Date.now();
+            loveToast("Tem certeza? Toca de novo em \"Desistir\" pra entregar a vitória 🏳️");
+            return;
+        }
+
+        const w = me === "Diane" ? "Gabriel" : "Diane";
+
+        gameAddResult("uno", w, doc.id);
+
+        gameSave(GAME_UNO, { ...doc, vencedor: w, desistiu: me, vez: null, prenda: pick(GAME_PRENDAS), at: Date.now() });
+    }
+
+    function unoCardHtml(c, extra, onclick) {
+
+        if (!c) return "";
+
+        const wild = unoIsWild(c);
+        const v = unoValue(c);
+        const label = v === "S" ? "⊘" : v === "R" ? "⇄" : v === "D" ? "+2" : v === "W4" ? "+4" : v === "W" ? "🌈" : v;
+        const small = v === "S" ? "pula" : v === "R" ? "inverte" : v === "D" ? "+2" : v === "W4" ? "+4" : v === "W" ? "cor" : v;
+
+        return `
+            <button class="uc ${wild ? "wild" : ""} ${extra || ""}" style="--uc:${wild ? "#2d2440" : UNO_COLORS[c[0]]}" ${onclick ? `onclick="${onclick}"` : "disabled"}>
+                <small>${small}</small>
+                <span>${label}</span>
+                <small class="b">${small}</small>
+            </button>`;
+    }
+
+    function unoHtml() {
+
+        const doc = gameRead(GAME_UNO);
+        const me = myName();
+        const other = otherName();
+
+        if (!doc || !doc.hands) {
+            return `
+                <div class="game-intro">
+                    <div class="gi-emoji">🃏💗💙</div>
+                    <p>Uno de dois: cada um com 7 cartas. Pular e inverter fazem você jogar de novo, +2 e +4 fazem ${gNick(other)} comprar. Ficou com 1 carta? Grita UNO, senão leva +2 kkkk</p>
+                    <button class="primary-btn care-wide" onclick="unoNew()">Distribuir as cartas ✨</button>
+                </div>`;
+        }
+
+        const mine = doc.hands[me] || [];
+        const theirs = doc.hands[other] || [];
+        const top = doc.discard[doc.discard.length - 1];
+        const myTurn = !doc.vencedor && doc.vez === me;
+
+        const hand = mine.map((c, i) => {
+            const ok = myTurn && unoPlayable(c, doc);
+            const isNew = doc.comprou && i === mine.length - 1 && myTurn;
+            return unoCardHtml(c, `${ok ? "ok" : myTurn ? "no" : ""} ${isNew ? "new" : ""}`, `unoTapCard(${i})`);
+        }).join("");
+
+        const backs = theirs.slice(0, 14).map((_, i) => `<span class="ub" style="--i:${i}"></span>`).join("");
+
+        let status = "";
+
+        if (!doc.vencedor) {
+            const u = doc.ultimo;
+            const hit = u && u.por === other && u.carta && (unoValue(u.carta) === "D" || unoValue(u.carta) === "W4");
+            status = myTurn
+                ? `<div class="game-status mine">${hit ? `${gNickCap(other)} te deu ${unoValue(u.carta) === "D" ? "+2" : "+4"} 😱 ` : ""}Sua vez!${doc.comprou ? " Joga a carta nova ou passa" : ""}</div>`
+                : `<div class="game-status">Vez d${other === "Gabriel" ? "o Gabriel" : "a Diane"} ${gHeart(other)}… esperando 👀</div>`;
+        }
+
+        const wildPicker = unoWildIdx !== null && myTurn ? `
+            <div class="uno-colors">
+                <b>Escolhe a cor 🌈</b>
+                <div>${Object.keys(UNO_COLORS).map(c => `<button style="--uc:${UNO_COLORS[c]}" onclick="unoPickColor('${c}')">${UNO_COLOR_NAMES[c]}</button>`).join("")}</div>
+                <button class="game-ghost" onclick="unoWildIdx = null; renderGames()">cancelar</button>
+            </div>` : "";
+
+        const canShout = myTurn && mine.length === 2 && !(doc.uno || {})[me];
+        const canCatch = myTurn && doc.esqueceu === other;
+
+        return `
+            ${gameResultHtml(doc, "uno")}
+            ${doc.vencedor && doc.desistiu ? `<div class="game-hint">${doc.desistiu} desistiu 🏳️</div>` : ""}
+            ${status}
+
+            <div class="uno-other">
+                <div class="uno-backs">${backs}</div>
+                <span>${gHeart(other)} ${other}: <b>${theirs.length}</b> ${theirs.length === 1 ? "carta" : "cartas"}${theirs.length === 1 && (doc.uno || {})[other] ? " · gritou UNO! 🗣️" : ""}</span>
+            </div>
+
+            <div class="uno-table">
+                <button class="uno-deck" onclick="unoBuy()" ${myTurn && !doc.comprou ? "" : "disabled"}>
+                    <span class="ub big"></span>
+                    <small>${myTurn && !doc.comprou ? "Comprar" : `${doc.deck.length} no monte`}</small>
+                </button>
+                <div class="uno-top">
+                    ${unoCardHtml(top, "big")}
+                    <small class="uno-cor" style="--uc:${UNO_COLORS[doc.cor]}">cor: ${UNO_COLOR_NAMES[doc.cor]}</small>
+                </div>
+            </div>
+
+            ${wildPicker}
+
+            ${canCatch ? `<button class="uno-catch" onclick="unoCatch()">😏 ${gNickCap(other)} esqueceu de gritar UNO! Pegar (+2 pra ${other === "Gabriel" ? "ele" : "ela"})</button>` : ""}
+
+            <div class="uno-hand">${hand || `<div class="game-hint">Sem cartas!</div>`}</div>
+
+            ${!doc.vencedor ? `
+                <div class="uno-actions">
+                    ${canShout ? `<button class="uno-shout" onclick="unoShout()">UNO! 🗣️</button>` : ""}
+                    ${myTurn && doc.comprou ? `<button class="primary-btn" onclick="unoPass()">Passar a vez ➜</button>` : ""}
+                </div>
+                <div class="dama-actions">
+                    <small class="game-hint">${mine.length === 2 && myTurn ? "Vai ficar com 1 carta? Toca em UNO antes de jogar! 😏" : "As cartas que dá pra jogar ficam levantadinhas ✨"}</small>
+                    <button class="game-ghost" onclick="unoGiveUp()">🏳️ Desistir</button>
+                </div>` : `
+                <button class="primary-btn care-wide" onclick="unoNew()">Jogar de novo 🔁</button>
+                <small class="game-hint">Quem perdeu começa a próxima 😏</small>`}
+        `;
+    }
+
     /* ☁️ chegou jogada do outro celular */
 
     function onCloudGame(key, data) {
@@ -26513,7 +27046,7 @@ Te amo muito.
 
         // virou a minha vez e eu não tô olhando → avisa
         const isNew = !before || before.id !== data.id;
-        const viewing = open && gamesView === (key === GAME_VELHA ? "velha" : key === GAME_DAMA ? "dama" : "forca");
+        const viewing = open && gamesView === (key === GAME_VELHA ? "velha" : key === GAME_DAMA ? "dama" : key === GAME_UNO ? "uno" : "forca");
         const firstLoad = !gameLoaded[key];
 
         gameLoaded[key] = true;
@@ -26536,6 +27069,22 @@ Te amo muito.
                     loveToast(isNew ? `⚫ ${gNickCap(otherName())} te chamou pra uma partida de dama!` : "⚫ Sua vez na dama 👀");
                     try { sfx("plim"); } catch (e) {}
                 }
+            }
+
+            if (key === GAME_UNO && !data.vencedor && data.vez === me) {
+                const tk = key + data.id + ":" + (data.jogadas || 0);
+                const u = data.ultimo;
+                const hit = u && u.por !== me && u.carta && /D$|W4$/.test(u.carta);
+                if (!gameLastTurn[tk] && (isNew || (u && u.por !== me))) {
+                    gameLastTurn[tk] = true;
+                    loveToast(isNew ? `🃏 ${gNickCap(otherName())} distribuiu as cartas do Uno!`
+                        : hit ? `😱 ${gNickCap(otherName())} te deu ${/W4$/.test(u.carta) ? "+4" : "+2"} no Uno!` : "🃏 Sua vez no Uno 👀");
+                    try { sfx("plim"); } catch (e) {}
+                }
+            }
+
+            if (key === GAME_UNO && isNew && !data.vencedor && data.vez !== me) {
+                loveToast(`🃏 ${gNickCap(otherName())} distribuiu as cartas do Uno! ${otherName() === "Gabriel" ? "Ele" : "Ela"} começa 👀`);
             }
 
             if (key === GAME_DAMA && isNew && !data.vencedor && data.vez !== me) {
