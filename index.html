@@ -10323,7 +10323,7 @@
         color: var(--text-soft);
     }
 
-    .gc-games { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .gc-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
 
     .gc-games button {
         padding: 11px 6px;
@@ -10398,6 +10398,7 @@
     }
 
     .gm-card.turn { border-color: var(--accent); box-shadow: 0 0 0 4px var(--chip-bg); }
+    .gm-card.wide { grid-column: 1 / -1; }
     .gm-card-icon { font-size: 36px; }
     .gm-card b { font-size: 15px; }
     .gm-card small { font-size: 12px; color: var(--text-muted); }
@@ -10664,6 +10665,52 @@
     .forca-create .gm-section { margin-top: 18px; margin-bottom: 0; }
     .forca-create .game-hint { margin: 0; }
     .forca-create input { padding: 12px 14px; font-size: 15px; }
+
+
+    /* ⚫ dama */
+
+    .dama-count { display: flex; justify-content: space-between; margin: 0 4px 8px; font-size: 13px; color: var(--text-soft); }
+    .dama-count b { color: var(--text); }
+
+    .dama-board {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        width: min(360px, 100%);
+        margin: 0 auto;
+        padding: 6px;
+        border-radius: 18px;
+        background: #b98a63;
+        box-shadow: 0 14px 30px -14px rgba(90, 50, 30, 0.6);
+    }
+
+    .dc { position: relative; aspect-ratio: 1; display: grid; place-items: center; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+    .dc.light { background: #f6e3c8; }
+    .dc.dark { background: #a8724b; }
+    button.dc:disabled { opacity: 1; }
+    .dc.last { background: #c48a58; }
+    .dc.dark.sel { background: #e07ba6; }
+    .dc.target::after { content: ""; width: 34%; height: 34%; border-radius: 50%; background: rgba(255, 255, 255, 0.75); box-shadow: 0 0 0 3px rgba(255, 79, 139, 0.6); animation: heartbeat 1.2s ease-in-out infinite; }
+    .dc.can .dp { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.35); }
+
+    .dp {
+        display: grid;
+        place-items: center;
+        width: 78%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        font-size: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.18);
+        transition: transform 0.2s ease;
+    }
+
+    .dp.d { background: radial-gradient(circle at 35% 30%, #ffd9e8, #ff6fa3 70%); }
+    .dp.g { background: radial-gradient(circle at 35% 30%, #dbe8ff, #5f8fe8 70%); }
+    .dp.king { box-shadow: 0 0 0 2px #ffd36e, 0 4px 8px rgba(0, 0, 0, 0.35); }
+    .dp.eaten { opacity: 0.25; transform: scale(0.7); }
+    .dc.sel .dp { transform: scale(1.1) translateY(-2px); }
+    .dama-board.over .dp { filter: saturate(0.7); }
+
+    .dama-actions { display: grid; justify-items: center; gap: 6px; margin-top: 8px; }
 
     /* 🔐 portão de login */
 
@@ -15413,7 +15460,7 @@
             <button class="night-opt night-opt-games" data-rt="games" onclick="closeFunModal('nightOverlay'); openGames()">
                 <span class="night-opt-icon">🎮</span>
                 <b>Jogar juntos</b>
-                <small>Velha e forca ao vivo 😏</small>
+                <small>Velha, forca e dama ao vivo 😏</small>
             </button>
 
         </div>
@@ -25203,7 +25250,7 @@ Te amo muito.
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
 
-        [GAME_VELHA, GAME_FORCA].forEach(k =>
+        [GAME_VELHA, GAME_FORCA, GAME_DAMA].forEach(k =>
             cloudListeners.push(window.loveCloud.listenState(k, d => onCloudGame(k, d), err)));
         cloudListeners.push(window.loveCloud.listenState(GAME_PLACAR, onCloudPlacar, err));
 
@@ -25505,6 +25552,7 @@ Te amo muito.
         return {
             velha: { Diane: 0, Gabriel: 0, empate: 0, ...(p.velha || {}) },
             forca: { Diane: 0, Gabriel: 0, ...(p.forca || {}) },
+            dama: { Diane: 0, Gabriel: 0, ...(p.dama || {}) },
             ids: p.ids || [],
             hist: p.hist || [],
             at: p.at || 0
@@ -25516,10 +25564,10 @@ Te amo muito.
         const p = gamePlacar();
 
         return {
-            Diane: p.velha.Diane + p.forca.Diane,
-            Gabriel: p.velha.Gabriel + p.forca.Gabriel,
+            Diane: p.velha.Diane + p.forca.Diane + p.dama.Diane,
+            Gabriel: p.velha.Gabriel + p.forca.Gabriel + p.dama.Gabriel,
             empates: p.velha.empate,
-            jogos: p.velha.Diane + p.velha.Gabriel + p.velha.empate + p.forca.Diane + p.forca.Gabriel
+            jogos: p.velha.Diane + p.velha.Gabriel + p.velha.empate + p.forca.Diane + p.forca.Gabriel + p.dama.Diane + p.dama.Gabriel
         };
     }
 
@@ -25571,6 +25619,10 @@ Te amo muito.
         if (v && !v.vencedor && v.vez === me) turns.push("velha");
         if (f && f.status === "jogando" && f.adivinha === me) turns.push("forca");
 
+        const dm = gameRead(GAME_DAMA);
+
+        if (dm && !dm.vencedor && dm.vez === me) turns.push("dama");
+
         return turns;
     }
 
@@ -25601,7 +25653,7 @@ Te amo muito.
 
         if (!cloudReady()) {
             card.innerHTML = `
-                <div class="gc-top"><span class="gc-icon">🎮</span><div><b>Jogar juntos</b><small>Jogo da velha e forca, cada um no seu celular</small></div></div>
+                <div class="gc-top"><span class="gc-icon">🎮</span><div><b>Jogar juntos</b><small>Velha, forca e dama, cada um no seu celular</small></div></div>
                 <div class="gc-lock">🔒 Entra com o login de vocês pra jogar</div>`;
             return;
         }
@@ -25623,6 +25675,7 @@ Te amo muito.
             <div class="gc-games">
                 <button onclick="event.stopPropagation(); openGames('velha')" class="${turns.includes("velha") ? "turn" : ""}">⭕ Jogo da velha</button>
                 <button onclick="event.stopPropagation(); openGames('forca')" class="${turns.includes("forca") ? "turn" : ""}">🎈 Forca</button>
+                <button onclick="event.stopPropagation(); openGames('dama')" class="${turns.includes("dama") ? "turn" : ""}">⚫ Dama</button>
             </div>`;
     }
 
@@ -25665,13 +25718,14 @@ Te amo muito.
 
         if (!body) return;
 
-        const titles = { menu: "Jogar juntos 🎮", velha: "Jogo da velha ⭕", forca: "Forca dos balões 🎈" };
+        const titles = { menu: "Jogar juntos 🎮", velha: "Jogo da velha ⭕", forca: "Forca dos balões 🎈", dama: "Dama ⚫" };
 
         document.getElementById("gamesTitle").textContent = titles[gamesView] || titles.menu;
         document.getElementById("gamesBack").classList.toggle("hidden", gamesView === "menu");
 
         if (gamesView === "velha") body.innerHTML = velhaHtml();
         else if (gamesView === "forca") body.innerHTML = forcaHtml();
+        else if (gamesView === "dama") body.innerHTML = damaHtml();
         else body.innerHTML = gamesMenuHtml();
 
         gameMaybeCelebrate();
@@ -25686,7 +25740,7 @@ Te amo muito.
         const hist = p.hist.length
             ? p.hist.slice(0, 8).map(h => `
                 <div class="gm-hist-row">
-                    <span>${h.jogo === "velha" ? "⭕" : "🎈"}</span>
+                    <span>${h.jogo === "velha" ? "⭕" : h.jogo === "dama" ? "⚫" : "🎈"}</span>
                     <b>${h.vencedor === "empate" ? "Deu velha 🤝" : `${h.vencedor} venceu ${gHeart(h.vencedor)}`}</b>
                     <small>${hotTime ? hotTime(h.at) : ""}</small>
                 </div>`).join("")
@@ -25711,6 +25765,11 @@ Te amo muito.
                     <b>Forca dos balões</b>
                     <small>${turns.includes("forca") ? "Sua vez de adivinhar! 👀" : `Diane ${p.forca.Diane} x ${p.forca.Gabriel} Gabriel`}</small>
                 </button>
+                <button class="gm-card wide ${turns.includes("dama") ? "turn" : ""}" onclick="setGamesView('dama')">
+                    <span class="gm-card-icon">⚫</span>
+                    <b>Dama</b>
+                    <small>${turns.includes("dama") ? "Sua vez! 👀" : `Diane ${p.dama.Diane} x ${p.dama.Gabriel} Gabriel`}</small>
+                </button>
             </div>
 
             <div class="gm-section">Últimas partidas</div>
@@ -25721,7 +25780,7 @@ Te amo muito.
 
     function gameResultHtml(doc, jogo) {
 
-        if (!doc || !(jogo === "velha" ? doc.vencedor : doc.status === "fim")) return "";
+        if (!doc || !(jogo === "forca" ? doc.status === "fim" : doc.vencedor)) return "";
 
         const me = myName();
         const w = doc.vencedor;
@@ -25750,11 +25809,11 @@ Te amo muito.
 
     function gameMaybeCelebrate() {
 
-        const doc = gamesView === "velha" ? gameRead(GAME_VELHA) : gamesView === "forca" ? gameRead(GAME_FORCA) : null;
+        const doc = gamesView === "velha" ? gameRead(GAME_VELHA) : gamesView === "forca" ? gameRead(GAME_FORCA) : gamesView === "dama" ? gameRead(GAME_DAMA) : null;
 
         if (!doc || !doc.id) return;
 
-        const ended = gamesView === "velha" ? !!doc.vencedor : doc.status === "fim";
+        const ended = gamesView === "forca" ? doc.status === "fim" : !!doc.vencedor;
 
         if (!ended || gameSeenEnd[doc.id]) return;
 
@@ -26056,6 +26115,383 @@ Te amo muito.
         `;
     }
 
+
+    /* ⚫ DAMA (regras brasileiras: captura obrigatória, lei da maioria, dama voadora) */
+
+    const GAME_DAMA = "jogo_dama";
+
+    let damaSel = [];          // caminho que estou montando (casas absolutas)
+    let damaSelFor = "";       // id+jogada a que a seleção pertence
+    let damaGiveUpArm = 0;
+
+    const damaOwner = p => p === "d" || p === "D" ? "Diane" : p === "g" || p === "G" ? "Gabriel" : null;
+    const damaIsKing = p => p === "D" || p === "G";
+    const damaRC = i => [Math.floor(i / 8), i % 8];
+    const damaIdx = (r, c) => r * 8 + c;
+    const damaIn = (r, c) => r >= 0 && r < 8 && c >= 0 && c < 8;
+    const DAMA_DIRS = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+
+    function damaInitial() {
+
+        let b = "";
+
+        for (let r = 0; r < 8; r++) {
+            for (let c = 0; c < 8; c++) {
+                const dark = (r + c) % 2 === 1;
+                b += !dark ? "." : r <= 2 ? "g" : r >= 5 ? "d" : ".";
+            }
+        }
+
+        return b;
+    }
+
+    // todas as jogadas possíveis de quem joga (já aplicando a lei da maioria)
+    function damaMoves(board, who) {
+
+        const b = board.split("");
+        const caps = [];
+        const simple = [];
+
+        for (let i = 0; i < 64; i++) {
+
+            const p = b[i];
+
+            if (damaOwner(p) !== who) continue;
+
+            const king = damaIsKing(p);
+            const fwd = who === "Diane" ? -1 : 1;
+            const [r0, c0] = damaRC(i);
+
+            // capturas (busca em profundidade)
+            const work = b.slice();
+            work[i] = ".";
+
+            const dfs = (pos, path, taken) => {
+
+                const [r, c] = damaRC(pos);
+                let found = false;
+
+                for (const [dr, dc] of DAMA_DIRS) {
+
+                    if (king) {
+
+                        let rr = r + dr, cc = c + dc;
+
+                        while (damaIn(rr, cc) && work[damaIdx(rr, cc)] === ".") { rr += dr; cc += dc; }
+
+                        if (!damaIn(rr, cc)) continue;
+
+                        const vi = damaIdx(rr, cc);
+                        const victim = work[vi];
+
+                        if (damaOwner(victim) === who || !damaOwner(victim) || taken.includes(vi)) continue;
+
+                        let lr = rr + dr, lc = cc + dc;
+
+                        while (damaIn(lr, lc) && work[damaIdx(lr, lc)] === ".") {
+                            found = true;
+                            const li = damaIdx(lr, lc);
+                            dfs(li, path.concat(li), taken.concat(vi));
+                            lr += dr; lc += dc;
+                        }
+
+                    } else {
+
+                        const vr = r + dr, vc = c + dc, lr = r + 2 * dr, lc = c + 2 * dc;
+
+                        if (!damaIn(lr, lc)) continue;
+
+                        const vi = damaIdx(vr, vc), li = damaIdx(lr, lc);
+                        const victim = work[vi];
+
+                        if (!damaOwner(victim) || damaOwner(victim) === who || taken.includes(vi)) continue;
+                        if (work[li] !== ".") continue;
+
+                        found = true;
+                        dfs(li, path.concat(li), taken.concat(vi));
+                    }
+                }
+
+                if (!found && taken.length) caps.push({ path, caps: taken });
+            };
+
+            dfs(i, [i], []);
+
+            // movimentos simples
+            for (const [dr, dc] of DAMA_DIRS) {
+
+                if (king) {
+                    let rr = r0 + dr, cc = c0 + dc;
+                    while (damaIn(rr, cc) && b[damaIdx(rr, cc)] === ".") {
+                        simple.push({ path: [i, damaIdx(rr, cc)], caps: [] });
+                        rr += dr; cc += dc;
+                    }
+                } else if (dr === fwd) {
+                    const rr = r0 + dr, cc = c0 + dc;
+                    if (damaIn(rr, cc) && b[damaIdx(rr, cc)] === ".") simple.push({ path: [i, damaIdx(rr, cc)], caps: [] });
+                }
+            }
+        }
+
+        if (caps.length) {
+            const max = Math.max(...caps.map(m => m.caps.length));
+            return caps.filter(m => m.caps.length === max);
+        }
+
+        return simple;
+    }
+
+    function damaApply(board, mv) {
+
+        const b = board.split("");
+        const from = mv.path[0];
+        const to = mv.path[mv.path.length - 1];
+        let p = b[from];
+
+        b[from] = ".";
+        mv.caps.forEach(i => b[i] = ".");
+
+        const [r] = damaRC(to);
+
+        if (p === "d" && r === 0) p = "D";
+        if (p === "g" && r === 7) p = "G";
+
+        b[to] = p;
+
+        return b.join("");
+    }
+
+    function damaCount(board, who) {
+
+        return [...board].filter(p => damaOwner(p) === who).length;
+    }
+
+    function damaNew() {
+
+        const old = gameRead(GAME_DAMA);
+        let inicia = myName();
+
+        if (old && old.vencedor) inicia = old.vencedor === "Diane" ? "Gabriel" : "Diane";
+
+        damaSel = [];
+
+        gameSave(GAME_DAMA, {
+            id: gameNewId(),
+            board: damaInitial(),
+            inicia,
+            vez: inicia,
+            vencedor: null,
+            ultimo: null,
+            jogadas: 0,
+            por: myName(),
+            at: Date.now()
+        });
+
+        sfx("pop");
+    }
+
+    function damaGiveUp() {
+
+        const doc = gameRead(GAME_DAMA);
+        const me = myName();
+
+        if (!doc || doc.vencedor) return;
+
+        if (Date.now() - damaGiveUpArm > 3000) {
+            damaGiveUpArm = Date.now();
+            loveToast("Tem certeza? Toca de novo em \"Desistir\" pra entregar a vitória 🏳️");
+            return;
+        }
+
+        const w = me === "Diane" ? "Gabriel" : "Diane";
+
+        gameAddResult("dama", w, doc.id);
+
+        gameSave(GAME_DAMA, { ...doc, vencedor: w, desistiu: me, vez: null, prenda: pick(GAME_PRENDAS), at: Date.now() });
+    }
+
+    function damaTap(i) {
+
+        const doc = gameRead(GAME_DAMA);
+        const me = myName();
+
+        if (!doc || doc.vencedor) return;
+
+        if (doc.vez !== me) {
+            loveToast(`Calma kkkk agora é a vez d${me === "Diane" ? "o Gabriel" : "a Diane"} 👀`);
+            return;
+        }
+
+        const key = doc.id + ":" + doc.jogadas;
+
+        if (damaSelFor !== key) { damaSel = []; damaSelFor = key; }
+
+        const moves = damaMoves(doc.board, me);
+
+        // escolher / trocar de peça (só antes de começar uma captura em sequência)
+        if (damaSel.length <= 1 && moves.some(m => m.path[0] === i)) {
+            damaSel = damaSel[0] === i ? [] : [i];
+            sfx("tick");
+            renderGames();
+            return;
+        }
+
+        if (!damaSel.length) {
+            if (damaOwner(doc.board[i]) === me) {
+                loveToast(moves.some(m => m.caps.length) ? "Tem peça pra comer! Captura é obrigatória 😋" : "Essa peça não tem pra onde ir 🤔");
+            }
+            return;
+        }
+
+        const next = damaSel.concat(i);
+        const cands = moves.filter(m => next.every((p, k) => m.path[k] === p));
+
+        if (!cands.length) {
+            if (moves.some(m => m.caps.length)) loveToast("Captura é obrigatória, e tem que comer o máximo de peças 😋");
+            return;
+        }
+
+        const done = cands.find(m => m.path.length === next.length);
+
+        if (!done) {
+            damaSel = next;   // ainda tem peça pra comer nessa sequência
+            sfx("pop");
+            renderGames();
+            return;
+        }
+
+        // ✅ jogada completa
+        const board = damaApply(doc.board, done);
+        const other = me === "Diane" ? "Gabriel" : "Diane";
+        const nextDoc = {
+            ...doc,
+            board,
+            vez: other,
+            ultimo: { path: done.path, caps: done.caps },
+            jogadas: (doc.jogadas || 0) + 1,
+            por: me,
+            at: Date.now()
+        };
+
+        if (!damaCount(board, other) || !damaMoves(board, other).length) {
+            nextDoc.vencedor = me;
+            nextDoc.vez = null;
+            nextDoc.prenda = pick(GAME_PRENDAS);
+            gameAddResult("dama", me, doc.id);
+        }
+
+        damaSel = [];
+
+        sfx(done.caps.length ? "nhac" : "tick");
+
+        gameSave(GAME_DAMA, nextDoc);
+    }
+
+    function damaHtml() {
+
+        const doc = gameRead(GAME_DAMA);
+        const me = myName();
+        const other = otherName();
+
+        if (!doc || !doc.board) {
+            return `
+                <div class="game-intro">
+                    <div class="gi-emoji">⚫💗💙</div>
+                    <p>Dama com as regras do Brasil: comer é obrigatório, tem que comer o máximo de peças e a dama anda a diagonal inteira. Você joga com as ${me === "Diane" ? "rosas 💗" : "azuis 💙"}.</p>
+                    <button class="primary-btn care-wide" onclick="damaNew()">Começar uma partida ✨</button>
+                </div>`;
+        }
+
+        const key = doc.id + ":" + doc.jogadas;
+
+        if (damaSelFor !== key) { damaSel = []; damaSelFor = key; }
+
+        const myTurn = !doc.vencedor && doc.vez === me;
+        const moves = myTurn ? damaMoves(doc.board, me) : [];
+        const mustCapture = moves.some(m => m.caps.length);
+
+        // tabuleiro "ao vivo" enquanto monto uma captura em sequência
+        let view = doc.board.split("");
+        const takenNow = [];
+
+        if (damaSel.length > 1) {
+            const m = moves.find(mv => damaSel.every((p, k) => mv.path[k] === p));
+            if (m) {
+                const piece = view[damaSel[0]];
+                view[damaSel[0]] = ".";
+                for (let k = 1; k < damaSel.length; k++) takenNow.push(m.caps[k - 1]);
+                view[damaSel[damaSel.length - 1]] = piece;
+            }
+        }
+
+        const movable = new Set(damaSel.length <= 1 ? moves.map(m => m.path[0]) : []);
+        const targets = new Set(moves
+            .filter(m => damaSel.length && damaSel.every((p, k) => m.path[k] === p))
+            .map(m => m.path[damaSel.length])
+            .filter(x => x !== undefined));
+
+        const last = doc.ultimo || { path: [], caps: [] };
+        const flip = me === "Gabriel";   // cada um vê as próprias peças embaixo
+
+        let cells = "";
+
+        for (let vr = 0; vr < 8; vr++) {
+            for (let vc = 0; vc < 8; vc++) {
+
+                const r = flip ? 7 - vr : vr;
+                const c = flip ? 7 - vc : vc;
+                const i = damaIdx(r, c);
+                const dark = (r + c) % 2 === 1;
+                const p = view[i];
+                const own = damaOwner(p);
+
+                const cls = [
+                    "dc",
+                    dark ? "dark" : "light",
+                    last.path.includes(i) ? "last" : "",
+                    targets.has(i) ? "target" : "",
+                    damaSel[damaSel.length - 1] === i ? "sel" : "",
+                    movable.has(i) && !damaSel.length ? "can" : ""
+                ].join(" ");
+
+                const piece = own && !takenNow.includes(i)
+                    ? `<span class="dp ${own === "Diane" ? "d" : "g"} ${damaIsKing(p) ? "king" : ""}">${damaIsKing(p) ? "👑" : ""}</span>`
+                    : takenNow.includes(i) ? `<span class="dp ${own === "Diane" ? "d" : "g"} eaten"></span>` : "";
+
+                cells += dark
+                    ? `<button class="${cls}" onclick="damaTap(${i})" aria-label="Casa">${piece}</button>`
+                    : `<span class="${cls}"></span>`;
+            }
+        }
+
+        const status = doc.vencedor
+            ? ""
+            : myTurn
+                ? `<div class="game-status mine">Sua vez! ${mustCapture ? "Tem peça pra comer 😋" : `Você é ${me === "Diane" ? "a 💗" : "o 💙"}`}</div>`
+                : `<div class="game-status">Vez d${other === "Gabriel" ? "o Gabriel" : "a Diane"} ${gHeart(other)}… esperando a jogada 👀</div>`;
+
+        const mine = damaCount(doc.board, me);
+        const theirs = damaCount(doc.board, other);
+
+        return `
+            ${gameResultHtml(doc, "dama")}
+            ${doc.vencedor && doc.desistiu ? `<div class="game-hint">${doc.desistiu} desistiu 🏳️</div>` : ""}
+            ${status}
+            <div class="dama-count">
+                <span>${gHeart(other)} ${other}: <b>${theirs}</b></span>
+                <span>${gHeart(me)} Você: <b>${mine}</b></span>
+            </div>
+            <div class="dama-board ${doc.vencedor ? "over" : ""}">${cells}</div>
+            ${doc.vencedor
+                ? `<button class="primary-btn care-wide" onclick="damaNew()">Jogar de novo 🔁</button>
+                   <small class="game-hint">Quem perdeu começa a próxima 😏</small>`
+                : `<div class="dama-actions">
+                       <small class="game-hint">Toca na peça e depois onde ela vai. Comendo em sequência, toca casa por casa.</small>
+                       <button class="game-ghost" onclick="damaGiveUp()">🏳️ Desistir</button>
+                   </div>`}
+        `;
+    }
+
     /* ☁️ chegou jogada do outro celular */
 
     function onCloudGame(key, data) {
@@ -26077,7 +26513,7 @@ Te amo muito.
 
         // virou a minha vez e eu não tô olhando → avisa
         const isNew = !before || before.id !== data.id;
-        const viewing = open && gamesView === (key === GAME_VELHA ? "velha" : "forca");
+        const viewing = open && gamesView === (key === GAME_VELHA ? "velha" : key === GAME_DAMA ? "dama" : "forca");
         const firstLoad = !gameLoaded[key];
 
         gameLoaded[key] = true;
@@ -26091,6 +26527,19 @@ Te amo muito.
                     loveToast(isNew ? `⭕ ${gNickCap(otherName())} te chamou pro jogo da velha!` : "⭕ Sua vez no jogo da velha 👀");
                     try { sfx("plim"); } catch (e) {}
                 }
+            }
+
+            if (key === GAME_DAMA && !data.vencedor && data.vez === me) {
+                const tk = key + data.id + ":" + (data.jogadas || 0);
+                if (!gameLastTurn[tk]) {
+                    gameLastTurn[tk] = true;
+                    loveToast(isNew ? `⚫ ${gNickCap(otherName())} te chamou pra uma partida de dama!` : "⚫ Sua vez na dama 👀");
+                    try { sfx("plim"); } catch (e) {}
+                }
+            }
+
+            if (key === GAME_DAMA && isNew && !data.vencedor && data.vez !== me) {
+                loveToast(`⚫ ${gNickCap(otherName())} começou uma partida de dama! ${otherName() === "Gabriel" ? "Ele" : "Ela"} joga primeiro 👀`);
             }
 
             if (key === GAME_VELHA && isNew && !data.vencedor && data.vez !== me) {
