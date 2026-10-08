@@ -11023,6 +11023,157 @@
         .games-chat.docked .chat-list { flex: 1; max-height: none; }
     }
 
+
+    /* 💬 nosso papinho (chat da tela principal) */
+
+    .papo-fab {
+        position: fixed;
+        right: 16px;
+        bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+        z-index: 950;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        font-size: 24px;
+        border-radius: 50%;
+        color: #fff;
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        box-shadow: 0 12px 26px -8px var(--btn-shadow);
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), opacity 0.25s ease;
+    }
+
+    .papo-fab.hidden, html.gate-on .papo-fab, body.layer-open .papo-fab, body:has(#home.hidden) .papo-fab { display: none; }
+    .papo-fab:active { transform: scale(0.92); }
+    .papo-fab.has-new { animation: heartbeat 1.6s ease-in-out infinite; }
+
+    .papo-fab i {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 22px;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        border-radius: 999px;
+        color: #fff;
+        background: #ff4f8b;
+        border: 2px solid var(--surface-solid);
+    }
+
+    .papo-fab-typing {
+        position: absolute;
+        right: 66px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 6px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+        border-radius: 999px;
+        color: var(--text-soft);
+        background: var(--surface-solid);
+        box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.3);
+    }
+
+    #papoOverlay { padding: 12px; }
+
+    .papo-modal {
+        display: flex;
+        flex-direction: column;
+        width: min(100%, 640px);
+        max-width: none;
+        height: calc(100dvh - 24px);
+        max-height: none;
+        padding: 0;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    #papoBox { display: flex; flex-direction: column; min-height: 0; height: 100%; padding: 0 16px 14px; }
+
+    .papo-head { display: flex; align-items: center; gap: 10px; padding: 16px 0 10px; border-bottom: 1px solid var(--border); }
+    .papo-head-txt { flex: 1; min-width: 0; }
+    .papo-head b { display: block; font-size: 20px; color: var(--accent); }
+    .papo-head small { font-size: 12px; color: var(--text-muted); }
+    .papo-head .bday-close-x { position: static; flex: 0 0 auto; }
+
+    .papo-list {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow-y: auto;
+        padding: 14px 2px 6px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .papo-list::-webkit-scrollbar { width: 8px; }
+    .papo-list::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--border-strong); }
+
+    .papo-empty { margin: auto; display: grid; justify-items: center; gap: 6px; padding: 20px; text-align: center; }
+    .papo-empty div { font-size: 46px; animation: avatarBob 3s ease-in-out infinite; }
+    .papo-empty b { font-size: 15px; color: var(--text); }
+    .papo-empty small { font-size: 13px; line-height: 1.5; color: var(--text-muted); }
+
+    .pm { max-width: 80%; display: flex; flex-direction: column; gap: 3px; }
+    .pm > span { padding: 9px 13px; font-size: 15px; line-height: 1.4; border-radius: 18px; word-break: break-word; }
+    .pm small { padding: 0 8px; font-size: 10.5px; color: var(--text-muted); }
+    .pm.me { align-self: flex-end; align-items: flex-end; }
+    .pm.them { align-self: flex-start; }
+    .pm.me > span { border-bottom-right-radius: 5px; }
+    .pm.them > span { border-bottom-left-radius: 5px; }
+    .pm.d > span { background: #ffe0ec; color: #8a2a52; }
+    .pm.g > span { background: #dfeaff; color: #234a8a; }
+    .pm.emoji > span { padding: 0 4px; font-size: 38px; background: none; }
+
+    :root[data-theme="dark"] .pm.d > span { background: rgba(255, 106, 168, 0.22); color: #ffd3e4; }
+    :root[data-theme="dark"] .pm.g > span { background: rgba(108, 143, 214, 0.25); color: #d6e6ff; }
+
+    .pm.pcard > span { display: grid; gap: 8px; padding: 12px 14px; font-weight: 600; border: 2px dashed currentColor; }
+
+    .pm-actions { display: flex; gap: 6px; }
+
+    .pm-actions button, .pm-open {
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 999px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--btn-1), var(--btn-2));
+        box-shadow: none;
+    }
+
+    .pm-actions button.no { color: var(--text-soft); background: rgba(255, 255, 255, 0.7); }
+    .pm-open { justify-self: start; }
+    .pm-answered { font-size: 12px; font-style: normal; font-weight: 500; opacity: 0.75; }
+
+    .papo-typing { min-height: 18px; padding: 0 6px; font-size: 12px; font-style: italic; color: var(--text-muted); }
+
+    .papo-games { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px; }
+    .papo-games button { padding: 10px 4px; font-size: 12.5px; font-weight: 700; border-radius: 14px; color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); box-shadow: none; }
+
+    .papo-plans { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: none; }
+    .papo-plans::-webkit-scrollbar { display: none; }
+    .papo-plans button { flex: 0 0 auto; padding: 8px 12px; font-size: 12.5px; white-space: nowrap; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); box-shadow: none; }
+    .papo-plans button.game { color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); }
+    .papo-plans button.game.on { box-shadow: 0 0 0 3px var(--chip-bg); }
+
+    .papo-emojis { display: flex; justify-content: space-between; margin: 0 0 6px; }
+    .papo-emojis button { padding: 4px; font-size: 23px; background: transparent; box-shadow: none; }
+    .papo-emojis button:active { transform: scale(1.3); }
+
+    .papo-send { display: flex; gap: 8px; }
+    .papo-send input { flex: 1; min-width: 0; padding: 12px 16px; font-size: 15px; border-radius: 999px; }
+    .papo-send button { width: 48px; height: 48px; padding: 0; font-size: 19px; border-radius: 50%; color: #fff; background: linear-gradient(135deg, var(--btn-1), var(--btn-2)); }
+
+    @media (max-width: 650px) {
+        #papoOverlay { padding: 0; }
+        .papo-modal { width: 100vw; height: 100dvh; border-radius: 0; border: 0; }
+        .papo-games { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -15707,6 +15858,19 @@
 
     </div>
 
+</div>
+
+<!-- ==================================================
+     💬 MODAL — NOSSO PAPINHO (chat do dia)
+================================================== -->
+
+<div
+    id="papoOverlay"
+    class="fun-overlay hidden"
+>
+    <div class="fun-modal papo-modal">
+        <div id="papoBox"></div>
+    </div>
 </div>
 
 <!-- ==================================================
@@ -25533,10 +25697,11 @@ Te amo muito.
 
         if (user) { try { passGate(); } catch (e) {} }
 
-        try { renderGamesHome(); } catch (e) {}
+        try { renderGamesHome(); renderPapoFab(); } catch (e) {}
 
         if (!user) {
             try {
+                if (!document.getElementById("papoOverlay").classList.contains("hidden")) closePapo();
                 if (!document.getElementById("gamesOverlay").classList.contains("hidden")) closeGames();
                 clearInterval(onlineBeat);
                 renderToday();
@@ -25561,6 +25726,9 @@ Te amo muito.
         cloudListeners.push(window.loveCloud.listenState("roleta_live", onCloudRoleta, err));
 
         cloudListeners.push(window.loveCloud.listenState("ceu", onCloudSky, err));
+
+        ["Diane", "Gabriel"].forEach(n =>
+            cloudListeners.push(window.loveCloud.listenState(papoKey(n), d => onCloudPapo(n, d), err)));
 
         Object.keys(CHAT_GAMES).forEach(j => ["Diane", "Gabriel"].forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(chatKey(j, n), d => onCloudChat(j, n, d), err))));
@@ -27595,6 +27763,462 @@ Te amo muito.
             if (!!t !== !!typing) renderGameChat();
         }
     }
+
+
+    /* ==================================================
+       💬 NOSSO PAPINHO: chat do casal na tela principal
+       - ao vivo, ordem certa (sequência, não relógio)
+       - limpa sozinho todo dia à meia-noite
+       - convites rápidos: jogar, filme, chamada, orar...
+    ================================================== */
+
+    const PAPO_MAX = 150;
+
+    // ✏️ convites de um toque
+    const PAPO_PLANOS = [
+        { k: "filme", icon: "🎬", t: "Bora ver um filme hoje?" },
+        { k: "chamada", icon: "📞", t: "Bora fazer uma chamada?" },
+        { k: "orar", icon: "🙏", t: "Bora orar juntos?" },
+        { k: "jantar", icon: "🍕", t: "Bora jantar juntos na chamada?" },
+        { k: "dormir", icon: "😴", t: "Vou dormir... boa noite, meu amor 💗" },
+        { k: "saudade", icon: "🥺", t: "Tô com saudade de você" }
+    ];
+
+    const PAPO_GAMES = { velha: "⭕ Jogo da velha", forca: "🎈 Forca", dama: "⚫ Dama", uno: "🃏 Uno" };
+    const PAPO_EMOJIS = ["😂", "😍", "🥺", "😘", "🔥", "😡", "🤡", "💗"];
+
+    let papoOpen = false;
+    let papoLocalAt = {};
+    let papoTypingLocal = 0;
+    let papoTypingSent = 0;
+    let papoLoaded = {};
+    let papoSeenSeq = Number(lsGetSafe("papoVisto_" + todayKey()) || 0);
+    let papoGamePicker = false;
+
+    function lsGetSafe(k) {
+
+        try { return localStorage.getItem(k); } catch (e) { return null; }
+    }
+
+    const papoKey = name => "papo_" + name.toLowerCase();
+
+    function papoDoc(name) {
+
+        const d = readStore(papoKey(name), null);
+
+        return d && d.dia === todayKey() ? d : { dia: todayKey(), msgs: [], visto: 0, typing: 0 };
+    }
+
+    function papoMsgs() {
+
+        return ["Diane", "Gabriel"]
+            .flatMap(n => (papoDoc(n).msgs || []).map(m => ({ ...m, de: n })))
+            .sort((a, b) => (a.seq || 0) - (b.seq || 0) || (papoLocalAt[a.id] || a.at) - (papoLocalAt[b.id] || b.at));
+    }
+
+    function papoNextSeq() {
+
+        return papoMsgs().reduce((mx, m) => Math.max(mx, m.seq || 0), 0) + 1;
+    }
+
+    function papoUnread() {
+
+        return papoMsgs().filter(m => m.de !== myName() && (m.seq || 0) > papoSeenSeq).length;
+    }
+
+    function papoSave(doc) {
+
+        const me = myName();
+
+        writeStore(papoKey(me), doc);
+
+        if (cloudReady()) window.loveCloud.setState(papoKey(me), doc).catch(() => loveToast("A mensagem não foi 😕 Confere a internet"));
+    }
+
+    function papoSend(text, tipo, extra) {
+
+        text = String(text || "").trim().slice(0, 400);
+
+        if (!text || !cloudReady()) return;
+
+        const doc = papoDoc(myName());
+        const msg = { id: newId(), t: text, tipo: tipo || "txt", seq: papoNextSeq(), at: Date.now(), ...(extra || {}) };
+
+        papoLocalAt[msg.id] = Date.now();
+
+        doc.msgs = (doc.msgs || []).concat(msg).slice(-PAPO_MAX);
+        doc.typing = 0;
+        doc.dia = todayKey();
+
+        papoTypingSent = 0;
+
+        papoSave(doc);
+
+        if (tipo === "emoji") papoFloat(text);
+
+        sfx("pop");
+
+        renderPapo(true);
+        renderPapoFab();
+    }
+
+    function papoSendInput() {
+
+        const input = document.getElementById("papoInput");
+
+        if (!input || !input.value.trim()) return;
+
+        const text = input.value;
+
+        input.value = "";
+
+        papoSend(text, /^\p{Extended_Pictographic}+$/u.test(text.trim()) ? "emoji" : "txt");
+
+        const fresh = document.getElementById("papoInput");
+
+        if (fresh) fresh.focus({ preventScroll: true });
+    }
+
+    function papoTyping() {
+
+        if (!cloudReady() || Date.now() - papoTypingSent < 2500) return;
+
+        papoTypingSent = Date.now();
+
+        papoSave({ ...papoDoc(myName()), typing: Date.now() });
+    }
+
+    function papoPlan(k) {
+
+        const p = PAPO_PLANOS.find(x => x.k === k);
+
+        if (p) papoSend(`${p.icon} ${p.t}`, "plano", { plano: k });
+    }
+
+    function papoInvite(jogo) {
+
+        papoGamePicker = false;
+
+        papoSend(`🎮 Bora jogar ${PAPO_GAMES[jogo].replace(/^\S+\s/, "")}?`, "convite", { jogo });
+    }
+
+    function papoToggleGames() {
+
+        papoGamePicker = !papoGamePicker;
+
+        renderPapo();
+    }
+
+    // responder um convite/plano
+    function papoAnswer(id, sim) {
+
+        const m = papoMsgs().find(x => x.id === id);
+
+        if (!m) return;
+
+        papoSend(sim ? "Bora!! 💗" : "Agora não dá 🥺 mais tarde?", "resp", { resp: id, sim: !!sim });
+
+        if (sim && m.tipo === "convite" && m.jogo) {
+            closePapo();
+            setTimeout(() => openGames(m.jogo), 250);
+        }
+
+        if (sim && m.tipo === "plano" && m.plano === "filme") {
+            closePapo();
+            setTimeout(() => { try { openNightPicker(); } catch (e) {} }, 250);
+        }
+    }
+
+    function papoFloat(emoji) {
+
+        for (let k = 0; k < 5; k++) {
+            const s = document.createElement("span");
+            s.className = "chat-float";
+            s.textContent = emoji;
+            s.style.left = (15 + Math.random() * 70) + "%";
+            s.style.animationDelay = (k * 0.12) + "s";
+            s.style.fontSize = (26 + Math.random() * 18) + "px";
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 2800);
+        }
+    }
+
+    function papoTime(m) {
+
+        const d = new Date(papoLocalAt[m.id] || m.at);
+
+        return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+
+    /* abrir / fechar */
+
+    function openPapo() {
+
+        if (!cloudReady()) {
+            openCloudModal();
+            return;
+        }
+
+        papoOpen = true;
+        papoGamePicker = false;
+
+        renderPapo(true);
+
+        openFunModal("papoOverlay");
+
+        setTimeout(() => { renderPapo(true); }, 30);
+    }
+
+    function closePapo() {
+
+        papoOpen = false;
+
+        closeFunModal("papoOverlay");
+
+        renderPapoFab();
+    }
+
+    function papoMarkSeen() {
+
+        const msgs = papoMsgs().filter(m => m.de !== myName());
+        const last = msgs.length ? msgs[msgs.length - 1].seq || 0 : 0;
+
+        if (last > papoSeenSeq) {
+            papoSeenSeq = last;
+            try { localStorage.setItem("papoVisto_" + todayKey(), String(last)); } catch (e) {}
+        }
+
+        // avisa o outro que eu vi (✓✓ visto)
+        const mine = papoDoc(myName());
+
+        if (last && (mine.visto || 0) < last && cloudReady()) papoSave({ ...mine, visto: last });
+    }
+
+    /* desenhar */
+
+    function renderPapoFab() {
+
+        let fab = document.getElementById("papoFab");
+
+        if (!fab) {
+            fab = document.createElement("button");
+            fab.id = "papoFab";
+            fab.className = "papo-fab hidden";
+            fab.setAttribute("aria-label", "Abrir o chat");
+            fab.onclick = openPapo;
+            document.body.appendChild(fab);
+        }
+
+        const show = cloudReady() && !isVisitor();
+
+        fab.classList.toggle("hidden", !show);
+
+        if (!show) return;
+
+        const n = papoUnread();
+        const other = otherName();
+        const od = papoDoc(other);
+        const typing = od.typing && Date.now() - papoTypingLocal < 4500;
+
+        fab.innerHTML = `💬${n ? `<i>${n > 9 ? "9+" : n}</i>` : ""}${typing ? `<span class="papo-fab-typing">${other} tá digitando…</span>` : ""}`;
+        fab.classList.toggle("has-new", n > 0);
+    }
+
+    function papoBubble(m, me, otherVisto, lastMineId) {
+
+        const mineMsg = m.de === me;
+        const cls = `pm ${mineMsg ? "me" : "them"} ${m.de === "Diane" ? "d" : "g"} ${m.tipo === "emoji" ? "emoji" : ""} ${m.tipo === "convite" || m.tipo === "plano" ? "pcard" : ""}`;
+        const answered = papoMsgs().some(x => x.tipo === "resp" && x.resp === m.id);
+
+        let body = `<span>${escapeHtml(m.t)}</span>`;
+
+        if ((m.tipo === "convite" || m.tipo === "plano") && !mineMsg && m.plano !== "dormir" && m.plano !== "saudade") {
+            body = `
+                <span>
+                    ${escapeHtml(m.t)}
+                    ${answered ? `<em class="pm-answered">respondido ✓</em>` : `
+                    <span class="pm-actions">
+                        <button onclick="papoAnswer('${m.id}', true)">${m.tipo === "convite" ? "Bora! ▶" : "Bora! 💗"}</button>
+                        <button class="no" onclick="papoAnswer('${m.id}', false)">Agora não</button>
+                    </span>`}
+                </span>`;
+        }
+
+        if (m.tipo === "convite" && mineMsg) {
+            body = `<span>${escapeHtml(m.t)}<button class="pm-open" onclick="closePapo(); setTimeout(() => openGames('${m.jogo}'), 250)">Abrir o jogo ▶</button></span>`;
+        }
+
+        const seen = mineMsg && m.id === lastMineId && otherVisto >= (m.seq || 0);
+
+        return `
+            <div class="${cls}">
+                ${body}
+                <small>${mineMsg ? "você" : m.de} · ${papoTime(m)}${seen ? " · ✓✓ visto" : ""}</small>
+            </div>`;
+    }
+
+    function renderPapo(scrollDown) {
+
+        const box = document.getElementById("papoBox");
+
+        if (!box || !papoOpen) return;
+
+        const me = myName();
+        const other = otherName();
+        const msgs = papoMsgs();
+        const od = papoDoc(other);
+        const typing = od.typing && Date.now() - papoTypingLocal < 4500;
+        const mine = msgs.filter(m => m.de === me);
+        const lastMineId = mine.length ? mine[mine.length - 1].id : null;
+        const online = (() => { try { return otherOnline(); } catch (e) { return false; } })();
+
+        papoMarkSeen();
+
+        const list = msgs.length
+            ? msgs.map(m => papoBubble(m, me, od.visto || 0, lastMineId)).join("")
+            : `<div class="papo-empty">
+                    <div>💬</div>
+                    <b>Nenhuma mensagem hoje ainda</b>
+                    <small>Manda um oi, chama pra jogar ou combina o que fazer hoje 💗<br>O papinho limpa sozinho todo dia à meia-noite 🌙</small>
+               </div>`;
+
+        const old = document.getElementById("papoInput");
+        const draft = old ? old.value : "";
+        const hadFocus = old && document.activeElement === old;
+        const listOld = document.getElementById("papoList");
+        const nearBottom = !listOld || listOld.scrollHeight - listOld.scrollTop - listOld.clientHeight < 80;
+
+        box.innerHTML = `
+            <div class="papo-head">
+                <div class="papo-head-txt">
+                    <b>Nosso papinho 💬</b>
+                    <small>${online ? `🟢 ${other} tá no app agora` : `⚪ ${other} não tá no app agora`} · limpa à meia-noite 🌙</small>
+                </div>
+                <button class="bday-close-x" onclick="closePapo()" aria-label="Fechar">✕</button>
+            </div>
+
+            <div class="papo-list" id="papoList">${list}</div>
+
+            <div class="papo-typing">${typing ? `${other} tá digitando…` : ""}</div>
+
+            ${papoGamePicker ? `
+                <div class="papo-games">
+                    ${Object.keys(PAPO_GAMES).map(j => `<button onclick="papoInvite('${j}')">${PAPO_GAMES[j]}</button>`).join("")}
+                </div>` : ""}
+
+            <div class="papo-plans">
+                <button class="game ${papoGamePicker ? "on" : ""}" onclick="papoToggleGames()">🎮 Chamar pra jogar</button>
+                ${PAPO_PLANOS.map(p => `<button onclick="papoPlan('${p.k}')">${p.icon} ${escapeHtml(p.t.replace(/\?$/, "").replace(/^Bora /, "").replace(/ 💗$/, ""))}</button>`).join("")}
+            </div>
+
+            <div class="papo-emojis">${PAPO_EMOJIS.map(e => `<button onclick="papoSend('${e}','emoji')">${e}</button>`).join("")}</div>
+
+            <div class="papo-send">
+                <input id="papoInput" maxlength="400" placeholder="Escreve pr${other === "Gabriel" ? "o Gabriel" : "a Diane"}..." autocomplete="off"
+                    oninput="papoTyping()" onkeydown="if (event.key === 'Enter') papoSendInput()">
+                <button onclick="papoSendInput()" aria-label="Enviar">➤</button>
+            </div>`;
+
+        const input = document.getElementById("papoInput");
+
+        if (input) {
+            input.value = draft;
+            if (hadFocus) input.focus({ preventScroll: true });
+        }
+
+        const listEl = document.getElementById("papoList");
+
+        if (listEl && (scrollDown || nearBottom)) listEl.scrollTop = listEl.scrollHeight;
+    }
+
+    /* ☁️ chegou mensagem */
+
+    function onCloudPapo(name, data) {
+
+        const first = !papoLoaded[name];
+
+        papoLoaded[name] = true;
+
+        if (!data) { renderPapoFab(); return; }
+
+        const before = papoDoc(name);
+        const known = new Set((before.msgs || []).map(m => m.id));
+
+        writeStore(papoKey(name), data);
+
+        if (name === myName()) {
+            // meu documento é de outro dia? limpa (mantém o banco leve)
+            if (first && data.dia !== todayKey()) papoDailyClean();
+            renderPapo(); renderPapoFab();
+            return;
+        }
+
+        if (data.dia !== todayKey()) { renderPapo(); renderPapoFab(); return; }
+
+        const fresh = (data.msgs || []).filter(m => !known.has(m.id));
+
+        fresh.forEach(m => { if (!papoLocalAt[m.id] && !first) papoLocalAt[m.id] = Date.now(); });
+
+        if (data.typing && data.typing !== before.typing) papoTypingLocal = Date.now();
+        if (fresh.length) papoTypingLocal = 0;
+
+        if (fresh.length && !first) {
+
+            const m = fresh[fresh.length - 1];
+
+            if (m.tipo === "emoji") papoFloat(m.t);
+
+            if (!papoOpen) {
+                const txt = m.t.length > 70 ? m.t.slice(0, 70) + "…" : m.t;
+                loveToast(m.tipo === "convite" ? `🎮 ${name} te chamou pra jogar! Abre o papinho 💬` : `💬 ${name}: ${txt}`);
+                try { sfx("plim"); } catch (e) {}
+            }
+        }
+
+        renderPapo();
+        renderPapoFab();
+    }
+
+    // limpa o meu documento quando vira o dia (deixa o banco leve)
+    function papoDailyClean() {
+
+        if (!cloudReady()) return;
+
+        const raw = readStore(papoKey(myName()), null);
+
+        if (raw && raw.dia && raw.dia !== todayKey()) {
+            papoSave({ dia: todayKey(), msgs: [], visto: 0, typing: 0 });
+        }
+    }
+
+    // "digitando…" e virada do dia
+    let papoDay = todayKey();
+
+    setInterval(() => {
+        try {
+            if (todayKey() !== papoDay) {
+                papoDay = todayKey();
+                papoSeenSeq = 0;
+                papoDailyClean();
+                renderPapo(true);
+            }
+            const el = document.querySelector("#papoBox .papo-typing");
+            const typing = papoDoc(otherName()).typing && Date.now() - papoTypingLocal < 4500;
+            if (el) el.textContent = typing ? `${otherName()} tá digitando…` : "";
+            renderPapoFab();
+        } catch (e) {}
+    }, 1500);
+
+    setTimeout(() => { try { renderPapoFab(); } catch (e) {} }, 0);
+
+    // fechou a janela por fora (voltar do celular, clicar fora…)
+    setTimeout(() => {
+        const ov = document.getElementById("papoOverlay");
+        if (!ov) return;
+        new MutationObserver(() => {
+            if (ov.classList.contains("hidden") && papoOpen) { papoOpen = false; renderPapoFab(); }
+        }).observe(ov, { attributes: true, attributeFilter: ["class"] });
+    }, 0);
 
     /* ☁️ chegou jogada do outro celular */
 
