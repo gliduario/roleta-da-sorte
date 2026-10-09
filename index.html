@@ -11174,6 +11174,97 @@
         .papo-games { grid-template-columns: repeat(2, 1fr); }
     }
 
+
+    /* 💬 papinho: reações, responder e cutucar */
+
+    .pm { position: relative; cursor: pointer; transition: transform 0.2s ease; touch-action: pan-y; }
+    .pm.bar-open > span { box-shadow: 0 0 0 3px var(--chip-bg); }
+    .pm.flash > span { animation: pmFlash 1.2s ease; }
+
+    @keyframes pmFlash { 0%, 100% { box-shadow: none; } 30% { box-shadow: 0 0 0 4px var(--border-strong); } }
+
+    .pm-bar {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-bottom: 4px;
+        padding: 4px 6px;
+        border-radius: 999px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.35);
+        animation: cellPop 0.25s cubic-bezier(.2, 1.6, .4, 1);
+    }
+
+    .pm-bar button { padding: 4px 5px; font-size: 21px; line-height: 1; border-radius: 50%; background: transparent; box-shadow: none; }
+    .pm-bar button.on { background: var(--chip-bg); }
+    .pm-bar button:active { transform: scale(1.3); }
+    .pm-bar button.reply { margin-left: 4px; padding: 6px 10px; font-size: 12.5px; font-weight: 700; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); }
+
+    .pm-reacts { display: flex; gap: 2px; margin-top: -10px; padding: 2px 6px; border-radius: 999px; background: var(--surface-solid); border: 1px solid var(--border); font-size: 14px; z-index: 1; }
+    .pm.me .pm-reacts { align-self: flex-end; margin-right: 8px; }
+    .pm.them .pm-reacts { align-self: flex-start; margin-left: 8px; }
+
+    .pm-quote {
+        display: grid;
+        gap: 1px;
+        width: 100%;
+        margin-bottom: 6px;
+        padding: 6px 10px;
+        text-align: left;
+        border-radius: 10px;
+        border-left: 4px solid currentColor;
+        background: rgba(255, 255, 255, 0.55);
+        box-shadow: none;
+        color: inherit;
+    }
+
+    .pm-quote b { font-size: 12px; }
+    .pm-quote span { font-size: 12.5px; opacity: 0.8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
+    :root[data-theme="dark"] .pm-quote { background: rgba(255, 255, 255, 0.08); }
+
+    .papo-replying {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        padding: 8px 10px 8px 12px;
+        border-radius: 14px;
+        border-left: 4px solid var(--accent);
+        background: var(--surface-soft);
+        animation: navIn 0.2s ease;
+    }
+
+    .papo-replying.g { border-left-color: #6c8fd6; }
+    .papo-replying div { flex: 1; min-width: 0; display: grid; }
+    .papo-replying b { font-size: 12px; color: var(--accent); }
+    .papo-replying span { font-size: 13px; color: var(--text-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .papo-replying button { width: 30px; height: 30px; padding: 0; font-size: 14px; border-radius: 50%; color: var(--text-soft); background: var(--btn-soft); box-shadow: none; }
+
+    .pm-sys {
+        align-self: center;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 999px;
+        color: var(--chip-text);
+        background: var(--chip-bg);
+    }
+
+    .pm-sys small { margin-left: 6px; font-weight: 400; font-size: 10.5px; opacity: 0.7; }
+
+    .papo-plans button.poke { color: #fff; background: linear-gradient(135deg, #ffb347, #ff6f91); }
+
+    body.poke-shake .container,
+    body.poke-shake .fun-modal { animation: pokeShake 0.8s cubic-bezier(.36, .07, .19, .97); }
+
+    @keyframes pokeShake {
+        10%, 90% { transform: translateX(-2px); }
+        20%, 80% { transform: translateX(4px); }
+        30%, 50%, 70% { transform: translateX(-8px) rotate(-1deg); }
+        40%, 60% { transform: translateX(8px) rotate(1deg); }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -27794,6 +27885,10 @@ Te amo muito.
     let papoLoaded = {};
     let papoSeenSeq = Number(lsGetSafe("papoVisto_" + todayKey()) || 0);
     let papoGamePicker = false;
+    let papoBarFor = null;      // mensagem com a barrinha de reação aberta
+    let papoReplyTo = null;     // mensagem que estou respondendo
+    let papoPokeAt = 0;
+    const PAPO_REACTS = ["❤️", "😂", "😮", "🥺", "👍"];
 
     function lsGetSafe(k) {
 
@@ -27843,6 +27938,15 @@ Te amo muito.
 
         const doc = papoDoc(myName());
         const msg = { id: newId(), t: text, tipo: tipo || "txt", seq: papoNextSeq(), at: Date.now(), ...(extra || {}) };
+
+        // ↩ respondendo uma mensagem
+        if (papoReplyTo && (tipo === "txt" || tipo === "emoji" || !tipo)) {
+            const orig = papoMsgs().find(x => x.id === papoReplyTo);
+            if (orig) msg.re = { id: orig.id, de: orig.de, t: orig.t.slice(0, 90) };
+        }
+
+        papoReplyTo = null;
+        papoBarFor = null;
 
         papoLocalAt[msg.id] = Date.now();
 
@@ -27950,6 +28054,145 @@ Te amo muito.
         return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
     }
 
+
+    /* ❤️ reações */
+
+    function papoReactions(id) {
+
+        return ["Diane", "Gabriel"]
+            .map(n => ({ n, e: (papoDoc(n).reacoes || {})[id] }))
+            .filter(x => x.e);
+    }
+
+    function papoReact(id, emoji) {
+
+        const doc = papoDoc(myName());
+        const r = { ...(doc.reacoes || {}) };
+
+        if (r[id] === emoji) delete r[id]; else r[id] = emoji;
+
+        doc.reacoes = r;
+        papoBarFor = null;
+
+        papoSave(doc);
+
+        if (r[id]) { sfx("pop"); papoFloat(emoji); }
+
+        renderPapo();
+    }
+
+    function papoTapBubble(ev, id) {
+
+        // botões dentro do balão (Bora!, Abrir jogo…) não abrem a barrinha
+        if (ev.target.closest("button")) return;
+
+        papoBarFor = papoBarFor === id ? null : id;
+
+        renderPapo();
+    }
+
+    function papoStartReply(id) {
+
+        papoReplyTo = id;
+        papoBarFor = null;
+
+        renderPapo();
+
+        const i = document.getElementById("papoInput");
+
+        if (i) i.focus({ preventScroll: true });
+    }
+
+    function papoCancelReply() {
+
+        papoReplyTo = null;
+
+        renderPapo();
+    }
+
+    function papoGoTo(id) {
+
+        const el = document.querySelector(`.pm[data-id="${id}"]`);
+
+        if (!el) { loveToast("Essa mensagem já sumiu 🌙"); return; }
+
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.remove("flash");
+        void el.offsetWidth;
+        el.classList.add("flash");
+    }
+
+    // arrastar o balão pro lado = responder (no celular)
+    let papoSwipe = null;
+
+    function papoTouchStart(ev, id) {
+
+        const t = ev.touches[0];
+
+        papoSwipe = { id, x: t.clientX, y: t.clientY, el: ev.currentTarget };
+    }
+
+    function papoTouchMove(ev) {
+
+        if (!papoSwipe) return;
+
+        const t = ev.touches[0];
+        const dx = t.clientX - papoSwipe.x;
+        const dy = Math.abs(t.clientY - papoSwipe.y);
+
+        if (dy > 30) { papoSwipe.el.style.transform = ""; papoSwipe = null; return; }
+
+        if (dx > 0) papoSwipe.el.style.transform = `translateX(${Math.min(dx, 70)}px)`;
+
+        papoSwipe.dx = dx;
+    }
+
+    function papoTouchEnd() {
+
+        if (!papoSwipe) return;
+
+        const { id, el, dx } = papoSwipe;
+
+        el.style.transform = "";
+        papoSwipe = null;
+
+        if ((dx || 0) > 55) {
+            try { if (navigator.vibrate) navigator.vibrate(15); } catch (e) {}
+            papoStartReply(id);
+        }
+    }
+
+    /* 👉 cutucar */
+
+    function papoPoke() {
+
+        if (Date.now() - papoPokeAt < 8000) {
+            loveToast("Calma kkkk espera uns segundinhos pra cutucar de novo 👉");
+            return;
+        }
+
+        papoPokeAt = Date.now();
+
+        papoSend(`👉 ${myName()} cutucou ${otherName() === "Gabriel" ? "o Gabriel" : "a Diane"}!`, "cutucao");
+
+        papoShake(false);
+    }
+
+    function papoShake(received) {
+
+        document.body.classList.remove("poke-shake");
+        void document.body.offsetWidth;
+        document.body.classList.add("poke-shake");
+
+        setTimeout(() => document.body.classList.remove("poke-shake"), 900);
+
+        if (received) {
+            try { if (navigator.vibrate) navigator.vibrate([120, 60, 120, 60, 240]); } catch (e) {}
+            try { sfx("kiu"); } catch (e) {}
+            papoFloat("👉");
+        }
+    }
+
     /* abrir / fechar */
 
     function openPapo() {
@@ -28027,10 +28270,23 @@ Te amo muito.
     function papoBubble(m, me, otherVisto, lastMineId) {
 
         const mineMsg = m.de === me;
-        const cls = `pm ${mineMsg ? "me" : "them"} ${m.de === "Diane" ? "d" : "g"} ${m.tipo === "emoji" ? "emoji" : ""} ${m.tipo === "convite" || m.tipo === "plano" ? "pcard" : ""}`;
+
+        // 👉 cutucão vira uma linha no meio do chat
+        if (m.tipo === "cutucao") {
+            return `<div class="pm-sys" data-id="${m.id}">${mineMsg ? `👉 Você cutucou ${otherName() === "Gabriel" ? "o Gabriel" : "a Diane"}` : `👉 ${m.de === "Gabriel" ? "O Gabriel" : "A Diane"} te cutucou!`} <small>${papoTime(m)}</small></div>`;
+        }
+
+        const cls = `pm ${mineMsg ? "me" : "them"} ${m.de === "Diane" ? "d" : "g"} ${m.tipo === "emoji" ? "emoji" : ""} ${m.tipo === "convite" || m.tipo === "plano" ? "pcard" : ""} ${papoBarFor === m.id ? "bar-open" : ""}`;
         const answered = papoMsgs().some(x => x.tipo === "resp" && x.resp === m.id);
 
-        let body = `<span>${escapeHtml(m.t)}</span>`;
+        const quote = m.re
+            ? `<button class="pm-quote ${m.re.de === "Diane" ? "d" : "g"}" onclick="papoGoTo('${m.re.id}')">
+                   <b>${m.re.de === me ? "Você" : m.re.de}</b>
+                   <span>${escapeHtml(m.re.t)}</span>
+               </button>`
+            : "";
+
+        let body = `<span>${quote}${escapeHtml(m.t)}</span>`;
 
         if ((m.tipo === "convite" || m.tipo === "plano") && !mineMsg && m.plano !== "dormir" && m.plano !== "saudade") {
             body = `
@@ -28049,10 +28305,22 @@ Te amo muito.
         }
 
         const seen = mineMsg && m.id === lastMineId && otherVisto >= (m.seq || 0);
+        const reacts = papoReactions(m.id);
+        const myReact = (papoDoc(me).reacoes || {})[m.id];
+
+        const bar = papoBarFor === m.id ? `
+            <div class="pm-bar">
+                ${PAPO_REACTS.map(e => `<button class="${myReact === e ? "on" : ""}" onclick="papoReact('${m.id}','${e}')">${e}</button>`).join("")}
+                <button class="reply" onclick="papoStartReply('${m.id}')">↩ Responder</button>
+            </div>` : "";
 
         return `
-            <div class="${cls}">
+            <div class="${cls}" data-id="${m.id}"
+                onclick="papoTapBubble(event, '${m.id}')"
+                ontouchstart="papoTouchStart(event, '${m.id}')" ontouchmove="papoTouchMove(event)" ontouchend="papoTouchEnd()">
+                ${bar}
                 ${body}
+                ${reacts.length ? `<div class="pm-reacts">${reacts.map(r => `<span title="${r.n}">${r.e}</span>`).join("")}</div>` : ""}
                 <small>${mineMsg ? "você" : m.de} · ${papoTime(m)}${seen ? " · ✓✓ visto" : ""}</small>
             </div>`;
     }
@@ -28097,7 +28365,7 @@ Te amo muito.
                 <button class="bday-close-x" onclick="closePapo()" aria-label="Fechar">✕</button>
             </div>
 
-            <div class="papo-list" id="papoList">${list}</div>
+            <div class="papo-list" id="papoList" onclick="if (!event.target.closest('.pm') && papoBarFor) { papoBarFor = null; renderPapo(); }">${list}</div>
 
             <div class="papo-typing">${typing ? `${other} tá digitando…` : ""}</div>
 
@@ -28106,7 +28374,17 @@ Te amo muito.
                     ${Object.keys(PAPO_GAMES).map(j => `<button onclick="papoInvite('${j}')">${PAPO_GAMES[j]}</button>`).join("")}
                 </div>` : ""}
 
+            ${papoReplyTo ? (() => {
+                const r = papoMsgs().find(x => x.id === papoReplyTo);
+                return r ? `
+                    <div class="papo-replying ${r.de === "Diane" ? "d" : "g"}">
+                        <div><b>↩ Respondendo ${r.de === me ? "você mesmo" : r.de}</b><span>${escapeHtml(r.t.slice(0, 90))}</span></div>
+                        <button onclick="papoCancelReply()" aria-label="Cancelar resposta">✕</button>
+                    </div>` : "";
+            })() : ""}
+
             <div class="papo-plans">
+                <button class="poke" onclick="papoPoke()">👉 Cutucar</button>
                 <button class="game ${papoGamePicker ? "on" : ""}" onclick="papoToggleGames()">🎮 Chamar pra jogar</button>
                 ${PAPO_PLANOS.map(p => `<button onclick="papoPlan('${p.k}')">${p.icon} ${escapeHtml(p.t.replace(/\?$/, "").replace(/^Bora /, "").replace(/ 💗$/, ""))}</button>`).join("")}
             </div>
@@ -28162,9 +28440,26 @@ Te amo muito.
         if (data.typing && data.typing !== before.typing) papoTypingLocal = Date.now();
         if (fresh.length) papoTypingLocal = 0;
 
-        if (fresh.length && !first) {
+        // alguém reagiu a uma mensagem MINHA?
+        if (!first) {
+            const oldR = before.reacoes || {}, newR = data.reacoes || {};
+            const mineIds = new Set((papoDoc(myName()).msgs || []).map(m => m.id));
+            const novo = Object.keys(newR).find(id => newR[id] && newR[id] !== oldR[id] && mineIds.has(id));
+            if (novo) {
+                papoFloat(newR[novo]);
+                if (!papoOpen) loveToast(`${newR[novo]} ${name === "Gabriel" ? "O Gabriel" : "A Diane"} reagiu à sua mensagem`);
+            }
+        }
 
-            const m = fresh[fresh.length - 1];
+        // 👉 cutucão: treme em qualquer tela do app
+        if (!first && fresh.some(m => m.tipo === "cutucao")) {
+            papoShake(true);
+            loveToast(`👉 ${name === "Gabriel" ? "O Gabriel" : "A Diane"} te cutucou!`);
+        }
+
+        if (fresh.length && !first && !fresh.every(m => m.tipo === "cutucao")) {
+
+            const m = fresh.filter(x => x.tipo !== "cutucao").pop();
 
             if (m.tipo === "emoji") papoFloat(m.t);
 
