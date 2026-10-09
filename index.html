@@ -11265,6 +11265,251 @@
         40%, 60% { transform: translateX(8px) rotate(1deg); }
     }
 
+
+    /* ✈️🌴 cantinho da viagem */
+
+    #home .trip-card {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 20px 18px 16px;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 26px;
+        background: linear-gradient(170deg, #ff9a76 0%, #ff6f91 38%, #5ab6e8 78%, #2f8fc9 100%);
+        box-shadow: 0 18px 36px -18px rgba(47, 143, 201, 0.75);
+        transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #home .trip-card:active { transform: scale(0.98); }
+
+    .tc-sun { position: absolute; z-index: -1; top: -30px; right: -20px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, #fff3b0 0%, #ffd36e 45%, transparent 70%); animation: avatarBob 6s ease-in-out infinite; }
+
+    .tc-waves {
+        position: absolute;
+        z-index: -1;
+        left: -10%;
+        right: -10%;
+        bottom: -18px;
+        height: 70px;
+        background:
+            radial-gradient(40px 18px at 40px 0, transparent 98%, rgba(255, 255, 255, 0.22) 100%) 0 0 / 80px 40px repeat-x;
+        animation: tcWave 8s linear infinite;
+    }
+
+    @keyframes tcWave { to { transform: translateX(80px); } }
+
+    .tc-main { display: flex; align-items: center; gap: 16px; }
+    .tc-count { display: grid; justify-items: center; min-width: 92px; padding: 10px 8px; border-radius: 20px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(6px); }
+    .tc-count b { font-size: 40px; line-height: 1; font-family: "Fredoka", sans-serif; }
+    .tc-count span { margin-top: 4px; font-size: 11.5px; font-weight: 600; text-align: center; line-height: 1.25; }
+    .tc-info { display: grid; gap: 4px; font-size: 13px; font-weight: 600; text-align: left; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); }
+    .tc-go { margin-top: 14px; font-size: 13px; font-weight: 700; text-align: right; opacity: 0.95; }
+
+    #tripOverlay { padding: 12px; }
+
+    .trip-modal {
+        width: min(100%, 900px);
+        max-width: none;
+        height: calc(100dvh - 24px);
+        max-height: none;
+        padding: 0 22px 24px;
+        overflow-x: hidden;
+        text-align: left;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .trip-top {
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        margin: 0 -22px 14px;
+        padding: 14px 16px 10px;
+        background: linear-gradient(180deg, var(--surface-solid) 82%, transparent);
+    }
+
+    .trip-title { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .trip-title h2 { flex: 1; margin: 0; font-size: 21px; color: var(--accent); }
+    .trip-title .bday-close-x { position: static; }
+
+    .trip-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+    .trip-tabs::-webkit-scrollbar { display: none; }
+
+    .trip-tab {
+        flex: 1 0 auto;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        border-radius: 999px;
+        color: var(--text-soft);
+        background: var(--btn-soft);
+        box-shadow: none;
+    }
+
+    .trip-tab.on { color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .trip-sec { margin: 22px 2px 10px; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); }
+    .trip-note { display: block; margin: 8px 2px; font-size: 12px; color: var(--text-muted); }
+    .trip-empty { padding: 18px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+    .trip-empty.big { padding: 40px 18px; font-size: 15px; }
+    .trip-empty .primary-btn { margin-top: 12px; }
+    .trip-mini { margin-top: 8px; padding: 7px 12px; font-size: 12.5px; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); box-shadow: none; }
+
+    .trip-hero {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 6px 16px;
+        align-items: center;
+        padding: 18px;
+        border-radius: 24px;
+        color: #fff;
+        background: linear-gradient(160deg, #ff9a76, #ff6f91 45%, #2f8fc9);
+    }
+
+    .th-count { grid-row: span 2; display: grid; place-items: center; min-width: 88px; height: 88px; padding: 0 10px; font-size: 44px; font-weight: 700; border-radius: 24px; background: rgba(255, 255, 255, 0.22); font-family: "Fredoka", sans-serif; }
+    .th-txt b { display: block; font-size: 17px; }
+    .th-txt small { font-size: 12.5px; opacity: 0.9; }
+    .th-dates { display: flex; gap: 8px; flex-wrap: wrap; }
+    .th-dates label { display: grid; gap: 2px; font-size: 11.5px; font-weight: 700; }
+    .th-dates input { padding: 8px 10px; font-size: 14px; border-radius: 12px; border: 0; color: #333; background: rgba(255, 255, 255, 0.92); }
+
+    .trip-alert { margin-top: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; border-radius: 16px; color: #7a4a00; background: #fff1c9; border: 1px solid #ffd36e; }
+    :root[data-theme="dark"] .trip-alert { color: #ffe3a3; background: rgba(255, 211, 110, 0.14); }
+
+    .trip-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 14px; }
+    .trip-stats button { display: grid; gap: 2px; padding: 12px 4px; border-radius: 16px; color: var(--text); background: var(--surface-soft); border: 1px solid var(--border); box-shadow: none; }
+    .trip-stats b { font-size: 17px; color: var(--accent); }
+    .trip-stats small { font-size: 10.5px; color: var(--text-muted); }
+
+    .trip-weather { padding: 14px; border-radius: 20px; background: linear-gradient(160deg, rgba(90, 182, 232, 0.16), rgba(255, 211, 110, 0.16)); border: 1px solid var(--border); }
+    .tw-now { display: flex; align-items: center; gap: 12px; }
+    .tw-ic { font-size: 40px; }
+    .tw-now b { display: block; font-size: 16px; color: var(--text); }
+    .tw-now small { font-size: 12.5px; color: var(--text-soft); }
+    .tw-label { margin: 12px 0 8px; font-size: 12px; font-weight: 700; color: var(--text-muted); }
+    .tw-days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+    .tw-day { flex: 0 0 auto; display: grid; justify-items: center; gap: 1px; min-width: 66px; padding: 8px 6px; border-radius: 14px; background: var(--surface-solid); }
+    .tw-day small { font-size: 10.5px; color: var(--text-muted); }
+    .tw-day span { font-size: 22px; }
+    .tw-day b { font-size: 14px; color: var(--text); }
+    .tw-day em { font-size: 11.5px; font-style: normal; color: var(--text-muted); }
+    .tw-day i { font-size: 10.5px; font-style: normal; color: #3a8fd0; }
+
+    .trip-tips { display: grid; gap: 8px; }
+    .trip-tips div { padding: 10px 12px; font-size: 13.5px; line-height: 1.5; border-radius: 14px; color: var(--text-soft); background: var(--surface-soft); }
+    .trip-tips b { color: var(--text); }
+
+    .trip-search { display: flex; gap: 8px; margin-top: 4px; }
+    .trip-search input, .trip-search select { flex: 1; min-width: 0; padding: 11px 14px; font-size: 14.5px; border-radius: 14px; }
+    .trip-search select { flex: 0 0 auto; }
+    .trip-search button { padding: 0 16px; font-size: 14px; font-weight: 700; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .trip-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .trip-quick a { padding: 7px 12px; font-size: 12.5px; font-weight: 600; text-decoration: none; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); }
+
+    .trip-filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .trip-filters::-webkit-scrollbar { display: none; }
+    .trip-filters button { flex: 0 0 auto; padding: 8px 12px; font-size: 12.5px; white-space: nowrap; border-radius: 999px; color: var(--text-soft); background: var(--btn-soft); box-shadow: none; }
+    .trip-filters button.on { color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .trip-places { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 8px; }
+
+    .tp { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 20px; background: var(--surface-soft); border: 2px solid var(--border); }
+    .tp.both { border-color: #ff8fb8; box-shadow: 0 0 0 4px var(--chip-bg); }
+    .tp.done { opacity: 0.85; }
+    .tp-top { display: flex; align-items: center; gap: 10px; }
+    .tp-icon { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; font-size: 24px; border-radius: 14px; background: var(--surface-solid); }
+    .tp-title { flex: 1; min-width: 0; }
+    .tp-title b { display: block; font-size: 15px; color: var(--text); }
+    .tp-title small { font-size: 11.5px; color: var(--text-muted); }
+    .tp-both { flex: 0 0 auto; padding: 4px 8px; font-size: 11px; font-weight: 700; border-radius: 999px; color: #fff; background: #ff6f91; }
+    .tp p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--text-soft); }
+    .tp-dica { padding: 8px 10px; font-size: 12.5px; line-height: 1.45; border-radius: 12px; color: var(--text-soft); background: var(--surface-solid); }
+    .tp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tp-tags span { padding: 3px 8px; font-size: 11px; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); }
+    .tp-in { font-size: 12px; font-weight: 600; color: #2f8fc9; }
+
+    .tp-actions { display: flex; align-items: center; gap: 6px; margin-top: auto; flex-wrap: wrap; }
+    .tp-actions button, .tp-actions a { padding: 7px 10px; font-size: 12.5px; font-weight: 700; text-decoration: none; border-radius: 999px; color: var(--text-soft); background: var(--surface-solid); border: 1px solid var(--border); box-shadow: none; }
+    .tp-actions button.on { color: #fff; background: #ff6f91; border-color: transparent; }
+    .tp-actions button.on.done { background: #3fbf85; }
+    .tp-other { flex: 1; font-size: 11.5px; color: var(--text-muted); }
+
+    .tp-days { padding: 10px; border-radius: 14px; background: var(--surface-solid); }
+    .tp-days small { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 700; color: var(--text-muted); }
+    .tp-days div { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tp-days button { padding: 7px 10px; font-size: 12.5px; border-radius: 999px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); box-shadow: none; }
+
+    .tr-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .tr-top b { display: block; font-size: 17px; color: var(--text); }
+    .tr-top small { font-size: 12px; color: var(--text-muted); }
+    .tr-top .primary-btn { flex: 0 0 auto; padding: 10px 16px; font-size: 14px; }
+
+    .tr-day { margin-bottom: 14px; padding: 14px; border-radius: 20px; background: var(--surface-soft); border: 1px solid var(--border); }
+    .tr-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+    .tr-head b { font-size: 16px; color: var(--accent); }
+    .tr-head span { font-size: 13px; color: var(--text-soft); }
+
+    .tr-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px dashed var(--border); }
+    .tr-item input[type="time"] { width: 112px; padding: 6px 6px; font-size: 13px; border-radius: 10px; }
+    .tr-ic { font-size: 20px; }
+    .tr-txt { flex: 1; min-width: 0; }
+    .tr-txt b { display: block; font-size: 14px; color: var(--text); }
+    .tr-txt small { display: block; font-size: 11.5px; line-height: 1.4; color: var(--text-muted); }
+    .tr-item a, .tr-item button { flex: 0 0 auto; padding: 4px 8px; font-size: 14px; text-decoration: none; border-radius: 10px; color: var(--text-muted); background: transparent; box-shadow: none; }
+    .tr-empty { padding: 6px 0 4px; font-size: 13px; color: var(--text-muted); }
+    .tr-add { display: flex; gap: 6px; margin-top: 8px; }
+    .tr-add input { flex: 1; min-width: 0; padding: 9px 12px; font-size: 13.5px; border-radius: 12px; }
+    .tr-add button { padding: 0 12px; border-radius: 12px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .tm-progress { padding: 14px; border-radius: 18px; background: var(--surface-soft); }
+    .tm-progress b { font-size: 22px; color: var(--accent); }
+    .tm-progress small { color: var(--text-muted); }
+    .tm-bar { height: 10px; margin-top: 8px; overflow: hidden; border-radius: 999px; background: var(--border); }
+    .tm-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #ff6f91, #2f8fc9); transition: width 0.4s ease; }
+    .tm-bar.over i { background: linear-gradient(90deg, #ff9a76, #e0454f); }
+
+    .tm-list { display: grid; gap: 6px; margin: 12px 0; }
+    .tm-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 14px; background: var(--surface-soft); }
+    .tm-item span { flex: 1; font-size: 14px; color: var(--text); }
+    .tm-item.ok span { text-decoration: line-through; color: var(--text-muted); }
+    .tm-check, .tm-del { padding: 2px 6px; font-size: 18px; background: transparent; box-shadow: none; }
+    .tm-del { font-size: 13px; color: var(--text-muted); }
+    .tm-who { padding: 5px 9px; font-size: 11.5px; white-space: nowrap; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); box-shadow: none; }
+
+    .tg-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .tg-sum div { display: grid; gap: 2px; padding: 12px; border-radius: 16px; background: var(--surface-soft); }
+    .tg-sum small { font-size: 11.5px; color: var(--text-muted); }
+    .tg-sum b { font-size: 16px; color: var(--text); }
+    .tg-balance { margin-top: 10px; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 16px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+    .tg-balance small { font-weight: 400; opacity: 0.85; }
+    .tg-orc { margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: var(--surface-soft); }
+    .tg-orc label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text-soft); }
+    .tg-orc input { width: 140px; padding: 8px 10px; font-size: 14px; border-radius: 10px; }
+    .tg-orc small { display: block; margin-top: 6px; font-size: 12px; color: var(--text-muted); }
+    .tg-new { display: grid; grid-template-columns: 1fr 110px; gap: 8px; }
+    .tg-new input, .tg-new select { padding: 11px 12px; font-size: 14px; border-radius: 12px; }
+    .tg-new select { grid-column: 1; }
+    .tg-new .primary-btn { grid-column: 2; padding: 10px; font-size: 14px; }
+    .tg-list { display: grid; gap: 6px; margin-top: 14px; }
+    .tg-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--surface-soft); }
+    .tg-item b { flex: 1; font-size: 14px; font-weight: 600; color: var(--text); }
+    .tg-item em { font-style: normal; font-weight: 700; color: var(--accent); }
+    .tg-item button { padding: 2px 6px; font-size: 13px; color: var(--text-muted); background: transparent; box-shadow: none; }
+
+    @media (max-width: 650px) {
+        #tripOverlay { padding: 0; }
+        .trip-modal { width: 100vw; height: 100dvh; border-radius: 0; border: 0; padding: 0 14px 20px; }
+        .trip-top { margin: 0 -14px 12px; }
+        .trip-stats { grid-template-columns: repeat(3, 1fr); }
+        .trip-hero { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+        .th-count { grid-row: auto; }
+        .th-dates { justify-content: center; }
+        .tg-sum b { font-size: 14px; }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -15949,6 +16194,32 @@
 
     </div>
 
+</div>
+
+<!-- ==================================================
+     ✈️🌴 MODAL — NOSSA VIAGEM (Fortaleza)
+================================================== -->
+
+<div
+    id="tripOverlay"
+    class="fun-overlay hidden"
+>
+    <div class="fun-modal trip-modal">
+        <div class="trip-top">
+            <div class="trip-title">
+                <h2>Fortaleza 🌴</h2>
+                <button class="bday-close-x" onclick="closeTrip()" aria-label="Fechar">✕</button>
+            </div>
+            <div class="trip-tabs">
+                <button class="trip-tab on" data-tab="inicio" onclick="setTripTab('inicio')">🌴 Início</button>
+                <button class="trip-tab" data-tab="lugares" onclick="setTripTab('lugares')">🗺️ Lugares</button>
+                <button class="trip-tab" data-tab="roteiro" onclick="setTripTab('roteiro')">📅 Roteiro</button>
+                <button class="trip-tab" data-tab="mala" onclick="setTripTab('mala')">🧳 Mala</button>
+                <button class="trip-tab" data-tab="gastos" onclick="setTripTab('gastos')">💸 Gastos</button>
+            </div>
+        </div>
+        <div id="tripBody"></div>
+    </div>
 </div>
 
 <!-- ==================================================
@@ -25788,11 +26059,12 @@ Te amo muito.
 
         if (user) { try { passGate(); } catch (e) {} }
 
-        try { renderGamesHome(); renderPapoFab(); } catch (e) {}
+        try { renderGamesHome(); renderPapoFab(); renderTripCard(); } catch (e) {}
 
         if (!user) {
             try {
                 if (!document.getElementById("papoOverlay").classList.contains("hidden")) closePapo();
+                if (!document.getElementById("tripOverlay").classList.contains("hidden")) closeTrip();
                 if (!document.getElementById("gamesOverlay").classList.contains("hidden")) closeGames();
                 clearInterval(onlineBeat);
                 renderToday();
@@ -25820,6 +26092,12 @@ Te amo muito.
 
         ["Diane", "Gabriel"].forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(papoKey(n), d => onCloudPapo(n, d), err)));
+
+        // ✈️ viagem
+        TRIP_COLS.forEach(c =>
+            cloudListeners.push(window.loveCloud.listen(tripColName(c), list => onCloudTripList(c, list), err)));
+        ["viagem_cfg", "viagem_marcas_diane", "viagem_marcas_gabriel"].forEach(k =>
+            cloudListeners.push(window.loveCloud.listenState(k, d => onCloudTripState(k, d), err)));
 
         Object.keys(CHAT_GAMES).forEach(j => ["Diane", "Gabriel"].forEach(n =>
             cloudListeners.push(window.loveCloud.listenState(chatKey(j, n), d => onCloudChat(j, n, d), err))));
@@ -28514,6 +28792,963 @@ Te amo muito.
             if (ov.classList.contains("hidden") && papoOpen) { papoOpen = false; renderPapoFab(); }
         }).observe(ov, { attributes: true, attributeFilter: ["class"] });
     }, 0);
+
+
+    /* ==================================================
+       ✈️🌴 NOSSA VIAGEM: FORTALEZA
+       Lugares pesquisados (out/2026). Horários e preços mudam:
+       sempre bom conferir antes de ir.
+    ================================================== */
+
+    const TRIP_CITY = { nome: "Fortaleza", lat: -3.7319, lon: -38.5267, tz: "America/Fortaleza" };
+
+    const TRIP_CATS = {
+        praia: { icon: "🏖️", nome: "Praias" },
+        passeio: { icon: "⛵", nome: "Passeios" },
+        bate: { icon: "🚙", nome: "Bate-volta" },
+        comer: { icon: "🦀", nome: "Comer" },
+        noite: { icon: "🌙", nome: "Noite" },
+        cultura: { icon: "🏛️", nome: "Cultura" },
+        compras: { icon: "🛍️", nome: "Compras" }
+    };
+
+    // tags: casal 💞 · chuva ☔ (bom pra dia de chuva) · sol 🌅 (pôr do sol) · cedo ⏰
+    const TRIP_PLACES = [
+        // 🏖️ praias e orla
+        { id: "beiramar", cat: "praia", icon: "🌊", nome: "Calçadão da Beira-Mar", onde: "Meireles / Mucuripe",
+          desc: "O cartão-postal da cidade: calçadão à beira-mar pra caminhar de mãos dadas, com quiosques, caiaque e SUP.",
+          dica: "Fim de tarde é o melhor horário. Dá pra emendar com a Feirinha à noite.", tags: ["casal", "sol"] },
+        { id: "futuro", cat: "praia", icon: "🏝️", nome: "Praia do Futuro", onde: "~9 km da Beira-Mar",
+          desc: "As famosas megabarracas (Crocobeach, Chico do Caranguejo, Santa Praia, Órbita Blue…) com piscina, música e comida o dia todo.",
+          dica: "O mar tem correnteza forte: entrem só no rasinho, perto do salva-vidas. Cheguem cedo e evitem o calçadão sozinhos à noite.", tags: ["cedo"] },
+        { id: "iracema", cat: "praia", icon: "🌅", nome: "Praia de Iracema + Ponte dos Ingleses", onde: "Praia de Iracema",
+          desc: "Ponte de uns 800 m mar adentro, o pôr do sol mais bonito da cidade e o letreiro \"Eu amo Fortaleza\" no Estoril.",
+          dica: "Golfinhos às vezes aparecem bem cedinho (6h30 às 8h) perto do Espigão. Pro pôr do sol, cheguem umas 17h.", tags: ["casal", "sol"] },
+        { id: "cumbuco", cat: "praia", icon: "🏜️", nome: "Cumbuco (dunas e buggy)", onde: "~30 km · ~45 min",
+          desc: "Dunas, lagoas e passeio de buggy \"com ou sem emoção\", além de cavalo e kitesurf. Mar calmo e praia comprida.",
+          dica: "Combinem o preço do buggy antes de sair e levem dinheiro/Pix. Pôr do sol nas dunas é de cinema.", tags: ["casal", "sol"] },
+        { id: "prainha", cat: "praia", icon: "🐚", nome: "Prainha (Aquiraz)", onde: "~30 km · perto do Beach Park",
+          desc: "Mais tranquila e rústica, com jeitinho de vila de pescadores e rendeiras.",
+          dica: "Confiram a tábua de marés: o mar muda bastante ao longo do dia.", tags: [] },
+
+        // ⛵ passeios
+        { id: "beachpark", cat: "passeio", icon: "🎢", nome: "Beach Park", onde: "Aquiraz · ~30 km",
+          desc: "Um dos maiores parques aquáticos da América Latina, com o Insano (41 m!) e brinquedos pra todos os níveis de coragem.",
+          dica: "Comprem o ingresso online antes (sai mais barato) e cheguem na abertura. No Carnaval fica bem cheio.", tags: ["cedo"] },
+        { id: "escuna", cat: "passeio", icon: "⛵", nome: "Passeio de escuna ao pôr do sol", onde: "Saída do Mucuripe",
+          desc: "Umas 2 horinhas de barco pela orla, passando por um navio encalhado, e o sol se pondo no mar.",
+          dica: "Costuma sair às 16h (confiram o horário do dia). Levem um casaquinho por causa do vento.", tags: ["casal", "sol"] },
+        { id: "caiaque", cat: "passeio", icon: "🛶", nome: "Caiaque, SUP ou canoa havaiana", onde: "Mucuripe / Meireles",
+          desc: "Remar juntinhos no mar calmo da enseada, de manhã cedinho ou no fim da tarde.",
+          dica: "Na Kayakeria do Meireles dá pra chegar sem reserva.", tags: ["casal", "cedo", "sol"] },
+        { id: "bus", cat: "passeio", icon: "🚌", nome: "Fortaleza City Tour (ônibus de 2 andares)", onde: "Vários pontos",
+          desc: "Ônibus turístico com o andar de cima aberto, pra conhecer a cidade toda de uma vez.",
+          dica: "Bom pro primeiro dia, pra se localizar. Comprem online.", tags: [] },
+
+        // 🚙 bate-volta
+        { id: "morrobranco", cat: "bate", icon: "🏜️", nome: "Morro Branco + Praia das Fontes", onde: "Beberibe · ~85 km · ~1h30",
+          desc: "Falésias coloridas que formam um labirinto, garrafinhas de areia colorida e as fontes de água na Praia das Fontes.",
+          dica: "Dá pra fazer junto com Canoa Quebrada num tour de agência, com almoço incluso.", tags: ["casal"] },
+        { id: "canoa", cat: "bate", icon: "🪂", nome: "Canoa Quebrada", onde: "Aracati · ~165 km · ~2h30–3h",
+          desc: "Falésias vermelhas, a rua Broadway cheia de barzinhos, buggy e voo de parapente com vista pro mar.",
+          dica: "Se der, durmam uma noite lá. O clima à noite é uma delícia.", tags: ["casal", "sol"] },
+        { id: "aguasbelas", cat: "bate", icon: "💎", nome: "Águas Belas", onde: "Cascavel · ~65 km",
+          desc: "Água azulzinha e piscinas naturais, com passeio de buggy pelas dunas.",
+          dica: "Melhor ir com agência e na maré baixa, por causa das piscinas.", tags: [] },
+        { id: "lagoinha", cat: "bate", icon: "🌴", nome: "Lagoinha", onde: "Paraipaba · ~2h",
+          desc: "Uma das praias mais bonitas do Ceará: coqueiral, dunas e mar verdinho.",
+          dica: "Bom pra quem quer praia de cartão-postal sem ir até Jeri.", tags: ["casal"] },
+        { id: "jeri", cat: "bate", icon: "🌄", nome: "Jericoacoara", onde: "~300 km · 5–6h de viagem",
+          desc: "Pedra Furada, a Duna do Pôr do Sol, Lagoa do Paraíso, a Árvore da Preguiça… o lugar mais famoso do Ceará.",
+          dica: "O bate-volta sai umas 4h da manhã e é bem cansativo. O ideal é dormir 2 noites lá.", tags: ["casal", "sol"] },
+
+        // 🦀 comer
+        { id: "caranguejo", cat: "comer", icon: "🦀", nome: "Quinta do Caranguejo", onde: "Praia do Futuro (ex.: Chico do Caranguejo)",
+          desc: "Tradição de Fortaleza: toda quinta-feira as barracas fazem caranguejada à noite, com música ao vivo e humor.",
+          dica: "Tem que ser quinta-feira! O app encaixa sozinho no dia certo quando sugere o roteiro.", tags: ["casal"] },
+        { id: "mercadopeixes", cat: "comer", icon: "🐟", nome: "Mercado dos Peixes", onde: "Mucuripe (Beira-Mar)",
+          desc: "Vocês escolhem o peixe, o camarão ou a lagosta fresquinhos e eles preparam na hora, com vista pro mar.",
+          dica: "Fica aberto do café da manhã até umas 22h. Perfeito pro primeiro jantar.", tags: ["casal", "sol"] },
+        { id: "cocobambu", cat: "comer", icon: "🍤", nome: "Coco Bambu", onde: "Meireles e outros",
+          desc: "A rede nasceu em Fortaleza. Os pratos de camarão são enormes e dão pra dividir a dois.",
+          dica: "À noite costuma ter fila: cheguem cedo.", tags: ["casal"] },
+        { id: "regional", cat: "comer", icon: "🍛", nome: "Comida típica cearense", onde: "Restaurantes regionais",
+          desc: "Baião de dois, carne de sol com macaxeira, peixada cearense, paçoca, cuscuz e tapioca, pra acompanhar com suco de caju ou cajuína.",
+          dica: "Pelo menos um almoço tem que ser 100% regional!", tags: [] },
+        { id: "tapioqueiras", cat: "comer", icon: "🫓", nome: "Centro das Tapioqueiras", onde: "Messejana (caminho do Beach Park)",
+          desc: "Um monte de barraquinhas de tapioca de todos os recheios, doces e salgadas.",
+          dica: "Parada perfeita na ida ou na volta do Beach Park.", tags: [] },
+        { id: "carneiro", cat: "comer", icon: "🍖", nome: "Carneiro do Ordones", onde: "Fortaleza",
+          desc: "Clássico pra quem gosta de carne: carneiro na brasa, picanha e alcatra.",
+          dica: "Bom pra um almoço de fim de semana.", tags: [] },
+
+        // 🌙 noite
+        { id: "feirinha", cat: "noite", icon: "🧺", nome: "Feirinha da Beira-Mar", onde: "Av. Beira-Mar",
+          desc: "Feira de artesanato à noite: rendas, castanha, redes, bolsas e lembrancinhas.",
+          dica: "Funciona do fim da tarde até umas 22h. Pechinchar faz parte!", tags: ["casal"] },
+        { id: "dragao", cat: "noite", icon: "🐉", nome: "Centro Dragão do Mar", onde: "Praia de Iracema",
+          desc: "Centro cultural com museus, planetário e cinema, rodeado de barzinhos que enchem no fim da tarde.",
+          dica: "De dia é bom pra chuva (museus); à noite vira o point pra beber alguma coisa.", tags: ["chuva", "casal"] },
+        { id: "humor", cat: "noite", icon: "😂", nome: "Show de humor cearense", onde: "Barzinhos da Beira-Mar / Iracema",
+          desc: "Fortaleza é a capital do humor: muitos bares têm show de comédia à noite.",
+          dica: "Vejam a programação no dia. Às vezes já vem junto com o jantar.", tags: ["casal"] },
+        { id: "forro", cat: "noite", icon: "💃", nome: "Noite de forró", onde: "Praia de Iracema",
+          desc: "Dançar um forrozinho agarradinho! O Pirata Bar ficou famoso pela \"segunda-feira mais louca do mundo\".",
+          dica: "Confiram antes se a casa tá funcionando e qual é o dia da festa.", tags: ["casal"] },
+
+        // 🏛️ cultura (ótimos pra dia de chuva)
+        { id: "mercadocentral", cat: "compras", icon: "🛍️", nome: "Mercado Central", onde: "Centro",
+          desc: "Mais de 500 lojinhas: castanha, rapadura, cachaça, redes, rendas e artesanato. O lugar das lembrancinhas.",
+          dica: "Experimentem cajuína e licor de jenipapo. Bom pra dia de chuva.", tags: ["chuva"] },
+        { id: "theatro", cat: "cultura", icon: "🎭", nome: "Theatro José de Alencar", onde: "Centro",
+          desc: "Teatro de 1910 todo em ferro e vitrais, lindo por dentro e por fora.",
+          dica: "Tem visita guiada de mais ou menos 1 hora.", tags: ["chuva"] },
+        { id: "catedral", cat: "cultura", icon: "⛪", nome: "Catedral Metropolitana", onde: "Centro (Praça da Sé)",
+          desc: "Inspirada nas catedrais góticas, com vitrais enormes. Um lugar lindo pra fazer uma oração juntos.",
+          dica: "Fica pertinho do Mercado Central: dá pra fazer os dois juntos.", tags: ["chuva", "casal"] },
+        { id: "pinacoteca", cat: "cultura", icon: "🖼️", nome: "Pinacoteca do Ceará", onde: "Centro",
+          desc: "Museu de arte moderno e gratuito.",
+          dica: "Costuma abrir de quinta a domingo (conferir o horário).", tags: ["chuva"] },
+        { id: "shopping", cat: "compras", icon: "🏬", nome: "Shoppings (Iguatemi Bosque, RioMar)", onde: "Fortaleza",
+          desc: "O plano B perfeito se a chuva apertar: cinema, comidinha e ar-condicionado.",
+          dica: "Fevereiro já é começo da época de chuva, então é bom ter um plano B.", tags: ["chuva"] }
+    ];
+
+    // ✏️ roteiro sugerido (o app usa na ordem, um dia de cada)
+    const TRIP_TEMPLATE = [
+        { titulo: "Chegada e orla", itens: [["16:30", "beiramar"], ["17:30", "iracema"], ["19:30", "mercadopeixes"], ["21:00", "feirinha"]] },
+        { titulo: "Praia do Futuro", itens: [["09:00", "futuro"], ["19:30", "caranguejo"]], quinta: true },
+        { titulo: "Dia de Beach Park", itens: [["08:30", "tapioqueiras"], ["09:30", "beachpark"], ["17:00", "prainha"]] },
+        { titulo: "Dunas de Cumbuco", itens: [["08:30", "cumbuco"], ["20:00", "humor"]] },
+        { titulo: "Centro e cultura", itens: [["09:30", "mercadocentral"], ["11:30", "catedral"], ["14:30", "theatro"], ["18:00", "dragao"]] },
+        { titulo: "Falésias coloridas", itens: [["07:30", "morrobranco"], ["20:00", "cocobambu"]] },
+        { titulo: "Mar e pôr do sol", itens: [["07:00", "caiaque"], ["12:30", "regional"], ["16:00", "escuna"], ["20:30", "forro"]] },
+        { titulo: "Canoa Quebrada", itens: [["07:00", "canoa"]] },
+        { titulo: "Lagoinha", itens: [["07:30", "lagoinha"]] },
+        { titulo: "Despedida", itens: [["12:00", "regional"], ["17:00", "beiramar"], ["20:00", "carneiro"]] }
+    ];
+
+    // ✏️ sugestões pra mala
+    const TRIP_MALA_SUGESTOES = [
+        "Protetor solar FPS 50 (o sol de lá é forte!)", "Protetor labial com FPS", "Repelente",
+        "Guarda-chuva ou capa (fevereiro é começo da época de chuva)", "Roupa de banho (umas 3)", "Canga / toalha de praia",
+        "Chinelo", "Óculos de sol", "Chapéu ou boné", "Roupas leves e frescas", "Um casaquinho (avião e ar-condicionado)",
+        "Tênis confortável pros passeios", "Carregador + carregador portátil", "Documento com foto (RG/CNH)",
+        "Remédios de costume + algo pra enjoo (buggy e escuna)", "Garrafinha de água", "Saquinho estanque pro celular",
+        "Dinheiro trocado pros passeios"
+    ];
+
+    // ✏️ pesquisas rápidas no mapa (abrem o Google Maps)
+    const TRIP_BUSCAS = [
+        ["🍽️", "Restaurantes"], ["🦐", "Frutos do mar"], ["🍦", "Sorveteria"], ["🍹", "Barzinho"],
+        ["🥥", "Água de coco"], ["💊", "Farmácia"], ["🏧", "Caixa eletrônico"], ["🛒", "Supermercado"]
+    ];
+
+    let tripTab = "inicio";
+    let tripCat = "todos";
+    let tripAddFor = null;       // lugar escolhendo dia do roteiro
+    let tripWeather = null;
+    let tripWeatherAt = 0;
+    let tripWeatherErr = false;
+
+    const TRIP_COLS = ["roteiro", "mala", "gastos", "lugares"];
+    const tripColName = c => "viagem_" + c;
+
+    /* dados locais (cache) + nuvem */
+
+    function tripList(c) {
+
+        return readStore(tripColName(c), []) || [];
+    }
+
+    function tripCfg() {
+
+        return readStore("viagem_cfg", null) || { ida: "", volta: "", orcamento: 0 };
+    }
+
+    function tripMarks(name) {
+
+        return readStore("viagem_marcas_" + name.toLowerCase(), null) || { quero: {}, fomos: {} };
+    }
+
+    function tripSaveCfg(patch) {
+
+        const cfg = { ...tripCfg(), ...patch, at: Date.now() };
+
+        writeStore("viagem_cfg", cfg);
+
+        if (cloudReady()) window.loveCloud.setState("viagem_cfg", cfg).catch(() => loveToast("Não deu pra salvar 😕"));
+
+        renderTrip(); renderTripCard();
+    }
+
+    function tripSaveMarks(m) {
+
+        const k = "viagem_marcas_" + myName().toLowerCase();
+
+        writeStore(k, m);
+
+        if (cloudReady()) window.loveCloud.setState(k, m).catch(() => loveToast("Não deu pra salvar 😕"));
+    }
+
+    function tripAdd(c, data) {
+
+        const item = { ...data, id: "v" + newId(), por: myName(), at: Date.now() };
+
+        writeStore(tripColName(c), tripList(c).concat(item));
+
+        if (cloudReady()) window.loveCloud.save(tripColName(c), item.id, item).catch(() => loveToast("Não deu pra salvar 😕"));
+
+        return item;
+    }
+
+    function tripUpdate(c, id, patch) {
+
+        const list = tripList(c);
+        const i = list.findIndex(x => x.id === id);
+
+        if (i < 0) return;
+
+        list[i] = { ...list[i], ...patch };
+
+        writeStore(tripColName(c), list);
+
+        if (cloudReady()) window.loveCloud.save(tripColName(c), id, list[i]).catch(() => loveToast("Não deu pra salvar 😕"));
+    }
+
+    function tripRemove(c, id) {
+
+        writeStore(tripColName(c), tripList(c).filter(x => x.id !== id));
+
+        if (cloudReady()) window.loveCloud.remove(tripColName(c), id).catch(() => {});
+    }
+
+    function onCloudTripList(c, list) {
+
+        writeStore(tripColName(c), list || []);
+
+        renderTrip(); renderTripCard();
+    }
+
+    function onCloudTripState(key, data) {
+
+        if (data) writeStore(key, data);
+
+        renderTrip(); renderTripCard();
+    }
+
+    /* datas */
+
+    function tripDayList() {
+
+        const { ida, volta } = tripCfg();
+
+        if (!ida || !volta || volta < ida) return [];
+
+        const out = [];
+        const d = new Date(ida + "T12:00:00");
+        const end = new Date(volta + "T12:00:00");
+
+        while (d <= end && out.length < 31) {
+            out.push(todayKey(d));
+            d.setDate(d.getDate() + 1);
+        }
+
+        return out;
+    }
+
+    function tripDaysLeft() {
+
+        const { ida } = tripCfg();
+
+        if (!ida) return null;
+
+        const a = new Date(todayKey() + "T12:00:00");
+        const b = new Date(ida + "T12:00:00");
+
+        return Math.round((b - a) / 86400000);
+    }
+
+    const TRIP_WD = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+    const TRIP_WD_FULL = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+
+    function tripDayLabel(dk, full) {
+
+        const d = new Date(dk + "T12:00:00");
+
+        return `${(full ? TRIP_WD_FULL : TRIP_WD)[d.getDay()]}, ${d.getDate()}/${String(d.getMonth() + 1).padStart(2, "0")}`;
+    }
+
+    function tripCarnaval() {
+
+        // Carnaval 2027: 6 a 10 de fevereiro
+        const days = tripDayList();
+
+        return days.some(d => d >= "2027-02-06" && d <= "2027-02-10");
+    }
+
+    function tripPlace(id) {
+
+        return TRIP_PLACES.find(p => p.id === id) || tripList("lugares").find(p => p.id === id) || null;
+    }
+
+    function tripMapsUrl(q) {
+
+        return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Fortaleza - CE");
+    }
+
+    function tripMoney(v) {
+
+        return (Number(v) || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    }
+
+    /* ☀️ clima ao vivo (Open-Meteo, sem chave) */
+
+    const TRIP_WMO = c =>
+        c === 0 ? ["☀️", "céu limpo"] : c <= 2 ? ["🌤️", "poucas nuvens"] : c === 3 ? ["☁️", "nublado"] :
+        c <= 48 ? ["🌫️", "neblina"] : c <= 57 ? ["🌦️", "garoa"] : c <= 67 ? ["🌧️", "chuva"] :
+        c <= 77 ? ["🌨️", "neve?!"] : c <= 82 ? ["🌦️", "pancadas de chuva"] : ["⛈️", "tempestade"];
+
+    async function tripLoadWeather(force) {
+
+        if (!force && tripWeather && Date.now() - tripWeatherAt < 30 * 60 * 1000) return;
+
+        try {
+            const url = "https://api.open-meteo.com/v1/forecast" +
+                `?latitude=${TRIP_CITY.lat}&longitude=${TRIP_CITY.lon}` +
+                "&current=temperature_2m,weather_code,apparent_temperature" +
+                "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunset" +
+                `&timezone=${encodeURIComponent(TRIP_CITY.tz)}&forecast_days=16`;
+            const r = await fetch(url);
+            if (!r.ok) throw new Error(r.status);
+            tripWeather = await r.json();
+            tripWeatherAt = Date.now();
+            tripWeatherErr = false;
+        } catch (e) {
+            tripWeatherErr = true;
+        }
+
+        if (tripTab === "inicio") renderTrip();
+    }
+
+    /* abrir */
+
+    function openTrip(tab) {
+
+        if (!cloudReady()) {
+            openCloudModal();
+            return;
+        }
+
+        tripTab = tab || "inicio";
+        tripAddFor = null;
+
+        renderTrip();
+
+        openFunModal("tripOverlay");
+
+        tripLoadWeather();
+    }
+
+    function closeTrip() {
+
+        closeFunModal("tripOverlay");
+    }
+
+    function setTripTab(t) {
+
+        tripTab = t;
+        tripAddFor = null;
+
+        renderTrip();
+
+        const m = document.querySelector("#tripOverlay .trip-modal");
+
+        if (m) m.scrollTop = 0;
+
+        if (t === "inicio") tripLoadWeather();
+    }
+
+    /* cartão na aba "Nós dois" */
+
+    function renderTripCard() {
+
+        let sec = document.getElementById("tripSection");
+
+        if (!sec) {
+            const panel = document.querySelector('#home .nav-panel[data-panel="nos"]');
+            if (!panel) return;
+            sec = document.createElement("div");
+            sec.id = "tripSection";
+            sec.className = "home-section reveal";
+            sec.innerHTML = `
+                <div class="section-head">
+                    <span class="eyebrow">Nossa viagem</span>
+                    <h3>Fortaleza, aí vamos nós 🌴</h3>
+                </div>
+                <div id="tripCard" class="trip-card" onclick="openTrip()"></div>`;
+            panel.prepend(sec);
+        }
+
+        const card = document.getElementById("tripCard");
+        const left = tripDaysLeft();
+        const days = tripDayList();
+        const quero = new Set([...Object.keys(tripMarks("Diane").quero || {}), ...Object.keys(tripMarks("Gabriel").quero || {})]);
+        const mala = tripList("mala");
+        const malaOk = mala.filter(x => x.feito).length;
+
+        let big, small;
+
+        if (left === null) { big = "✈️"; small = "Escolham as datas da viagem"; }
+        else if (left > 1) { big = left; small = left === 1 ? "dia pra viagem" : "dias pra viagem"; }
+        else if (left === 1) { big = "1"; small = "dia! É amanhã!! 🥹"; }
+        else if (left === 0) { big = "🛫"; small = "É hoje!!! Boa viagem 💗"; }
+        else if (days.length && todayKey() <= days[days.length - 1]) { big = "🌴"; small = "Vocês estão em Fortaleza! Aproveitem 💗"; }
+        else { big = "💗"; small = "Viagem concluída. Que lembranças!"; }
+
+        card.innerHTML = `
+            <div class="tc-sun"></div>
+            <div class="tc-waves"></div>
+            <div class="tc-main">
+                <div class="tc-count"><b>${big}</b><span>${small}</span></div>
+                <div class="tc-info">
+                    <span>📍 Fortaleza · CE</span>
+                    <span>${days.length ? `📅 ${tripDayLabel(days[0])} → ${tripDayLabel(days[days.length - 1])}` : "📅 fevereiro/2027"}</span>
+                    <span>💗 ${quero.size} ${quero.size === 1 ? "lugar marcado" : "lugares marcados"}${mala.length ? ` · 🧳 ${malaOk}/${mala.length}` : ""}</span>
+                </div>
+            </div>
+            <div class="tc-go">Abrir o cantinho da viagem →</div>`;
+    }
+
+    /* desenhar o cantinho */
+
+    function renderTrip() {
+
+        const body = document.getElementById("tripBody");
+
+        if (!body) return;
+
+        document.querySelectorAll("#tripOverlay .trip-tab").forEach(b => b.classList.toggle("on", b.dataset.tab === tripTab));
+
+        if (tripTab === "lugares") body.innerHTML = tripPlacesHtml();
+        else if (tripTab === "roteiro") body.innerHTML = tripRoteiroHtml();
+        else if (tripTab === "mala") body.innerHTML = tripMalaHtml();
+        else if (tripTab === "gastos") body.innerHTML = tripGastosHtml();
+        else body.innerHTML = tripInicioHtml();
+    }
+
+    /* 🌴 início */
+
+    function tripInicioHtml() {
+
+        const cfg = tripCfg();
+        const left = tripDaysLeft();
+        const days = tripDayList();
+        const w = tripWeather;
+
+        let clima = `<div class="trip-empty">Carregando o clima de Fortaleza… ☀️</div>`;
+
+        if (tripWeatherErr) clima = `<div class="trip-empty">Não deu pra carregar o clima agora 😕 <button class="trip-mini" onclick="tripLoadWeather(true)">tentar de novo</button></div>`;
+
+        if (w && w.current && w.daily) {
+
+            const [ic, txt] = TRIP_WMO(w.current.weather_code);
+            const tripInForecast = days.filter(d => w.daily.time.includes(d));
+            const show = tripInForecast.length ? tripInForecast : w.daily.time.slice(0, 7);
+
+            const daysHtml = show.map(d => {
+                const i = w.daily.time.indexOf(d);
+                const [dic] = TRIP_WMO(w.daily.weather_code[i]);
+                return `
+                    <div class="tw-day">
+                        <small>${tripDayLabel(d)}</small>
+                        <span>${dic}</span>
+                        <b>${Math.round(w.daily.temperature_2m_max[i])}°</b>
+                        <em>${Math.round(w.daily.temperature_2m_min[i])}°</em>
+                        <i>💧${w.daily.precipitation_probability_max[i] ?? "–"}%</i>
+                    </div>`;
+            }).join("");
+
+            const sunset = w.daily.sunset && w.daily.sunset[0] ? w.daily.sunset[0].slice(11, 16) : "";
+
+            clima = `
+                <div class="tw-now">
+                    <span class="tw-ic">${ic}</span>
+                    <div>
+                        <b>${Math.round(w.current.temperature_2m)}°C agora em Fortaleza</b>
+                        <small>${txt} · sensação de ${Math.round(w.current.apparent_temperature)}°${sunset ? ` · 🌅 pôr do sol às ${sunset}` : ""}</small>
+                    </div>
+                </div>
+                <div class="tw-label">${tripInForecast.length ? "🌴 Previsão pros dias da viagem" : "Próximos dias (a previsão da viagem aparece uns 15 dias antes)"}</div>
+                <div class="tw-days">${daysHtml}</div>`;
+        }
+
+        const roteiro = tripList("roteiro");
+        const quero = new Set([...Object.keys(tripMarks("Diane").quero || {}), ...Object.keys(tripMarks("Gabriel").quero || {})]);
+        const both = TRIP_PLACES.concat(tripList("lugares")).filter(p => (tripMarks("Diane").quero || {})[p.id] && (tripMarks("Gabriel").quero || {})[p.id]);
+        const mala = tripList("mala");
+        const gastos = tripList("gastos").reduce((s, g) => s + (Number(g.valor) || 0), 0);
+
+        return `
+            <div class="trip-hero">
+                <div class="th-count">${left === null ? "✈️" : left > 0 ? left : left === 0 ? "🛫" : "🌴"}</div>
+                <div class="th-txt">
+                    <b>${left === null ? "Quando vai ser?" : left > 1 ? "dias pra gente se ver em Fortaleza" : left === 1 ? "dia!! É amanhã 🥹" : left === 0 ? "É hoje! Boa viagem, meus amores 💗" : "Fortaleza é nossa 🌴"}</b>
+                    <small>Escolham as datas (dá pra mudar depois)</small>
+                </div>
+                <div class="th-dates">
+                    <label>Ida<input type="date" value="${cfg.ida || ""}" min="2026-10-01" onchange="tripSaveCfg({ ida: this.value })"></label>
+                    <label>Volta<input type="date" value="${cfg.volta || ""}" min="${cfg.ida || "2026-10-01"}" onchange="tripSaveCfg({ volta: this.value })"></label>
+                </div>
+            </div>
+
+            ${tripCarnaval() ? `
+                <div class="trip-alert">🎭 <b>Vai pegar Carnaval (6 a 10/fev)!</b> Reservem hospedagem, voo e passeios com antecedência: os preços sobem e tudo enche, principalmente o Beach Park e a Praia do Futuro.</div>` : ""}
+
+            <div class="trip-stats">
+                <button onclick="setTripTab('lugares')"><b>${quero.size}</b><small>lugares marcados</small></button>
+                <button onclick="setTripTab('lugares')"><b>${both.length}</b><small>os dois querem 💞</small></button>
+                <button onclick="setTripTab('roteiro')"><b>${roteiro.length}</b><small>no roteiro</small></button>
+                <button onclick="setTripTab('mala')"><b>${mala.filter(x => x.feito).length}/${mala.length}</b><small>mala pronta</small></button>
+                <button onclick="setTripTab('gastos')"><b>${tripMoney(gastos).replace(",00", "")}</b><small>gastos</small></button>
+            </div>
+
+            <div class="trip-sec">☀️ Clima ao vivo</div>
+            <div class="trip-weather">${clima}</div>
+
+            <div class="trip-sec">💡 Fortaleza em fevereiro</div>
+            <div class="trip-tips">
+                <div>🌡️ <b>Calor o ano todo:</b> mínimas de ~25° e máximas de ~30°.</div>
+                <div>🌧️ <b>Começo da época de chuva:</b> fevereiro abre a quadra chuvosa (fev–mai). Costuma vir em pancadas, muitas vezes à tarde, com sol entre elas. Deixem um plano B ☔ no roteiro.</div>
+                <div>🧴 <b>Sol muito forte</b> (perto da linha do Equador): protetor FPS 50, retocando sempre.</div>
+                <div>🌊 <b>Praia do Futuro tem correnteza</b>: entrem só no rasinho, perto do salva-vidas.</div>
+                <div>🦀 <b>Quinta-feira é dia de caranguejo</b> na Praia do Futuro, não percam!</div>
+                <div>🚗 <b>Pra se locomover:</b> carro alugado ou app de corrida é o mais prático. Os bate-voltas (Morro Branco, Canoa, Jeri) costumam ser feitos com agência.</div>
+            </div>
+
+            <div class="trip-sec">🔎 Pesquisar agora no mapa</div>
+            <div class="trip-search">
+                <input id="tripSearch" placeholder="Ex.: açaí, pizzaria, praia..." onkeydown="if (event.key === 'Enter') tripDoSearch()">
+                <button onclick="tripDoSearch()">Buscar</button>
+            </div>
+            <div class="trip-quick">${TRIP_BUSCAS.map(([i, q]) => `<a href="${tripMapsUrl(q)}" target="_blank" rel="noopener">${i} ${q}</a>`).join("")}</div>
+            <small class="trip-note">Abre o Google Maps com o que tem de verdade por lá agora, com horário, nota e avaliações 🗺️</small>
+        `;
+    }
+
+    function tripDoSearch() {
+
+        const q = (document.getElementById("tripSearch") || {}).value || "";
+
+        if (!q.trim()) return;
+
+        window.open(tripMapsUrl(q.trim()), "_blank", "noopener");
+    }
+
+    /* 🗺️ lugares */
+
+    function tripToggleMark(kind, id) {
+
+        const m = tripMarks(myName());
+
+        m[kind] = { ...(m[kind] || {}) };
+
+        if (m[kind][id]) delete m[kind][id];
+        else m[kind][id] = true;
+
+        m.at = Date.now();
+
+        tripSaveMarks(m);
+
+        if (m[kind][id]) {
+            sfx(kind === "quero" ? "plim" : "yay");
+            const other = tripMarks(otherName());
+            if (kind === "quero" && (other.quero || {})[id]) loveToast(`💞 Os dois querem ir! ${tripPlace(id) ? tripPlace(id).nome : ""}`);
+        }
+
+        renderTrip(); renderTripCard();
+    }
+
+    function tripSetCat(c) {
+
+        tripCat = c;
+
+        renderTrip();
+    }
+
+    function tripPickDay(id) {
+
+        if (!tripDayList().length) {
+            loveToast("Escolham as datas da viagem primeiro (na aba Início) 📅");
+            setTripTab("inicio");
+            return;
+        }
+
+        tripAddFor = tripAddFor === id ? null : id;
+
+        renderTrip();
+    }
+
+    function tripAddToDay(id, dia) {
+
+        const p = tripPlace(id);
+
+        tripAdd("roteiro", { dia, hora: "", lugar: id, texto: p ? p.nome : "", ordem: Date.now() });
+
+        tripAddFor = null;
+
+        loveToast(`📅 ${p ? p.nome : "Lugar"} foi pro roteiro de ${tripDayLabel(dia, true)}`);
+
+        renderTrip(); renderTripCard();
+    }
+
+    function tripAddCustomPlace() {
+
+        const nome = (document.getElementById("tripNewPlace") || {}).value || "";
+        const cat = (document.getElementById("tripNewCat") || {}).value || "passeio";
+
+        if (!nome.trim()) return;
+
+        tripAdd("lugares", { nome: nome.trim().slice(0, 60), cat, icon: TRIP_CATS[cat].icon, desc: "Ideia nossa 💗", dica: "", onde: "", tags: [], custom: true });
+
+        renderTrip();
+    }
+
+    function tripPlaceCard(p) {
+
+        const me = myName();
+        const other = otherName();
+        const mq = !!(tripMarks(me).quero || {})[p.id];
+        const oq = !!(tripMarks(other).quero || {})[p.id];
+        const fomos = !!((tripMarks("Diane").fomos || {})[p.id] || (tripMarks("Gabriel").fomos || {})[p.id]);
+        const noRoteiro = tripList("roteiro").filter(r => r.lugar === p.id).map(r => tripDayLabel(r.dia));
+        const tags = (p.tags || []).map(t => ({ casal: "💞 programa de casal", chuva: "☔ bom com chuva", sol: "🌅 pôr do sol", cedo: "⏰ vá cedo" }[t])).filter(Boolean);
+
+        return `
+            <div class="tp ${mq && oq ? "both" : ""} ${fomos ? "done" : ""}">
+                <div class="tp-top">
+                    <span class="tp-icon">${p.icon || "📍"}</span>
+                    <div class="tp-title">
+                        <b>${escapeHtml(p.nome)}</b>
+                        ${p.onde ? `<small>📍 ${escapeHtml(p.onde)}</small>` : ""}
+                    </div>
+                    ${mq && oq ? `<span class="tp-both">💞 os dois querem</span>` : ""}
+                </div>
+                ${p.desc ? `<p>${escapeHtml(p.desc)}</p>` : ""}
+                ${p.dica ? `<div class="tp-dica">💡 ${escapeHtml(p.dica)}</div>` : ""}
+                ${tags.length ? `<div class="tp-tags">${tags.map(t => `<span>${t}</span>`).join("")}</div>` : ""}
+                ${noRoteiro.length ? `<div class="tp-in">📅 No roteiro: ${noRoteiro.join(", ")}</div>` : ""}
+                <div class="tp-actions">
+                    <button class="${mq ? "on" : ""}" onclick="tripToggleMark('quero','${p.id}')">${mq ? "💗 Quero!" : "🤍 Quero ir"}</button>
+                    <span class="tp-other">${oq ? `${gHeart(other)} ${other} quer` : ""}</span>
+                    <button class="${fomos ? "on done" : ""}" onclick="tripToggleMark('fomos','${p.id}')">${fomos ? "✅ Fomos!" : "Fomos?"}</button>
+                    <button onclick="tripPickDay('${p.id}')">📅</button>
+                    <a href="${tripMapsUrl(p.nome)}" target="_blank" rel="noopener">🗺️</a>
+                    ${p.custom ? `<button onclick="tripRemove('lugares','${p.id}'); renderTrip()">🗑️</button>` : ""}
+                </div>
+                ${tripAddFor === p.id ? `
+                    <div class="tp-days">
+                        <small>Colocar em qual dia?</small>
+                        <div>${tripDayList().map(d => `<button onclick="tripAddToDay('${p.id}','${d}')">${tripDayLabel(d)}</button>`).join("")}</div>
+                    </div>` : ""}
+            </div>`;
+    }
+
+    function tripPlacesHtml() {
+
+        const all = TRIP_PLACES.concat(tripList("lugares"));
+        const me = myName();
+        const filters = [["todos", "✨ Todos"], ["quero", "💗 Marcados"], ["both", "💞 Os dois"], ["casal", "💞 De casal"], ["chuva", "☔ Pra chuva"]]
+            .concat(Object.keys(TRIP_CATS).map(k => [k, `${TRIP_CATS[k].icon} ${TRIP_CATS[k].nome}`]));
+
+        const list = all.filter(p => {
+            if (tripCat === "todos") return true;
+            if (tripCat === "quero") return (tripMarks(me).quero || {})[p.id];
+            if (tripCat === "both") return (tripMarks("Diane").quero || {})[p.id] && (tripMarks("Gabriel").quero || {})[p.id];
+            if (tripCat === "casal" || tripCat === "chuva") return (p.tags || []).includes(tripCat);
+            return p.cat === tripCat;
+        });
+
+        return `
+            <div class="trip-filters">${filters.map(([k, t]) => `<button class="${tripCat === k ? "on" : ""}" onclick="tripSetCat('${k}')">${t}</button>`).join("")}</div>
+            <small class="trip-note">Cada um marca 🤍 o que quer fazer. Quando os dois marcam, aparece 💞. O 📅 coloca no roteiro.</small>
+            <div class="trip-places">${list.length ? list.map(tripPlaceCard).join("") : `<div class="trip-empty">Nada aqui ainda 👀</div>`}</div>
+            <div class="trip-sec">➕ Adicionar uma ideia nossa</div>
+            <div class="trip-search">
+                <input id="tripNewPlace" maxlength="60" placeholder="Ex.: aquele restaurante que vimos no Insta">
+                <select id="tripNewCat">${Object.keys(TRIP_CATS).map(k => `<option value="${k}">${TRIP_CATS[k].icon} ${TRIP_CATS[k].nome}</option>`).join("")}</select>
+                <button onclick="tripAddCustomPlace()">Adicionar</button>
+            </div>`;
+    }
+
+    /* 📅 roteiro */
+
+    function tripRoteiroHtml() {
+
+        const days = tripDayList();
+
+        if (!days.length) {
+            return `
+                <div class="trip-empty big">
+                    📅<br><b>Primeiro, as datas!</b><br>
+                    <small>Coloquem a ida e a volta na aba Início, e o roteiro monta os dias sozinho.</small><br>
+                    <button class="primary-btn" onclick="setTripTab('inicio')">Escolher as datas</button>
+                </div>`;
+        }
+
+        const items = tripList("roteiro");
+        const empty = days.filter(d => !items.some(r => r.dia === d)).length;
+
+        const daysHtml = days.map((d, idx) => {
+
+            const list = items.filter(r => r.dia === d)
+                .sort((a, b) => (a.hora || "99").localeCompare(b.hora || "99") || (a.ordem || 0) - (b.ordem || 0));
+
+            const isThu = new Date(d + "T12:00:00").getDay() === 4;
+
+            return `
+                <div class="tr-day">
+                    <div class="tr-head">
+                        <b>Dia ${idx + 1}</b>
+                        <span>${tripDayLabel(d, true)}${isThu ? " · 🦀 dia de caranguejo!" : ""}</span>
+                    </div>
+                    ${list.length ? list.map(r => {
+                        const p = r.lugar ? tripPlace(r.lugar) : null;
+                        return `
+                            <div class="tr-item">
+                                <input type="time" value="${r.hora || ""}" onchange="tripUpdate('roteiro','${r.id}',{ hora: this.value }); renderTrip()">
+                                <span class="tr-ic">${p ? p.icon : "📝"}</span>
+                                <div class="tr-txt">
+                                    <b>${escapeHtml(p ? p.nome : r.texto)}</b>
+                                    ${p && p.dica ? `<small>💡 ${escapeHtml(p.dica)}</small>` : ""}
+                                </div>
+                                ${p ? `<a href="${tripMapsUrl(p.nome)}" target="_blank" rel="noopener">🗺️</a>` : ""}
+                                <button onclick="tripRemove('roteiro','${r.id}'); renderTrip(); renderTripCard()">✕</button>
+                            </div>`;
+                    }).join("") : `<div class="tr-empty">Dia livre por enquanto 😌</div>`}
+                    <div class="tr-add">
+                        <input id="trNew_${d}" maxlength="80" placeholder="Adicionar algo nesse dia..." onkeydown="if (event.key === 'Enter') tripAddText('${d}')">
+                        <button onclick="tripAddText('${d}')">➕</button>
+                    </div>
+                </div>`;
+        }).join("");
+
+        return `
+            <div class="tr-top">
+                <div>
+                    <b>${days.length} dias em Fortaleza</b>
+                    <small>Tudo aqui aparece na hora pros dois ✨</small>
+                </div>
+                ${empty ? `<button class="primary-btn" onclick="tripSuggest()">✨ Sugerir roteiro</button>` : ""}
+            </div>
+            ${daysHtml}`;
+    }
+
+    function tripAddText(d) {
+
+        const input = document.getElementById("trNew_" + d);
+
+        if (!input || !input.value.trim()) return;
+
+        tripAdd("roteiro", { dia: d, hora: "", lugar: null, texto: input.value.trim(), ordem: Date.now() });
+
+        renderTrip(); renderTripCard();
+    }
+
+    // monta um roteiro nos dias vazios (põe a Praia do Futuro numa quinta, por causa do caranguejo)
+    function tripSuggest() {
+
+        const days = tripDayList();
+        const items = tripList("roteiro");
+        const free = days.filter(d => !items.some(r => r.dia === d));
+
+        if (!free.length) return;
+
+        const used = new Set(items.map(r => r.lugar).filter(Boolean));
+        let tpl = TRIP_TEMPLATE.filter((t, i) => i === 0 || !t.itens.every(([, id]) => used.has(id)));
+
+        // último dia livre = despedida (se a viagem tiver 3+ dias)
+        const plan = {};
+        const desp = TRIP_TEMPLATE[TRIP_TEMPLATE.length - 1];
+        tpl = tpl.filter(t => t !== desp);
+
+        const order = free.slice();
+        const last = days.length >= 3 && free.includes(days[days.length - 1]) ? days[days.length - 1] : null;
+        if (last) order.splice(order.indexOf(last), 1);
+
+        // o primeiro dia da viagem é sempre a chegada (orla + Mercado dos Peixes)
+        const chegada = tpl[0] === TRIP_TEMPLATE[0] && order[0] === days[0] ? order.shift() : null;
+        if (chegada) { plan[chegada] = tpl.shift(); }
+
+        // a Praia do Futuro vai pra uma quinta-feira livre
+        const thu = order.find(d => new Date(d + "T12:00:00").getDay() === 4);
+        const futIdx = tpl.findIndex(t => t.quinta);
+        if (thu && futIdx >= 0) { plan[thu] = tpl[futIdx]; tpl.splice(futIdx, 1); order.splice(order.indexOf(thu), 1); }
+        else if (futIdx >= 0) { tpl[futIdx] = { ...tpl[futIdx], itens: tpl[futIdx].itens.filter(([, id]) => id !== "caranguejo") }; }
+
+        order.forEach(d => { if (tpl.length) plan[d] = tpl.shift(); });
+        if (last) plan[last] = desp;
+
+        // sobrou a quinta do caranguejo e algum dia planejado é quinta? encaixa à noite
+        const temCaranguejo = Object.values(plan).some(t => t.itens.some(([, id]) => id === "caranguejo")) || used.has("caranguejo");
+        const qui = Object.keys(plan).find(d => new Date(d + "T12:00:00").getDay() === 4);
+        if (!temCaranguejo && qui) {
+            plan[qui] = { ...plan[qui], itens: plan[qui].itens.filter(([h]) => h < "19:00").concat([["19:30", "caranguejo"]]) };
+        }
+
+        let n = 0;
+
+        Object.keys(plan).forEach(d => {
+            plan[d].itens.forEach(([hora, id], k) => {
+                const p = tripPlace(id);
+                tripAdd("roteiro", { dia: d, hora, lugar: id, texto: p ? p.nome : "", ordem: Date.now() + k });
+                n++;
+            });
+        });
+
+        createConfetti();
+        loveToast(`✨ Roteiro sugerido! ${n} programas nos dias livres. Dá pra mexer em tudo 💗`);
+
+        renderTrip(); renderTripCard();
+    }
+
+    /* 🧳 mala */
+
+    function tripMalaHtml() {
+
+        const items = tripList("mala").slice().sort((a, b) => (a.feito - b.feito) || (a.at - b.at));
+        const ok = items.filter(x => x.feito).length;
+        const pct = items.length ? Math.round(ok / items.length * 100) : 0;
+        const who = { ambos: "👫 os dois", Diane: "💗 Diane", Gabriel: "💙 Gabriel" };
+
+        return `
+            <div class="tm-progress">
+                <div><b>${pct}%</b> da mala pronta <small>(${ok} de ${items.length})</small></div>
+                <div class="tm-bar"><i style="width:${pct}%"></i></div>
+            </div>
+            ${!items.length ? `
+                <div class="trip-empty">
+                    A mala tá vazia 🧳<br>
+                    <button class="primary-btn" onclick="tripMalaSugestoes()">✨ Colocar as sugestões pra Fortaleza</button>
+                </div>` : ""}
+            <div class="tm-list">
+                ${items.map(x => `
+                    <div class="tm-item ${x.feito ? "ok" : ""}">
+                        <button class="tm-check" onclick="tripUpdate('mala','${x.id}',{ feito: ${!x.feito} }); renderTrip(); renderTripCard()">${x.feito ? "✅" : "⬜"}</button>
+                        <span>${escapeHtml(x.texto)}</span>
+                        <button class="tm-who" onclick="tripMalaWho('${x.id}')">${who[x.quem || "ambos"]}</button>
+                        <button class="tm-del" onclick="tripRemove('mala','${x.id}'); renderTrip(); renderTripCard()">✕</button>
+                    </div>`).join("")}
+            </div>
+            <div class="trip-search">
+                <input id="tripMalaNew" maxlength="80" placeholder="Adicionar na mala..." onkeydown="if (event.key === 'Enter') tripMalaAdd()">
+                <button onclick="tripMalaAdd()">➕</button>
+            </div>
+            ${items.length ? `<button class="trip-mini" onclick="tripMalaSugestoes()">✨ Adicionar as sugestões que faltam</button>` : ""}
+            <small class="trip-note">Toca em "os dois" pra trocar quem leva cada coisa.</small>`;
+    }
+
+    function tripMalaAdd() {
+
+        const i = document.getElementById("tripMalaNew");
+
+        if (!i || !i.value.trim()) return;
+
+        tripAdd("mala", { texto: i.value.trim(), quem: "ambos", feito: false });
+
+        renderTrip(); renderTripCard();
+
+        const n = document.getElementById("tripMalaNew");
+
+        if (n) n.focus();
+    }
+
+    function tripMalaSugestoes() {
+
+        const have = new Set(tripList("mala").map(x => x.texto));
+        let n = 0;
+
+        TRIP_MALA_SUGESTOES.forEach(t => { if (!have.has(t)) { tripAdd("mala", { texto: t, quem: "ambos", feito: false }); n++; } });
+
+        loveToast(n ? `🧳 ${n} itens na mala!` : "Já tá tudo na lista 😉");
+
+        renderTrip(); renderTripCard();
+    }
+
+    function tripMalaWho(id) {
+
+        const x = tripList("mala").find(i => i.id === id);
+
+        if (!x) return;
+
+        const next = { ambos: "Diane", Diane: "Gabriel", Gabriel: "ambos" }[x.quem || "ambos"];
+
+        tripUpdate("mala", id, { quem: next });
+
+        renderTrip();
+    }
+
+    /* 💸 gastos */
+
+    function tripGastosHtml() {
+
+        const g = tripList("gastos").slice().sort((a, b) => b.at - a.at);
+        const total = g.reduce((s, x) => s + (Number(x.valor) || 0), 0);
+        const pd = g.filter(x => x.pagou === "Diane").reduce((s, x) => s + (Number(x.valor) || 0), 0);
+        const pg = total - pd;
+        const diff = pd - total / 2;
+        const orc = Number(tripCfg().orcamento) || 0;
+
+        const balance = Math.abs(diff) < 0.01
+            ? "Tudo certinho, ninguém deve nada 💗"
+            : diff > 0 ? `💙 Gabriel deve ${tripMoney(diff)} pra Diane` : `💗 Diane deve ${tripMoney(-diff)} pro Gabriel`;
+
+        return `
+            <div class="tg-sum">
+                <div><small>Total da viagem</small><b>${tripMoney(total)}</b></div>
+                <div><small>💗 Diane pagou</small><b>${tripMoney(pd)}</b></div>
+                <div><small>💙 Gabriel pagou</small><b>${tripMoney(pg)}</b></div>
+            </div>
+            <div class="tg-balance">${balance} <small>(dividindo meio a meio)</small></div>
+
+            <div class="tg-orc">
+                <label>Orçamento <input type="number" min="0" step="50" value="${orc || ""}" placeholder="R$" onchange="tripSaveCfg({ orcamento: Number(this.value) || 0 })"></label>
+                ${orc ? `<div class="tm-bar ${total > orc ? "over" : ""}"><i style="width:${Math.min(100, total / orc * 100)}%"></i></div>
+                         <small>${total > orc ? `Passou ${tripMoney(total - orc)} do orçamento 😬` : `Ainda tem ${tripMoney(orc - total)} 💸`}</small>` : ""}
+            </div>
+
+            <div class="trip-sec">➕ Novo gasto</div>
+            <div class="tg-new">
+                <input id="tgDesc" maxlength="60" placeholder="O quê? (ex.: passagem, hotel, buggy)">
+                <input id="tgVal" type="text" inputmode="decimal" placeholder="R$ 0,00">
+                <select id="tgWho"><option value="${myName()}">${myName() === "Diane" ? "💗 Eu (Diane)" : "💙 Eu (Gabriel)"}</option><option value="${otherName()}">${otherName() === "Diane" ? "💗 Diane" : "💙 Gabriel"}</option></select>
+                <button class="primary-btn" onclick="tripGastoAdd()">Adicionar</button>
+            </div>
+
+            <div class="tg-list">
+                ${g.length ? g.map(x => `
+                    <div class="tg-item">
+                        <span>${x.pagou === "Diane" ? "💗" : "💙"}</span>
+                        <b>${escapeHtml(x.desc)}</b>
+                        <em>${tripMoney(x.valor)}</em>
+                        <button onclick="tripRemove('gastos','${x.id}'); renderTrip(); renderTripCard()">✕</button>
+                    </div>`).join("") : `<div class="trip-empty">Nenhum gasto ainda 💸</div>`}
+            </div>`;
+    }
+
+    function tripGastoAdd() {
+
+        const d = document.getElementById("tgDesc"), v = document.getElementById("tgVal"), w = document.getElementById("tgWho");
+        const valor = Math.round((parseFloat(String(v.value).replace(",", ".")) || 0) * 100) / 100;
+
+        if (!d.value.trim() || !valor) { loveToast("Coloca o que foi e o valor 💸"); return; }
+
+        tripAdd("gastos", { desc: d.value.trim(), valor, pagou: w.value });
+
+        renderTrip(); renderTripCard();
+    }
+
+    setTimeout(() => { try { renderTripCard(); } catch (e) {} }, 0);
 
     /* ☁️ chegou jogada do outro celular */
 
