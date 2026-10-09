@@ -11378,7 +11378,7 @@
     .trip-alert { margin-top: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; border-radius: 16px; color: #7a4a00; background: #fff1c9; border: 1px solid #ffd36e; }
     :root[data-theme="dark"] .trip-alert { color: #ffe3a3; background: rgba(255, 211, 110, 0.14); }
 
-    .trip-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 14px; }
+    .trip-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
     .trip-stats button { display: grid; gap: 2px; padding: 12px 4px; border-radius: 16px; color: var(--text); background: var(--surface-soft); border: 1px solid var(--border); box-shadow: none; }
     .trip-stats b { font-size: 17px; color: var(--accent); }
     .trip-stats small { font-size: 10.5px; color: var(--text-muted); }
@@ -11479,35 +11479,15 @@
     .tm-del { font-size: 13px; color: var(--text-muted); }
     .tm-who { padding: 5px 9px; font-size: 11.5px; white-space: nowrap; border-radius: 999px; color: var(--chip-text); background: var(--chip-bg); box-shadow: none; }
 
-    .tg-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .tg-sum div { display: grid; gap: 2px; padding: 12px; border-radius: 16px; background: var(--surface-soft); }
-    .tg-sum small { font-size: 11.5px; color: var(--text-muted); }
-    .tg-sum b { font-size: 16px; color: var(--text); }
-    .tg-balance { margin-top: 10px; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 16px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
-    .tg-balance small { font-weight: 400; opacity: 0.85; }
-    .tg-orc { margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: var(--surface-soft); }
-    .tg-orc label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text-soft); }
-    .tg-orc input { width: 140px; padding: 8px 10px; font-size: 14px; border-radius: 10px; }
-    .tg-orc small { display: block; margin-top: 6px; font-size: 12px; color: var(--text-muted); }
-    .tg-new { display: grid; grid-template-columns: 1fr 110px; gap: 8px; }
-    .tg-new input, .tg-new select { padding: 11px 12px; font-size: 14px; border-radius: 12px; }
-    .tg-new select { grid-column: 1; }
-    .tg-new .primary-btn { grid-column: 2; padding: 10px; font-size: 14px; }
-    .tg-list { display: grid; gap: 6px; margin-top: 14px; }
-    .tg-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--surface-soft); }
-    .tg-item b { flex: 1; font-size: 14px; font-weight: 600; color: var(--text); }
-    .tg-item em { font-style: normal; font-weight: 700; color: var(--accent); }
-    .tg-item button { padding: 2px 6px; font-size: 13px; color: var(--text-muted); background: transparent; box-shadow: none; }
 
     @media (max-width: 650px) {
         #tripOverlay { padding: 0; }
         .trip-modal { width: 100vw; height: 100dvh; border-radius: 0; border: 0; padding: 0 14px 20px; }
         .trip-top { margin: 0 -14px 12px; }
-        .trip-stats { grid-template-columns: repeat(3, 1fr); }
+        .trip-stats { grid-template-columns: repeat(2, 1fr); }
         .trip-hero { grid-template-columns: 1fr; text-align: center; justify-items: center; }
         .th-count { grid-row: auto; }
         .th-dates { justify-content: center; }
-        .tg-sum b { font-size: 14px; }
     }
 
     /* 🔐 portão de login */
@@ -16215,7 +16195,6 @@
                 <button class="trip-tab" data-tab="lugares" onclick="setTripTab('lugares')">🗺️ Lugares</button>
                 <button class="trip-tab" data-tab="roteiro" onclick="setTripTab('roteiro')">📅 Roteiro</button>
                 <button class="trip-tab" data-tab="mala" onclick="setTripTab('mala')">🧳 Mala</button>
-                <button class="trip-tab" data-tab="gastos" onclick="setTripTab('gastos')">💸 Gastos</button>
             </div>
         </div>
         <div id="tripBody"></div>
@@ -28951,7 +28930,7 @@ Te amo muito.
     let tripWeatherAt = 0;
     let tripWeatherErr = false;
 
-    const TRIP_COLS = ["roteiro", "mala", "gastos", "lugares"];
+    const TRIP_COLS = ["roteiro", "mala", "lugares"];
     const tripColName = c => "viagem_" + c;
 
     /* dados locais (cache) + nuvem */
@@ -29233,7 +29212,6 @@ Te amo muito.
         if (tripTab === "lugares") body.innerHTML = tripPlacesHtml();
         else if (tripTab === "roteiro") body.innerHTML = tripRoteiroHtml();
         else if (tripTab === "mala") body.innerHTML = tripMalaHtml();
-        else if (tripTab === "gastos") body.innerHTML = tripGastosHtml();
         else body.innerHTML = tripInicioHtml();
     }
 
@@ -29287,7 +29265,6 @@ Te amo muito.
         const quero = new Set([...Object.keys(tripMarks("Diane").quero || {}), ...Object.keys(tripMarks("Gabriel").quero || {})]);
         const both = TRIP_PLACES.concat(tripList("lugares")).filter(p => (tripMarks("Diane").quero || {})[p.id] && (tripMarks("Gabriel").quero || {})[p.id]);
         const mala = tripList("mala");
-        const gastos = tripList("gastos").reduce((s, g) => s + (Number(g.valor) || 0), 0);
 
         return `
             <div class="trip-hero">
@@ -29310,7 +29287,6 @@ Te amo muito.
                 <button onclick="setTripTab('lugares')"><b>${both.length}</b><small>os dois querem 💞</small></button>
                 <button onclick="setTripTab('roteiro')"><b>${roteiro.length}</b><small>no roteiro</small></button>
                 <button onclick="setTripTab('mala')"><b>${mala.filter(x => x.feito).length}/${mala.length}</b><small>mala pronta</small></button>
-                <button onclick="setTripTab('gastos')"><b>${tripMoney(gastos).replace(",00", "")}</b><small>gastos</small></button>
             </div>
 
             <div class="trip-sec">☀️ Clima ao vivo</div>
@@ -29686,66 +29662,6 @@ Te amo muito.
         tripUpdate("mala", id, { quem: next });
 
         renderTrip();
-    }
-
-    /* 💸 gastos */
-
-    function tripGastosHtml() {
-
-        const g = tripList("gastos").slice().sort((a, b) => b.at - a.at);
-        const total = g.reduce((s, x) => s + (Number(x.valor) || 0), 0);
-        const pd = g.filter(x => x.pagou === "Diane").reduce((s, x) => s + (Number(x.valor) || 0), 0);
-        const pg = total - pd;
-        const diff = pd - total / 2;
-        const orc = Number(tripCfg().orcamento) || 0;
-
-        const balance = Math.abs(diff) < 0.01
-            ? "Tudo certinho, ninguém deve nada 💗"
-            : diff > 0 ? `💙 Gabriel deve ${tripMoney(diff)} pra Diane` : `💗 Diane deve ${tripMoney(-diff)} pro Gabriel`;
-
-        return `
-            <div class="tg-sum">
-                <div><small>Total da viagem</small><b>${tripMoney(total)}</b></div>
-                <div><small>💗 Diane pagou</small><b>${tripMoney(pd)}</b></div>
-                <div><small>💙 Gabriel pagou</small><b>${tripMoney(pg)}</b></div>
-            </div>
-            <div class="tg-balance">${balance} <small>(dividindo meio a meio)</small></div>
-
-            <div class="tg-orc">
-                <label>Orçamento <input type="number" min="0" step="50" value="${orc || ""}" placeholder="R$" onchange="tripSaveCfg({ orcamento: Number(this.value) || 0 })"></label>
-                ${orc ? `<div class="tm-bar ${total > orc ? "over" : ""}"><i style="width:${Math.min(100, total / orc * 100)}%"></i></div>
-                         <small>${total > orc ? `Passou ${tripMoney(total - orc)} do orçamento 😬` : `Ainda tem ${tripMoney(orc - total)} 💸`}</small>` : ""}
-            </div>
-
-            <div class="trip-sec">➕ Novo gasto</div>
-            <div class="tg-new">
-                <input id="tgDesc" maxlength="60" placeholder="O quê? (ex.: passagem, hotel, buggy)">
-                <input id="tgVal" type="text" inputmode="decimal" placeholder="R$ 0,00">
-                <select id="tgWho"><option value="${myName()}">${myName() === "Diane" ? "💗 Eu (Diane)" : "💙 Eu (Gabriel)"}</option><option value="${otherName()}">${otherName() === "Diane" ? "💗 Diane" : "💙 Gabriel"}</option></select>
-                <button class="primary-btn" onclick="tripGastoAdd()">Adicionar</button>
-            </div>
-
-            <div class="tg-list">
-                ${g.length ? g.map(x => `
-                    <div class="tg-item">
-                        <span>${x.pagou === "Diane" ? "💗" : "💙"}</span>
-                        <b>${escapeHtml(x.desc)}</b>
-                        <em>${tripMoney(x.valor)}</em>
-                        <button onclick="tripRemove('gastos','${x.id}'); renderTrip(); renderTripCard()">✕</button>
-                    </div>`).join("") : `<div class="trip-empty">Nenhum gasto ainda 💸</div>`}
-            </div>`;
-    }
-
-    function tripGastoAdd() {
-
-        const d = document.getElementById("tgDesc"), v = document.getElementById("tgVal"), w = document.getElementById("tgWho");
-        const valor = Math.round((parseFloat(String(v.value).replace(",", ".")) || 0) * 100) / 100;
-
-        if (!d.value.trim() || !valor) { loveToast("Coloca o que foi e o valor 💸"); return; }
-
-        tripAdd("gastos", { desc: d.value.trim(), valor, pagou: w.value });
-
-        renderTrip(); renderTripCard();
     }
 
     setTimeout(() => { try { renderTripCard(); } catch (e) {} }, 0);
