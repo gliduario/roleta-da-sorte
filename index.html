@@ -11490,6 +11490,46 @@
         .th-dates { justify-content: center; }
     }
 
+
+    /* 🏨 hotel */
+
+    .trip-hotel { padding: 16px; border-radius: 24px; background: var(--surface-soft); border: 1px solid var(--border); }
+    .th-head { display: flex; align-items: center; gap: 12px; }
+    .th-icon { display: grid; place-items: center; flex: 0 0 auto; width: 52px; height: 52px; font-size: 28px; border-radius: 16px; background: linear-gradient(135deg, #ffd36e, #ff9a76); }
+    .th-head small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+    .th-head b { display: block; font-size: 19px; color: var(--text); }
+    .th-head em { display: block; font-size: 12.5px; font-style: normal; color: var(--text-soft); }
+
+    .th-status { margin-top: 12px; padding: 10px 12px; font-size: 13.5px; font-weight: 700; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .th-map { position: relative; margin-top: 12px; overflow: hidden; border-radius: 18px; background: #cfe6f5; aspect-ratio: 16 / 10; max-height: 380px; width: 100%; }
+    .th-map iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .th-map-modes { position: absolute; top: 10px; left: 10px; display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+    .th-map-modes button { padding: 6px 10px; font-size: 12px; font-weight: 700; border-radius: 999px; color: #555; background: transparent; box-shadow: none; }
+    .th-map-modes button.on { color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); }
+
+    .th-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .th-chips span { padding: 5px 10px; font-size: 12px; border-radius: 999px; color: var(--text-soft); background: var(--surface-solid); border: 1px solid var(--border); }
+
+    .th-times { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; margin-top: 12px; }
+    .th-times div { display: grid; gap: 2px; padding: 10px; border-radius: 14px; background: var(--surface-solid); }
+    .th-times small { font-size: 11px; color: var(--text-muted); }
+    .th-times b { font-size: 14px; color: var(--text); }
+
+    .th-near { margin-top: 12px; padding: 10px 12px; font-size: 13.5px; line-height: 1.5; border-radius: 14px; color: var(--text-soft); background: #fff1c9; }
+    :root[data-theme="dark"] .th-near { background: rgba(255, 211, 110, 0.14); }
+
+    .th-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .th-actions a, .th-actions button { padding: 9px 12px; font-size: 12.5px; font-weight: 700; text-decoration: none; border-radius: 999px; color: #fff; background: linear-gradient(135deg, #ff6f91, #2f8fc9); box-shadow: none; }
+
+    .tp-near { font-size: 12px; font-weight: 700; color: #e07b2c; }
+
+    @media (max-width: 650px) {
+        .th-times { grid-template-columns: 1fr 1fr; }
+        .th-times .wide { grid-column: 1 / -1; }
+        .th-map { aspect-ratio: 4 / 3; }
+    }
+
     /* 🔐 portão de login */
 
     html.gate-on, html.gate-on body { overflow: hidden; }
@@ -28781,6 +28821,21 @@ Te amo muito.
 
     const TRIP_CITY = { nome: "Fortaleza", lat: -3.7319, lon: -38.5267, tz: "America/Fortaleza" };
 
+    // 🏨 onde vocês vão ficar (infos dos sites de reserva, out/2026: confiram na reserva)
+    const TRIP_HOTEL = {
+        nome: "Gran Mareiro Hotel",
+        endereco: "Rua Osvaldo Araújo, 100 - Praia do Futuro I, Fortaleza - CE, 60177-320",
+        busca: "Gran Mareiro Hotel, Rua Osvaldo Araújo 100, Praia do Futuro, Fortaleza",
+        checkin: "14h",
+        checkout: "12h",
+        cafe: "café da manhã das 6h30 às 10h (fins de semana até 10h30)",
+        destaques: ["🏖️ de frente pra Praia do Futuro", "🏊 piscina com bar molhado", "🥐 café da manhã incluso", "🧖 sauna e hidro", "🏋️ academia", "🎱 salão de jogos", "🍽️ restaurante e bar", "🌊 quartos com vista pro mar"],
+        aeroporto: "Aeroporto Internacional Pinto Martins, Fortaleza"
+    };
+
+    // lugares que ficam pertinho do hotel
+    const TRIP_NEAR_HOTEL = ["futuro", "caranguejo"];
+
     const TRIP_CATS = {
         praia: { icon: "🏖️", nome: "Praias" },
         passeio: { icon: "⛵", nome: "Passeios" },
@@ -28797,7 +28852,7 @@ Te amo muito.
         { id: "beiramar", cat: "praia", icon: "🌊", nome: "Calçadão da Beira-Mar", onde: "Meireles / Mucuripe",
           desc: "O cartão-postal da cidade: calçadão à beira-mar pra caminhar de mãos dadas, com quiosques, caiaque e SUP.",
           dica: "Fim de tarde é o melhor horário. Dá pra emendar com a Feirinha à noite.", tags: ["casal", "sol"] },
-        { id: "futuro", cat: "praia", icon: "🏝️", nome: "Praia do Futuro", onde: "~9 km da Beira-Mar",
+        { id: "futuro", cat: "praia", icon: "🏝️", nome: "Praia do Futuro", onde: "Onde fica o hotel de vocês 🏨",
           desc: "As famosas megabarracas (Crocobeach, Chico do Caranguejo, Santa Praia, Órbita Blue…) com piscina, música e comida o dia todo.",
           dica: "O mar tem correnteza forte: entrem só no rasinho, perto do salva-vidas. Cheguem cedo e evitem o calçadão sozinhos à noite.", tags: ["cedo"] },
         { id: "iracema", cat: "praia", icon: "🌅", nome: "Praia de Iracema + Ponte dos Ingleses", onde: "Praia de Iracema",
@@ -29076,6 +29131,96 @@ Te amo muito.
         return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Fortaleza - CE");
     }
 
+    // rota de carro saindo do hotel (abre o Google Maps já com o caminho e o tempo de hoje)
+    function tripRouteUrl(dest, from) {
+
+        return "https://www.google.com/maps/dir/?api=1&travelmode=driving" +
+            "&origin=" + encodeURIComponent(from || TRIP_HOTEL.busca) +
+            "&destination=" + encodeURIComponent(/fortaleza/i.test(dest) ? dest : dest + ", Fortaleza - CE");
+    }
+
+    let tripMapMode = "m";
+
+    function tripMapEmbed() {
+
+        return "https://maps.google.com/maps?q=" + encodeURIComponent(TRIP_HOTEL.busca) +
+            "&t=" + (tripMapMode === "k" ? "k" : "m") + "&z=" + (tripMapMode === "k" ? 17 : 14) + "&ie=UTF8&iwloc=&output=embed";
+    }
+
+    function tripSetMap(mode) {
+
+        tripMapMode = mode;
+
+        const f = document.getElementById("tripMapFrame");
+
+        if (f) f.src = tripMapEmbed();
+
+        document.querySelectorAll(".th-map-modes button").forEach(b => b.classList.toggle("on", b.dataset.m === mode));
+    }
+
+    function tripCopyAddress() {
+
+        try {
+            navigator.clipboard.writeText(TRIP_HOTEL.endereco);
+            loveToast("📋 Endereço do hotel copiado!");
+        } catch (e) {
+            loveToast(TRIP_HOTEL.endereco);
+        }
+    }
+
+    function tripHotelHtml() {
+
+        const days = tripDayList();
+        const left = tripDaysLeft();
+        const today = todayKey();
+        const staying = days.length && today >= days[0] && today <= days[days.length - 1];
+
+        let status = "";
+
+        if (staying) status = `<div class="th-status">💗 Hoje vocês dormem no ${TRIP_HOTEL.nome}!</div>`;
+        else if (left !== null && left > 0) status = `<div class="th-status">🔑 Check-in em ${left} ${left === 1 ? "dia" : "dias"}${days.length ? ` · ${tripDayLabel(days[0], true)}, a partir das ${TRIP_HOTEL.checkin}` : ""}</div>`;
+
+        return `
+            <div class="trip-hotel">
+                <div class="th-head">
+                    <span class="th-icon">🏨</span>
+                    <div>
+                        <small>Nossa casinha em Fortaleza</small>
+                        <b>${TRIP_HOTEL.nome}</b>
+                        <em>📍 ${TRIP_HOTEL.endereco}</em>
+                    </div>
+                </div>
+
+                ${status}
+
+                <div class="th-map">
+                    <iframe id="tripMapFrame" src="${tripMapEmbed()}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa do hotel" allowfullscreen></iframe>
+                    <div class="th-map-modes">
+                        <button data-m="m" class="${tripMapMode === "m" ? "on" : ""}" onclick="tripSetMap('m')">🗺️ Mapa</button>
+                        <button data-m="k" class="${tripMapMode === "k" ? "on" : ""}" onclick="tripSetMap('k')">🛰️ Satélite</button>
+                    </div>
+                </div>
+
+                <div class="th-chips">${TRIP_HOTEL.destaques.map(d => `<span>${d}</span>`).join("")}</div>
+
+                <div class="th-times">
+                    <div><small>Check-in</small><b>${TRIP_HOTEL.checkin}</b></div>
+                    <div><small>Check-out</small><b>${TRIP_HOTEL.checkout}</b></div>
+                    <div class="wide"><small>☕ Café</small><b>${TRIP_HOTEL.cafe.replace("café da manhã ", "")}</b></div>
+                </div>
+
+                <div class="th-near">🦀 Vocês vão ficar <b>na Praia do Futuro</b>: as barracas e a <b>Quinta do Caranguejo</b> ficam pertinho do hotel!</div>
+
+                <div class="th-actions">
+                    <a href="${tripMapsUrl(TRIP_HOTEL.nome)}" target="_blank" rel="noopener">📸 Ver fotos e avaliações</a>
+                    <a href="${tripRouteUrl(TRIP_HOTEL.busca, TRIP_HOTEL.aeroporto)}" target="_blank" rel="noopener">✈️ Rota do aeroporto</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("restaurantes perto de " + TRIP_HOTEL.busca)}" target="_blank" rel="noopener">🍽️ Comer perto do hotel</a>
+                    <button onclick="tripCopyAddress()">📋 Copiar endereço</button>
+                </div>
+                <small class="trip-note">Infos dos sites de reserva (horários e serviços podem mudar, confiram na reserva). As fotos abrem no Google Maps, com as fotos reais e as avaliações de quem já ficou lá.</small>
+            </div>`;
+    }
+
     function tripMoney(v) {
 
         return (Number(v) || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -29191,7 +29336,7 @@ Te amo muito.
             <div class="tc-main">
                 <div class="tc-count"><b>${big}</b><span>${small}</span></div>
                 <div class="tc-info">
-                    <span>📍 Fortaleza · CE</span>
+                    <span>🏨 ${TRIP_HOTEL.nome}</span>
                     <span>${days.length ? `📅 ${tripDayLabel(days[0])} → ${tripDayLabel(days[days.length - 1])}` : "📅 fevereiro/2027"}</span>
                     <span>💗 ${quero.size} ${quero.size === 1 ? "lugar marcado" : "lugares marcados"}${mala.length ? ` · 🧳 ${malaOk}/${mala.length}` : ""}</span>
                 </div>
@@ -29278,6 +29423,9 @@ Te amo muito.
                     <label>Volta<input type="date" value="${cfg.volta || ""}" min="${cfg.ida || "2026-10-01"}" onchange="tripSaveCfg({ volta: this.value })"></label>
                 </div>
             </div>
+
+            <div class="trip-sec">🏨 Onde a gente vai ficar</div>
+            ${tripHotelHtml()}
 
             ${tripCarnaval() ? `
                 <div class="trip-alert">🎭 <b>Vai pegar Carnaval (6 a 10/fev)!</b> Reservem hospedagem, voo e passeios com antecedência: os preços sobem e tudo enche, principalmente o Beach Park e a Praia do Futuro.</div>` : ""}
@@ -29413,13 +29561,15 @@ Te amo muito.
                 ${p.desc ? `<p>${escapeHtml(p.desc)}</p>` : ""}
                 ${p.dica ? `<div class="tp-dica">💡 ${escapeHtml(p.dica)}</div>` : ""}
                 ${tags.length ? `<div class="tp-tags">${tags.map(t => `<span>${t}</span>`).join("")}</div>` : ""}
+                ${TRIP_NEAR_HOTEL.includes(p.id) ? `<div class="tp-near">🏨 Pertinho do hotel de vocês!</div>` : ""}
                 ${noRoteiro.length ? `<div class="tp-in">📅 No roteiro: ${noRoteiro.join(", ")}</div>` : ""}
                 <div class="tp-actions">
                     <button class="${mq ? "on" : ""}" onclick="tripToggleMark('quero','${p.id}')">${mq ? "💗 Quero!" : "🤍 Quero ir"}</button>
                     <span class="tp-other">${oq ? `${gHeart(other)} ${other} quer` : ""}</span>
                     <button class="${fomos ? "on done" : ""}" onclick="tripToggleMark('fomos','${p.id}')">${fomos ? "✅ Fomos!" : "Fomos?"}</button>
                     <button onclick="tripPickDay('${p.id}')">📅</button>
-                    <a href="${tripMapsUrl(p.nome)}" target="_blank" rel="noopener">🗺️</a>
+                    <a href="${tripMapsUrl(p.nome)}" target="_blank" rel="noopener" title="Ver no mapa">🗺️</a>
+                    <a href="${tripRouteUrl(p.nome)}" target="_blank" rel="noopener" title="Como chegar saindo do hotel">🚗 do hotel</a>
                     ${p.custom ? `<button onclick="tripRemove('lugares','${p.id}'); renderTrip()">🗑️</button>` : ""}
                 </div>
                 ${tripAddFor === p.id ? `
@@ -29498,7 +29648,7 @@ Te amo muito.
                                     <b>${escapeHtml(p ? p.nome : r.texto)}</b>
                                     ${p && p.dica ? `<small>💡 ${escapeHtml(p.dica)}</small>` : ""}
                                 </div>
-                                ${p ? `<a href="${tripMapsUrl(p.nome)}" target="_blank" rel="noopener">🗺️</a>` : ""}
+                                ${p ? `<a href="${tripRouteUrl(p.nome)}" target="_blank" rel="noopener" title="Rota saindo do hotel">🚗</a>` : ""}
                                 <button onclick="tripRemove('roteiro','${r.id}'); renderTrip(); renderTripCard()">✕</button>
                             </div>`;
                     }).join("") : `<div class="tr-empty">Dia livre por enquanto 😌</div>`}
